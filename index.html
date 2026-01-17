@@ -3,192 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Video Producer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+    <title>Minh Video - Apple Style Portfolio</title>
     
+    <script src="https://cdn.jsdelivr.net/npm/scrolly-video@latest/dist/scrolly-video.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+
     <style>
-        /* --- PHẦN TRANG TRÍ (CSS) --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
+        /* --- GIAO DIỆN APPLE DARK MODE --- */
         body {
-            background-color: #0a0a0a; /* Màu nền đen đậm */
-            color: #e0e0e0; /* Chữ màu trắng xám nhẹ cho đỡ mỏi mắt */
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Phần đầu trang (Hero Section) */
-        header {
+        /* Phần chứa Video cuộn (Quan trọng nhất) */
+        #scrolly-video-container {
+            width: 100%;
             height: 100vh; /* Full màn hình */
+            position: sticky; /* Dính chặt vào màn hình */
+            top: 0;
+            z-index: -1; /* Nằm dưới chữ */
+        }
+
+        /* Các đoạn nội dung trôi lên */
+        .content-section {
+            height: 100vh; /* Mỗi đoạn cao bằng 1 màn hình */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* Ảnh nền máy quay tạm thời */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Hiệu ứng cuộn trôi */
-        }
-
-        header h1 {
-            font-size: 4rem;
-            color: #f39c12; /* Màu vàng cam điện ảnh */
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
-        }
-
-        header p {
-            font-size: 1.5rem;
-            border-top: 2px solid #f39c12;
-            border-bottom: 2px solid #f39c12;
-            padding: 10px 20px;
-            display: inline-block;
-        }
-
-        /* Phần nội dung chính */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 50px 20px;
-        }
-
-        /* Lưới Video (Quan trọng nhất) */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Tự động chia cột */
-            gap: 40px;
-        }
-
-        .video-card {
-            background: #1a1a1a;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        /* Hiệu ứng di chuột vào video thì nổi lên */
-        .video-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(243, 156, 12, 0.2);
-            border: 1px solid #f39c12;
-        }
-
-        .video-container {
+            z-index: 2;
             position: relative;
-            padding-bottom: 56.25%; /* Tỷ lệ 16:9 chuẩn YouTube */
-            height: 0;
-            overflow: hidden;
+            /* Tạo mảng tối nhẹ để chữ dễ đọc hơn trên video */
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%); 
         }
 
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        h1 {
+            font-size: 5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -2px; /* Chữ xích lại gần nhau kiểu Apple */
         }
 
-        .video-info {
-            padding: 20px;
+        p {
+            font-size: 1.5rem;
+            color: #a1a1a6; /* Màu xám đặc trưng của Apple */
+            max-width: 600px;
+            line-height: 1.5;
         }
 
-        .video-info h3 { color: #fff; margin-bottom: 10px; }
-        .video-info p { font-size: 0.9rem; color: #aaa; }
-        .role-tag {
-            background-color: #f39c12;
+        /* Nút bấm Apple */
+        .btn-apple {
+            background-color: #fff;
             color: #000;
-            padding: 2px 8px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-right: 5px;
-        }
-
-        /* Nút liên hệ */
-        .btn-contact {
-            display: inline-block;
-            margin-top: 50px;
-            padding: 15px 40px;
-            background-color: #f39c12;
-            color: #000;
+            padding: 15px 30px;
+            border-radius: 30px;
             text-decoration: none;
-            font-weight: bold;
-            font-family: 'Montserrat', sans-serif;
-            border-radius: 50px;
-            transition: 0.3s;
+            font-weight: 600;
+            margin-top: 30px;
+            display: inline-block;
+            transition: transform 0.2s;
         }
-        .btn-contact:hover { background-color: #fff; }
+        .btn-apple:hover { transform: scale(1.05); }
 
-        /* Giao diện mobile */
+        /* Mobile */
         @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; }
-            .video-grid { grid-template-columns: 1fr; } /* Mobile hiện 1 cột */
+            h1 { font-size: 3rem; }
+            .content-section { padding: 0 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>TÊN CỦA BẠN</h1>
-        <p>Filmmaker | Video Editor | Colorist</p>
-        <a href="#portfolio" style="color: #fff; margin-top: 30px; font-size: 2rem;">&#8681;</a>
-    </header>
+    <div id="scrolly-video-container"></div>
 
-    <div id="portfolio" class="container">
-        <h2 style="text-align: center; margin-bottom: 50px; font-size: 2.5rem;">Dự án tiêu biểu</h2>
-        
-        <div class="video-grid">
+    <div style="position: relative; margin-top: -100vh;"> <div class="content-section">
+            <h1 data-aos="fade-up" data-aos-duration="1000">Minh Video</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Kể chuyện bằng hình ảnh.<br>Phong cách Cinematic.</p>
+        </div>
 
-            <div class="video-card">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/MÃ_VIDEO_1" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video-info">
-                    <h3>Tên dự án Video 1</h3>
-                    <p><span class="role-tag">EDITOR</span> <span class="role-tag">CAMERAMAN</span></p>
-                    <p style="margin-top:10px;">Mô tả ngắn gọn về dự án này. Bạn đã làm gì, dùng phần mềm nào?</p>
-                </div>
-            </div>
+        <div class="content-section">
+            <h1 data-aos="zoom-in" data-aos-duration="1000">Chất lượng 4K</h1>
+            <p data-aos="fade-up">Từng khung hình được chăm chút tỉ mỉ.<br>Màu sắc chuẩn điện ảnh.</p>
+        </div>
 
-            <div class="video-card">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/MÃ_VIDEO_2" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video-info">
-                    <h3>TVC Quảng Cáo Honda</h3>
-                    <p><span class="role-tag">DIRECTOR</span></p>
-                    <p style="margin-top:10px;">Quảng cáo TVC quay trong 2 ngày, edit bằng Premiere Pro.</p>
-                </div>
-            </div>
+        <div class="content-section">
+            <h1 data-aos="fade-left" data-aos-duration="1000">Dự án Tiêu biểu</h1>
+            <p data-aos="fade-right">MV Ca nhạc, TVC Quảng cáo, Phim tài liệu.</p>
+            <a href="https://youtube.com" class="btn-apple" data-aos="fade-up">Xem Showreel đầy đủ</a>
+        </div>
 
-            <div class="video-card">
-                <div class="video-container">
-                    <iframe src="https://www.youtube.com/embed/MÃ_VIDEO_3" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="video-info">
-                    <h3>Phim ngắn: Tuổi trẻ</h3>
-                    <p><span class="role-tag">COLORIST</span></p>
-                    <p style="margin-top:10px;">Chỉnh màu Cinematic bằng DaVinci Resolve.</p>
-                </div>
-            </div>
+        <div class="content-section" style="background: #000;"> <h1 data-aos="flip-up">Liên hệ ngay</h1>
+            <p>Sẵn sàng cho dự án tiếp theo?</p>
+            <a href="mailto:email@gmail.com" class="btn-apple">Gửi Email</a>
+        </div>
 
-            </div>
     </div>
 
-    <div class="container" style="text-align: center; padding-bottom: 100px;">
-        <h2 style="margin-bottom: 20px;">Sẵn sàng cho dự án mới?</h2>
-        <p>Hãy liên hệ với tôi để nhận báo giá chi tiết.</p>
-        <a href="mailto:emailcuaban@gmail.com" class="btn-contact">GỬI EMAIL CHO TÔI</a>
-        <br><br>
-        <p style="font-size: 0.9rem; opacity: 0.5;">© 2024 Tên Của Bạn. All rights reserved.</p>
-    </div>
+    <script>
+        // Kích hoạt hiệu ứng chữ bay (AOS)
+        AOS.init();
 
+        // Kích hoạt Video cuộn (ScrollyVideo)
+        new ScrollyVideo({
+            scrollyVideoContainer: "scrolly-video-container",
+            // THAY LINK VIDEO CỦA BẠN VÀO DƯỚI ĐÂY
+            // Lưu ý: Phải là link đuôi .mp4 trực tiếp (không dùng link YouTube)
+            // Bạn có thể dùng tạm link mẫu này để test thử hiệu ứng:
+            src: "https://scrollyvideo.js.org/goldengate.mp4" 
+        });
+    </script>
 </body>
 </html>
