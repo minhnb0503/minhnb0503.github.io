@@ -20,10 +20,17 @@
             --text-gray: #86868b;
             --sidebar-width: 280px;
         }
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-        /* SIDEBAR (PC) */
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; /* Cho phép cuộn trang bình thường */
+        }
+
+        /* --- SIDEBAR (PC) --- */
         .sidebar {
             position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
             background: rgba(22, 22, 22, 0.95); backdrop-filter: blur(10px); padding: 40px 30px;
@@ -37,13 +44,13 @@
         .nav-links a.active { color: var(--accent); }
         .social-icons a { color: #fff; font-size: 1.2rem; margin-right: 15px; }
 
-        /* MAIN CONTENT */
+        /* --- MAIN CONTENT --- */
         .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); }
         
         /* HERO */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 0 80px; background: radial-gradient(circle at 70% 30%, #1a1a2e 0%, #0a0a0a 70%); }
         .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 6rem); line-height: 1.1; margin-bottom: 20px; background: linear-gradient(135deg, #fff 0%, #888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
+
         section { padding: 80px; border-bottom: 1px solid #222; }
         .section-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 40px; border-left: 4px solid var(--accent); padding-left: 20px; }
 
@@ -52,34 +59,41 @@
         .skill-item { background: var(--card-bg); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #333; }
         .timeline-item { padding: 25px; background: var(--card-bg); border-radius: 15px; margin-bottom: 20px; border-left: 3px solid var(--accent); }
 
-        /* SLIDER & VIDEO FIX (QUAN TRỌNG) */
-        .swiper { width: 100%; padding: 50px 0; }
+        /* --- SLIDER DỰ ÁN (ĐÃ CẤU HÌNH LĂN CHUỘT) --- */
+        .swiper { 
+            width: 100%; 
+            padding: 50px 0;
+            /* Đổi con trỏ chuột thành hình bàn tay để báo hiệu có thể tương tác */
+            cursor: grab; 
+        }
+        
         .swiper-slide {
             background: #000; border-radius: 20px; overflow: hidden; width: 350px; height: 500px;
             transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative;
         }
-        
-        /* Video Container & Mask */
+
+        /* Video Mask: Giúp lăn chuột trơn tru trên video */
         .video-wrapper { position: relative; width: 100%; height: 60%; }
         .video-wrapper iframe { width: 100%; height: 100%; border: none; }
         
-        /* Lớp phủ thần thánh giúp lăn chuột mượt */
         .video-mask {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.3); z-index: 10; cursor: pointer;
+            background: rgba(0,0,0,0.2); z-index: 10; cursor: pointer;
             display: flex; align-items: center; justify-content: center;
             transition: 0.3s;
         }
-        .video-mask:hover { background: rgba(0,0,0,0.1); }
+        .video-mask:hover { background: rgba(0,0,0,0.4); } /* Tối hơn chút khi di chuột vào */
+        
         .play-btn {
             background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);
-            padding: 10px 20px; border-radius: 30px; color: #fff; font-weight: bold;
+            padding: 12px 25px; border-radius: 30px; color: #fff; font-weight: bold;
             border: 1px solid rgba(255,255,255,0.5); pointer-events: none;
+            display: flex; align-items: center; gap: 10px;
         }
         
         .project-info { padding: 20px; height: 40%; background: #1a1a1a; position: relative; z-index: 20; }
 
-        /* MOBILE CSS */
+        /* --- MOBILE --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             .sidebar { width: 100%; height: auto; position: relative; flex-direction: row; align-items: center; padding: 15px 20px; border-right: none; border-bottom: 1px solid #333; background: #0a0a0a; }
@@ -165,7 +179,7 @@
 
         <section id="portfolio">
             <h2 class="section-title">Dự án nổi bật</h2>
-            <p style="color: #666; margin-bottom: 20px;">(Lăn chuột để lướt - Bấm vào để xem)</p>
+            <p style="color: #666; margin-bottom: 20px;">(Đặt chuột vào trong để lướt Video - Ra ngoài để cuộn Trang)</p>
             
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
@@ -173,7 +187,7 @@
                     <div class="swiper-slide">
                         <div class="video-wrapper">
                             <div class="video-mask" onclick="this.style.display='none'">
-                                <div class="play-btn">▶ XEM VIDEO</div>
+                                <div class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</div>
                             </div>
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
                         </div>
@@ -186,7 +200,7 @@
                     <div class="swiper-slide">
                         <div class="video-wrapper">
                             <div class="video-mask" onclick="this.style.display='none'">
-                                <div class="play-btn">▶ XEM VIDEO</div>
+                                <div class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</div>
                             </div>
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
                         </div>
@@ -199,7 +213,7 @@
                     <div class="swiper-slide">
                         <div class="video-wrapper">
                             <div class="video-mask" onclick="this.style.display='none'">
-                                <div class="play-btn">▶ XEM VIDEO</div>
+                                <div class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</div>
                             </div>
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
                         </div>
@@ -208,10 +222,11 @@
                             <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Color Grading</span>
                         </div>
                     </div>
+
                      <div class="swiper-slide">
                         <div class="video-wrapper">
                             <div class="video-mask" onclick="this.style.display='none'">
-                                <div class="play-btn">▶ XEM VIDEO</div>
+                                <div class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</div>
                             </div>
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
                         </div>
@@ -243,17 +258,20 @@
             centeredSlides: true,
             slidesPerView: "auto",
             
-            // CẤU HÌNH LĂN CHUỘT (SIÊU NHẠY)
+            // --- CẤU HÌNH LĂN CHUỘT THÔNG MINH ---
             mousewheel: {
-                forceToAxis: false, // Lăn dọc vẫn nhận lệnh
-                sensitivity: 2,     // Tăng tốc độ lăn
-                releaseOnEdges: true, 
+                enabled: true,         // Bật tính năng lăn chuột
+                eventsTarget: '.swiper', // CHỈ KÍCH HOẠT KHI CHUỘT Ở TRONG SLIDER
+                forceToAxis: false,    // Lăn dọc trên chuột --> chuyển thành lướt ngang
+                sensitivity: 1.5,      // Độ nhạy vừa phải
+                releaseOnEdges: true,  // QUAN TRỌNG: Lướt hết thì nhả ra để cuộn trang
             },
+            // -------------------------------------
 
             coverflowEffect: {
                 rotate: 0, stretch: 0, depth: 100, modifier: 2, slideShadows: true,
             },
-            loop: false
+            loop: false // Tắt loop để tính năng ReleaseOnEdges hoạt động tốt nhất
         });
 
         if (window.innerWidth < 992) {
