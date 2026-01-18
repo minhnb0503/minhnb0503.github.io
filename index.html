@@ -93,10 +93,8 @@
             display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; 
             border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 20px; 
             box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); 
-            /* Hiệu ứng chuyển động mượt và nảy */
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        /* Khi di chuột vào: Phóng to 1.1 lần và dịch lên */
         .hero-btn:hover { 
             transform: scale(1.1) translateY(-5px); 
             box-shadow: 0 20px 30px rgba(255, 77, 41, 0.5); 
@@ -136,12 +134,16 @@
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
 
         /* ICON MẠNG XÃ HỘI Ở DƯỚI CÙNG (Cho Mobile) */
-        .bottom-socials { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .bottom-socials { 
+            display: none; /* Mặc định ẩn trên PC */
+            justify-content: center; gap: 15px; margin-top: 30px; 
+        }
         .bottom-socials a { 
             width: 40px; height: 40px; font-size: 1.3rem; 
             color: var(--text-main); background: var(--bg-block);
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             transition: 0.3s; border: 1px solid var(--border);
+            text-decoration: none !important;
         }
         .bottom-socials a:hover { background: var(--accent); color: #fff; transform: translateY(-5px); }
 
@@ -151,9 +153,11 @@
             .sidebar { width: 100%; height: auto; position: relative; flex-direction: row; align-items: center; padding: 15px 20px; border-bottom: 1px solid var(--border); border-right: none; }
             .profile-img { width: 50px; height: 50px; margin: 0; border-width: 2px; }
             .profile-info h2 { font-size: 1.2rem; display: inline-block; margin-left: 10px; color: var(--text-main); }
-            /* Ẩn các thứ rườm rà trên menu mobile */
             .profile-info p, .contact-mini, .nav-links, .social-icons, .theme-btn-pc { display: none; }
             
+            /* Hiện icon dưới cùng trên mobile */
+            .bottom-socials { display: flex; }
+
             .main-content { width: 100%; margin-left: 0; }
             .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); padding: 10px; position: sticky; top: 0; z-index: 999; border-bottom: 1px solid var(--border); }
             .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.9rem; }
@@ -193,10 +197,10 @@
         <div style="margin-top: 20px;">
             <div class="social-icons">
                 <a href="mailto:minh.nb0503@gmail.com" title="Gửi Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://facebook.com/LINK_FACEBOOK" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://instagram.com/LINK_INSTAGRAM" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://tiktok.com/@LINK_TIKTOK" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank"><i class="fab fa-google-drive"></i></a>
+                <a href="https://www.facebook.com/minh.nb0503" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" title="Kho Dự Án (Drive)"><i class="fab fa-google-drive"></i></a>
             </div>
 
             <button class="theme-btn theme-btn-pc" onclick="toggleTheme()">
@@ -224,7 +228,7 @@
                 <p style="color: var(--text-sub); max-width: 600px; margin: 20px 0; line-height: 1.6; font-size: 1.1rem;">
                     Xin chào, tôi là một Video Editor & Cameraman. Với kinh nghiệm từ <b>KienlongBank</b> và <b>IMAP</b>, tôi chuyên sản xuất TVC, Viral Video, Motion Graphic và xây dựng kênh TikTok/YouTube chuyên nghiệp.
                 </p>
-                <a href="#contact" class="hero-btn">Xem Dự Án Của Tôi</a>
+                <a href="#portfolio" class="hero-btn">Xem Dự Án Của Tôi</a>
             </div>
             
             <div class="hero-image-box" data-aos="fade-left">
@@ -350,9 +354,9 @@
 
                 <div class="bottom-socials">
                     <a href="mailto:minh.nb0503@gmail.com"><i class="fas fa-envelope"></i></a>
-                    <a href="https://facebook.com/LINK_FACEBOOK" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/LINK_INSTAGRAM" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://tiktok.com/@LINK_TIKTOK" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.facebook.com/minh.nb0503" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
                     <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank"><i class="fab fa-google-drive"></i></a>
                 </div>
             </div>
