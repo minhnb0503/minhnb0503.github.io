@@ -11,171 +11,90 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        /* --- CẤU HÌNH GIAO DIỆN (CSS) --- */
+        /* --- CẤU HÌNH GIAO DIỆN --- */
         :root {
             --bg-dark: #0a0a0a;
             --card-bg: #161616;
-            --accent: #2997ff; /* Xanh Apple */
+            --accent: #2997ff;
             --text-main: #f5f5f7;
             --text-gray: #86868b;
             --sidebar-width: 280px;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-        /* --- 1. SIDEBAR (THANH ĐIỀU HƯỚNG MÁY TÍNH) --- */
+        /* SIDEBAR (PC) */
         .sidebar {
-            position: fixed;
-            top: 0; left: 0;
-            width: var(--sidebar-width);
-            height: 100vh;
-            background: rgba(22, 22, 22, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border-right: 1px solid #333;
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
+            background: rgba(22, 22, 22, 0.95); backdrop-filter: blur(10px); padding: 40px 30px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            border-right: 1px solid #333; z-index: 1000;
         }
-
-        .profile-img {
-            width: 100px; height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 2px solid var(--accent);
-        }
-
+        .profile-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 2px solid var(--accent); }
         .nav-links { display: flex; flex-direction: column; gap: 15px; }
-        .nav-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: 0.3s;
-            padding: 8px 0;
-        }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-size: 1rem; font-weight: 600; transition: 0.3s; padding: 8px 0; }
         .nav-links a:hover, .nav-links a.active { color: #fff; transform: translateX(5px); }
         .nav-links a.active { color: var(--accent); }
-
         .social-icons a { color: #fff; font-size: 1.2rem; margin-right: 15px; }
 
-        /* --- 2. MAIN CONTENT --- */
-        .main-content {
-            margin-left: var(--sidebar-width);
-            width: calc(100% - var(--sidebar-width));
-        }
-
-        /* HERO SECTION */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 80px;
-            background: radial-gradient(circle at 70% 30%, #1a1a2e 0%, #0a0a0a 70%);
-        }
+        /* MAIN CONTENT */
+        .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); }
         
-        .hero h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: clamp(3rem, 5vw, 6rem);
-            line-height: 1.1;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 0%, #888 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* SECTION CHUNG */
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 0 80px; background: radial-gradient(circle at 70% 30%, #1a1a2e 0%, #0a0a0a 70%); }
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 6rem); line-height: 1.1; margin-bottom: 20px; background: linear-gradient(135deg, #fff 0%, #888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
         section { padding: 80px; border-bottom: 1px solid #222; }
-        .section-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            border-left: 4px solid var(--accent);
-            padding-left: 20px;
-        }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 40px; border-left: 4px solid var(--accent); padding-left: 20px; }
 
-        /* SKILLS GRID */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
-        }
-        .skill-item {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid #333;
-        }
+        /* SKILLS & TIMELINE */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; }
+        .skill-item { background: var(--card-bg); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #333; }
+        .timeline-item { padding: 25px; background: var(--card-bg); border-radius: 15px; margin-bottom: 20px; border-left: 3px solid var(--accent); }
 
-        /* TIMELINE */
-        .timeline-item {
-            padding: 25px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            margin-bottom: 20px;
-            border-left: 3px solid var(--accent);
-        }
-
-        /* SLIDER (SWIPER) */
+        /* SLIDER & VIDEO FIX (QUAN TRỌNG) */
         .swiper { width: 100%; padding: 50px 0; }
         .swiper-slide {
-            background: #000;
-            border-radius: 20px;
-            overflow: hidden;
-            width: 350px;
-            height: 500px;
-            transition: 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+            background: #000; border-radius: 20px; overflow: hidden; width: 350px; height: 500px;
+            transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative;
         }
-        .swiper-slide iframe { width: 100%; height: 60%; border: none; }
-        .project-info { padding: 20px; height: 40%; background: #1a1a1a; }
+        
+        /* Video Container & Mask */
+        .video-wrapper { position: relative; width: 100%; height: 60%; }
+        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
+        
+        /* Lớp phủ thần thánh giúp lăn chuột mượt */
+        .video-mask {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3); z-index: 10; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: 0.3s;
+        }
+        .video-mask:hover { background: rgba(0,0,0,0.1); }
+        .play-btn {
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);
+            padding: 10px 20px; border-radius: 30px; color: #fff; font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.5); pointer-events: none;
+        }
+        
+        .project-info { padding: 20px; height: 40%; background: #1a1a1a; position: relative; z-index: 20; }
 
-        /* --- 3. RESPONSIVE (MOBILE & TABLET) --- */
+        /* MOBILE CSS */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
-            
-            .sidebar {
-                width: 100%; height: auto; position: relative;
-                flex-direction: row; align-items: center;
-                padding: 15px 20px; border-right: none;
-                border-bottom: 1px solid #333; background: #0a0a0a;
-            }
+            .sidebar { width: 100%; height: auto; position: relative; flex-direction: row; align-items: center; padding: 15px 20px; border-right: none; border-bottom: 1px solid #333; background: #0a0a0a; }
             .profile-img { width: 50px; height: 50px; margin: 0; }
             .profile-info h2 { font-size: 1.2rem; display: inline-block; margin-left: 10px; }
             .profile-info p { display: none; }
             .nav-links, .social-icons { display: none; }
-
             .main-content { width: 100%; margin-left: 0; }
-            
-            /* Menu ngang cho Mobile */
-            .mobile-nav {
-                display: flex; overflow-x: auto; white-space: nowrap;
-                background: #111; padding: 10px; position: sticky;
-                top: 0; z-index: 999; border-bottom: 1px solid #333;
-            }
-            .mobile-nav a {
-                color: #aaa; text-decoration: none; padding: 8px 20px;
-                background: #222; margin-right: 10px; border-radius: 20px;
-                font-size: 0.9rem;
-            }
+            .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: #111; padding: 10px; position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #333; }
+            .mobile-nav a { color: #aaa; text-decoration: none; padding: 8px 20px; background: #222; margin-right: 10px; border-radius: 20px; font-size: 0.9rem; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
-
             .hero { padding: 60px 20px; text-align: center; flex-direction: column; justify-content: center; }
             .hero h1 { font-size: 2.8rem; }
             section { padding: 50px 20px; }
-            .section-title { font-size: 2rem; }
-            
-            .swiper-slide { width: 85vw; height: 400px; }
+            .swiper-slide { width: 85vw; height: 450px; }
         }
     </style>
 </head>
@@ -189,14 +108,12 @@
                 <p style="color: #888; font-size: 0.9rem;">Video Creator</p>
             </div>
         </div>
-
         <div class="nav-links">
             <a href="#home">01. Giới thiệu</a>
-            <a href="#skills">02. Công cụ (Gear)</a>
+            <a href="#skills">02. Công cụ</a>
             <a href="#experience">03. Kinh nghiệm</a>
             <a href="#portfolio">04. Dự án</a>
         </div>
-
         <div class="social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
@@ -213,14 +130,11 @@
     </div>
 
     <div class="main-content">
-
         <section id="home" class="hero">
             <div data-aos="fade-up">
                 <p style="color: var(--accent); letter-spacing: 2px; font-weight: bold;">PORTFOLIO 2025</p>
                 <h1>Visual Storyteller<br>Based in Hanoi.</h1>
-                <p style="color: var(--text-gray); max-width: 500px; margin: 20px 0;">
-                    Chuyên sản xuất TVC, Viral Video và Motion Graphic với tư duy điện ảnh.
-                </p>
+                <p style="color: var(--text-gray); max-width: 500px; margin: 20px 0;">Chuyên sản xuất TVC, Viral Video và Motion Graphic với tư duy điện ảnh.</p>
                 <a href="#portfolio" style="display: inline-block; background: #fff; color: #000; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-top: 10px;">Xem Dự Án</a>
             </div>
         </section>
@@ -251,38 +165,62 @@
 
         <section id="portfolio">
             <h2 class="section-title">Dự án nổi bật</h2>
-            <p style="color: #666; margin-bottom: 20px;">(Đặt chuột vào đây và Lăn để xem)</p>
+            <p style="color: #666; margin-bottom: 20px;">(Lăn chuột để lướt - Bấm vào để xem)</p>
             
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
+                    
                     <div class="swiper-slide">
-                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+                        <div class="video-wrapper">
+                            <div class="video-mask" onclick="this.style.display='none'">
+                                <div class="play-btn">▶ XEM VIDEO</div>
+                            </div>
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+                        </div>
                         <div class="project-info">
                             <h3>Vinh Danh Tiếp Lửa</h3>
                             <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Motion</span>
                         </div>
                     </div>
+
                     <div class="swiper-slide">
-                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+                        <div class="video-wrapper">
+                            <div class="video-mask" onclick="this.style.display='none'">
+                                <div class="play-btn">▶ XEM VIDEO</div>
+                            </div>
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+                        </div>
                         <div class="project-info">
                             <h3>Viral Clip IMAP</h3>
                             <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Storytelling</span>
                         </div>
                     </div>
+
                     <div class="swiper-slide">
-                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+                        <div class="video-wrapper">
+                            <div class="video-mask" onclick="this.style.display='none'">
+                                <div class="play-btn">▶ XEM VIDEO</div>
+                            </div>
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+                        </div>
                         <div class="project-info">
                             <h3>Showreel 2024</h3>
                             <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Color Grading</span>
                         </div>
                     </div>
                      <div class="swiper-slide">
-                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
+                        <div class="video-wrapper">
+                            <div class="video-mask" onclick="this.style.display='none'">
+                                <div class="play-btn">▶ XEM VIDEO</div>
+                            </div>
+                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
+                        </div>
                         <div class="project-info">
                             <h3>Phóng sự Cưới</h3>
                             <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Filming</span>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -292,7 +230,6 @@
             <p style="margin: 20px 0; color: #aaa;">Sẵn sàng cho các dự án TVC, MV và Viral Video.</p>
             <a href="mailto:minh.nb0503@gmail.com" style="background: var(--accent); color: #fff; padding: 15px 40px; text-decoration: none; border-radius: 30px; font-weight: bold;">Gửi Email Ngay</a>
         </section>
-
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -306,20 +243,15 @@
             centeredSlides: true,
             slidesPerView: "auto",
             
-            // --- PHẦN QUAN TRỌNG ĐÃ SỬA ---
+            // CẤU HÌNH LĂN CHUỘT (SIÊU NHẠY)
             mousewheel: {
-                forceToAxis: false, // Để False để lăn chuột dọc cũng nhận diện là slide ngang
-                sensitivity: 1.5,   // Tăng độ nhạy lên chút cho mượt
-                releaseOnEdges: true, // Lăn hết thì tự trôi xuống dưới trang
+                forceToAxis: false, // Lăn dọc vẫn nhận lệnh
+                sensitivity: 2,     // Tăng tốc độ lăn
+                releaseOnEdges: true, 
             },
-            // ------------------------------
 
             coverflowEffect: {
-                rotate: 0, 
-                stretch: 0,
-                depth: 100,
-                modifier: 2,
-                slideShadows: true,
+                rotate: 0, stretch: 0, depth: 100, modifier: 2, slideShadows: true,
             },
             loop: false
         });
