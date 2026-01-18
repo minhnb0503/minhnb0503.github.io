@@ -30,8 +30,7 @@
             overflow-x: hidden;
         }
 
-        /* --- 1. SIDEBAR (THANH ĐIỀU HƯỚNG) --- */
-        /* Giao diện Desktop & iPad Ngang */
+        /* --- 1. SIDEBAR (THANH ĐIỀU HƯỚNG MÁY TÍNH) --- */
         .sidebar {
             position: fixed;
             top: 0; left: 0;
@@ -47,7 +46,6 @@
             z-index: 1000;
         }
 
-        .profile-info { text-align: left; }
         .profile-img {
             width: 100px; height: 100px;
             border-radius: 50%;
@@ -72,7 +70,7 @@
 
         /* --- 2. MAIN CONTENT --- */
         .main-content {
-            margin-left: var(--sidebar-width); /* Đẩy nội dung sang phải */
+            margin-left: var(--sidebar-width);
             width: calc(100% - var(--sidebar-width));
         }
 
@@ -87,7 +85,7 @@
         
         .hero h1 {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(3rem, 5vw, 6rem); /* Tự động co giãn chữ */
+            font-size: clamp(3rem, 5vw, 6rem);
             line-height: 1.1;
             margin-bottom: 20px;
             background: linear-gradient(135deg, #fff 0%, #888 100%);
@@ -137,78 +135,47 @@
             width: 350px;
             height: 500px;
             transition: 0.3s;
-            /* Bóng đổ nhẹ */
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
         }
         .swiper-slide iframe { width: 100%; height: 60%; border: none; }
         .project-info { padding: 20px; height: 40%; background: #1a1a1a; }
 
-        /* --- 3. RESPONSIVE (QUAN TRỌNG NHẤT) --- */
-        
-        /* TABLET & MOBILE (Màn hình < 992px) */
+        /* --- 3. RESPONSIVE (MOBILE & TABLET) --- */
         @media (max-width: 992px) {
-            :root { --sidebar-width: 0px; } /* Xóa lề trái */
+            :root { --sidebar-width: 0px; }
             
-            /* Biến Sidebar thành Header cố định trên cùng */
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
-                flex-direction: row;
-                align-items: center;
-                padding: 15px 20px;
-                border-right: none;
-                border-bottom: 1px solid #333;
-                background: #0a0a0a;
+                width: 100%; height: auto; position: relative;
+                flex-direction: row; align-items: center;
+                padding: 15px 20px; border-right: none;
+                border-bottom: 1px solid #333; background: #0a0a0a;
             }
-
-            .profile-img { width: 50px; height: 50px; margin: 0; border-width: 1px; }
+            .profile-img { width: 50px; height: 50px; margin: 0; }
             .profile-info h2 { font-size: 1.2rem; display: inline-block; margin-left: 10px; }
-            .profile-info p { display: none; } /* Ẩn chức danh cho gọn */
-            
-            /* Ẩn menu dọc, hiện nút menu ngang */
-            .nav-links { 
-                display: none; /* Tạm ẩn, thay bằng thanh trượt ngang bên dưới */
-            }
-            .social-icons { display: none; } /* Ẩn icon MXH trên header mobile */
+            .profile-info p { display: none; }
+            .nav-links, .social-icons { display: none; } /* Ẩn menu cũ */
 
             .main-content { width: 100%; margin-left: 0; }
             
-            /* Thanh menu ngang cho Mobile (Mới thêm) */
+            /* Menu ngang cho Mobile */
             .mobile-nav {
-                display: flex;
-                overflow-x: auto;
-                white-space: nowrap;
-                background: #111;
-                padding: 10px;
-                position: sticky;
-                top: 0;
-                z-index: 999;
-                border-bottom: 1px solid #333;
+                display: flex; overflow-x: auto; white-space: nowrap;
+                background: #111; padding: 10px; position: sticky;
+                top: 0; z-index: 999; border-bottom: 1px solid #333;
             }
             .mobile-nav a {
-                color: #aaa;
-                text-decoration: none;
-                padding: 8px 20px;
-                background: #222;
-                margin-right: 10px;
-                border-radius: 20px;
+                color: #aaa; text-decoration: none; padding: 8px 20px;
+                background: #222; margin-right: 10px; border-radius: 20px;
                 font-size: 0.9rem;
             }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
 
-            /* Chỉnh lại padding nội dung */
             .hero { padding: 60px 20px; text-align: center; flex-direction: column; justify-content: center; }
-            .hero h1 { font-size: 2.8rem; } /* Chữ nhỏ lại vừa điện thoại */
-            
+            .hero h1 { font-size: 2.8rem; }
             section { padding: 50px 20px; }
             .section-title { font-size: 2rem; }
-
-            /* Slider trên điện thoại */
-            .swiper-slide {
-                width: 85vw; /* Chiếm 85% chiều rộng màn hình điện thoại */
-                height: 400px;
-            }
+            
+            .swiper-slide { width: 85vw; height: 400px; }
         }
     </style>
 </head>
@@ -284,7 +251,7 @@
 
         <section id="portfolio">
             <h2 class="section-title">Dự án nổi bật</h2>
-            <p style="color: #666; margin-bottom: 20px;">(Vuốt sang ngang để xem thêm)</p>
+            <p style="color: #666; margin-bottom: 20px;">(Lăn chuột hoặc vuốt để xem)</p>
             
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
@@ -309,6 +276,13 @@
                             <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Color Grading</span>
                         </div>
                     </div>
+                     <div class="swiper-slide">
+                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
+                        <div class="project-info">
+                            <h3>Phóng sự Cưới</h3>
+                            <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Filming</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -324,26 +298,29 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // Hiệu ứng chữ
-        AOS.init();
+        AOS.init({ once: true, offset: 50, duration: 800 });
 
-        // Cấu hình Slider (Tự chỉnh theo màn hình)
         var swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: "auto",
+            // TÍNH NĂNG LĂN CHUỘT
+            mousewheel: {
+                forceToAxis: true,
+                sensitivity: 1,
+                releaseOnEdges: true,
+            },
             coverflowEffect: {
-                rotate: 0,
+                rotate: 0, // Phẳng hiện đại
                 stretch: 0,
                 depth: 100,
                 modifier: 2,
                 slideShadows: true,
             },
-            loop: true // Cho phép lướt vòng tròn vô tận
+            loop: false
         });
 
-        // Tự động hiện Menu ngang trên Mobile
         if (window.innerWidth < 992) {
             document.getElementById('mobileNav').style.display = 'flex';
         }
