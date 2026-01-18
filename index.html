@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ngô Bình Minh | Portfolio</title>
+    <title>Ngô Bình Minh | Video Editor Portfolio</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -15,7 +15,7 @@
         :root {
             --bg-dark: #0a0a0a;
             --card-bg: #161616;
-            --accent: #2997ff;
+            --accent: #2997ff; /* Màu xanh Apple */
             --text-main: #f5f5f7;
             --text-gray: #86868b;
             --sidebar-width: 280px;
@@ -27,10 +27,10 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Cho phép cuộn trang bình thường */
+            overflow-x: hidden;
         }
 
-        /* --- SIDEBAR (PC) --- */
+        /* SIDEBAR (PC) */
         .sidebar {
             position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
             background: rgba(22, 22, 22, 0.95); backdrop-filter: blur(10px); padding: 40px 30px;
@@ -42,64 +42,50 @@
         .nav-links a { color: var(--text-gray); text-decoration: none; font-size: 1rem; font-weight: 600; transition: 0.3s; padding: 8px 0; }
         .nav-links a:hover, .nav-links a.active { color: #fff; transform: translateX(5px); }
         .nav-links a.active { color: var(--accent); }
-        .social-icons a { color: #fff; font-size: 1.2rem; margin-right: 15px; }
+        .contact-mini { font-size: 0.8rem; color: #666; margin-top: 20px; }
+        .contact-mini i { color: var(--accent); width: 20px; }
 
-        /* --- MAIN CONTENT --- */
+        /* MAIN CONTENT */
         .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); }
         
         /* HERO */
         .hero { min-height: 100vh; display: flex; align-items: center; padding: 0 80px; background: radial-gradient(circle at 70% 30%, #1a1a2e 0%, #0a0a0a 70%); }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 6rem); line-height: 1.1; margin-bottom: 20px; background: linear-gradient(135deg, #fff 0%, #888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; background: linear-gradient(135deg, #fff 0%, #888 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         section { padding: 80px; border-bottom: 1px solid #222; }
         .section-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 40px; border-left: 4px solid var(--accent); padding-left: 20px; }
 
-        /* SKILLS & TIMELINE */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 20px; }
-        .skill-item { background: var(--card-bg); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #333; }
-        .timeline-item { padding: 25px; background: var(--card-bg); border-radius: 15px; margin-bottom: 20px; border-left: 3px solid var(--accent); }
+        /* SKILLS GRID */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
+        .skill-item { background: var(--card-bg); padding: 20px; border-radius: 15px; text-align: center; border: 1px solid #333; transition: 0.3s; }
+        .skill-item:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .skill-item i { font-size: 2rem; margin-bottom: 10px; display: block; }
 
-        /* --- SLIDER DỰ ÁN (ĐÃ CẤU HÌNH LĂN CHUỘT) --- */
-        .swiper { 
-            width: 100%; 
-            padding: 50px 0;
-            /* Đổi con trỏ chuột thành hình bàn tay để báo hiệu có thể tương tác */
-            cursor: grab; 
-        }
+        /* TIMELINE (KINH NGHIỆM) */
+        .timeline-item { padding: 25px; background: var(--card-bg); border-radius: 15px; margin-bottom: 20px; border-left: 3px solid var(--accent); position: relative; }
+        .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
+        .timeline-role { font-size: 1.2rem; font-weight: bold; color: #fff; margin-bottom: 5px; }
+        .timeline-company { color: #ccc; font-style: italic; margin-bottom: 10px; display: block;}
+        .timeline-desc { font-size: 0.95rem; color: #888; line-height: 1.5; }
+
+        /* SLIDER (DỰ ÁN) */
+        .swiper { width: 100%; padding: 50px 0; cursor: grab; }
+        .swiper-slide { background: #000; border-radius: 20px; overflow: hidden; width: 350px; height: 500px; transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; }
         
-        .swiper-slide {
-            background: #000; border-radius: 20px; overflow: hidden; width: 350px; height: 500px;
-            transition: 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative;
-        }
-
-        /* Video Mask: Giúp lăn chuột trơn tru trên video */
         .video-wrapper { position: relative; width: 100%; height: 60%; }
         .video-wrapper iframe { width: 100%; height: 100%; border: none; }
-        
-        .video-mask {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.2); z-index: 10; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            transition: 0.3s;
-        }
-        .video-mask:hover { background: rgba(0,0,0,0.4); } /* Tối hơn chút khi di chuột vào */
-        
-        .play-btn {
-            background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);
-            padding: 12px 25px; border-radius: 30px; color: #fff; font-weight: bold;
-            border: 1px solid rgba(255,255,255,0.5); pointer-events: none;
-            display: flex; align-items: center; gap: 10px;
-        }
-        
+        .video-mask { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.2); z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .video-mask:hover { background: rgba(0,0,0,0.4); }
+        .play-btn { background: rgba(255,255,255,0.2); backdrop-filter: blur(5px); padding: 12px 25px; border-radius: 30px; color: #fff; font-weight: bold; border: 1px solid rgba(255,255,255,0.5); pointer-events: none; }
         .project-info { padding: 20px; height: 40%; background: #1a1a1a; position: relative; z-index: 20; }
 
-        /* --- MOBILE --- */
+        /* MOBILE CSS */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
-            .sidebar { width: 100%; height: auto; position: relative; flex-direction: row; align-items: center; padding: 15px 20px; border-right: none; border-bottom: 1px solid #333; background: #0a0a0a; }
+            .sidebar { width: 100%; height: auto; position: relative; flex-direction: row; align-items: center; padding: 15px 20px; background: #0a0a0a; border-bottom: 1px solid #333; }
             .profile-img { width: 50px; height: 50px; margin: 0; }
             .profile-info h2 { font-size: 1.2rem; display: inline-block; margin-left: 10px; }
-            .profile-info p { display: none; }
+            .profile-info p, .contact-mini { display: none; }
             .nav-links, .social-icons { display: none; }
             .main-content { width: 100%; margin-left: 0; }
             .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: #111; padding: 10px; position: sticky; top: 0; z-index: 999; border-bottom: 1px solid #333; }
@@ -116,22 +102,26 @@
 
     <div class="sidebar">
         <div class="profile-info">
-            <img src="https://ui-avatars.com/api/?name=Minh+Ngo&background=2997ff&color=fff" alt="Avatar" class="profile-img">
+            <img src="https://ui-avatars.com/api/?name=Minh+Ngo&background=2997ff&color=fff&size=200" alt="Avatar" class="profile-img">
             <div>
                 <h2>Ngô Bình Minh</h2>
-                <p style="color: #888; font-size: 0.9rem;">Video Creator</p>
+                <p style="color: #888; font-size: 0.9rem;">Video Editor & Camera Op</p>
+                
+                <div class="contact-mini">
+                    <div><i class="fas fa-phone"></i> 0395.393.868</div>
+                    <div style="margin-top:5px;"><i class="fas fa-map-marker-alt"></i> Cầu Giấy, Hà Nội</div>
+                </div>
             </div>
         </div>
         <div class="nav-links">
             <a href="#home">01. Giới thiệu</a>
-            <a href="#skills">02. Công cụ</a>
+            <a href="#skills">02. Kỹ năng & Gear</a>
             <a href="#experience">03. Kinh nghiệm</a>
             <a href="#portfolio">04. Dự án</a>
         </div>
         <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" style="color:#fff; margin-right:15px;"><i class="fab fa-facebook-f"></i></a>
+            <a href="mailto:minh.nb0503@gmail.com" style="color:#fff;"><i class="fas fa-envelope"></i></a>
         </div>
     </div>
 
@@ -144,42 +134,86 @@
     </div>
 
     <div class="main-content">
+        
         <section id="home" class="hero">
             <div data-aos="fade-up">
                 <p style="color: var(--accent); letter-spacing: 2px; font-weight: bold;">PORTFOLIO 2025</p>
-                <h1>Visual Storyteller<br>Based in Hanoi.</h1>
-                <p style="color: var(--text-gray); max-width: 500px; margin: 20px 0;">Chuyên sản xuất TVC, Viral Video và Motion Graphic với tư duy điện ảnh.</p>
-                <a href="#portfolio" style="display: inline-block; background: #fff; color: #000; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-top: 10px;">Xem Dự Án</a>
+                <h1>NGÔ BÌNH MINH<br><span style="font-size: 0.6em; color: #fff;">Freelance Video Editor</span></h1>
+                <p style="color: var(--text-gray); max-width: 600px; margin: 20px 0; line-height: 1.6;">
+                    Xin chào, tôi là một Video Editor & Cameraman tại Hà Nội. Với kinh nghiệm từ <b>KienlongBank</b> và <b>IMAP</b>, tôi chuyên sản xuất TVC, Viral Video, Motion Graphic và xây dựng kênh TikTok/YouTube chuyên nghiệp.
+                </p>
+                <a href="#portfolio" style="display: inline-block; background: #fff; color: #000; padding: 12px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-top: 10px; transition: 0.3s;">Xem Dự Án Của Tôi</a>
             </div>
         </section>
 
         <section id="skills">
-            <h2 class="section-title">Công cụ (Gear)</h2>
+            <h2 class="section-title">Kỹ Năng & Thiết Bị</h2>
+            
+            <h3 style="margin-bottom: 20px; color: #ccc;">Phần mềm (Software)</h3>
+            <div class="skills-grid" style="margin-bottom: 40px;">
+                <div class="skill-item" data-aos="zoom-in"><i class="fas fa-file-video" style="color:#9999ff;"></i><p>Premiere Pro</p></div>
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-magic" style="color:#cf9fff;"></i><p>After Effects</p></div>
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-image" style="color:#3fa9f5;"></i><p>Photoshop</p></div>
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-pen-nib" style="color:#f39c12;"></i><p>Illustrator</p></div>
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="400"><i class="fas fa-headphones" style="color:#2ecc71;"></i><p>Audition</p></div>
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="500"><i class="fas fa-dragon" style="color:#e74c3c;"></i><p>Spine 2D</p></div>
+            </div>
+
+            <h3 style="margin-bottom: 20px; color: #ccc;">Thiết bị (Gear)</h3>
             <div class="skills-grid">
-                <div class="skill-item" data-aos="zoom-in"><i class="fas fa-file-video" style="color:#9999ff; font-size:2rem;"></i><p>Premiere</p></div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-magic" style="color:#cf9fff; font-size:2rem;"></i><p>After Effect</p></div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-camera" style="color:#f39c12; font-size:2rem;"></i><p>Sony A7C</p></div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-microphone" style="color:#e74c3c; font-size:2rem;"></i><p>Podcast</p></div>
+                <div class="skill-item" data-aos="fade-up"><i class="fas fa-camera" style="color:#fff;"></i><p>Sony A7C</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-bullseye" style="color:#fff;"></i><p>Tamron 28-75mm</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-video" style="color:#fff;"></i><p>Gimbal DJI RSC 2</p></div>
             </div>
         </section>
 
         <section id="experience" style="background: #0f0f0f;">
-            <h2 class="section-title">Kinh nghiệm</h2>
+            <h2 class="section-title">Kinh Nghiệm Làm Việc</h2>
+            
             <div class="timeline-item" data-aos="fade-up">
-                <span style="color: var(--accent); font-weight: bold;">Hiện tại</span>
-                <h3>Chuyên viên Media - KienlongBank</h3>
-                <p style="color: #aaa; margin-top: 5px;">Sản xuất TVC, quay dựng sự kiện, xây dựng kênh TikTok.</p>
+                <span class="timeline-year">06/2024 - Hiện nay</span>
+                <div class="timeline-role">Video Editor & Camera Operator</div>
+                <span class="timeline-company">Ngân hàng TMCP Kiên Long (KienlongBank)</span>
+                <p class="timeline-desc">
+                    • Xây dựng kênh TikTok, tạo video motion và nội dung đa phương tiện cho các kênh truyền thông.<br>
+                    • Quay phim, dựng video và chụp ảnh cho các sự kiện nội bộ của ngân hàng.
+                </p>
             </div>
+
             <div class="timeline-item" data-aos="fade-up">
-                <span style="color: var(--accent); font-weight: bold;">2022 - 2024</span>
-                <h3>Video Editor - IMAP Việt Nam</h3>
-                <p style="color: #aaa; margin-top: 5px;">Sản xuất Video bài giảng, Viral Clip, Motion Graphic.</p>
+                <span class="timeline-year">08/2022 - 06/2024</span>
+                <div class="timeline-role">Video Editor & Camera Operator</div>
+                <span class="timeline-company">Công ty CP Giáo dục & Đào tạo IMAP Việt Nam</span>
+                <p class="timeline-desc">
+                    • Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>
+                    • Quay dựng chương trình "Super Junior" kết hợp với VTV7.
+                </p>
+            </div>
+
+            <div class="timeline-item" data-aos="fade-up">
+                <span class="timeline-year">03/2021 - 07/2022</span>
+                <div class="timeline-role">Video Editor</div>
+                <span class="timeline-company">Công ty TNHH TGMedia Việt Nam</span>
+                <p class="timeline-desc">
+                    • Dựng video motion quảng cáo cho dòng Word Games.<br>
+                    • Thiết kế và phát triển Animation trên Unity & Spine.
+                </p>
+            </div>
+
+            <div class="timeline-item" data-aos="fade-up">
+                <span class="timeline-year">05/2020 - 04/2021</span>
+                <div class="timeline-role">Video Editor</div>
+                <span class="timeline-company">Ten Tun / Ten Group</span>
+                <p class="timeline-desc">
+                    • Xây dựng kênh YouTube "Ten Tun" từ 10.000 lên 100.000 Subscribers.<br>
+                    • Dựng video tổng hợp, đánh giá giải trí.
+                </p>
             </div>
         </section>
 
         <section id="portfolio">
-            <h2 class="section-title">Dự án nổi bật</h2>
-            <p style="color: #666; margin-bottom: 20px;">(Đặt chuột vào trong để lướt Video - Ra ngoài để cuộn Trang)</p>
+            <h2 class="section-title">Dự án Tiêu biểu</h2>
+            <p style="color: #666; margin-bottom: 20px;">(Di chuột vào khung để lướt xem các dự án)</p>
             
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
@@ -192,8 +226,8 @@
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
                         </div>
                         <div class="project-info">
-                            <h3>Vinh Danh Tiếp Lửa</h3>
-                            <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Motion</span>
+                            <h3>Vinh Danh Tiếp Lửa KLB</h3>
+                            <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Motion Graphic</span>
                         </div>
                     </div>
 
@@ -218,8 +252,8 @@
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
                         </div>
                         <div class="project-info">
-                            <h3>Showreel 2024</h3>
-                            <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Color Grading</span>
+                            <h3>YouTube Ten Tun (100k Sub)</h3>
+                            <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Entertainment</span>
                         </div>
                     </div>
 
@@ -231,8 +265,8 @@
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
                         </div>
                         <div class="project-info">
-                            <h3>Phóng sự Cưới</h3>
-                            <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Filming</span>
+                            <h3>Animation Spine 2D</h3>
+                            <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Game Art</span>
                         </div>
                     </div>
 
@@ -240,11 +274,19 @@
             </div>
         </section>
 
-        <section id="contact" style="text-align: center; padding: 50px 20px;">
+        <section id="contact" style="text-align: center; padding: 80px 20px;">
             <h2>Liên hệ hợp tác</h2>
-            <p style="margin: 20px 0; color: #aaa;">Sẵn sàng cho các dự án TVC, MV và Viral Video.</p>
-            <a href="mailto:minh.nb0503@gmail.com" style="background: var(--accent); color: #fff; padding: 15px 40px; text-decoration: none; border-radius: 30px; font-weight: bold;">Gửi Email Ngay</a>
+            <p style="margin: 20px 0; color: #aaa;">Sẵn sàng cho các dự án TVC, MV và Viral Video chất lượng cao.</p>
+            
+            <div style="font-size: 1.2rem; margin-bottom: 30px;">
+                <p><i class="fas fa-phone" style="color:var(--accent)"></i> 0395.393.868</p>
+                <p><i class="fas fa-envelope" style="color:var(--accent)"></i> minh.nb0503@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt" style="color:var(--accent)"></i> Cầu Giấy, Hà Nội</p>
+            </div>
+
+            <a href="mailto:minh.nb0503@gmail.com" style="background: var(--accent); color: #fff; padding: 15px 40px; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 1.1rem;">Gửi Email Ngay</a>
         </section>
+
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -258,20 +300,19 @@
             centeredSlides: true,
             slidesPerView: "auto",
             
-            // --- CẤU HÌNH LĂN CHUỘT THÔNG MINH ---
+            // CẤU HÌNH SCROLL CHUỘT
             mousewheel: {
-                enabled: true,         // Bật tính năng lăn chuột
-                eventsTarget: '.swiper', // CHỈ KÍCH HOẠT KHI CHUỘT Ở TRONG SLIDER
-                forceToAxis: false,    // Lăn dọc trên chuột --> chuyển thành lướt ngang
-                sensitivity: 1.5,      // Độ nhạy vừa phải
-                releaseOnEdges: true,  // QUAN TRỌNG: Lướt hết thì nhả ra để cuộn trang
+                enabled: true,
+                eventsTarget: '.swiper', // CHỈ CUỘN NGANG KHI CHUỘT Ở TRONG SLIDER
+                forceToAxis: false,
+                sensitivity: 1.5,
+                releaseOnEdges: true, // Hết dự án thì cuộn trang
             },
-            // -------------------------------------
 
             coverflowEffect: {
                 rotate: 0, stretch: 0, depth: 100, modifier: 2, slideShadows: true,
             },
-            loop: false // Tắt loop để tính năng ReleaseOnEdges hoạt động tốt nhất
+            loop: false
         });
 
         if (window.innerWidth < 992) {
