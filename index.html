@@ -49,9 +49,10 @@
             border-right: 1px solid var(--border); z-index: 1000; transition: 0.3s;
         }
         
-        /* PC Styles */
+        /* Styles cho PC */
         .pc-profile-container { display: block; }
         .mobile-header-container { display: none; }
+        .mobile-dropdown-menu { display: none; } /* Ẩn dropdown trên PC */
 
         .profile-img { 
             width: 100px; height: 100px; border-radius: 50%; object-fit: cover; 
@@ -132,94 +133,115 @@
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
         .bottom-socials { display: none; }
 
-        /* --- MOBILE CSS (FIXED V27 - FLOW LAYOUT) --- */
+        /* --- MOBILE CSS (SMART MENU V28) --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             
-            /* HEADER: Dùng Flexbox để chia không gian */
+            /* 1. HEADER CỐ ĐỊNH */
             .sidebar { 
                 width: 100%; height: var(--header-height-mobile); 
                 position: fixed !important; top: 0; left: 0; 
                 display: flex !important;
                 flex-direction: row !important; 
                 align-items: center !important; 
-                justify-content: space-between !important; /* Chia đều 2 đầu */
-                padding: 0 10px; 
+                justify-content: space-between !important; 
+                padding: 0 15px; 
                 border-bottom: 1px solid var(--border); 
                 z-index: 10000;
                 background: var(--bg-body);
             }
             
-            /* Ẩn cấu trúc PC */
-            .pc-profile-container, .theme-btn-mobile { display: none !important; }
+            /* Ẩn PC Container */
+            .pc-profile-container { display: none !important; }
             
-            /* CẤU TRÚC MOBILE MỚI: 3 PHẦN TỬ CHÍNH */
+            /* 2. CẤU TRÚC MOBILE (AVATAR + TÊN) */
             .mobile-header-container {
                 display: flex !important;
                 flex-direction: row !important;
                 align-items: center !important;
-                width: 100%;
-                justify-content: space-between; /* Đẩy Avatar+Info sang trái, Nút tối sang phải */
             }
 
-            /* NHÓM TRÁI: AVATAR + INFO */
-            .left-group {
-                display: flex; 
-                align-items: center;
-                flex: 1; /* Chiếm hết không gian còn lại */
-                overflow: hidden; /* Tránh vỡ khung */
-            }
-
-            /* Avatar */
             .mobile-ava { 
-                width: 40px; height: 40px; 
+                width: 42px; height: 42px; 
                 border-radius: 50%; object-fit: cover; 
                 border: 2px solid var(--accent); 
-                margin-right: 8px; 
+                margin-right: 10px; 
                 flex-shrink: 0;
             }
 
-            /* Info Wrapper: Tên + Icon */
-            .mobile-info-wrapper {
-                display: flex !important;
-                flex-direction: row !important;
-                align-items: center !important;
-                white-space: nowrap;
-                overflow: hidden;
-            }
-
-            /* Tên */
             .mobile-name {
                 font-family: 'Outfit', sans-serif;
-                font-size: 1.1rem; /* Font vừa phải */
+                font-size: 1.1rem; 
                 font-weight: 700;
                 color: var(--text-main);
-                margin: 0 10px 0 0 !important;
+                white-space: nowrap; 
             }
 
-            /* Icons */
-            .mobile-icons {
-                display: flex !important;
-                gap: 10px !important; /* Khoảng cách icon nhỏ lại để chừa chỗ */
-                align-items: center !important;
+            /* 3. NHÓM NÚT BÊN PHẢI (DARK MODE + MENU) */
+            .right-controls {
+                display: flex; align-items: center; gap: 12px;
             }
-            .mobile-icons a {
-                color: var(--text-sub);
-                font-size: 1rem; 
-                display: flex; align-items: center; text-decoration: none;
-            }
-            .mobile-icons a:hover { color: var(--accent); }
 
-            /* NÚT SÁNG TỐI (NẰM TRONG FLOW, KHÔNG FIXED NỮA) */
-            .mobile-theme-btn { 
-                background: var(--bg-block); color: var(--text-main); 
-                border: 1px solid var(--border); 
-                width: 32px; height: 32px; 
-                border-radius: 50%; 
-                font-size: 0.9rem; cursor: pointer;
+            /* Nút tròn chung */
+            .control-btn {
+                width: 36px; height: 36px;
+                border-radius: 50%;
+                background: var(--bg-block);
+                color: var(--text-main);
+                border: 1px solid var(--border);
                 display: flex; align-items: center; justify-content: center;
-                margin-left: 10px; /* Tạo khoảng cách an toàn với icon Drive */
-                flex-shrink: 0; /* Không bao giờ bị co lại */
+                font-size: 1rem; cursor: pointer;
+                transition: 0.2s;
+            }
+            .control-btn:active { transform: scale(0.9); background: var(--accent); color: #fff;}
+
+            /* 4. MENU THẢ XUỐNG (DROPDOWN SOCIALS) */
+            .mobile-dropdown-menu {
+                display: block; /* Để JS điều khiển opacity */
+                position: fixed;
+                top: calc(var(--header-height-mobile) + 10px);
+                right: 15px;
+                background: var(--bg-body);
+                border: 1px solid var(--border);
+                box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+                border-radius: 15px;
+                padding: 15px;
+                z-index: 9999;
+                
+                /* Hiệu ứng ẩn/hiện */
+                opacity: 0; 
+                visibility: hidden; 
+                transform: translateY(-10px);
+                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            /* Khi có class 'active' thì hiện ra */
+            .mobile-dropdown-menu.active {
+                opacity: 1; visibility: visible; transform: translateY(0);
+            }
+
+            /* Grid chứa icon trong menu (3 cột) */
+            .dropdown-grid {
+                display: grid; 
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 15px;
+            }
+
+            .dropdown-item {
+                display: flex; flex-direction: column; align-items: center;
+                text-decoration: none; color: var(--text-main);
+                font-size: 0.8rem; font-weight: 600;
+            }
+            
+            .dropdown-icon {
+                width: 45px; height: 45px;
+                background: var(--bg-block);
+                border-radius: 12px;
+                display: flex; align-items: center; justify-content: center;
+                font-size: 1.4rem;
+                margin-bottom: 5px;
+                color: var(--accent);
+                border: 1px solid var(--border);
             }
 
             /* Ẩn các thành phần thừa */
@@ -227,7 +249,6 @@
 
             /* Đẩy nội dung xuống */
             .main-content { width: 100%; margin-left: 0; padding-top: calc(var(--header-height-mobile) + 40px); }
-            
             .bottom-socials { display: none !important; }
 
             .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); padding: 10px; border-bottom: 1px solid var(--border); position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; z-index: 999; }
@@ -241,7 +262,9 @@
             section { padding: 40px 20px; }
             .swiper-slide { width: 280px; height: 420px; }
         }
-        @media (min-width: 993px) { .mobile-theme-btn { display: none; } }
+        @media (min-width: 993px) { 
+            .mobile-theme-btn, .menu-toggle-btn { display: none; } 
+        }
     </style>
 </head>
 <body>
@@ -249,26 +272,44 @@
     <div class="sidebar">
         
         <div class="mobile-header-container">
-            
-            <div class="left-group">
+            <div style="display: flex; align-items: center;">
                 <img src="minh3.png" class="mobile-ava" alt="Ava">
-                
-                <div class="mobile-info-wrapper">
-                    <div class="mobile-name">Ngô Bình Minh</div>
-                    <div class="mobile-icons">
-                        <a href="mailto:minh.nb0503@gmail.com"><i class="fas fa-envelope"></i></a>
-                        <a href="https://www.facebook.com/minh.nb0503" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank"><i class="fab fa-google-drive"></i></a>
-                    </div>
+                <div class="mobile-name">Ngô Bình Minh</div>
+            </div>
+
+            <div class="right-controls">
+                <div class="control-btn" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="control-btn" onclick="toggleDropdown()">
+                    <i class="fas fa-bars"></i>
                 </div>
             </div>
+        </div>
 
-            <div class="mobile-theme-btn" onclick="toggleTheme()">
-                <i class="fas fa-moon"></i>
+        <div class="mobile-dropdown-menu" id="socialDropdown">
+            <div class="dropdown-grid">
+                <a href="mailto:minh.nb0503@gmail.com" class="dropdown-item">
+                    <div class="dropdown-icon"><i class="fas fa-envelope"></i></div>
+                    <span>Email</span>
+                </a>
+                <a href="https://www.facebook.com/minh.nb0503" target="_blank" class="dropdown-item">
+                    <div class="dropdown-icon"><i class="fab fa-facebook-f"></i></div>
+                    <span>Face</span>
+                </a>
+                <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank" class="dropdown-item">
+                    <div class="dropdown-icon"><i class="fab fa-instagram"></i></div>
+                    <span>Insta</span>
+                </a>
+                <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank" class="dropdown-item">
+                    <div class="dropdown-icon"><i class="fab fa-tiktok"></i></div>
+                    <span>TikTok</span>
+                </a>
+                <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" class="dropdown-item">
+                    <div class="dropdown-icon"><i class="fab fa-google-drive"></i></div>
+                    <span>Drive</span>
+                </a>
             </div>
-
         </div>
 
         <div class="pc-profile-container">
@@ -485,10 +526,11 @@
         }
 
         const body = document.body;
-        const iconMobile = document.querySelector('.mobile-theme-btn i');
+        const iconMobile = document.querySelector('.control-btn i.fas.fa-moon');
         const iconPC = document.querySelector('.theme-btn-pc i');
         const textPC = document.querySelector('.theme-btn-pc');
 
+        // CHECK DARK MODE
         if (localStorage.getItem('theme') === 'dark') {
             body.classList.add('dark-mode');
             updateIcons(true);
@@ -501,13 +543,25 @@
             updateIcons(isDark);
         }
 
+        // JS CHO DROPDOWN MENU
+        function toggleDropdown() {
+            const dropdown = document.getElementById('socialDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Đóng menu khi cuộn trang
+        window.addEventListener('scroll', function() {
+            const dropdown = document.getElementById('socialDropdown');
+            if (dropdown.classList.contains('active')) {
+                dropdown.classList.remove('active');
+            }
+        });
+
         function updateIcons(isDark) {
-            // Icon cho PC
             if (iconPC) {
                 iconPC.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
                 if(textPC) textPC.innerHTML = isDark ? '<i class="fas fa-sun"></i> Chế độ Sáng' : '<i class="fas fa-moon"></i> Chế độ Tối';
             }
-            // Icon cho Mobile
             if (iconMobile) {
                 iconMobile.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
             }
