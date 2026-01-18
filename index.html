@@ -1,165 +1,313 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-<style>
-  body {
-    background: #f4f4f4; /* Nền sáng để làm nổi bật hiệu ứng gương */
-    font-family: sans-serif;
-  }
-
-  .swiper {
-    width: 100%;
-    padding-top: 50px;
-    padding-bottom: 50px;
-  }
-
-  .swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 300px; /* Kích thước thẻ */
-    height: 450px;
-    /* Hiệu ứng Gương (Glassmorphism) cho thẻ */
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px); /* Làm mờ hậu cảnh */
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Bóng đổ mềm mại */
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dự án Tiêu biểu</title>
     
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-  /* Phần hiển thị Video (Thumbnail) */
-  .video-thumb {
-    width: 100%;
-    height: 60%;
-    background-color: #000;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    <style>
+        /* --- CÀI ĐẶT CƠ BẢN --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  .play-btn {
-    background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%); /* Màu cam đỏ như ảnh */
-    color: white;
-    padding: 10px 20px;
-    border-radius: 30px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 75, 43, 0.5); /* Hiệu ứng phát sáng nhẹ */
-  }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9; /* Màu nền sáng sạch sẽ */
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-  /* Nội dung bên dưới */
-  .content {
-    padding: 20px;
-    color: #333;
-  }
+        /* --- TIÊU ĐỀ SECTION (Giữ lại phong cách cũ của bạn) --- */
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto 30px auto;
+            padding-left: 20px;
+            border-left: 5px solid #ff4b2b; /* Đường kẻ đỏ cam */
+        }
 
-  .content h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
-  }
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #111;
+        }
 
-  .tag {
-    display: inline-block;
-    padding: 5px 10px;
-    background: #ffede6;
-    color: #ff4b2b;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    font-weight: bold;
-  }
+        .section-header p {
+            color: #666;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
 
-  /* Tùy chỉnh hiệu ứng active */
-  .swiper-slide-active {
-    /* Thẻ ở giữa có thể thêm viền sáng hoặc bóng đổ mạnh hơn */
-    box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
-  }
-</style>
+        /* --- CONTAINER SLIDER --- */
+        .project-slider-section {
+            width: 100%;
+            padding: 20px 0 60px 0;
+            overflow: hidden; /* Ẩn thanh cuộn ngang */
+        }
 
-<div class="swiper mySwiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <div class="video-thumb">
-        <div class="play-btn">▶ XEM VIDEO</div>
-      </div>
-      <div class="content">
-        <h3>Vinh Danh Tiếp Lửa KLB</h3>
-        <span class="tag">Motion Graphic</span>
-      </div>
+        .swiper-container-3d {
+            width: 100%;
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+
+        /* --- THIẾT KẾ CARD (THẺ DỰ ÁN) --- */
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px; /* Chiều rộng thẻ */
+            height: 460px; /* Chiều cao thẻ */
+            border-radius: 20px;
+            
+            /* Hiệu ứng Gương (Glassmorphism) */
+            background: rgba(255, 255, 255, 0.85); 
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Bóng đổ mềm */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            
+            /* Trạng thái mặc định (khi chưa active) */
+            opacity: 0.5; 
+            filter: blur(2px); /* Làm mờ nhẹ */
+            transition: all 0.5s ease;
+        }
+
+        /* --- TRẠNG THÁI CARD ACTIVE (Ở GIỮA) --- */
+        .swiper-slide-active {
+            opacity: 1 !important;
+            filter: blur(0px) !important;
+            transform: scale(1.05); /* Phóng to nhẹ */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2); /* Bóng đổ sâu hơn */
+            z-index: 10;
+            border: 1px solid rgba(255, 75, 43, 0.2); /* Viền sáng nhẹ */
+        }
+
+        /* --- PHẦN HÌNH ẢNH/VIDEO --- */
+        .card-video-thumb {
+            flex: 3; /* Chiếm 3/4 chiều cao */
+            position: relative;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .card-video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        /* Hiệu ứng zoom ảnh khi hover vào thẻ active */
+        .swiper-slide-active:hover .card-video-thumb img {
+            transform: scale(1.1);
+        }
+
+        /* Nút Play */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ff4b2b 0%, #ff416c 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            box-shadow: 0 5px 15px rgba(255, 75, 43, 0.5); /* Phát sáng */
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        /* --- PHẦN NỘI DUNG TEXT --- */
+        .card-content {
+            flex: 1; /* Chiếm 1/4 chiều cao */
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #222;
+        }
+
+        .card-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background-color: #ffeae6;
+            color: #ff4b2b;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: fit-content;
+        }
+
+        /* --- PHÂN TRANG (DẤU CHẤM) --- */
+        .swiper-pagination {
+            position: relative;
+            margin-top: 20px;
+        }
+        .swiper-pagination-bullet {
+            background: #ccc;
+            width: 10px;
+            height: 10px;
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active {
+            background: #ff4b2b;
+            width: 30px;
+            border-radius: 5px;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="section-header">
+        <h2>Dự án Tiêu biểu</h2>
+        <p>(Di chuột vào khung để lướt xem các dự án)</p>
     </div>
-    <div class="swiper-slide">
-      <div class="video-thumb">
-        <div class="play-btn">▶ XEM VIDEO</div>
-      </div>
-      <div class="content">
-        <h3>Viral Clip IMAP</h3>
-        <span class="tag">Storytelling</span>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="video-thumb">
-        <div class="play-btn">▶ XEM VIDEO</div>
-      </div>
-      <div class="content">
-        <h3>YouTube Ten Tun</h3>
-        <span class="tag">Entertainment</span>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="video-thumb">
-        <div class="play-btn">▶ XEM VIDEO</div>
-      </div>
-      <div class="content">
-        <h3>Animation Spine 2D</h3>
-        <span class="tag">Game Art</span>
-      </div>
-    </div>
-    </div>
-  <div class="swiper-pagination"></div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-  var swiper = new Swiper(".mySwiper", {
-    effect: "coverflow", // Đây là hiệu ứng mấu chốt
-    grabCursor: true,
-    centeredSlides: true, // Luôn căn giữa thẻ active
-    slidesPerView: "auto", // Tự động tính toán số lượng thẻ hiển thị
-    coverflowEffect: {
-      rotate: 0,      // Góc xoay của các thẻ bên cạnh (để 0 cho phẳng hiện đại, hoặc 50 cho 3D rõ rệt)
-      stretch: 0,     // Khoảng cách kéo giãn
-      depth: 300,     // Độ sâu 3D (càng lớn càng sâu)
-      modifier: 1,    
-      slideShadows: false, // Tắt bóng đen mặc định để dùng hiệu ứng mờ tự nhiên hơn
-    },
-    // Hiệu ứng làm mờ các thẻ không active
-    on: {
-      init: function() {
-        updateOpacity(this);
-      },
-      slideChange: function() {
-        updateOpacity(this);
-      }
-    },
-    pagination: {
-      el: ".swiper-pagination",
-    },
-    loop: true, // Lặp vô tận
-  });
+    <div class="project-slider-section">
+        <div class="swiper swiper-container-3d">
+            <div class="swiper-wrapper">
+                
+                <div class="swiper-slide">
+                    <div class="card-video-thumb">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=600" alt="Dự án 1">
+                        <div class="play-button">
+                            <svg width="10" height="12" viewBox="0 0 12 14" fill="none"><path d="M11 7L1 13L1 1L11 7Z" fill="white"/></svg>
+                            XEM VIDEO
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Vinh Danh Tiếp Lửa KLB</h3>
+                        <span class="card-tag">Motion Graphic</span>
+                    </div>
+                </div>
 
-  // Hàm tùy chỉnh để làm mờ các thẻ bên cạnh
-  function updateOpacity(swiper) {
-    swiper.slides.forEach((slide) => {
-      slide.style.opacity = '0.4'; // Độ mờ của thẻ phụ
-      slide.style.filter = 'blur(2px)'; // Làm nhòe nhẹ thẻ phụ
-    });
-    // Thẻ active thì rõ nét 100%
-    swiper.slides[swiper.activeIndex].style.opacity = '1';
-    swiper.slides[swiper.activeIndex].style.filter = 'blur(0px)';
-  }
-</script>
+                <div class="swiper-slide">
+                    <div class="card-video-thumb">
+                        <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80&w=600" alt="Dự án 2">
+                        <div class="play-button">
+                            <svg width="10" height="12" viewBox="0 0 12 14" fill="none"><path d="M11 7L1 13L1 1L11 7Z" fill="white"/></svg>
+                            XEM VIDEO
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Viral Clip IMAP</h3>
+                        <span class="card-tag">Storytelling</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card-video-thumb">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=600" alt="Dự án 3">
+                        <div class="play-button">
+                            <svg width="10" height="12" viewBox="0 0 12 14" fill="none"><path d="M11 7L1 13L1 1L11 7Z" fill="white"/></svg>
+                            XEM VIDEO
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">YouTube Ten Tun</h3>
+                        <span class="card-tag">Entertainment</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card-video-thumb">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e0b7a9?auto=format&fit=crop&q=80&w=600" alt="Dự án 4">
+                        <div class="play-button">
+                            <svg width="10" height="12" viewBox="0 0 12 14" fill="none"><path d="M11 7L1 13L1 1L11 7Z" fill="white"/></svg>
+                            XEM VIDEO
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Animation Spine 2D</h3>
+                        <span class="card-tag">Game Art</span>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="card-video-thumb">
+                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=600" alt="Dự án 5">
+                        <div class="play-button">
+                            <svg width="10" height="12" viewBox="0 0 12 14" fill="none"><path d="M11 7L1 13L1 1L11 7Z" fill="white"/></svg>
+                            XEM VIDEO
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Showcase Reel 2025</h3>
+                        <span class="card-tag">Highlight</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var swiper = new Swiper(".swiper-container-3d", {
+                // Hiệu ứng Coverflow (Lật thẻ 3D)
+                effect: "coverflow",
+                grabCursor: true,       // Con trỏ chuột dạng bàn tay
+                centeredSlides: true,   // Luôn căn giữa thẻ active
+                slidesPerView: "auto",  // Tự động tính toán số thẻ hiển thị
+                loop: true,             // Cho phép lặp lại vô tận
+                speed: 600,             // Tốc độ lướt
+                
+                // Tùy chỉnh hiệu ứng 3D
+                coverflowEffect: {
+                    rotate: 0,          // Giữ thẻ phẳng (hiện đại hơn xoay nghiêng)
+                    stretch: 0,         // Khoảng cách kéo giãn
+                    depth: 150,         // Độ sâu (càng lớn thẻ sau càng nhỏ)
+                    modifier: 2.5,      // Mức độ ảnh hưởng của hiệu ứng
+                    slideShadows: false // Tắt bóng đen mặc định (để dùng blur đẹp hơn)
+                },
+                
+                // Cấu hình nút phân trang
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                
+                // Tự động chạy (bỏ comment nếu muốn dùng)
+                /*
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                */
+            });
+        });
+    </script>
+</body>
+</html>
