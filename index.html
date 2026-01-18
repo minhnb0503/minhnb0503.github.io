@@ -70,24 +70,67 @@
         /* MAIN CONTENT */
         .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); transition: 0.3s; }
         
+        /* --- HERO SECTION (CHIA 2 CỘT) --- */
         .hero { 
-            min-height: 100vh; display: flex; align-items: center; padding: 0 80px; 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; /* Chia đều 2 bên */
+            padding: 0 80px; 
             background: radial-gradient(circle at 70% 30%, var(--bg-block) 0%, var(--bg-body) 70%);
+            overflow: hidden; /* Tránh ảnh bị tràn */
         }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); }
+        
+        .hero-text {
+            flex: 1; /* Chiếm 1 phần */
+            padding-right: 40px;
+            z-index: 2;
+        }
+
+        .hero h1 { 
+            font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 5.5rem); 
+            line-height: 1.1; margin-bottom: 20px; color: var(--text-main);
+        }
+        
         .hero-btn {
             display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; 
             border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 20px; 
             box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); transition: 0.3s;
         }
 
+        /* Phần ảnh bên phải */
+        .hero-image-box {
+            flex: 1; /* Chiếm 1 phần */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-image-box img {
+            max-width: 90%; /* Độ lớn của ảnh */
+            height: auto;
+            object-fit: contain;
+            /* Hiệu ứng bóng đổ phía sau người */
+            filter: drop-shadow(20px 20px 40px rgba(0,0,0,0.2)); 
+            
+            /* Hiệu ứng bay nhẹ (Floating) */
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); } /* Bay lên 20px */
+            100% { transform: translateY(0px); }
+        }
+
+        /* CÁC PHẦN KHÁC */
         section { padding: 80px; border-bottom: 1px solid var(--border); }
         .section-title { 
             font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 40px; 
             color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; 
         }
 
-        /* SKILLS & TIMELINE */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
         .skill-item { 
             background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; 
@@ -106,89 +149,37 @@
         .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
         .timeline-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
 
-        /* --- PHẦN SLIDER HIỆN ĐẠI (SPACIOUS & GLASS) --- */
-        .swiper { 
-            width: 100%; 
-            padding: 60px 0 80px 0; /* Khoảng cách trên dưới rộng rãi */
-            cursor: grab; 
-        }
-        
+        .swiper { width: 100%; padding: 60px 0 80px 0; cursor: grab; }
         .swiper-slide { 
-            width: 320px; /* Chiều rộng thẻ */
-            height: 480px; /* Chiều cao thẻ */
-            border-radius: 20px;
-            overflow: hidden;
-            background: var(--bg-body);
-            border: 1px solid var(--border);
-            
-            /* Hiệu ứng mờ cho các thẻ chưa chọn */
-            opacity: 0.5; 
-            transform: scale(0.9); 
-            filter: blur(4px) grayscale(80%); /* Làm mờ và đen trắng */
-            transition: all 0.5s ease; /* Chuyển động siêu mượt */
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 320px; height: 480px; border-radius: 20px; overflow: hidden;
+            background: var(--bg-body); border: 1px solid var(--border);
+            opacity: 0.5; transform: scale(0.9); filter: blur(4px) grayscale(80%); 
+            transition: all 0.5s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-
-        /* Thẻ ĐANG CHỌN (Ở giữa) */
         .swiper-slide-active {
-            opacity: 1;
-            transform: scale(1.1); /* Phóng to lên */
-            filter: blur(0) grayscale(0%); /* Rõ nét, có màu */
-            z-index: 10;
-            border-color: var(--accent); /* Viền cam */
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2); /* Bóng đổ sâu */
+            opacity: 1; transform: scale(1.1); filter: blur(0) grayscale(0%); z-index: 10;
+            border-color: var(--accent); box-shadow: 0 25px 50px rgba(0,0,0,0.2);
         }
-
         .video-wrapper { position: relative; width: 100%; height: 65%; background: #000; }
         .video-wrapper iframe { width: 100%; height: 100%; border: none; }
-        
         .video-mask { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0.1); z-index: 10; cursor: pointer; 
             display: flex; align-items: center; justify-content: center; transition: 0.3s; 
         }
         .video-mask:hover { background: rgba(0,0,0,0.3); }
-
-        /* NÚT PLAY DẠNG GƯƠNG (GLASSMORPHISM) */
         .play-btn {
-            /* Hiệu ứng kính */
-            background: rgba(255, 255, 255, 0.1); 
-            backdrop-filter: blur(15px); /* Độ mờ kính */
-            -webkit-backdrop-filter: blur(15px);
-            
-            /* Viền kính phát sáng */
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-top: 1px solid rgba(255, 255, 255, 0.7); /* Viền trên sáng hơn tạo khối 3D */
-            border-left: 1px solid rgba(255, 255, 255, 0.7);
-            
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); /* Bóng đổ gương */
-            
-            padding: 15px 35px;
-            border-radius: 12px; /* Bo góc vuông nhẹ cho hiện đại */
-            
-            /* Chữ */
-            color: #fff;
-            font-weight: 800;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            pointer-events: none;
-            display: flex; align-items: center; gap: 10px;
-            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.7); border-left: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); padding: 15px 35px; border-radius: 12px; 
+            color: #fff; font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; text-transform: uppercase;
+            pointer-events: none; display: flex; align-items: center; gap: 10px; transition: 0.3s;
         }
-        
-        /* Khi active thì nút sáng lên màu cam */
-        .swiper-slide-active .play-btn {
-            background: rgba(255, 77, 41, 0.85); /* Cam trong suốt */
-            border-color: transparent;
-            box-shadow: 0 0 20px rgba(255, 77, 41, 0.5);
-        }
-
+        .swiper-slide-active .play-btn { background: rgba(255, 77, 41, 0.85); border-color: transparent; box-shadow: 0 0 20px rgba(255, 77, 41, 0.5); }
         .project-info { padding: 25px; height: 35%; background: var(--bg-body); position: relative; }
         .project-info h3 { color: var(--text-main); margin-bottom: 5px; font-size: 1.2rem; }
         .project-tag { background: rgba(255, 77, 41, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-top: 5px; }
 
-        /* CONTACT */
         .contact-box {
             background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
             max-width: 600px; margin: 0 auto; border: 1px solid var(--border);
@@ -204,13 +195,11 @@
             .profile-img { width: 50px; height: 50px; margin: 0; border-width: 2px; }
             .profile-info h2 { font-size: 1.2rem; display: inline-block; margin-left: 10px; color: var(--text-main); }
             .profile-info p, .contact-mini, .nav-links, .social-icons, .theme-btn-pc { display: none; }
-            
             .main-content { width: 100%; margin-left: 0; }
             
             .mobile-nav { 
                 display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); 
-                padding: 10px; position: sticky; top: 0; z-index: 999; 
-                border-bottom: 1px solid var(--border);
+                padding: 10px; position: sticky; top: 0; z-index: 999; border-bottom: 1px solid var(--border);
             }
             .mobile-nav a { 
                 color: var(--text-sub); text-decoration: none; padding: 8px 20px; 
@@ -225,11 +214,24 @@
                 font-size: 1.2rem; cursor: pointer; z-index: 1002;
             }
             
-            .hero { padding: 60px 20px; text-align: center; }
+            /* HERO TRÊN MOBILE: XẾP CHỒNG LÊN NHAU */
+            .hero { 
+                flex-direction: column-reverse; /* Đưa chữ lên trên, ảnh xuống dưới (hoặc ngược lại tùy ý) */
+                padding: 40px 20px; 
+                text-align: center;
+                height: auto; /* Bỏ chiều cao full màn hình */
+            }
+            .hero-text { 
+                padding-right: 0; 
+                margin-top: 30px; 
+            }
             .hero h1 { font-size: 3rem; }
+            .hero-image-box img {
+                max-width: 70%; /* Ảnh nhỏ lại chút trên điện thoại */
+                margin-top: 20px;
+            }
+
             section { padding: 50px 20px; }
-            
-            /* Mobile Slider: Vẫn giữ khoảng cách */
             .swiper-slide { width: 280px; height: 420px; }
         }
         @media (min-width: 993px) { .theme-btn-mobile { display: none; } }
@@ -279,13 +281,17 @@
     <div class="main-content">
         
         <section id="home" class="hero">
-            <div data-aos="fade-up">
+            <div class="hero-text" data-aos="fade-right">
                 <p style="color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">Portfolio 2025</p>
                 <h1>NGÔ BÌNH MINH<br><span style="font-size: 0.5em; color: var(--text-sub); font-weight: 400;">Freelance Video Editor</span></h1>
                 <p style="color: var(--text-sub); max-width: 600px; margin: 20px 0; line-height: 1.6; font-size: 1.1rem;">
                     Xin chào, tôi là một Video Editor & Cameraman. Với kinh nghiệm từ <b>KienlongBank</b> và <b>IMAP</b>, tôi chuyên sản xuất TVC, Viral Video, Motion Graphic và xây dựng kênh TikTok/YouTube chuyên nghiệp.
                 </p>
                 <a href="#portfolio" class="hero-btn">Xem Dự Án Của Tôi</a>
+            </div>
+
+            <div class="hero-image-box" data-aos="fade-left">
+                <img src="https://cdni.iconscout.com/illustration/premium/thumb/male-videographer-holding-camera-illustration-download-in-svg-png-gif-file-formats--photographer-shooting-video-recording-profession-pack-people-illustrations-4550346.png" alt="Ngô Bình Minh">
             </div>
         </section>
 
@@ -345,7 +351,7 @@
                     <div class="swiper-slide">
                         <div class="video-wrapper">
                             <div class="video-mask" onclick="this.style.display='none'">
-                                <div class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</div>
+                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
                             </div>
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
                         </div>
@@ -357,7 +363,7 @@
                     <div class="swiper-slide">
                         <div class="video-wrapper">
                             <div class="video-mask" onclick="this.style.display='none'">
-                                <div class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</div>
+                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
                             </div>
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
                         </div>
@@ -369,7 +375,7 @@
                     <div class="swiper-slide">
                         <div class="video-wrapper">
                             <div class="video-mask" onclick="this.style.display='none'">
-                                <div class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</div>
+                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
                             </div>
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
                         </div>
@@ -381,7 +387,7 @@
                      <div class="swiper-slide">
                         <div class="video-wrapper">
                             <div class="video-mask" onclick="this.style.display='none'">
-                                <div class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</div>
+                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
                             </div>
                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
                         </div>
@@ -419,10 +425,8 @@
             centeredSlides: true,
             slidesPerView: "auto",
             
-            // TẠO KHOẢNG CÁCH GIỮA CÁC THẺ
-            spaceBetween: 60, 
+            spaceBetween: 60, // Tạo khoảng cách rộng rãi
 
-            // CẤU HÌNH FOCUS
             coverflowEffect: {
                 rotate: 0, 
                 stretch: 0, 
@@ -445,7 +449,6 @@
             document.getElementById('mobileNav').style.display = 'flex';
         }
 
-        // Dark Mode Logic
         const body = document.body;
         const iconMobile = document.querySelector('.theme-btn-mobile i');
         const iconPC = document.querySelector('.theme-btn-pc i');
