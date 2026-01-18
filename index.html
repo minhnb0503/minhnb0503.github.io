@@ -20,6 +20,7 @@
             --border: #e5e5e5;
             --accent: #ff4d29; /* Cam chủ đạo */
             --sidebar-width: 280px;
+            --header-height-mobile: 90px; /* Chiều cao header trên mobile */
         }
 
         body.dark-mode {
@@ -40,17 +41,19 @@
             transition: 0.3s;
         }
 
-        /* SIDEBAR */
+        /* --- SIDEBAR (PC) --- */
         .sidebar {
             position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
             background: var(--bg-body); padding: 40px 30px;
             display: flex; flex-direction: column; justify-content: space-between;
             border-right: 1px solid var(--border); z-index: 1000; transition: 0.3s;
         }
+        
         .profile-img { 
             width: 100px; height: 100px; border-radius: 50%; object-fit: cover; 
             margin-bottom: 20px; border: 3px solid var(--accent); padding: 3px; background: var(--bg-body);
         }
+        
         .nav-links { display: flex; flex-direction: column; gap: 10px; }
         .nav-links a { 
             color: var(--text-sub); text-decoration: none; font-size: 1rem; font-weight: 600; 
@@ -61,15 +64,15 @@
         }
         .contact-mini { font-size: 0.85rem; color: var(--text-sub); margin-top: 20px; }
         
-        /* ICON MẠNG XÃ HỘI (SIDEBAR) */
-        .social-icons { display: flex; gap: 10px; margin-bottom: 20px; align-items: center; }
-        .social-icons a { 
+        /* ICON MẠNG XÃ HỘI (PC) */
+        .social-icons-pc { display: flex; gap: 10px; margin-bottom: 20px; align-items: center; }
+        .social-icons-pc a { 
             color: var(--text-main); font-size: 1.1rem; transition: 0.3s; 
             display: flex; align-items: center; justify-content: center;
             width: 32px; height: 32px; border-radius: 50%; background: var(--bg-block);
             text-decoration: none !important; border: none !important;
         }
-        .social-icons a:hover { background: var(--accent); color: #fff; transform: translateY(-3px); }
+        .social-icons-pc a:hover { background: var(--accent); color: #fff; transform: translateY(-3px); }
 
         .theme-btn {
             cursor: pointer; background: transparent; border: 1px solid var(--border);
@@ -77,7 +80,10 @@
             font-size: 0.9rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px;
         }
 
-        /* MAIN CONTENT */
+        /* --- ICON MẠNG XÃ HỘI TRÊN MOBILE (HEADER) --- */
+        .mobile-header-socials { display: none; } /* Ẩn trên PC */
+
+        /* --- MAIN CONTENT --- */
         .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); transition: 0.3s; }
         
         .hero { 
@@ -87,18 +93,12 @@
         }
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
         .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); }
-        
-        /* NÚT BẤM (CÓ HIỆU ỨNG POPUP/NẢY) */
         .hero-btn {
             display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; 
             border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 20px; 
-            box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); transition: all 0.4s;
         }
-        .hero-btn:hover { 
-            transform: scale(1.1) translateY(-5px); 
-            box-shadow: 0 20px 30px rgba(255, 77, 41, 0.5); 
-        }
+        .hero-btn:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 20px 30px rgba(255, 77, 41, 0.5); }
 
         .hero-image-box { flex: 1; display: flex; justify-content: center; align-items: center; }
         .hero-image-box img { max-width: 100%; height: auto; object-fit: contain; filter: drop-shadow(20px 20px 40px rgba(0,0,0,0.15)); }
@@ -133,41 +133,74 @@
 
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
 
-        /* ICON MẠNG XÃ HỘI Ở DƯỚI CÙNG (Cho Mobile) */
-        .bottom-socials { 
-            display: none; /* Mặc định ẩn trên PC */
-            justify-content: center; gap: 15px; margin-top: 30px; 
-        }
-        .bottom-socials a { 
-            width: 40px; height: 40px; font-size: 1.3rem; 
-            color: var(--text-main); background: var(--bg-block);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            transition: 0.3s; border: 1px solid var(--border);
-            text-decoration: none !important;
-        }
-        .bottom-socials a:hover { background: var(--accent); color: #fff; transform: translateY(-5px); }
-
         /* MOBILE CSS */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
-            .sidebar { width: 100%; height: auto; position: relative; flex-direction: row; align-items: center; padding: 15px 20px; border-bottom: 1px solid var(--border); border-right: none; }
-            .profile-img { width: 50px; height: 50px; margin: 0; border-width: 2px; }
-            .profile-info h2 { font-size: 1.2rem; display: inline-block; margin-left: 10px; color: var(--text-main); }
-            .profile-info p, .contact-mini, .nav-links, .social-icons, .theme-btn-pc { display: none; }
             
-            /* Hiện icon dưới cùng trên mobile */
-            .bottom-socials { display: flex; }
+            /* --- 1. HEADER KHÓA CỨNG (FIXED) --- */
+            .sidebar { 
+                width: 100%; 
+                height: var(--header-height-mobile); /* Chiều cao cố định */
+                position: fixed; /* QUAN TRỌNG: Khóa cứng */
+                top: 0; left: 0; 
+                flex-direction: row; align-items: center; 
+                padding: 10px 20px; 
+                border-bottom: 1px solid var(--border); border-right: none;
+                z-index: 10000; /* Luôn nằm trên cùng */
+                box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            }
+            
+            .profile-img { width: 55px; height: 55px; margin: 0; border-width: 2px; }
+            
+            /* Tinh chỉnh phần Info cho gọn */
+            .profile-info { 
+                display: flex; align-items: center; 
+                width: 100%; justify-content: flex-start;
+            }
+            .profile-info > div { margin-left: 12px; }
+            .profile-info h2 { font-size: 1.1rem; margin: 0; line-height: 1.2; display: block;}
+            
+            /* Ẩn bớt */
+            .profile-info p, .contact-mini, .nav-links, .social-icons-pc, .theme-btn-pc { display: none; }
+            
+            /* --- 2. HIỆN ICON SOCIAL TRÊN HEADER --- */
+            .mobile-header-socials {
+                display: flex; gap: 12px; margin-top: 5px;
+            }
+            .mobile-header-socials a {
+                color: var(--text-sub); font-size: 1rem; transition: 0.3s;
+                text-decoration: none;
+            }
+            .mobile-header-socials a:hover { color: var(--accent); }
 
-            .main-content { width: 100%; margin-left: 0; }
-            .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); padding: 10px; position: sticky; top: 0; z-index: 999; border-bottom: 1px solid var(--border); }
-            .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.9rem; }
+            /* Đẩy nút Dark Mode ra góc phải */
+            .theme-btn-mobile { 
+                position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+                background: var(--bg-block); color: var(--text-main); 
+                border: 1px solid var(--border); padding: 8px 10px; border-radius: 50%; 
+                font-size: 1.1rem; cursor: pointer; z-index: 10001; 
+            }
+
+            /* --- 3. ĐẨY NỘI DUNG XUỐNG ĐỂ KHÔNG BỊ HEADER CHE --- */
+            .main-content { 
+                width: 100%; margin-left: 0; 
+                padding-top: calc(var(--header-height-mobile) + 50px); /* Padding trên để hở Header */
+            }
+            
+            /* Menu ngang (sticky dưới header) */
+            .mobile-nav { 
+                display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); 
+                padding: 10px; border-bottom: 1px solid var(--border);
+                position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; z-index: 999;
+            }
+            .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
-            .theme-btn-mobile { position: absolute; top: 20px; right: 20px; background: var(--bg-block); color: var(--text-main); border: 1px solid var(--border); padding: 8px 12px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 1002; }
-            .hero { flex-direction: column-reverse; padding: 40px 20px; text-align: center; height: auto; }
-            .hero-text { padding-right: 0; margin-top: 30px; }
-            .hero h1 { font-size: 3rem; }
-            .hero-image-box img { max-width: 80%; margin-top: 20px; }
-            section { padding: 50px 20px; }
+            
+            .hero { flex-direction: column-reverse; padding: 20px; text-align: center; height: auto; padding-top: 40px; }
+            .hero-text { padding-right: 0; margin-top: 20px; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-image-box img { max-width: 70%; margin-top: 10px; }
+            section { padding: 40px 20px; }
             .swiper-slide { width: 280px; height: 420px; }
         }
         @media (min-width: 993px) { .theme-btn-mobile { display: none; } }
@@ -181,12 +214,22 @@
             <div>
                 <h2 style="color: var(--text-main);">Ngô Bình Minh</h2>
                 <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px;">Video Editor & Camera Op</p>
+                
+                <div class="mobile-header-socials">
+                    <a href="mailto:minh.nb0503@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.facebook.com/minh.nb0503" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank"><i class="fab fa-google-drive"></i></a>
+                </div>
+
                 <div class="contact-mini">
                     <div><i class="fas fa-phone"></i> 0395.393.868</div>
                     <div style="margin-top:5px;"><i class="fas fa-map-marker-alt"></i> Cầu Giấy - Hà Nội</div>
                 </div>
             </div>
         </div>
+
         <div class="nav-links">
             <a href="#home">01. Giới thiệu</a>
             <a href="#skills">02. Kỹ năng & Gear</a>
@@ -195,12 +238,12 @@
         </div>
         
         <div style="margin-top: 20px;">
-            <div class="social-icons">
+            <div class="social-icons-pc">
                 <a href="mailto:minh.nb0503@gmail.com" title="Gửi Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://www.facebook.com/minh.nb0503" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" title="Kho Dự Án (Drive)"><i class="fab fa-google-drive"></i></a>
+                <a href="https://www.facebook.com/minh.nb0503" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank"><i class="fab fa-google-drive"></i></a>
             </div>
 
             <button class="theme-btn theme-btn-pc" onclick="toggleTheme()">
@@ -349,16 +392,7 @@
                     <p style="margin: 10px 0;"><i class="fas fa-phone" style="color:var(--accent); margin-right: 10px;"></i> 0395.393.868</p>
                     <p style="margin: 10px 0;"><i class="fas fa-envelope" style="color:var(--accent); margin-right: 10px;"></i> minh.nb0503@gmail.com</p>
                 </div>
-                
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=minh.nb0503@gmail.com&su=Liên hệ từ Portfolio" target="_blank" class="hero-btn">Gửi Email Ngay</a>
-
-                <div class="bottom-socials">
-                    <a href="mailto:minh.nb0503@gmail.com"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.facebook.com/minh.nb0503" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank"><i class="fab fa-google-drive"></i></a>
-                </div>
             </div>
         </section>
 
