@@ -49,6 +49,7 @@
             border-right: 1px solid var(--border); z-index: 1000; transition: 0.3s;
         }
         
+        /* PC Styles */
         .pc-content { display: block; }
         .mobile-header-wrapper { display: none; }
         .menu-overlay { display: none; }
@@ -132,7 +133,7 @@
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
         .bottom-socials { display: none; }
 
-        /* --- MOBILE CSS (V33.0 - FIX LỖI THÒ THỤT) --- */
+        /* --- MOBILE CSS (V33.0 - MENU ĐỀU TĂM TẮP) --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             
@@ -222,7 +223,8 @@
                 
                 /* QUAN TRỌNG: CỐ ĐỊNH CHIỀU RỘNG ĐỂ ĐỀU NHAU */
                 width: 220px; 
-                box-sizing: border-box; /* Để padding không làm vỡ size */
+                box-sizing: border-box; 
+                padding-left: 25px; /* Căn lề để icon thẳng hàng */
 
                 /* Hiệu ứng bay ra */
                 opacity: 0; transform: translateY(20px) scale(0.9);
