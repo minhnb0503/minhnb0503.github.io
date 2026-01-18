@@ -20,7 +20,7 @@
             --border: #e5e5e5;
             --accent: #ff4d29; /* Cam chủ đạo */
             --sidebar-width: 280px;
-            --header-height-mobile: 75px; 
+            --header-height-mobile: 65px; 
         }
 
         body.dark-mode {
@@ -132,7 +132,7 @@
         .bottom-socials a { width: 40px; height: 40px; font-size: 1.3rem; color: var(--text-main); background: var(--bg-block); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; border: 1px solid var(--border); text-decoration: none !important; }
         .bottom-socials a:hover { background: var(--accent); color: #fff; transform: translateY(-5px); }
 
-        /* --- MOBILE CSS (FIXED TUYỆT ĐỐI) --- */
+        /* --- MOBILE CSS (FIXED & HORIZONTAL LAYOUT) --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             
@@ -140,7 +140,7 @@
             .sidebar { 
                 width: 100%; height: var(--header-height-mobile); 
                 position: fixed !important; top: 0; left: 0; 
-                flex-direction: row; align-items: center; 
+                flex-direction: row !important; align-items: center; 
                 padding: 0 15px; 
                 border-bottom: 1px solid var(--border); 
                 z-index: 10000;
@@ -148,49 +148,53 @@
                 display: flex !important;
             }
             
+            /* Ảnh đại diện */
             .profile-img { width: 45px; height: 45px; margin: 0; border-width: 2px; flex-shrink: 0; }
             
-            /* Khu vực chứa Tên + Icon */
+            /* Khu vực chứa Tên + Icon (Chuyển sang Row để xếp ngang) */
             .profile-info { 
                 display: flex !important; 
-                flex-direction: column !important; 
-                justify-content: center !important;
-                align-items: flex-start !important;
+                flex-direction: row !important; /* XẾP NGANG */
+                align-items: center !important; /* Căn giữa theo chiều dọc */
                 margin-left: 10px;
-                /* Chừa chỗ cho nút Dark Mode (quan trọng) */
-                width: calc(100% - 60px); 
+                flex-grow: 1; /* Chiếm không gian còn lại */
             }
             
-            /* Tên */
-            .profile-info h2 { font-size: 1rem; margin: 0; margin-bottom: 3px; line-height: 1; white-space: nowrap; }
+            /* Tên (Thêm lề phải để tách icon) */
+            .profile-info h2 { 
+                font-size: 1rem; 
+                margin: 0 12px 0 0 !important; /* Lề phải 12px */
+                line-height: 1; 
+                white-space: nowrap; 
+            }
             
             .profile-info p, .contact-mini, .nav-links, .social-icons-pc, .theme-btn-pc { display: none !important; }
             
-            /* ICON MẠNG XÃ HỘI MOBILE (BẮT BUỘC NGANG) */
+            /* ICON MẠNG XÃ HỘI MOBILE (Xếp ngang tiếp theo tên) */
             .mobile-header-socials {
                 display: flex !important; 
-                flex-direction: row !important; /* Hàng ngang */
+                flex-direction: row !important;
                 align-items: center !important;
-                gap: 15px !important;
+                gap: 12px !important;
+                margin-top: 0 !important; /* Xóa lề trên */
             }
             .mobile-header-socials a {
                 color: var(--text-sub); 
-                font-size: 1.1rem; /* Icon to */
+                font-size: 1.1rem; 
                 text-decoration: none; padding: 2px;
                 display: inline-block !important;
             }
             .mobile-header-socials a:hover { color: var(--accent); }
 
-            /* NÚT SÁNG TỐI (TÁCH BIỆT HOÀN TOÀN) */
+            /* NÚT SÁNG TỐI (Tuyệt đối góc phải) */
             .theme-btn-mobile { 
-                position: fixed !important; /* Dùng Fixed luôn cho cứng */
-                right: 15px; 
-                top: 20px; /* Canh chỉnh theo chiều cao header (75px/2 - icon/2) */
+                position: fixed !important;
+                right: 15px; top: 18px; /* Canh chỉnh vị trí */
                 background: var(--bg-block); color: var(--text-main); 
                 border: 1px solid var(--border); 
-                width: 35px; height: 35px; 
+                width: 32px; height: 32px; /* Nhỏ lại xíu cho gọn */
                 border-radius: 50%; 
-                font-size: 1rem; cursor: pointer; z-index: 10002; 
+                font-size: 0.9rem; cursor: pointer; z-index: 10002; 
                 display: flex; align-items: center; justify-content: center;
             }
 
