@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        /* --- CẤU HÌNH MÀU SẮC (Light Mode) --- */
+        /* --- CẤU HÌNH MÀU SẮC --- */
         :root {
             --bg-body: #ffffff;
             --bg-block: #f8f9fa;
@@ -22,7 +22,6 @@
             --sidebar-width: 280px;
         }
 
-        /* Dark Mode */
         body.dark-mode {
             --bg-body: #0a0a0a;
             --bg-block: #111111;
@@ -41,17 +40,20 @@
             transition: 0.3s;
         }
 
-        /* --- SIDEBAR --- */
+        /* SIDEBAR */
         .sidebar {
             position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
             background: var(--bg-body); padding: 40px 30px;
             display: flex; flex-direction: column; justify-content: space-between;
             border-right: 1px solid var(--border); z-index: 1000; transition: 0.3s;
         }
+        
+        /* ẢNH ĐẠI DIỆN TRONG SIDEBAR */
         .profile-img { 
             width: 100px; height: 100px; border-radius: 50%; object-fit: cover; 
             margin-bottom: 20px; border: 3px solid var(--accent); padding: 3px; background: var(--bg-body);
         }
+        
         .nav-links { display: flex; flex-direction: column; gap: 10px; }
         .nav-links a { 
             color: var(--text-sub); text-decoration: none; font-size: 1rem; font-weight: 600; 
@@ -60,150 +62,91 @@
         .nav-links a:hover, .nav-links a.active { 
             background: rgba(255, 77, 41, 0.1); color: var(--accent); transform: translateX(5px); 
         }
-        .social-icons a { color: var(--text-main); font-size: 1.2rem; margin-right: 15px; transition: 0.3s; }
-        .social-icons a:hover { color: var(--accent); }
+        
+        .contact-mini { font-size: 0.85rem; color: var(--text-sub); margin-top: 20px; }
+        
+        /* ICON MẠNG XÃ HỘI */
+        .social-icons { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .social-icons a { 
+            color: var(--text-main); font-size: 1.3rem; transition: 0.3s; 
+            display: flex; align-items: center; justify-content: center;
+            width: 35px; height: 35px; border-radius: 50%; background: var(--bg-block);
+        }
+        .social-icons a:hover { background: var(--accent); color: #fff; transform: translateY(-3px); }
+
         .theme-btn {
             cursor: pointer; background: transparent; border: 1px solid var(--border);
             color: var(--text-main); padding: 8px 15px; border-radius: 20px;
             font-size: 0.9rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px;
         }
 
-        /* --- MAIN CONTENT --- */
+        /* MAIN CONTENT */
         .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); transition: 0.3s; }
         
-        /* HERO SECTION (2 Cột) */
+        /* HERO */
         .hero { 
-            min-height: 100vh; 
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 80px; 
-            background: radial-gradient(circle at 70% 30%, var(--bg-block) 0%, var(--bg-body) 70%);
+            min-height: 100vh; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 80px; background: radial-gradient(circle at 70% 30%, var(--bg-block) 0%, var(--bg-body) 70%);
             overflow: hidden;
         }
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
-        .hero h1 { 
-            font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 5.5rem); 
-            line-height: 1.1; margin-bottom: 20px; color: var(--text-main);
-        }
+        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); }
         .hero-btn {
             display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; 
             border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 20px; 
             box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); transition: 0.3s;
         }
-        
-        /* Cột ảnh bên phải */
-        .hero-image-box {
-            flex: 1; display: flex; justify-content: center; align-items: center; position: relative;
-        }
-        .hero-image-box img {
-            max-width: 100%; height: auto; object-fit: contain;
-            filter: drop-shadow(20px 20px 40px rgba(0,0,0,0.15)); /* Bóng đổ sau lưng */
-        }
+        .hero-image-box { flex: 1; display: flex; justify-content: center; align-items: center; }
+        .hero-image-box img { max-width: 100%; height: auto; object-fit: contain; filter: drop-shadow(20px 20px 40px rgba(0,0,0,0.15)); }
 
         section { padding: 80px; border-bottom: 1px solid var(--border); }
-        .section-title { 
-            font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 40px; 
-            color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; 
-        }
+        .section-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 40px; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; }
 
         /* SKILLS & TIMELINE */
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
-        .skill-item { 
-            background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; 
-            border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+        .skill-item { background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
         .skill-item:hover { transform: translateY(-5px); border-color: var(--accent); }
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        .timeline-item { 
-            padding: 30px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; 
-            border-left: 4px solid var(--accent); border: 1px solid var(--border);
-        }
+        .timeline-item { padding: 30px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
         .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
         .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
         .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
         .timeline-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
 
-        /* --- SLIDER HIỆN ĐẠI (THOÁNG & GƯƠNG) --- */
+        /* SLIDER */
         .swiper { width: 100%; padding: 60px 0 80px 0; cursor: grab; }
-        
-        .swiper-slide { 
-            width: 320px; height: 480px; border-radius: 20px; overflow: hidden;
-            background: var(--bg-body); border: 1px solid var(--border);
-            opacity: 0.5; transform: scale(0.9); filter: blur(3px) grayscale(80%); 
-            transition: all 0.5s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .swiper-slide-active {
-            opacity: 1; transform: scale(1.1); filter: blur(0) grayscale(0%); z-index: 10;
-            border-color: var(--accent); box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-        }
-
+        .swiper-slide { width: 320px; height: 480px; border-radius: 20px; overflow: hidden; background: var(--bg-body); border: 1px solid var(--border); opacity: 0.5; transform: scale(0.9); filter: blur(3px) grayscale(80%); transition: all 0.5s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .swiper-slide-active { opacity: 1; transform: scale(1.1); filter: blur(0) grayscale(0%); z-index: 10; border-color: var(--accent); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
         .video-wrapper { position: relative; width: 100%; height: 65%; background: #000; }
         .video-wrapper iframe { width: 100%; height: 100%; border: none; }
-        
-        .video-mask { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.1); z-index: 10; cursor: pointer; 
-            display: flex; align-items: center; justify-content: center; transition: 0.3s; 
-        }
+        .video-mask { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.1); z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
         .video-mask:hover { background: rgba(0,0,0,0.3); }
-
-        .play-btn {
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.7);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); padding: 15px 35px; border-radius: 12px; 
-            color: #fff; font-weight: 800; font-size: 1.1rem; text-transform: uppercase;
-            pointer-events: none; display: flex; align-items: center; gap: 10px; transition: 0.3s;
-        }
-        .swiper-slide-active .play-btn { background: rgba(255, 77, 41, 0.9); border-color: transparent; box-shadow: 0 0 20px rgba(255, 77, 41, 0.5); }
-        
+        .play-btn { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.7); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); padding: 15px 35px; border-radius: 12px; color: #fff; font-weight: 800; font-size: 1.1rem; text-transform: uppercase; pointer-events: none; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
+        .swiper-slide-active .play-btn { background: rgba(255, 77, 41, 0.9); border-color: transparent; }
         .project-info { padding: 25px; height: 35%; background: var(--bg-body); position: relative; }
         .project-info h3 { color: var(--text-main); margin-bottom: 5px; font-size: 1.2rem; }
         .project-tag { background: rgba(255, 77, 41, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-top: 5px; }
 
-        .contact-box {
-            background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            max-width: 600px; margin: 0 auto; border: 1px solid var(--border);
-        }
+        .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
 
         /* MOBILE CSS */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
-            .sidebar { 
-                width: 100%; height: auto; position: relative; flex-direction: row; align-items: center; 
-                padding: 15px 20px; border-bottom: 1px solid var(--border); border-right: none;
-            }
+            .sidebar { width: 100%; height: auto; position: relative; flex-direction: row; align-items: center; padding: 15px 20px; border-bottom: 1px solid var(--border); border-right: none; }
             .profile-img { width: 50px; height: 50px; margin: 0; border-width: 2px; }
             .profile-info h2 { font-size: 1.2rem; display: inline-block; margin-left: 10px; color: var(--text-main); }
             .profile-info p, .contact-mini, .nav-links, .social-icons, .theme-btn-pc { display: none; }
-            
             .main-content { width: 100%; margin-left: 0; }
-            
-            .mobile-nav { 
-                display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); 
-                padding: 10px; position: sticky; top: 0; z-index: 999; border-bottom: 1px solid var(--border);
-            }
-            .mobile-nav a { 
-                color: var(--text-sub); text-decoration: none; padding: 8px 20px; 
-                background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.9rem; 
-            }
+            .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); padding: 10px; position: sticky; top: 0; z-index: 999; border-bottom: 1px solid var(--border); }
+            .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.9rem; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
-            
-            .theme-btn-mobile {
-                position: absolute; top: 20px; right: 20px;
-                background: var(--bg-block); color: var(--text-main);
-                border: 1px solid var(--border); padding: 8px 12px; border-radius: 50%;
-                font-size: 1.2rem; cursor: pointer; z-index: 1002;
-            }
-            
-            .hero { 
-                flex-direction: column-reverse; padding: 40px 20px; text-align: center; height: auto; 
-            }
+            .theme-btn-mobile { position: absolute; top: 20px; right: 20px; background: var(--bg-block); color: var(--text-main); border: 1px solid var(--border); padding: 8px 12px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 1002; }
+            .hero { flex-direction: column-reverse; padding: 40px 20px; text-align: center; height: auto; }
             .hero-text { padding-right: 0; margin-top: 30px; }
             .hero h1 { font-size: 3rem; }
-            /* Ảnh trên mobile */
             .hero-image-box img { max-width: 80%; margin-top: 20px; }
-
             section { padding: 50px 20px; }
             .swiper-slide { width: 280px; height: 420px; }
         }
@@ -214,7 +157,9 @@
 
     <div class="sidebar">
         <div class="profile-info">
-            <img src="https://ui-avatars.com/api/?name=Minh+Ngo&background=ff4d29&color=fff&size=200" alt="Avatar" class="profile-img">
+            
+            <img src="minh3.png" alt="Avatar" class="profile-img">
+            
             <div>
                 <h2 style="color: var(--text-main);">Ngô Bình Minh</h2>
                 <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px;">Video Editor & Camera Op</p>
@@ -230,11 +175,20 @@
             <a href="#experience">03. Kinh nghiệm</a>
             <a href="#portfolio">04. Dự án</a>
         </div>
+        
         <div style="margin-top: 20px;">
-            <div class="social-icons" style="margin-bottom: 15px;">
-                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="mailto:minh.nb0503@gmail.com"><i class="fas fa-envelope"></i></a>
+            <div class="social-icons">
+                <a href="mailto:minh.nb0503@gmail.com" title="Gửi Email"><i class="fas fa-envelope"></i></a>
+                
+                <a href="https://facebook.com/LINK_FACEBOOK_CUA_BAN" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                
+                <a href="https://instagram.com/LINK_INSTAGRAM_CUA_BAN" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                
+                <a href="https://tiktok.com/@LINK_TIKTOK_CUA_BAN" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                
+                <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" title="Kho Dự Án (Drive)"><i class="fab fa-google-drive"></i></a>
             </div>
+
             <button class="theme-btn theme-btn-pc" onclick="toggleTheme()">
                 <i class="fas fa-moon"></i> Chế độ Tối
             </button>
