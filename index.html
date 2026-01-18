@@ -18,10 +18,9 @@
             --text-main: #111111;
             --text-sub: #666666;
             --border: #e5e5e5;
-            --accent: #ff4d29;
+            --accent: #ff4d29; /* Cam chủ đạo */
             --sidebar-width: 280px;
-            /* HEADER MOBILE SIÊU GỌN */
-            --header-height-mobile: 65px; 
+            --header-height-mobile: 75px; 
         }
 
         body.dark-mode {
@@ -129,9 +128,11 @@
         .project-tag { background: rgba(255, 77, 41, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-top: 5px; }
 
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
-        .bottom-socials { display: none; }
+        .bottom-socials { display: none; justify-content: center; gap: 15px; margin-top: 30px; }
+        .bottom-socials a { width: 40px; height: 40px; font-size: 1.3rem; color: var(--text-main); background: var(--bg-block); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; border: 1px solid var(--border); text-decoration: none !important; }
+        .bottom-socials a:hover { background: var(--accent); color: #fff; transform: translateY(-5px); }
 
-        /* --- MOBILE CSS (FIXED & COMPACT HEADER) --- */
+        /* --- MOBILE CSS (FIXED TUYỆT ĐỐI) --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             
@@ -144,56 +145,59 @@
                 border-bottom: 1px solid var(--border); 
                 z-index: 10000;
                 background: var(--bg-body);
+                display: flex !important;
             }
             
             .profile-img { width: 45px; height: 45px; margin: 0; border-width: 2px; flex-shrink: 0; }
             
             /* Khu vực chứa Tên + Icon */
             .profile-info { 
-                display: flex; flex-direction: column; justify-content: center; 
+                display: flex !important; 
+                flex-direction: column !important; 
+                justify-content: center !important;
+                align-items: flex-start !important;
                 margin-left: 10px;
-                /* Chừa chỗ cho nút Dark Mode bên phải */
+                /* Chừa chỗ cho nút Dark Mode (quan trọng) */
                 width: calc(100% - 60px); 
             }
             
             /* Tên */
             .profile-info h2 { font-size: 1rem; margin: 0; margin-bottom: 3px; line-height: 1; white-space: nowrap; }
             
-            /* Ẩn bớt */
             .profile-info p, .contact-mini, .nav-links, .social-icons-pc, .theme-btn-pc { display: none !important; }
             
-            /* --- ICON MẠNG XÃ HỘI MOBILE (BẮT BUỘC NGANG) --- */
+            /* ICON MẠNG XÃ HỘI MOBILE (BẮT BUỘC NGANG) */
             .mobile-header-socials {
-                display: flex !important; /* Bắt buộc hiện */
-                flex-direction: row !important; /* Bắt buộc ngang */
-                align-items: center;
-                gap: 12px; /* Khoảng cách */
+                display: flex !important; 
+                flex-direction: row !important; /* Hàng ngang */
+                align-items: center !important;
+                gap: 15px !important;
             }
             .mobile-header-socials a {
                 color: var(--text-sub); 
-                font-size: 1.1rem; /* Icon to hơn chút */
+                font-size: 1.1rem; /* Icon to */
                 text-decoration: none; padding: 2px;
+                display: inline-block !important;
             }
             .mobile-header-socials a:hover { color: var(--accent); }
 
-            /* --- NÚT SÁNG TỐI (GHIM GÓC PHẢI) --- */
+            /* NÚT SÁNG TỐI (TÁCH BIỆT HOÀN TOÀN) */
             .theme-btn-mobile { 
-                position: absolute !important; 
-                right: 15px; top: 50%; 
-                transform: translateY(-50%);
+                position: fixed !important; /* Dùng Fixed luôn cho cứng */
+                right: 15px; 
+                top: 20px; /* Canh chỉnh theo chiều cao header (75px/2 - icon/2) */
                 background: var(--bg-block); color: var(--text-main); 
                 border: 1px solid var(--border); 
                 width: 35px; height: 35px; 
                 border-radius: 50%; 
-                font-size: 1rem; cursor: pointer; z-index: 10001; 
+                font-size: 1rem; cursor: pointer; z-index: 10002; 
                 display: flex; align-items: center; justify-content: center;
             }
 
             /* ĐẨY NỘI DUNG XUỐNG */
             .main-content { width: 100%; margin-left: 0; padding-top: calc(var(--header-height-mobile) + 40px); }
             
-            .bottom-socials { display: flex; justify-content: center; gap: 15px; margin-top: 30px;}
-            .bottom-socials a { width: 40px; height: 40px; font-size: 1.3rem; color: var(--text-main); background: var(--bg-block); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); text-decoration: none; }
+            .bottom-socials { display: flex; }
 
             .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); padding: 10px; border-bottom: 1px solid var(--border); position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; z-index: 999; }
             .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; }
