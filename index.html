@@ -20,7 +20,7 @@
             --border: #e5e5e5;
             --accent: #ff4d29; /* Cam chủ đạo */
             --sidebar-width: 280px;
-            --header-height-mobile: 65px; 
+            --header-height-mobile: 60px; /* Header siêu mỏng */
         }
 
         body.dark-mode {
@@ -128,11 +128,8 @@
         .project-tag { background: rgba(255, 77, 41, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-top: 5px; }
 
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
-        .bottom-socials { display: none; justify-content: center; gap: 15px; margin-top: 30px; }
-        .bottom-socials a { width: 40px; height: 40px; font-size: 1.3rem; color: var(--text-main); background: var(--bg-block); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; border: 1px solid var(--border); text-decoration: none !important; }
-        .bottom-socials a:hover { background: var(--accent); color: #fff; transform: translateY(-5px); }
 
-        /* --- MOBILE CSS (FIXED & HORIZONTAL LAYOUT) --- */
+        /* --- MOBILE CSS (1 DÒNG DUY NHẤT) --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             
@@ -140,68 +137,82 @@
             .sidebar { 
                 width: 100%; height: var(--header-height-mobile); 
                 position: fixed !important; top: 0; left: 0; 
-                flex-direction: row !important; align-items: center; 
-                padding: 0 15px; 
+                flex-direction: row !important; 
+                align-items: center !important; 
+                padding: 0 10px; /* Padding nhỏ để tận dụng không gian */
                 border-bottom: 1px solid var(--border); 
                 z-index: 10000;
                 background: var(--bg-body);
                 display: flex !important;
             }
             
-            /* Ảnh đại diện */
-            .profile-img { width: 45px; height: 45px; margin: 0; border-width: 2px; flex-shrink: 0; }
+            /* 1. Ảnh Avatar */
+            .profile-img { width: 40px; height: 40px; margin: 0; border-width: 2px; flex-shrink: 0; }
             
-            /* Khu vực chứa Tên + Icon (Chuyển sang Row để xếp ngang) */
+            /* 2. Wrapper chứa Tên + Icon */
             .profile-info { 
                 display: flex !important; 
-                flex-direction: row !important; /* XẾP NGANG */
-                align-items: center !important; /* Căn giữa theo chiều dọc */
-                margin-left: 10px;
-                flex-grow: 1; /* Chiếm không gian còn lại */
+                flex-direction: row !important; /* Xếp ngang */
+                align-items: center !important; 
+                margin-left: 8px; /* Cách avatar ra 1 chút */
+                /* Đảm bảo không đè lên nút Darkmode bên phải */
+                max-width: calc(100% - 80px); 
             }
             
-            /* Tên (Thêm lề phải để tách icon) */
+            /* Wrapper con bên trong (để chắc chắn) */
+            .profile-info > div {
+                display: flex !important;
+                flex-direction: row !important; /* Xếp ngang */
+                align-items: center !important;
+            }
+
+            /* 3. Tên */
             .profile-info h2 { 
-                font-size: 1rem; 
-                margin: 0 12px 0 0 !important; /* Lề phải 12px */
+                font-size: 0.9rem; /* Chữ vừa phải */
+                margin: 0 10px 0 0 !important; /* Cách icon ra 10px */
                 line-height: 1; 
                 white-space: nowrap; 
+                font-weight: 700;
             }
             
+            /* Ẩn bớt */
             .profile-info p, .contact-mini, .nav-links, .social-icons-pc, .theme-btn-pc { display: none !important; }
             
-            /* ICON MẠNG XÃ HỘI MOBILE (Xếp ngang tiếp theo tên) */
+            /* 4. Icon Mạng Xã Hội (Nằm cùng dòng với tên) */
             .mobile-header-socials {
                 display: flex !important; 
                 flex-direction: row !important;
                 align-items: center !important;
-                gap: 12px !important;
-                margin-top: 0 !important; /* Xóa lề trên */
+                gap: 8px !important; /* Khoảng cách giữa các icon */
+                margin: 0 !important;
             }
             .mobile-header-socials a {
                 color: var(--text-sub); 
-                font-size: 1.1rem; 
-                text-decoration: none; padding: 2px;
-                display: inline-block !important;
+                font-size: 1rem; /* Icon nhỏ gọn */
+                text-decoration: none; 
+                padding: 0;
+                display: flex; align-items: center;
             }
             .mobile-header-socials a:hover { color: var(--accent); }
 
-            /* NÚT SÁNG TỐI (Tuyệt đối góc phải) */
+            /* 5. Nút Sáng Tối (Ghim chặt góc phải) */
             .theme-btn-mobile { 
                 position: fixed !important;
-                right: 15px; top: 18px; /* Canh chỉnh vị trí */
+                right: 10px; top: 15px; /* Căn chỉnh cho giữa header 60px */
                 background: var(--bg-block); color: var(--text-main); 
                 border: 1px solid var(--border); 
-                width: 32px; height: 32px; /* Nhỏ lại xíu cho gọn */
+                width: 30px; height: 30px; 
                 border-radius: 50%; 
                 font-size: 0.9rem; cursor: pointer; z-index: 10002; 
                 display: flex; align-items: center; justify-content: center;
+                padding: 0;
             }
 
-            /* ĐẨY NỘI DUNG XUỐNG */
+            /* Đẩy nội dung xuống */
             .main-content { width: 100%; margin-left: 0; padding-top: calc(var(--header-height-mobile) + 40px); }
             
-            .bottom-socials { display: flex; }
+            /* Ẩn Icon dưới chân trang (theo yêu cầu) */
+            .bottom-socials { display: none !important; }
 
             .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); padding: 10px; border-bottom: 1px solid var(--border); position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; z-index: 999; }
             .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; }
@@ -223,17 +234,19 @@
         <div class="profile-info">
             <img src="minh3.png" alt="Avatar" class="profile-img">
             <div>
-                <h2 style="color: var(--text-main);">Ngô Bình Minh</h2>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px;">Video Editor & Camera Op</p>
-                
-                <div class="mobile-header-socials">
-                    <a href="mailto:minh.nb0503@gmail.com"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.facebook.com/minh.nb0503" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank"><i class="fab fa-google-drive"></i></a>
+                <div>
+                    <h2 style="color: var(--text-main);">Ngô Bình Minh</h2>
+                    
+                    <div class="mobile-header-socials">
+                        <a href="mailto:minh.nb0503@gmail.com"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.facebook.com/minh.nb0503" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank"><i class="fab fa-google-drive"></i></a>
+                    </div>
                 </div>
 
+                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px;">Video Editor & Camera Op</p>
                 <div class="contact-mini">
                     <div><i class="fas fa-phone"></i> 0395.393.868</div>
                     <div style="margin-top:5px;"><i class="fas fa-map-marker-alt"></i> Cầu Giấy - Hà Nội</div>
@@ -405,14 +418,6 @@
                 </div>
                 
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=minh.nb0503@gmail.com&su=Liên hệ từ Portfolio" target="_blank" class="hero-btn">Gửi Email Ngay</a>
-
-                <div class="bottom-socials">
-                    <a href="mailto:minh.nb0503@gmail.com"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.facebook.com/minh.nb0503" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank"><i class="fab fa-google-drive"></i></a>
-                </div>
             </div>
         </section>
 
