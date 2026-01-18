@@ -3,122 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minh Video - Apple Style Portfolio</title>
+    <title>Ngô Bình Minh | Video Editor Portfolio</title>
     
     <script src="https://cdn.jsdelivr.net/npm/scrolly-video@latest/dist/scrolly-video.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- GIAO DIỆN APPLE DARK MODE --- */
+        /* --- CẤU HÌNH CHUNG --- */
+        :root {
+            --apple-bg: #000000;
+            --apple-text: #f5f5f7;
+            --apple-gray: #86868b;
+            --accent: #2997ff; /* Màu xanh Apple */
+        }
+
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            color: #fff;
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
             font-family: 'Inter', sans-serif;
+            margin: 0;
             overflow-x: hidden;
         }
 
-        /* Phần chứa Video cuộn (Quan trọng nhất) */
-        #scrolly-video-container {
-            width: 100%;
-            height: 100vh; /* Full màn hình */
-            position: sticky; /* Dính chặt vào màn hình */
-            top: 0;
-            z-index: -1; /* Nằm dưới chữ */
-        }
-
-        /* Các đoạn nội dung trôi lên */
-        .content-section {
-            height: 100vh; /* Mỗi đoạn cao bằng 1 màn hình */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            z-index: 2;
+        /* --- PHẦN 1: SCROLLY VIDEO (Kiểu Apple) --- */
+        #hero-container {
+            height: 300vh; /* Kéo dài để cuộn lâu hơn */
             position: relative;
-            /* Tạo mảng tối nhẹ để chữ dễ đọc hơn trên video */
-            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0) 100%); 
         }
 
-        h1 {
+        #scrolly-video {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            text-align: center;
+            width: 100%;
+            pointer-events: none; /* Để cuộn chuột xuyên qua chữ */
+        }
+
+        .hero-title {
             font-size: 5rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            letter-spacing: -2px; /* Chữ xích lại gần nhau kiểu Apple */
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(180deg, #fff, #555);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            opacity: 0; /* Ẩn đi để dùng hiệu ứng hiện ra */
         }
 
-        p {
-            font-size: 1.5rem;
-            color: #a1a1a6; /* Màu xám đặc trưng của Apple */
-            max-width: 600px;
-            line-height: 1.5;
+        /* --- PHẦN 2: RESUME (Kiểu ThemeWagon) --- */
+        .section {
+            padding: 100px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 3;
+            background: #000; /* Nền đen che video khi cuộn qua */
         }
 
-        /* Nút bấm Apple */
-        .btn-apple {
-            background-color: #fff;
-            color: #000;
-            padding: 15px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 30px;
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+        }
+
+        .resume-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Chia cột: Bên trái tiêu đề, phải nội dung */
+            gap: 40px;
+            margin-bottom: 60px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 40px;
+        }
+
+        .job-item h3 { margin: 0; color: #fff; font-size: 1.5rem; }
+        .job-item span { color: var(--accent); font-weight: bold; font-size: 0.9rem; }
+        .job-item p { color: var(--apple-gray); margin-top: 10px; line-height: 1.6; }
+
+        /* --- PHẦN 3: PORTFOLIO GRID (Kiểu Folio) --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #111;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+        }
+
+        .project-card:hover { transform: scale(1.03); z-index: 10; }
+        
+        .project-card iframe, .project-card img {
+            width: 100%;
+            height: 250px;
+            border: none;
+            display: block;
+        }
+
+        .overlay {
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.1);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* --- CONTACT FOOTER --- */
+        .footer {
+            text-align: center;
+            padding: 100px 20px;
+            background: #111;
+        }
+        .btn-contact {
             display: inline-block;
-            transition: transform 0.2s;
+            padding: 15px 40px;
+            background: var(--accent);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: 0.3s;
         }
-        .btn-apple:hover { transform: scale(1.05); }
+        .btn-contact:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(41, 151, 255, 0.4); }
 
         /* Mobile */
         @media (max-width: 768px) {
-            h1 { font-size: 3rem; }
-            .content-section { padding: 0 20px; }
+            .resume-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
 
-    <div id="scrolly-video-container"></div>
-
-    <div style="position: relative; margin-top: -100vh;"> <div class="content-section">
-            <h1 data-aos="fade-up" data-aos-duration="1000">Minh Video</h1>
-            <p data-aos="fade-up" data-aos-delay="200">Kể chuyện bằng hình ảnh.<br>Phong cách Cinematic.</p>
+    <div id="hero-container">
+        <div id="scrolly-video"></div>
+        
+        <div class="hero-text" style="top: 20%;">
+            <h1 class="hero-title" data-aos="fade-up">NGÔ BÌNH MINH</h1>
+            <p style="font-size: 1.5rem; color: #aaa;" data-aos="fade-up" data-aos-delay="200">Video Editor | Camera Operator</p>
+        </div>
+        
+        <div class="hero-text" style="top: 50%;">
+            <h1 class="hero-title" style="font-size: 3rem;" data-aos="zoom-in">CINEMATIC MINDSET</h1>
         </div>
 
-        <div class="content-section">
-            <h1 data-aos="zoom-in" data-aos-duration="1000">Chất lượng 4K</h1>
-            <p data-aos="fade-up">Từng khung hình được chăm chút tỉ mỉ.<br>Màu sắc chuẩn điện ảnh.</p>
+        <div class="hero-text" style="top: 80%;">
+            <p style="color: #fff; font-size: 1.2rem;">Cuộn xuống để xem hồ sơ</p>
+            <i class="fas fa-chevron-down" style="color: var(--accent); animation: bounce 2s infinite;"></i>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">Kinh Nghiệm Làm Việc</h2>
+        
+        <div class="resume-grid" data-aos="fade-up">
+            <div style="color: #86868b;">06/2024 - Hiện nay</div>
+            <div class="job-item">
+                <h3>Video Editor & Camera Operator</h3>
+                <span>Ngân hàng TMCP Kiên Long (KienlongBank)</span>
+                <p>• Xây dựng kênh TikTok, Motion Graphic cho các kênh truyền thông.<br>• Quay dựng sự kiện nội bộ và TVC quảng bá ngân hàng.</p>
+            </div>
         </div>
 
-        <div class="content-section">
-            <h1 data-aos="fade-left" data-aos-duration="1000">Dự án Tiêu biểu</h1>
-            <p data-aos="fade-right">MV Ca nhạc, TVC Quảng cáo, Phim tài liệu.</p>
-            <a href="https://youtube.com" class="btn-apple" data-aos="fade-up">Xem Showreel đầy đủ</a>
+        <div class="resume-grid" data-aos="fade-up">
+            <div style="color: #86868b;">08/2022 - 06/2024</div>
+            <div class="job-item">
+                <h3>Video Editor</h3>
+                <span>IMAP Việt Nam</span>
+                <p>• Sản xuất TVC, MV, Video bài giảng.<br>• Hợp tác sản xuất chương trình Super Junior cùng VTV7.</p>
+            </div>
         </div>
 
-        <div class="content-section" style="background: #000;"> <h1 data-aos="flip-up">Liên hệ ngay</h1>
-            <p>Sẵn sàng cho dự án tiếp theo?</p>
-            <a href="mailto:email@gmail.com" class="btn-apple">Gửi Email</a>
+        <div class="resume-grid" data-aos="fade-up">
+            <div style="color: #86868b;">Freelance</div>
+            <div class="job-item">
+                <h3>Content Creator</h3>
+                <span>Ten Tun Group / YouTube cá nhân</span>
+                <p>• Xây dựng kênh YouTube đạt 100.000 Subs.<br>• Kỹ năng: Premiere, After Effects, Photoshop, Quay phim (Sony A7C).</p>
+            </div>
         </div>
+    </div>
 
+    <div class="section">
+        <h2 class="section-title">Dự án Tiêu biểu</h2>
+        
+        <div class="gallery-grid">
+            
+            <div class="project-card" data-aos="fade-up">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_1?controls=0" allowfullscreen></iframe>
+                <div class="overlay">
+                    <h3 style="margin: 0; color: white;">Vinh Danh Tiếp Lửa KLB</h3>
+                    <div style="margin-top: 10px;">
+                        <span class="tag">TVC</span>
+                        <span class="tag">Motion</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_2?controls=0" allowfullscreen></iframe>
+                <div class="overlay">
+                    <h3 style="margin: 0; color: white;">Viral Clip IMAP</h3>
+                    <div style="margin-top: 10px;">
+                        <span class="tag">Viral</span>
+                        <span class="tag">Storytelling</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_3?controls=0" allowfullscreen></iframe>
+                <div class="overlay">
+                    <h3 style="margin: 0; color: white;">Phóng sự Tài liệu</h3>
+                    <div style="margin-top: 10px;">
+                        <span class="tag">Documentary</span>
+                        <span class="tag">Color Grading</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        <h2 style="font-size: 3rem; margin-bottom: 20px;">Let's Create Together</h2>
+        <p style="color: #86868b; margin-bottom: 40px;">Hà Nội, Việt Nam • 0395.393.868</p>
+        <a href="mailto:minh.nb0503@gmail.com" class="btn-contact">Gửi Email cho tôi</a>
+        <br><br>
+        <div style="margin-top: 30px; font-size: 1.5rem;">
+            <a href="#" style="color: #fff; margin: 0 15px;"><i class="fab fa-facebook"></i></a>
+            <a href="#" style="color: #fff; margin: 0 15px;"><i class="fab fa-youtube"></i></a>
+            <a href="#" style="color: #fff; margin: 0 15px;"><i class="fab fa-tiktok"></i></a>
+        </div>
     </div>
 
     <script>
-        // Kích hoạt hiệu ứng chữ bay (AOS)
+        // Kích hoạt chữ bay
         AOS.init();
 
-        // Kích hoạt Video cuộn (ScrollyVideo)
+        // Kích hoạt Video cuộn kiểu Apple
         new ScrollyVideo({
-            scrollyVideoContainer: "scrolly-video-container",
-            // THAY LINK VIDEO CỦA BẠN VÀO DƯỚI ĐÂY
-            // Lưu ý: Phải là link đuôi .mp4 trực tiếp (không dùng link YouTube)
-            // Bạn có thể dùng tạm link mẫu này để test thử hiệu ứng:
+            scrollyVideoContainer: "scrolly-video",
+            // ĐÂY LÀ CHỖ QUAN TRỌNG: Link video nền (Intro)
+            // Bạn nên up 1 video ngắn 10s lên GitHub rồi dán link vào đây
+            // Tôi đang để tạm video mẫu, bạn nhớ thay nhé!
             src: "https://scrollyvideo.js.org/goldengate.mp4" 
         });
     </script>
+
 </body>
 </html>
