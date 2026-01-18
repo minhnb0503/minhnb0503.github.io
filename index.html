@@ -153,7 +153,7 @@
             .profile-img { width: 50px; height: 50px; margin: 0; }
             .profile-info h2 { font-size: 1.2rem; display: inline-block; margin-left: 10px; }
             .profile-info p { display: none; }
-            .nav-links, .social-icons { display: none; } /* Ẩn menu cũ */
+            .nav-links, .social-icons { display: none; }
 
             .main-content { width: 100%; margin-left: 0; }
             
@@ -251,7 +251,7 @@
 
         <section id="portfolio">
             <h2 class="section-title">Dự án nổi bật</h2>
-            <p style="color: #666; margin-bottom: 20px;">(Lăn chuột hoặc vuốt để xem)</p>
+            <p style="color: #666; margin-bottom: 20px;">(Đặt chuột vào đây và Lăn để xem)</p>
             
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
@@ -305,14 +305,17 @@
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: "auto",
-            // TÍNH NĂNG LĂN CHUỘT
+            
+            // --- PHẦN QUAN TRỌNG ĐÃ SỬA ---
             mousewheel: {
-                forceToAxis: true,
-                sensitivity: 1,
-                releaseOnEdges: true,
+                forceToAxis: false, // Để False để lăn chuột dọc cũng nhận diện là slide ngang
+                sensitivity: 1.5,   // Tăng độ nhạy lên chút cho mượt
+                releaseOnEdges: true, // Lăn hết thì tự trôi xuống dưới trang
             },
+            // ------------------------------
+
             coverflowEffect: {
-                rotate: 0, // Phẳng hiện đại
+                rotate: 0, 
                 stretch: 0,
                 depth: 100,
                 modifier: 2,
