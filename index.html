@@ -133,7 +133,7 @@
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
         .bottom-socials { display: none; }
 
-        /* --- MOBILE CSS (QUAN TRỌNG: CẤU TRÚC 1 DÒNG) --- */
+        /* --- MOBILE CSS (CHỈNH SỬA THEO YÊU CẦU V26) --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             
@@ -154,7 +154,7 @@
             /* Ẩn cấu trúc PC */
             .pc-profile-container { display: none !important; }
             
-            /* Hiện cấu trúc Mobile (MỚI) */
+            /* Hiện cấu trúc Mobile */
             .mobile-header-container {
                 display: flex !important;
                 flex-direction: row !important;
@@ -164,41 +164,42 @@
 
             /* Ảnh Avatar Mobile */
             .mobile-ava { 
-                width: 40px; height: 40px; 
+                width: 42px; height: 42px; /* To hơn xíu */
                 border-radius: 50%; object-fit: cover; 
                 border: 2px solid var(--accent); 
-                margin-right: 8px; /* Khoảng cách với tên */
+                margin-right: 10px; 
                 flex-shrink: 0;
             }
 
-            /* Container chứa Tên + Icon (Xếp ngang tiếp) */
+            /* Container chứa Tên + Icon */
             .mobile-info-wrapper {
                 display: flex !important;
                 flex-direction: row !important; /* Xếp ngang */
                 align-items: center !important;
-                flex-wrap: nowrap !important; /* Cấm xuống dòng */
-                overflow: hidden; /* Tránh tràn */
+                flex-wrap: nowrap !important; 
+                overflow: hidden;
+                flex-grow: 1; /* Chiếm không gian còn lại */
             }
 
-            /* Tên Mobile */
+            /* Tên Mobile (TO HƠN) */
             .mobile-name {
                 font-family: 'Outfit', sans-serif;
-                font-size: 0.95rem; 
+                font-size: 1.2rem; /* Tăng kích thước font */
                 font-weight: 700;
                 color: var(--text-main);
-                margin: 0 10px 0 0 !important; /* Cách icon ra 10px */
+                margin: 0 15px 0 0 !important; /* Tăng khoảng cách với icon */
                 white-space: nowrap; 
             }
 
-            /* Icon Mobile (Xếp ngang) */
+            /* Icon Mobile (DÀN TRẢI RA) */
             .mobile-icons {
                 display: flex !important;
-                gap: 8px !important;
+                gap: 20px !important; /* TĂNG GAP ĐỂ DÀN RA */
                 align-items: center !important;
             }
             .mobile-icons a {
                 color: var(--text-sub);
-                font-size: 1rem;
+                font-size: 1.15rem; /* Icon to hơn 1 chút */
                 display: flex; align-items: center; text-decoration: none;
             }
             .mobile-icons a:hover { color: var(--accent); }
@@ -206,21 +207,20 @@
             /* Nút Sáng Tối (Tuyệt đối góc phải) */
             .theme-btn-mobile { 
                 position: fixed !important;
-                right: 10px; top: 18px; 
+                right: 10px; top: 16px; /* Căn chỉnh lại một chút */
                 background: var(--bg-block); color: var(--text-main); 
                 border: 1px solid var(--border); 
-                width: 30px; height: 30px; border-radius: 50%; 
+                width: 32px; height: 32px; 
+                border-radius: 50%; 
                 font-size: 0.9rem; cursor: pointer; z-index: 10002; 
                 display: flex; align-items: center; justify-content: center;
                 padding: 0;
             }
 
-            /* Ẩn các thành phần thừa */
-            .nav-links, .social-icons-pc, .contact-mini, .theme-btn-pc { display: none !important; }
-
             /* Đẩy nội dung xuống */
             .main-content { width: 100%; margin-left: 0; padding-top: calc(var(--header-height-mobile) + 40px); }
             
+            /* Ẩn Icon dưới chân trang */
             .bottom-socials { display: none !important; }
 
             .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); padding: 10px; border-bottom: 1px solid var(--border); position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; z-index: 999; }
