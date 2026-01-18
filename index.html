@@ -2,8 +2,8 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ngô Bình Minh | Professional Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ngô Bình Minh | Portfolio</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -18,9 +18,10 @@
             --accent: #2997ff; /* Xanh Apple */
             --text-main: #f5f5f7;
             --text-gray: #86868b;
+            --sidebar-width: 280px;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
         
         body {
             background-color: var(--bg-dark);
@@ -29,15 +30,16 @@
             overflow-x: hidden;
         }
 
-        /* --- THANH ĐIỀU HƯỚNG CỐ ĐỊNH (SIDEBAR/HEADER) --- */
+        /* --- 1. SIDEBAR (THANH ĐIỀU HƯỚNG) --- */
+        /* Giao diện Desktop & iPad Ngang */
         .sidebar {
             position: fixed;
             top: 0; left: 0;
-            width: 300px;
+            width: var(--sidebar-width);
             height: 100vh;
-            background: rgba(22, 22, 22, 0.8);
-            backdrop-filter: blur(20px);
-            padding: 40px;
+            background: rgba(22, 22, 22, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -45,377 +47,306 @@
             z-index: 1000;
         }
 
+        .profile-info { text-align: left; }
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 100px; height: 100px;
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 20px;
             border: 2px solid var(--accent);
-            box-shadow: 0 0 20px rgba(41, 151, 255, 0.3);
         }
 
+        .nav-links { display: flex; flex-direction: column; gap: 15px; }
         .nav-links a {
-            display: block;
             color: var(--text-gray);
             text-decoration: none;
-            font-size: 1.1rem;
-            margin: 15px 0;
-            transition: 0.3s;
+            font-size: 1rem;
             font-weight: 600;
-        }
-        .nav-links a:hover, .nav-links a.active {
-            color: #fff;
-            transform: translateX(10px);
-        }
-
-        .social-icons a {
-            color: #fff;
-            font-size: 1.2rem;
-            margin-right: 15px;
             transition: 0.3s;
+            padding: 8px 0;
         }
-        .social-icons a:hover { color: var(--accent); }
+        .nav-links a:hover, .nav-links a.active { color: #fff; transform: translateX(5px); }
+        .nav-links a.active { color: var(--accent); }
 
-        /* --- NỘI DUNG CHÍNH (MAIN CONTENT) --- */
+        .social-icons a { color: #fff; font-size: 1.2rem; margin-right: 15px; }
+
+        /* --- 2. MAIN CONTENT --- */
         .main-content {
-            margin-left: 300px; /* Chừa chỗ cho Sidebar */
-            padding: 0;
+            margin-left: var(--sidebar-width); /* Đẩy nội dung sang phải */
+            width: calc(100% - var(--sidebar-width));
         }
 
-        /* HERO SECTION (Kiểu Apple) */
+        /* HERO SECTION */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 0 100px;
+            padding: 0 80px;
             background: radial-gradient(circle at 70% 30%, #1a1a2e 0%, #0a0a0a 70%);
-            position: relative;
         }
-
+        
         .hero h1 {
             font-family: 'Outfit', sans-serif;
-            font-size: 5rem;
+            font-size: clamp(3rem, 5vw, 6rem); /* Tự động co giãn chữ */
             line-height: 1.1;
             margin-bottom: 20px;
-            /* Gradient Text kiểu Apple */
             background: linear-gradient(135deg, #fff 0%, #888 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: 1.5rem;
-            color: var(--text-gray);
-            max-width: 600px;
-        }
-
-        .highlight-text {
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        /* SOFTWARE SKILLS (Grid Icon) */
-        .skills-section {
-            padding: 100px;
-            background: #0f0f0f;
-        }
-        
+        /* SECTION CHUNG */
+        section { padding: 80px; border-bottom: 1px solid #222; }
         .section-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 50px;
-            border-left: 5px solid var(--accent);
-            padding-left: 30px;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
         }
 
+        /* SKILLS GRID */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 30px;
-            text-align: center;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
         }
-
         .skill-item {
             background: var(--card-bg);
             padding: 20px;
             border-radius: 15px;
-            transition: transform 0.3s;
+            text-align: center;
             border: 1px solid #333;
         }
-        .skill-item:hover { transform: translateY(-10px); border-color: var(--accent); }
-        .skill-item i { font-size: 3rem; margin-bottom: 10px; }
-        .skill-item p { font-weight: 600; font-size: 0.9rem; }
 
-        /* Icon màu sắc */
-        .fa-adobe { color: #ff0000; }
-        .fa-camera { color: #f39c12; }
-        .fa-film { color: #2ecc71; }
-
-        /* EXPERIENCE (Timeline) */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin-top: 50px;
-        }
+        /* TIMELINE */
         .timeline-item {
-            padding: 30px;
+            padding: 25px;
             background: var(--card-bg);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            border-left: 4px solid var(--accent);
-            position: relative;
-        }
-        .timeline-date {
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            background: var(--accent);
-            color: #000;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9rem;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent);
         }
 
-        /* SLIDER DỰ ÁN (Swiper) */
-        .portfolio-section { padding: 100px; }
-        
-        .swiper {
-            width: 100%;
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
-
+        /* SLIDER (SWIPER) */
+        .swiper { width: 100%; padding: 50px 0; }
         .swiper-slide {
             background: #000;
             border-radius: 20px;
             overflow: hidden;
-            width: 400px; /* Chiều rộng thẻ video */
+            width: 350px;
             height: 500px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             transition: 0.3s;
-            position: relative;
+            /* Bóng đổ nhẹ */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
         }
+        .swiper-slide iframe { width: 100%; height: 60%; border: none; }
+        .project-info { padding: 20px; height: 40%; background: #1a1a1a; }
 
-        .swiper-slide iframe {
-            width: 100%;
-            height: 60%;
-            border: none;
-        }
-
-        .project-info {
-            padding: 20px;
-            height: 40%;
-            background: #1a1a1a;
-        }
-
-        .project-tag {
-            display: inline-block;
-            background: #333;
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            margin-top: 10px;
-        }
-
-        /* MOBILE RESPONSIVE */
-        @media (max-width: 900px) {
+        /* --- 3. RESPONSIVE (QUAN TRỌNG NHẤT) --- */
+        
+        /* TABLET & MOBILE (Màn hình < 992px) */
+        @media (max-width: 992px) {
+            :root { --sidebar-width: 0px; } /* Xóa lề trái */
+            
+            /* Biến Sidebar thành Header cố định trên cùng */
             .sidebar {
                 width: 100%;
                 height: auto;
                 position: relative;
                 flex-direction: row;
                 align-items: center;
-                padding: 20px;
+                padding: 15px 20px;
+                border-right: none;
+                border-bottom: 1px solid #333;
+                background: #0a0a0a;
             }
-            .profile-img { width: 60px; height: 60px; margin: 0; }
-            .nav-links { display: none; } /* Ẩn menu trên mobile cho gọn */
-            .main-content { margin-left: 0; }
-            .hero { padding: 50px 20px; height: auto; padding-top: 100px; }
-            .hero h1 { font-size: 3rem; }
-            .skills-section, .portfolio-section { padding: 50px 20px; }
-            .swiper-slide { width: 300px; height: 450px; }
+
+            .profile-img { width: 50px; height: 50px; margin: 0; border-width: 1px; }
+            .profile-info h2 { font-size: 1.2rem; display: inline-block; margin-left: 10px; }
+            .profile-info p { display: none; } /* Ẩn chức danh cho gọn */
+            
+            /* Ẩn menu dọc, hiện nút menu ngang */
+            .nav-links { 
+                display: none; /* Tạm ẩn, thay bằng thanh trượt ngang bên dưới */
+            }
+            .social-icons { display: none; } /* Ẩn icon MXH trên header mobile */
+
+            .main-content { width: 100%; margin-left: 0; }
+            
+            /* Thanh menu ngang cho Mobile (Mới thêm) */
+            .mobile-nav {
+                display: flex;
+                overflow-x: auto;
+                white-space: nowrap;
+                background: #111;
+                padding: 10px;
+                position: sticky;
+                top: 0;
+                z-index: 999;
+                border-bottom: 1px solid #333;
+            }
+            .mobile-nav a {
+                color: #aaa;
+                text-decoration: none;
+                padding: 8px 20px;
+                background: #222;
+                margin-right: 10px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+            }
+            .mobile-nav a.active { background: var(--accent); color: #fff; }
+
+            /* Chỉnh lại padding nội dung */
+            .hero { padding: 60px 20px; text-align: center; flex-direction: column; justify-content: center; }
+            .hero h1 { font-size: 2.8rem; } /* Chữ nhỏ lại vừa điện thoại */
+            
+            section { padding: 50px 20px; }
+            .section-title { font-size: 2rem; }
+
+            /* Slider trên điện thoại */
+            .swiper-slide {
+                width: 85vw; /* Chiếm 85% chiều rộng màn hình điện thoại */
+                height: 400px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="sidebar">
-        <div>
-            <img src="https://ui-avatars.com/api/?name=Minh+Ngo&background=2997ff&color=fff&size=256" alt="Avatar" class="profile-img">
-            <h2 style="font-size: 1.5rem; margin-bottom: 5px;">Ngô Bình Minh</h2>
-            <p style="color: #888; font-size: 0.9rem;">Video Editor & Cameraman</p>
+        <div class="profile-info">
+            <img src="https://ui-avatars.com/api/?name=Minh+Ngo&background=2997ff&color=fff" alt="Avatar" class="profile-img">
+            <div>
+                <h2>Ngô Bình Minh</h2>
+                <p style="color: #888; font-size: 0.9rem;">Video Creator</p>
+            </div>
         </div>
 
         <div class="nav-links">
-            <a href="#home" class="active">01. Giới thiệu</a>
-            <a href="#skills">02. Công cụ (Apps)</a>
+            <a href="#home">01. Giới thiệu</a>
+            <a href="#skills">02. Công cụ (Gear)</a>
             <a href="#experience">03. Kinh nghiệm</a>
-            <a href="#portfolio">04. Dự án (Works)</a>
+            <a href="#portfolio">04. Dự án</a>
         </div>
 
         <div class="social-icons">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
             <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="mailto:minh.nb0503@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav" style="display: none;">
+        <a href="#home">Intro</a>
+        <a href="#skills">Kỹ năng</a>
+        <a href="#experience">Kinh nghiệm</a>
+        <a href="#portfolio">Dự án</a>
+        <a href="#contact">Liên hệ</a>
     </div>
 
     <div class="main-content">
 
         <section id="home" class="hero">
-            <div data-aos="fade-up" data-aos-duration="1000">
-                <p style="letter-spacing: 3px; margin-bottom: 20px; color: var(--accent);">HELLO, I'M A CREATOR</p>
+            <div data-aos="fade-up">
+                <p style="color: var(--accent); letter-spacing: 2px; font-weight: bold;">PORTFOLIO 2025</p>
                 <h1>Visual Storyteller<br>Based in Hanoi.</h1>
-                <p>Tôi kể chuyện bằng hình ảnh với tư duy <span class="highlight-text">Cinematic</span> và kỹ thuật <span class="highlight-text">Motion Graphic</span> chuyên nghiệp.</p>
-                
-                <div style="margin-top: 40px;">
-                    <a href="#portfolio" style="padding: 15px 40px; background: #fff; color: #000; text-decoration: none; border-radius: 30px; font-weight: bold; margin-right: 20px;">Xem Showreel</a>
-                    <a href="#contact" style="color: #fff; text-decoration: none;">Liên hệ ngay &rarr;</a>
-                </div>
+                <p style="color: var(--text-gray); max-width: 500px; margin: 20px 0;">
+                    Chuyên sản xuất TVC, Viral Video và Motion Graphic với tư duy điện ảnh.
+                </p>
+                <a href="#portfolio" style="display: inline-block; background: #fff; color: #000; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-top: 10px;">Xem Dự Án</a>
             </div>
         </section>
 
-        <section id="skills" class="skills-section">
-            <h2 class="section-title" data-aos="fade-right">Bộ công cụ (My Gear)</h2>
-            <p style="margin-bottom: 30px; color: #888;">Các phần mềm và thiết bị tôi sử dụng hàng ngày.</p>
-
+        <section id="skills">
+            <h2 class="section-title">Công cụ (Gear)</h2>
             <div class="skills-grid">
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fas fa-file-video" style="color: #9999ff;"></i> <p>Premiere Pro</p>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-magic" style="color: #cf9fff;"></i> <p>After Effects</p>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fas fa-image" style="color: #3fa9f5;"></i> <p>Photoshop</p>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="400">
-                    <i class="fas fa-camera" style="color: #f39c12;"></i>
-                    <p>Sony A7C</p>
-                </div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="500">
-                    <i class="fas fa-microphone-alt" style="color: #e74c3c;"></i>
-                    <p>Podcast Setup</p>
-                </div>
+                <div class="skill-item" data-aos="zoom-in"><i class="fas fa-file-video" style="color:#9999ff; font-size:2rem;"></i><p>Premiere</p></div>
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-magic" style="color:#cf9fff; font-size:2rem;"></i><p>After Effect</p></div>
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-camera" style="color:#f39c12; font-size:2rem;"></i><p>Sony A7C</p></div>
+                <div class="skill-item" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-microphone" style="color:#e74c3c; font-size:2rem;"></i><p>Podcast</p></div>
             </div>
         </section>
 
-        <section id="experience" class="skills-section" style="background: #0a0a0a;">
-            <h2 class="section-title" data-aos="fade-right">Hành trình (Timeline)</h2>
-            
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up">
-                    <span class="timeline-date">Hiện tại</span>
-                    <h3>Chuyên viên Media</h3>
-                    <p style="color: var(--accent); margin-bottom: 10px;">Ngân hàng TMCP Kiên Long (KienlongBank)</p>
-                    <p style="color: #aaa;">Phụ trách sản xuất TVC, quay chụp sự kiện, xây dựng kênh TikTok và Motion Graphic cho các ấn phẩm truyền thông.</p>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-up">
-                    <span class="timeline-date">2022 - 2024</span>
-                    <h3>Video Editor</h3>
-                    <p style="color: var(--accent); margin-bottom: 10px;">IMAP Việt Nam</p>
-                    <p style="color: #aaa;">Sản xuất Video bài giảng, Viral clip. Tham gia dự án Super Junior phối hợp cùng VTV7.</p>
-                </div>
-
-                <div class="timeline-item" data-aos="fade-up">
-                    <span class="timeline-date">Freelance</span>
-                    <h3>Content Creator</h3>
-                    <p style="color: var(--accent); margin-bottom: 10px;">Ten Tun Group</p>
-                    <p style="color: #aaa;">Phát triển kênh YouTube cá nhân đạt cột mốc 100.000 Subscribers.</p>
-                </div>
+        <section id="experience" style="background: #0f0f0f;">
+            <h2 class="section-title">Kinh nghiệm</h2>
+            <div class="timeline-item" data-aos="fade-up">
+                <span style="color: var(--accent); font-weight: bold;">Hiện tại</span>
+                <h3>Chuyên viên Media - KienlongBank</h3>
+                <p style="color: #aaa; margin-top: 5px;">Sản xuất TVC, quay dựng sự kiện, xây dựng kênh TikTok.</p>
+            </div>
+            <div class="timeline-item" data-aos="fade-up">
+                <span style="color: var(--accent); font-weight: bold;">2022 - 2024</span>
+                <h3>Video Editor - IMAP Việt Nam</h3>
+                <p style="color: #aaa; margin-top: 5px;">Sản xuất Video bài giảng, Viral Clip, Motion Graphic.</p>
             </div>
         </section>
 
-        <section id="portfolio" class="portfolio-section">
+        <section id="portfolio">
             <h2 class="section-title">Dự án nổi bật</h2>
-            <p style="margin-bottom: 40px; color: #888;">Lướt sang ngang để xem thêm &rarr;</p>
-
+            <p style="color: #666; margin-bottom: 20px;">(Vuốt sang ngang để xem thêm)</p>
+            
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    
                     <div class="swiper-slide">
                         <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
                         <div class="project-info">
                             <h3>Vinh Danh Tiếp Lửa</h3>
-                            <p style="color: #888; font-size: 0.9rem;">Dự án nội bộ KienlongBank</p>
-                            <span class="project-tag">Motion</span>
-                            <span class="project-tag">Editing</span>
+                            <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Motion</span>
                         </div>
                     </div>
-
                     <div class="swiper-slide">
                         <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
                         <div class="project-info">
                             <h3>Viral Clip IMAP</h3>
-                            <p style="color: #888; font-size: 0.9rem;">Video quảng cáo khóa học</p>
-                            <span class="project-tag">Storytelling</span>
-                            <span class="project-tag">Filming</span>
+                            <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Storytelling</span>
                         </div>
                     </div>
-
                     <div class="swiper-slide">
                         <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
                         <div class="project-info">
-                            <h3>Hành trình xuyên Việt</h3>
-                            <p style="color: #888; font-size: 0.9rem;">Vlog du lịch cá nhân</p>
-                            <span class="project-tag">Color Grading</span>
+                            <h3>Showreel 2024</h3>
+                            <span style="background:#333; padding:2px 8px; border-radius:4px; font-size:0.8rem;">Color Grading</span>
                         </div>
                     </div>
-
-                    <div class="swiper-slide">
-                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
-                        <div class="project-info">
-                            <h3>Talkshow Tài chính</h3>
-                            <p style="color: #888; font-size: 0.9rem;">Quay Multi-cam</p>
-                            <span class="project-tag">Production</span>
-                        </div>
-                    </div>
-
                 </div>
-                <div class="swiper-pagination"></div>
             </div>
         </section>
 
-        <footer style="text-align: center; padding: 50px; border-top: 1px solid #333;">
-            <p>© 2025 Ngô Bình Minh. All rights reserved.</p>
-        </footer>
+        <section id="contact" style="text-align: center; padding: 50px 20px;">
+            <h2>Liên hệ hợp tác</h2>
+            <p style="margin: 20px 0; color: #aaa;">Sẵn sàng cho các dự án TVC, MV và Viral Video.</p>
+            <a href="mailto:minh.nb0503@gmail.com" style="background: var(--accent); color: #fff; padding: 15px 40px; text-decoration: none; border-radius: 30px; font-weight: bold;">Gửi Email Ngay</a>
+        </section>
 
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        // 1. Kích hoạt hiệu ứng chữ bay (AOS)
-        AOS.init({
-            offset: 100,
-            duration: 1000,
-            easing: 'ease-out-cubic',
-            once: true
-        });
+        // Hiệu ứng chữ
+        AOS.init();
 
-        // 2. Kích hoạt Slider (Swiper)
+        // Cấu hình Slider (Tự chỉnh theo màn hình)
         var swiper = new Swiper(".mySwiper", {
-            effect: "coverflow", // Hiệu ứng 3D
+            effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
             slidesPerView: "auto",
             coverflowEffect: {
-                rotate: 50,
+                rotate: 0,
                 stretch: 0,
                 depth: 100,
-                modifier: 1,
+                modifier: 2,
                 slideShadows: true,
             },
-            pagination: {
-                el: ".swiper-pagination",
-            },
-            initialSlide: 1 // Bắt đầu từ slide số 2 cho đẹp
+            loop: true // Cho phép lướt vòng tròn vô tận
         });
+
+        // Tự động hiện Menu ngang trên Mobile
+        if (window.innerWidth < 992) {
+            document.getElementById('mobileNav').style.display = 'flex';
+        }
     </script>
 </body>
 </html>
