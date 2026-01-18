@@ -1,466 +1,165 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ngô Bình Minh | Video Editor Portfolio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<style>
+  body {
+    background: #f4f4f4; /* Nền sáng để làm nổi bật hiệu ứng gương */
+    font-family: sans-serif;
+  }
+
+  .swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px; /* Kích thước thẻ */
+    height: 450px;
+    /* Hiệu ứng Gương (Glassmorphism) cho thẻ */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px); /* Làm mờ hậu cảnh */
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15); /* Bóng đổ mềm mại */
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
 
-    <style>
-        /* --- CẤU HÌNH BIẾN MÀU (Mặc định là SÁNG) --- */
-        :root {
-            --bg-body: #ffffff;
-            --bg-block: #f9f9f9;
-            --card-bg: #ffffff;
-            --text-main: #111111;
-            --text-sub: #666666;
-            --border: #eeeeee;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --accent: #ff4d29; /* Màu cam chủ đạo */
-            --sidebar-width: 280px;
-        }
+  /* Phần hiển thị Video (Thumbnail) */
+  .video-thumb {
+    width: 100%;
+    height: 60%;
+    background-color: #000;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-        /* --- CHẾ ĐỘ TỐI (DARK MODE) --- */
-        body.dark-mode {
-            --bg-body: #0a0a0a;
-            --bg-block: #111111;
-            --card-bg: #1a1a1a;
-            --text-main: #f5f5f7;
-            --text-sub: #a1a1a6;
-            --border: #333333;
-            --shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+  .play-btn {
+    background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%); /* Màu cam đỏ như ảnh */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 75, 43, 0.5); /* Hiệu ứng phát sáng nhẹ */
+  }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        
-        body {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s; /* Hiệu ứng chuyển màu mượt */
-        }
+  /* Nội dung bên dưới */
+  .content {
+    padding: 20px;
+    color: #333;
+  }
 
-        /* SIDEBAR (PC) */
-        .sidebar {
-            position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
-            background: var(--card-bg); /* Theo màu nền thẻ */
-            padding: 40px 30px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            border-right: 1px solid var(--border);
-            z-index: 1000;
-            transition: 0.3s;
-        }
-        
-        .profile-img { 
-            width: 100px; height: 100px; border-radius: 50%; object-fit: cover; 
-            margin-bottom: 20px; border: 3px solid var(--accent); padding: 3px; background: var(--card-bg);
-        }
-        
-        .nav-links { display: flex; flex-direction: column; gap: 10px; }
-        .nav-links a { 
-            color: var(--text-sub); text-decoration: none; font-size: 1rem; font-weight: 600; 
-            transition: 0.3s; padding: 10px 15px; border-radius: 8px;
-        }
-        .nav-links a:hover, .nav-links a.active { 
-            background: rgba(255, 77, 41, 0.1); color: var(--accent); transform: translateX(5px); 
-        }
-        
-        .contact-mini { font-size: 0.85rem; color: var(--text-sub); margin-top: 20px; }
-        .social-icons a { color: var(--text-main); font-size: 1.2rem; margin-right: 15px; transition: 0.3s; }
-        .social-icons a:hover { color: var(--accent); }
+  .content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+  }
 
-        /* NÚT ĐỔI MÀU (THEME TOGGLE) */
-        .theme-btn {
-            cursor: pointer; background: transparent; border: 1px solid var(--border);
-            color: var(--text-main); padding: 8px 15px; border-radius: 20px;
-            font-size: 0.9rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px;
-        }
-        .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .tag {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #ffede6;
+    color: #ff4b2b;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
 
-        /* MAIN CONTENT */
-        .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); transition: 0.3s; }
-        
-        /* HERO */
-        .hero { 
-            min-height: 100vh; display: flex; align-items: center; padding: 0 80px; 
-            background: radial-gradient(circle at 70% 30%, var(--bg-block) 0%, var(--bg-body) 70%);
-            position: relative;
-        }
-        .hero h1 { 
-            font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 5.5rem); 
-            line-height: 1.1; margin-bottom: 20px; color: var(--text-main);
-        }
-        .hero-btn {
-            display: inline-block; background: var(--accent); color: #fff; 
-            padding: 15px 40px; border-radius: 50px; text-decoration: none; 
-            font-weight: bold; margin-top: 20px; transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3);
-        }
-        .hero-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255, 77, 41, 0.4); }
+  /* Tùy chỉnh hiệu ứng active */
+  .swiper-slide-active {
+    /* Thẻ ở giữa có thể thêm viền sáng hoặc bóng đổ mạnh hơn */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
+  }
+</style>
 
-        section { padding: 80px; border-bottom: 1px solid var(--border); }
-        .section-title { 
-            font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 40px; 
-            color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; 
-        }
-
-        /* SKILLS & CARDS */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
-        .skill-item { 
-            background: var(--card-bg); padding: 25px; border-radius: 15px; text-align: center; 
-            border: 1px solid var(--border); transition: 0.3s; box-shadow: var(--shadow);
-        }
-        .skill-item:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
-        .skill-item p { font-weight: 600; color: var(--text-main); }
-
-        /* TIMELINE */
-        .timeline-item { 
-            padding: 30px; background: var(--card-bg); border-radius: 15px; margin-bottom: 20px; 
-            border-left: 4px solid var(--accent); border: 1px solid var(--border); box-shadow: var(--shadow);
-        }
-        .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
-        .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
-        .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
-        .timeline-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
-
-        /* SLIDER */
-        .swiper { width: 100%; padding: 50px 0; cursor: grab; }
-        .swiper-slide { 
-            background: var(--card-bg); border-radius: 20px; overflow: hidden; width: 350px; height: 500px; 
-            transition: 0.3s; box-shadow: 0 15px 40px rgba(0,0,0,0.1); border: 1px solid var(--border);
-        }
-        .video-wrapper { position: relative; width: 100%; height: 60%; background: #000; }
-        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
-        .video-mask { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.2); z-index: 10; cursor: pointer; 
-            display: flex; align-items: center; justify-content: center; transition: 0.3s; 
-        }
-        .video-mask:hover { background: rgba(0,0,0,0.4); }
-        .play-btn { background: var(--accent); padding: 12px 25px; border-radius: 30px; color: #fff; font-weight: bold; border: none; pointer-events: none; }
-        .project-info { padding: 25px; height: 40%; background: var(--card-bg); position: relative; z-index: 20; }
-        .project-info h3 { color: var(--text-main); margin-bottom: 5px; font-size: 1.2rem; }
-        .project-tag { background: rgba(255, 77, 41, 0.1); color: var(--accent); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-top: 5px; }
-
-        /* CONTACT */
-        .contact-box {
-            background: var(--card-bg); padding: 40px; border-radius: 20px; box-shadow: var(--shadow);
-            max-width: 600px; margin: 0 auto; border: 1px solid var(--border);
-        }
-
-        /* MOBILE CSS */
-        @media (max-width: 992px) {
-            :root { --sidebar-width: 0px; }
-            .sidebar { 
-                width: 100%; height: auto; position: relative; flex-direction: row; align-items: center; 
-                padding: 15px 20px; border-bottom: 1px solid var(--border); background: var(--card-bg); border-right: none;
-            }
-            .profile-img { width: 50px; height: 50px; margin: 0; border-width: 2px; }
-            .profile-info h2 { font-size: 1.2rem; display: inline-block; margin-left: 10px; color: var(--text-main); }
-            .profile-info p, .contact-mini, .nav-links, .social-icons, .theme-btn-pc { display: none; } /* Ẩn nút PC trên mobile */
-            
-            .main-content { width: 100%; margin-left: 0; }
-            
-            /* Mobile Nav */
-            .mobile-nav { 
-                display: flex; overflow-x: auto; white-space: nowrap; background: var(--card-bg); 
-                padding: 10px; position: sticky; top: 0; z-index: 999; 
-                border-bottom: 1px solid var(--border);
-            }
-            .mobile-nav a { 
-                color: var(--text-sub); text-decoration: none; padding: 8px 20px; 
-                background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.9rem; 
-            }
-            .mobile-nav a.active { background: var(--accent); color: #fff; }
-            
-            /* Nút đổi màu Mobile (Nổi góc phải) */
-            .theme-btn-mobile {
-                position: absolute; top: 20px; right: 20px;
-                background: var(--bg-block); color: var(--text-main);
-                border: 1px solid var(--border); padding: 8px 12px; border-radius: 50%;
-                font-size: 1.2rem; cursor: pointer; z-index: 1002;
-                display: flex; align-items: center; justify-content: center;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            }
-
-            .hero { padding: 60px 20px; text-align: center; flex-direction: column; justify-content: center; }
-            .hero h1 { font-size: 3rem; }
-            section { padding: 50px 20px; }
-            .swiper-slide { width: 85vw; height: 450px; }
-        }
-
-        /* Ẩn nút mobile trên PC */
-        @media (min-width: 993px) { .theme-btn-mobile { display: none; } }
-    </style>
-</head>
-<body>
-
-    <div class="sidebar">
-        <div class="profile-info">
-            <img src="https://ui-avatars.com/api/?name=Minh+Ngo&background=ff4d29&color=fff&size=200" alt="Avatar" class="profile-img">
-            <div>
-                <h2 style="color: var(--text-main);">Ngô Bình Minh</h2>
-                <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px;">Video Editor & Camera Op</p>
-                
-                <div class="contact-mini">
-                    <div><i class="fas fa-phone"></i> 0395.393.868</div>
-                    <div style="margin-top:5px;"><i class="fas fa-map-marker-alt"></i> Cầu Giấy - Hà Nội</div>
-                </div>
-            </div>
-        </div>
-        <div class="nav-links">
-            <a href="#home">01. Giới thiệu</a>
-            <a href="#skills">02. Kỹ năng & Gear</a>
-            <a href="#experience">03. Kinh nghiệm</a>
-            <a href="#portfolio">04. Dự án</a>
-        </div>
-        
-        <div style="margin-top: 20px;">
-            <div class="social-icons" style="margin-bottom: 15px;">
-                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="mailto:minh.nb0503@gmail.com"><i class="fas fa-envelope"></i></a>
-            </div>
-            <button class="theme-btn theme-btn-pc" onclick="toggleTheme()">
-                <i class="fas fa-moon"></i> Chế độ Tối
-            </button>
-        </div>
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <div class="video-thumb">
+        <div class="play-btn">▶ XEM VIDEO</div>
+      </div>
+      <div class="content">
+        <h3>Vinh Danh Tiếp Lửa KLB</h3>
+        <span class="tag">Motion Graphic</span>
+      </div>
     </div>
-
-    <button class="theme-btn-mobile" onclick="toggleTheme()">
-        <i class="fas fa-moon"></i>
-    </button>
-
-    <div class="mobile-nav" id="mobileNav" style="display: none;">
-        <a href="#home">Intro</a>
-        <a href="#skills">Kỹ năng</a>
-        <a href="#experience">Kinh nghiệm</a>
-        <a href="#portfolio">Dự án</a>
-        <a href="#contact">Liên hệ</a>
+    <div class="swiper-slide">
+      <div class="video-thumb">
+        <div class="play-btn">▶ XEM VIDEO</div>
+      </div>
+      <div class="content">
+        <h3>Viral Clip IMAP</h3>
+        <span class="tag">Storytelling</span>
+      </div>
     </div>
-
-    <div class="main-content">
-        
-        <section id="home" class="hero">
-            <div data-aos="fade-up">
-                <p style="color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">Portfolio 2025</p>
-                <h1>NGÔ BÌNH MINH<br><span style="font-size: 0.5em; color: var(--text-sub); font-weight: 400;">Freelance Video Editor</span></h1>
-                <p style="color: var(--text-sub); max-width: 600px; margin: 20px 0; line-height: 1.6; font-size: 1.1rem;">
-                    Xin chào, tôi là một Video Editor & Cameraman. Với kinh nghiệm từ <b>KienlongBank</b> và <b>IMAP</b>, tôi chuyên sản xuất TVC, Viral Video, Motion Graphic và xây dựng kênh TikTok/YouTube chuyên nghiệp.
-                </p>
-                <a href="#portfolio" class="hero-btn">Xem Dự Án Của Tôi</a>
-            </div>
-        </section>
-
-        <section id="skills" style="background: var(--bg-block);">
-            <h2 class="section-title">Kỹ Năng & Thiết Bị</h2>
-            
-            <h3 style="margin-bottom: 20px; color: var(--text-main);">Phần mềm (Software)</h3>
-            <div class="skills-grid" style="margin-bottom: 40px;">
-                <div class="skill-item" data-aos="fade-up"><i class="fas fa-file-video" style="color:#9999ff;"></i><p>Premiere Pro</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-magic" style="color:#cf9fff;"></i><p>After Effects</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-image" style="color:#3fa9f5;"></i><p>Photoshop</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-pen-nib" style="color:#f39c12;"></i><p>Illustrator</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-headphones" style="color:#2ecc71;"></i><p>Audition</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-dragon" style="color:#e74c3c;"></i><p>Spine 2D</p></div>
-            </div>
-
-            <h3 style="margin-bottom: 20px; color: var(--text-main);">Thiết bị (Gear)</h3>
-            <div class="skills-grid">
-                <div class="skill-item" data-aos="zoom-in"><i class="fas fa-camera"></i><p>Sony A7C</p></div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-bullseye"></i><p>Tamron 28-75mm</p></div>
-                <div class="skill-item" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-video"></i><p>Gimbal DJI RSC 2</p></div>
-            </div>
-        </section>
-
-        <section id="experience">
-            <h2 class="section-title">Kinh Nghiệm Làm Việc</h2>
-            
-            <div class="timeline-item" data-aos="fade-up">
-                <span class="timeline-year">06/2024 - Hiện nay</span>
-                <div class="timeline-role">Video Editor & Camera Operator</div>
-                <span class="timeline-company">Ngân hàng TMCP Kiên Long (KienlongBank)</span>
-                <p class="timeline-desc">
-                    • Xây dựng kênh TikTok, tạo video motion và nội dung đa phương tiện cho các kênh truyền thông.<br>
-                    • Quay phim, dựng video và chụp ảnh cho các hoạt động nội bộ.
-                </p>
-            </div>
-
-            <div class="timeline-item" data-aos="fade-up">
-                <span class="timeline-year">08/2022 - 06/2024</span>
-                <div class="timeline-role">Video Editor & Camera Operator</div>
-                <span class="timeline-company">IMAP Việt Nam</span>
-                <p class="timeline-desc">
-                    • Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>
-                    • Quay dựng chương trình "Super Junior" kết hợp VTV7.
-                </p>
-            </div>
-
-            <div class="timeline-item" data-aos="fade-up">
-                <span class="timeline-year">03/2021 - 07/2022</span>
-                <div class="timeline-role">Video Editor</div>
-                <span class="timeline-company">TGMedia Việt Nam</span>
-                <p class="timeline-desc">
-                    • Dựng video motion quảng cáo cho dòng Word Games.<br>
-                    • Thiết kế và phát triển Animation trên Unity & Spine.
-                </p>
-            </div>
-
-            <div class="timeline-item" data-aos="fade-up">
-                <span class="timeline-year">05/2020 - 04/2021</span>
-                <div class="timeline-role">Video Editor</div>
-                <span class="timeline-company">Ten Tun / Ten Group</span>
-                <p class="timeline-desc">
-                    • Xây dựng kênh YouTube "Ten Tun" từ 10.000 lên 100.000 Subscribers.<br>
-                    • Dựng video tổng hợp, đánh giá giải trí.
-                </p>
-            </div>
-        </section>
-
-        <section id="portfolio" style="background: var(--bg-block);">
-            <h2 class="section-title">Dự án Tiêu biểu</h2>
-            <p style="color: var(--text-sub); margin-bottom: 20px;">(Di chuột vào khung để lướt xem các dự án)</p>
-            
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    
-                    <div class="swiper-slide">
-                        <div class="video-wrapper">
-                            <div class="video-mask" onclick="this.style.display='none'">
-                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
-                            </div>
-                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
-                        </div>
-                        <div class="project-info">
-                            <h3>Vinh Danh Tiếp Lửa KLB</h3>
-                            <span class="project-tag">Motion Graphic</span>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="video-wrapper">
-                            <div class="video-mask" onclick="this.style.display='none'">
-                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
-                            </div>
-                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
-                        </div>
-                        <div class="project-info">
-                            <h3>Viral Clip IMAP</h3>
-                            <span class="project-tag">Storytelling</span>
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="video-wrapper">
-                            <div class="video-mask" onclick="this.style.display='none'">
-                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
-                            </div>
-                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
-                        </div>
-                        <div class="project-info">
-                            <h3>YouTube Ten Tun (100k Sub)</h3>
-                            <span class="project-tag">Entertainment</span>
-                        </div>
-                    </div>
-
-                     <div class="swiper-slide">
-                        <div class="video-wrapper">
-                            <div class="video-mask" onclick="this.style.display='none'">
-                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
-                            </div>
-                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
-                        </div>
-                        <div class="project-info">
-                            <h3>Animation Spine 2D</h3>
-                            <span class="project-tag">Game Art</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" style="text-align: center; padding: 100px 20px;">
-            <div class="contact-box">
-                <h2 style="font-size: 2rem; margin-bottom: 20px; color: var(--text-main);">Liên hệ hợp tác</h2>
-                <p style="margin: 20px 0; color: var(--text-sub);">Sẵn sàng cho các dự án TVC, MV và Viral Video chất lượng cao.</p>
-                
-                <div style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-main);">
-                    <p style="margin: 10px 0;"><i class="fas fa-phone" style="color:var(--accent); margin-right: 10px;"></i> 0395.393.868</p>
-                    <p style="margin: 10px 0;"><i class="fas fa-envelope" style="color:var(--accent); margin-right: 10px;"></i> minh.nb0503@gmail.com</p>
-                </div>
-
-                <a href="mailto:minh.nb0503@gmail.com" class="hero-btn">Gửi Email Ngay</a>
-            </div>
-        </section>
-
+    <div class="swiper-slide">
+      <div class="video-thumb">
+        <div class="play-btn">▶ XEM VIDEO</div>
+      </div>
+      <div class="content">
+        <h3>YouTube Ten Tun</h3>
+        <span class="tag">Entertainment</span>
+      </div>
     </div>
+    <div class="swiper-slide">
+      <div class="video-thumb">
+        <div class="play-btn">▶ XEM VIDEO</div>
+      </div>
+      <div class="content">
+        <h3>Animation Spine 2D</h3>
+        <span class="tag">Game Art</span>
+      </div>
+    </div>
+    </div>
+  <div class="swiper-pagination"></div>
+</div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        AOS.init({ once: true, offset: 50, duration: 800 });
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    effect: "coverflow", // Đây là hiệu ứng mấu chốt
+    grabCursor: true,
+    centeredSlides: true, // Luôn căn giữa thẻ active
+    slidesPerView: "auto", // Tự động tính toán số lượng thẻ hiển thị
+    coverflowEffect: {
+      rotate: 0,      // Góc xoay của các thẻ bên cạnh (để 0 cho phẳng hiện đại, hoặc 50 cho 3D rõ rệt)
+      stretch: 0,     // Khoảng cách kéo giãn
+      depth: 300,     // Độ sâu 3D (càng lớn càng sâu)
+      modifier: 1,    
+      slideShadows: false, // Tắt bóng đen mặc định để dùng hiệu ứng mờ tự nhiên hơn
+    },
+    // Hiệu ứng làm mờ các thẻ không active
+    on: {
+      init: function() {
+        updateOpacity(this);
+      },
+      slideChange: function() {
+        updateOpacity(this);
+      }
+    },
+    pagination: {
+      el: ".swiper-pagination",
+    },
+    loop: true, // Lặp vô tận
+  });
 
-        // --- 1. SLIDER CONFIG ---
-        var swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            mousewheel: {
-                enabled: true,
-                eventsTarget: '.swiper', 
-                forceToAxis: false,
-                sensitivity: 1.5,
-                releaseOnEdges: true,
-            },
-            coverflowEffect: {
-                rotate: 0, stretch: 0, depth: 50, modifier: 1, slideShadows: false,
-            },
-            loop: false
-        });
-
-        if (window.innerWidth < 992) {
-            document.getElementById('mobileNav').style.display = 'flex';
-        }
-
-        // --- 2. DARK MODE LOGIC (Lưu nhớ tự động) ---
-        const body = document.body;
-        const iconMobile = document.querySelector('.theme-btn-mobile i');
-        const iconPC = document.querySelector('.theme-btn-pc i');
-        const textPC = document.querySelector('.theme-btn-pc');
-
-        // Kiểm tra xem khách đã từng chọn Dark Mode chưa
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            updateIcons(true);
-        }
-
-        function toggleTheme() {
-            body.classList.toggle('dark-mode');
-            const isDark = body.classList.contains('dark-mode');
-            
-            // Lưu vào bộ nhớ trình duyệt
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            updateIcons(isDark);
-        }
-
-        function updateIcons(isDark) {
-            if (isDark) {
-                iconMobile.className = 'fas fa-sun'; // Đổi thành hình mặt trời
-                iconPC.className = 'fas fa-sun';
-                textPC.innerHTML = '<i class="fas fa-sun"></i> Chế độ Sáng';
-            } else {
-                iconMobile.className = 'fas fa-moon'; // Đổi thành hình mặt trăng
-                iconPC.className = 'fas fa-moon';
-                textPC.innerHTML = '<i class="fas fa-moon"></i> Chế độ Tối';
-            }
-        }
-    </script>
-</body>
-</html>
+  // Hàm tùy chỉnh để làm mờ các thẻ bên cạnh
+  function updateOpacity(swiper) {
+    swiper.slides.forEach((slide) => {
+      slide.style.opacity = '0.4'; // Độ mờ của thẻ phụ
+      slide.style.filter = 'blur(2px)'; // Làm nhòe nhẹ thẻ phụ
+    });
+    // Thẻ active thì rõ nét 100%
+    swiper.slides[swiper.activeIndex].style.opacity = '1';
+    swiper.slides[swiper.activeIndex].style.filter = 'blur(0px)';
+  }
+</script>
