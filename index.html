@@ -114,7 +114,7 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V59: ULTIMATE FIX) --- */
+        /* --- 4. EXPERIENCE CSS (V60: THE PERFECT GRID) --- */
         
         /* Mobile */
         .timeline-item { display: block; padding: 30px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
@@ -136,13 +136,13 @@
                 width: 100%; position: relative;
             }
 
-            /* --- DÂY NỐI CHÍNH XÁC --- */
-            /* Công thức: 220px (Cột 1) + 30px (1/2 Cột 2) = 250px */
+            /* --- DÂY NỐI: TỌA ĐỘ CHẾT 280PX --- */
+            /* Cột Năm (230) + 1/2 Cột Giữa (50) = 280px */
             .animated-timeline-line {
                 display: block;
                 position: absolute;
                 top: 20px; 
-                left: 250px; /* CHÍNH TÂM */
+                left: 280px; /* CHÍNH XÁC TUYỆT ĐỐI */
                 width: 2px;
                 background: #e0e0e0; 
                 height: 100%; 
@@ -159,13 +159,16 @@
 
             .timeline-item {
                 display: grid; 
-                /* GRID: 220px | 60px | 250px | 1fr */
-                /* Gap = 0 để tránh sai số */
-                grid-template-columns: 220px 60px 250px 1fr; 
-                gap: 0; 
+                /* GRID MỚI: 230px | 100px | 250px | 1fr */
+                /* 230px cho Năm */
+                /* 100px cho Visual (Tâm là 50px) */
+                grid-template-columns: 230px 100px 250px 1fr; 
+                gap: 0; /* Gap 0 để tính toán pixel chính xác */
                 padding-bottom: 60px; 
                 background: transparent; 
                 border: none !important; 
+                padding-left: 0 !important; /* Xóa đệm thừa */
+                padding-right: 0 !important;
                 border-radius: 0; 
                 margin: 0;
                 align-items: flex-start;
@@ -175,7 +178,8 @@
             /* Cột 1: Năm (Căn Phải) */
             .exp-left { 
                 text-align: right; 
-                padding-right: 30px; /* Cách dây 30px */
+                /* Không dùng padding-right, để chữ chạm mốc 230px */
+                /* Khoảng cách đến dây (280) sẽ là 50px (Do cột giữa rộng 100px, tâm 50px) */
             } 
             .timeline-year { 
                 font-size: 2.2rem; color: var(--text-main); font-weight: 800; 
@@ -183,7 +187,7 @@
             }
             .timeline-role { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
 
-            /* Cột 2: Visual (Chấm tròn căn giữa 60px) */
+            /* Cột 2: Visual (Rộng 100px -> Tâm 50px) */
             .exp-visual { 
                 display: flex; justify-content: center; 
                 position: relative; height: 100%; z-index: 2;
@@ -210,7 +214,7 @@
             .exp-center { 
                 display: flex; flex-direction: column; 
                 padding-top: 2px; 
-                padding-left: 20px; /* Cách dây 20px */
+                /* Không cần padding-left vì cột giữa đã tạo khoảng cách 50px từ dây đến mép phải */
             }
             .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
