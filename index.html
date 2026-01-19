@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        /* --- 1. CẤU HÌNH CƠ BẢN --- */
+        /* --- 1. CẤU HÌNH MÀU SẮC & CƠ BẢN --- */
         :root {
             --bg-body: #ffffff;
             --bg-block: #f8f9fa;
             --text-main: #111111;
             --text-sub: #666666;
             --border: #e5e5e5;
-            --accent: #ff4d29;
+            --accent: #ff4d29; /* Cam chủ đạo */
             --sidebar-width: 280px;
             --header-height-mobile: 70px; 
         }
@@ -44,6 +44,7 @@
             transition: 0.3s;
         }
 
+        /* Đồng bộ Font cho toàn bộ tiêu đề */
         h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name {
             font-family: 'Bricolage Grotesque', sans-serif !important;
         }
@@ -115,7 +116,7 @@
         .section-header {
             display: flex; justify-content: space-between; align-items: flex-end;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 20px; margin-bottom: 60px; /* Tăng margin bottom */
+            padding-bottom: 20px; margin-bottom: 60px;
             width: 100%;
         }
         .section-title { 
@@ -133,9 +134,9 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V46: PIXEL PERFECT FIX) --- */
+        /* --- 4. EXPERIENCE CSS (V46: PIXEL PERFECT) --- */
         
-        /* [Mobile Style] */
+        /* [Mobile Style] - Giữ nguyên không đổi */
         .timeline-item {
             display: block; 
             padding: 30px; 
@@ -151,10 +152,11 @@
         .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
         .timeline-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
 
-        /* [PC Style] */
+        /* [PC Style] - VIẾT LẠI HOÀN TOÀN ĐỂ FIX LỖI */
         @media (min-width: 993px) {
             #experience {
-                /* Quan trọng: Padding để căn lề chuẩn với header */
+                width: 100%;
+                /* Padding này để căn lề nội dung so với viền trình duyệt */
                 padding-left: 80px; 
                 padding-right: 80px; 
             }
@@ -163,25 +165,20 @@
                 width: 100%; position: relative;
             }
 
-            /* DÂY NỐI (ĐẶT CHÍNH XÁC VÀO TÂM CỘT VISUAL) */
+            /* 1. DÂY NỐI HOẠT HÌNH - TÍNH TOÁN VỊ TRÍ CHUẨN */
+            /* CÔNG THỨC: Col 1 (150px) + Gap (30px) + 1/2 Col 2 (25px) = 205px */
             .animated-timeline-line {
                 display: block;
                 position: absolute;
-                top: 20px; /* Bắt đầu từ tâm chấm đầu tiên */
-                
-                /* TÍNH TOÁN VỊ TRÍ:
-                   Cột 1 (180px) + Gap (30px) + 1/2 Cột Visual (60px/2 = 30px)
-                   = 180 + 30 + 30 = 240px
-                */
-                left: 240px; 
+                top: 20px; 
+                left: 205px; /* Vị trí chính xác tâm cột Visual */
                 width: 2px;
-                background: #e0e0e0; /* Màu xám nhạt nền */
+                background: #e0e0e0; 
                 height: 100%; 
                 z-index: 0; /* Nằm dưới chấm */
                 transform: translateX(-50%);
             }
             
-            /* Dây màu cam chạy đè lên */
             .line-progress {
                 position: absolute; top: 0; left: 0; width: 100%; 
                 background: var(--accent); height: 0;
@@ -191,12 +188,14 @@
 
             .timeline-item {
                 display: grid; 
-                /* GRID MỚI: 180px | 60px | 220px | 1fr (Tự động chiếm hết phần còn lại) */
-                grid-template-columns: 180px 60px 220px 1fr; 
+                /* GRID CHUẨN MỚI (Tối ưu không gian): 
+                   150px (Năm) | 50px (Visual) | 180px (Cty) | 1fr (Mô tả - Chiếm toàn bộ phần còn lại) 
+                */
+                grid-template-columns: 150px 50px 180px 1fr; 
                 gap: 30px; 
-                padding-bottom: 60px; /* Khoảng cách giữa các mục */
+                padding-bottom: 50px; 
                 background: transparent; 
-                border: none; /* BỎ HOÀN TOÀN VIỀN */
+                border: none !important; /* Xóa triệt để viền mobile */
                 border-radius: 0; 
                 margin: 0;
                 align-items: flex-start;
@@ -209,7 +208,7 @@
                 font-size: 2.2rem; color: var(--text-main); font-weight: 800; 
                 margin-bottom: 5px; line-height: 1; white-space: nowrap; 
             }
-            .timeline-role { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
+            .timeline-role { font-size: 1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
 
             /* Cột 2: Visual (Chấm tròn) */
             .exp-visual { 
@@ -220,7 +219,7 @@
             .exp-dot {
                 width: 14px; height: 14px; border-radius: 50%;
                 border: 2px solid #ccc; background: var(--bg-body);
-                margin-top: 12px; /* Căn ngang với chữ năm 2024 */
+                margin-top: 12px; 
                 transition: 0.3s;
             }
             
@@ -229,7 +228,6 @@
                 position: relative;
                 box-shadow: 0 0 0 4px rgba(255, 77, 41, 0.2); 
             }
-            /* Lõi cam */
             .active-dot::after {
                 content: ''; position: absolute;
                 top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -238,18 +236,18 @@
 
             /* Cột 3: Công ty */
             .exp-center { display: flex; flex-direction: column; padding-top: 5px; }
-            .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
-            .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
+            .timeline-company { font-size: 1.1rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
+            .exp-type-pc { display: block; font-size: 0.9rem; color: var(--text-sub); font-weight: 500; }
 
-            /* Cột 4: Mô tả - QUAN TRỌNG: WIDTH 100% ĐỂ TRÀN SANG PHẢI */
+            /* Cột 4: Mô tả - FIX LỖI TRÀN VIỀN */
             .exp-right { padding-top: 5px; width: 100%; }
             .timeline-desc { 
                 margin: 0; 
                 font-size: 1.05rem; 
                 color: var(--text-sub); 
                 line-height: 1.6; 
-                text-align: left;
-                width: 100%; /* Ép chiếm hết không gian còn lại */
+                text-align: justify; /* Căn đều 2 bên để chạm mép phải */
+                width: 100%; 
             }
         }
 
