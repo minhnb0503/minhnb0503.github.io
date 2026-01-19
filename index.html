@@ -72,7 +72,10 @@
         }
         .nav-links a { color: var(--text-sub); text-decoration: none; font-size: 1rem; font-weight: 600; transition: 0.3s; padding: 10px 15px; border-radius: 8px; }
         .nav-links a:hover, .nav-links a.active { background: rgba(255, 77, 41, 0.1); color: var(--accent); transform: translateX(5px); }
-        .contact-mini { font-size: 0.85rem; color: var(--text-sub); margin-top: 20px; }
+        
+        /* Updated Contact Info */
+        .contact-mini { font-size: 0.85rem; color: var(--text-sub); margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .contact-mini div { display: flex; align-items: center; gap: 8px; }
         
         .sidebar-bottom { margin-top: auto; display: flex; flex-direction: column; align-items: center; }
         .social-icons-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; width: 100%; }
@@ -98,7 +101,47 @@
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; background: radial-gradient(circle at 70% 30%, var(--bg-block) 0%, var(--bg-body) 70%); overflow: hidden; }
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
         .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
-        .hero-btn { display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 20px; box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); transition: all 0.4s; }
+        
+        /* NEW: INFO BADGES (Language & Brands) */
+        .info-badges {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .badge-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .badge-label {
+            font-weight: 700;
+            color: var(--text-main);
+            margin-right: 5px;
+            font-size: 0.95rem;
+            display: flex; align-items: center; gap: 5px;
+        }
+        .badge-label i { color: var(--accent); }
+        .pill-tag {
+            background: var(--bg-body);
+            color: var(--text-sub);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            display: inline-block;
+        }
+        .pill-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .hero-btn { display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 10px; box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); transition: all 0.4s; }
         .hero-btn:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 20px 30px rgba(255, 77, 41, 0.5); }
         .hero-image-box { flex: 1; display: flex; justify-content: center; align-items: center; }
         .hero-image-box img { max-width: 100%; height: auto; object-fit: contain; filter: drop-shadow(20px 20px 40px rgba(0,0,0,0.15)); }
@@ -114,7 +157,7 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V61: CONTENT UPDATED) --- */
+        /* --- 4. EXPERIENCE CSS (V62: RETAIN V60 PERFECTION) --- */
         
         /* Mobile */
         .timeline-item { display: block; padding: 30px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
@@ -126,106 +169,24 @@
 
         /* PC (Min-width 993px) */
         @media (min-width: 993px) {
-            #experience {
-                width: 100%;
-                padding-left: 60px; 
-                padding-right: 60px; 
-            }
-
-            .timeline-container {
-                width: 100%; position: relative;
-            }
-
-            /* --- DÂY NỐI: TỌA ĐỘ CHẾT 280PX --- */
-            /* Cột Năm (230) + 1/2 Cột Giữa (50) = 280px */
-            .animated-timeline-line {
-                display: block;
-                position: absolute;
-                top: 20px; 
-                left: 280px; /* BẮT BUỘC PHẢI LÀ 280PX */
-                width: 2px;
-                background: #e0e0e0; 
-                height: 100%; 
-                z-index: 0; 
-                transform: translateX(-50%);
-            }
-            
-            .line-progress {
-                position: absolute; top: 0; left: 0; width: 100%; 
-                background: var(--accent); height: 0;
-                transition: height 1.5s ease-out;
-            }
+            #experience { width: 100%; padding-left: 60px; padding-right: 60px; }
+            .timeline-container { width: 100%; position: relative; }
+            .animated-timeline-line { display: block; position: absolute; top: 20px; left: 280px; width: 2px; background: #e0e0e0; height: 100%; z-index: 0; transform: translateX(-50%); }
+            .line-progress { position: absolute; top: 0; left: 0; width: 100%; background: var(--accent); height: 0; transition: height 1.5s ease-out; }
             [data-aos="line-grow"].aos-animate .line-progress { height: 100%; }
-
-            .timeline-item {
-                display: grid; 
-                /* GRID MỚI: 230px | 100px | 250px | 1fr */
-                /* 230px cho Năm */
-                /* 100px cho Visual (Tâm là 50px) */
-                grid-template-columns: 230px 100px 250px 1fr; 
-                gap: 0; /* Gap 0 để tính toán pixel chính xác */
-                padding-bottom: 60px; 
-                background: transparent; 
-                border: none !important; 
-                padding-left: 0 !important; /* Xóa đệm thừa */
-                padding-right: 0 !important;
-                border-radius: 0; 
-                margin: 0;
-                align-items: flex-start;
-                position: relative;
-            }
-
-            /* Cột 1: Năm (Căn Phải) */
-            .exp-left { 
-                text-align: right; 
-                /* Không dùng padding-right, để chữ chạm mốc 230px */
-                /* Khoảng cách đến dây (280) sẽ là 50px (Do cột giữa rộng 100px, tâm 50px) */
-            } 
-            .timeline-year { 
-                font-size: 2.2rem; color: var(--text-main); font-weight: 800; 
-                margin-bottom: 5px; line-height: 1; white-space: nowrap; 
-            }
+            .timeline-item { display: grid; grid-template-columns: 230px 100px 250px 1fr; gap: 0; padding-bottom: 60px; background: transparent; border: none !important; padding-left: 0 !important; padding-right: 0 !important; border-radius: 0; margin: 0; align-items: flex-start; position: relative; }
+            .exp-left { text-align: right; } 
+            .timeline-year { font-size: 2.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; line-height: 1; white-space: nowrap; }
             .timeline-role { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
-
-            /* Cột 2: Visual (Rộng 100px -> Tâm 50px) */
-            .exp-visual { 
-                display: flex; justify-content: center; 
-                position: relative; height: 100%; z-index: 2;
-            }
-            
-            .exp-dot {
-                width: 14px; height: 14px; border-radius: 50%;
-                border: 2px solid #ccc; background: var(--bg-body);
-                margin-top: 15px; 
-                transition: 0.3s;
-            }
-            
-            .active-dot {
-                border-color: var(--accent); position: relative;
-                box-shadow: 0 0 0 4px rgba(255, 77, 41, 0.2); 
-            }
-            .active-dot::after {
-                content: ''; position: absolute;
-                top: 50%; left: 50%; transform: translate(-50%, -50%);
-                width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
-            }
-
-            /* Cột 3: Công ty */
-            .exp-center { 
-                display: flex; flex-direction: column; 
-                padding-top: 2px; 
-                /* Không cần padding-left vì cột giữa đã tạo khoảng cách 50px từ dây đến mép phải */
-            }
+            .exp-visual { display: flex; justify-content: center; position: relative; height: 100%; z-index: 2; }
+            .exp-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ccc; background: var(--bg-body); margin-top: 15px; transition: 0.3s; }
+            .active-dot { border-color: var(--accent); position: relative; box-shadow: 0 0 0 4px rgba(255, 77, 41, 0.2); }
+            .active-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+            .exp-center { display: flex; flex-direction: column; padding-top: 2px; }
             .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
-
-            /* Cột 4: Mô tả */
             .exp-right { padding-top: 2px; width: 100%; padding-left: 10px; }
-            .timeline-desc { 
-                margin: 0; font-size: 1.05rem; 
-                color: var(--text-sub); line-height: 1.6; 
-                text-align: justify; width: 100%; 
-            }
+            .timeline-desc { margin: 0; font-size: 1.05rem; color: var(--text-sub); line-height: 1.6; text-align: justify; width: 100%; }
         }
 
         .swiper { width: 100%; padding: 60px 0 80px 0; cursor: grab; }
@@ -326,7 +287,8 @@
                     <p style="color: var(--text-sub); font-size: 0.9rem; margin-bottom: 5px;">Video Editor & Camera Op</p>
                     <div class="contact-mini">
                         <div><i class="fas fa-phone"></i> 0395.393.868</div>
-                        <div style="margin-top:5px;"><i class="fas fa-map-marker-alt"></i> Cầu Giấy - Hà Nội</div>
+                        <div><i class="fas fa-envelope"></i> minh.nb0503@gmail.com</div>
+                        <div><i class="fas fa-map-marker-alt"></i> Cầu Giấy - Hà Nội</div>
                     </div>
                 </div>
             </div>
@@ -372,8 +334,24 @@
                 <p style="color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">Portfolio 2025</p>
                 <h1>NGÔ BÌNH MINH<br><span style="font-size: 0.5em; color: var(--text-sub); font-weight: 400;">Freelance Video Editor</span></h1>
                 <p style="color: var(--text-sub); max-width: 600px; margin: 20px 0; line-height: 1.6; font-size: 1.1rem;">
-                    Xin chào, tôi là một Video Editor & Cameraman. Với kinh nghiệm từ <b>KienlongBank</b> và <b>IMAP</b>, tôi chuyên sản xuất TVC, Viral Video, Motion Graphics và xây dựng kênh TikTok/YouTube chuyên nghiệp.
+                    Không chỉ là cắt ghép, tôi kể chuyện qua từng khung hình. Với hành trang từ <b>KienlongBank</b> và <b>IMAP</b>, tôi biến ý tưởng thành những thước phim TVC, Motion Graphics sống động và xây dựng những kênh TikTok/YouTube viral, mang lại hiệu quả thực tế.
                 </p>
+                
+                <div class="info-badges">
+                    <div class="badge-group">
+                        <span class="badge-label"><i class="fas fa-globe"></i> Ngôn ngữ:</span>
+                        <span class="pill-tag">Tiếng Việt (Native)</span>
+                        <span class="pill-tag">English (Basic)</span>
+                    </div>
+                    <div class="badge-group">
+                        <span class="badge-label"><i class="fas fa-handshake"></i> Đối tác đã hợp tác:</span>
+                        <span class="pill-tag">KienlongBank</span>
+                        <span class="pill-tag">IMAP</span>
+                        <span class="pill-tag">TGMedia</span>
+                        <span class="pill-tag">Ten Tun</span>
+                    </div>
+                </div>
+
                 <a href="#portfolio" class="hero-btn">Xem Dự Án Của Tôi</a>
             </div>
             <div class="hero-image-box" data-aos="fade-left">
