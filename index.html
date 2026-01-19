@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Great+Vibes&display=swap" rel="stylesheet">
     
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -39,14 +39,13 @@
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
-            /* FONT BRICOLAGE GROTESQUE CHO TOÀN BỘ WEB */
+            /* FONT CHÍNH TOÀN WEB */
             font-family: 'Bricolage Grotesque', sans-serif;
             overflow-x: hidden;
             transition: 0.3s;
         }
 
-        /* Áp dụng Font cho các tiêu đề để đồng bộ */
-        h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name {
+        h1, h2, h3, h4, h5, h6, .section-title, .mobile-name {
             font-family: 'Bricolage Grotesque', sans-serif !important;
         }
 
@@ -58,7 +57,6 @@
             border-right: 1px solid var(--border); z-index: 1000; transition: 0.3s;
         }
         
-        /* Ẩn hiện theo thiết bị */
         .pc-content { display: block; }
         .mobile-header-wrapper { display: none; }
         .menu-overlay { display: none; }
@@ -102,7 +100,18 @@
             overflow: hidden;
         }
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
-        .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
+        
+        /* --- TÊN TRANG BÌA (HERO NAME) - FONT CHỮ KÝ --- */
+        .hero h1 { 
+            font-family: 'Great Vibes', cursive !important; /* Font chữ ký */
+            font-size: clamp(4rem, 8vw, 7rem); /* Phóng to chữ ký */
+            line-height: 1.2; 
+            margin-bottom: 10px; 
+            color: var(--text-main); 
+            font-weight: 400; /* Font chữ ký thường mỏng hơn */
+            letter-spacing: 2px;
+        }
+        
         .hero-btn {
             display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; 
             border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 20px; 
@@ -143,7 +152,7 @@
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
         .bottom-socials { display: none; }
 
-        /* --- MOBILE CSS (V34.0 - FONT BRICOLAGE & ALIGNMENT) --- */
+        /* --- MOBILE CSS (V34.0) --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             
@@ -173,15 +182,15 @@
                 border: 2px solid var(--accent); 
                 margin-right: 10px; 
             }
+            /* Tên trên Header Mobile vẫn dùng Bricolage cho dễ đọc */
             .mobile-name {
-                /* Font Bricolage Grotesque */
                 font-family: 'Bricolage Grotesque', sans-serif;
-                font-size: 1.2rem; font-weight: 800; /* Đậm hơn */
+                font-size: 1.2rem; font-weight: 800; 
                 color: var(--text-main); white-space: nowrap; 
             }
             .right-controls { display: flex; align-items: center; gap: 10px; }
             
-            /* Nút Liên Hệ (Màu Cam) */
+            /* Nút Liên Hệ */
             .contact-btn {
                 background: var(--accent); color: #fff; border: none;
                 padding: 8px 15px; border-radius: 20px;
@@ -199,11 +208,11 @@
                 font-size: 1.1rem; cursor: pointer;
             }
 
-            /* --- OVERLAY LÀM MỜ (KÍNH SÁNG) --- */
+            /* --- OVERLAY LÀM MỜ --- */
             .menu-overlay {
                 display: block !important;
                 position: fixed; inset: 0;
-                background: rgba(255, 255, 255, 0.5); /* Nền sáng */
+                background: rgba(255, 255, 255, 0.5); 
                 backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
                 z-index: 9999;
                 opacity: 0; pointer-events: none;
@@ -219,7 +228,7 @@
                 gap: 12px;
             }
 
-            /* --- MENU ITEM (V34: FONT BRICOLAGE & ALIGNMENT) --- */
+            /* --- MENU ITEM (FIXED WIDTH) --- */
             .menu-item {
                 display: flex; align-items: center; 
                 justify-content: flex-start;
@@ -228,12 +237,12 @@
                 padding: 12px 20px;
                 border-radius: 50px;
                 text-decoration: none;
-                font-family: 'Bricolage Grotesque', sans-serif; /* Font chuẩn */
+                font-family: 'Bricolage Grotesque', sans-serif;
                 font-weight: 700; font-size: 1rem;
                 box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
                 border: 1px solid #eee;
                 
-                width: 220px; /* Fixed width */
+                width: 220px; /* Width cố định */
                 box-sizing: border-box; 
                 padding-left: 25px; 
 
@@ -275,9 +284,12 @@
             .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); padding: 10px; border-bottom: 1px solid var(--border); position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; z-index: 999; }
             .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
+            
             .hero { flex-direction: column-reverse; padding: 20px; text-align: center; height: auto; padding-top: 40px; }
             .hero-text { padding-right: 0; margin-top: 20px; }
-            .hero h1 { font-size: 2.5rem; }
+            /* Mobile Hero H1 Adjustment */
+            .hero h1 { font-size: 3.5rem; } 
+            
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             section { padding: 40px 20px; }
             .swiper-slide { width: 280px; height: 420px; }
@@ -288,35 +300,13 @@
 
     <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()">
         <div class="floating-menu-container">
-            
-            <a href="mailto:minh.nb0503@gmail.com" class="menu-item">
-                <i class="fas fa-envelope"></i> Gửi Email
-            </a>
-            
-            <a href="https://zalo.me/0395393868" target="_blank" class="menu-item">
-                <span class="zalo-text">Z</span> Chat Zalo
-            </a>
-
-            <a href="https://t.me/minhnb0503" target="_blank" class="menu-item">
-                <i class="fab fa-telegram" style="color:#0088cc"></i> Chat Telegram
-            </a>
-
-            <a href="https://www.facebook.com/minh.nb0503" target="_blank" class="menu-item">
-                <i class="fab fa-facebook-f" style="color:#1877F2"></i> Facebook
-            </a>
-
-            <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank" class="menu-item">
-                <i class="fab fa-instagram" style="color:#E1306C"></i> Instagram
-            </a>
-
-            <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank" class="menu-item">
-                <i class="fab fa-tiktok" style="color:#000"></i> TikTok
-            </a>
-
-            <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" class="menu-item">
-                <i class="fab fa-google-drive" style="color:#0F9D58"></i> Google Drive
-            </a>
-
+            <a href="mailto:minh.nb0503@gmail.com" class="menu-item"><i class="fas fa-envelope"></i> Gửi Email</a>
+            <a href="https://zalo.me/0395393868" target="_blank" class="menu-item"><span class="zalo-text">Z</span> Chat Zalo</a>
+            <a href="https://t.me/minhnb0503" target="_blank" class="menu-item"><i class="fab fa-telegram" style="color:#0088cc"></i> Chat Telegram</a>
+            <a href="https://www.facebook.com/minh.nb0503" target="_blank" class="menu-item"><i class="fab fa-facebook-f" style="color:#1877F2"></i> Facebook</a>
+            <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank" class="menu-item"><i class="fab fa-instagram" style="color:#E1306C"></i> Instagram</a>
+            <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank" class="menu-item"><i class="fab fa-tiktok" style="color:#000"></i> TikTok</a>
+            <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" class="menu-item"><i class="fab fa-google-drive" style="color:#0F9D58"></i> Google Drive</a>
         </div>
     </div>
 
@@ -387,7 +377,7 @@
         <section id="home" class="hero">
             <div class="hero-text" data-aos="fade-right">
                 <p style="color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">Portfolio 2025</p>
-                <h1>NGÔ BÌNH MINH<br><span style="font-size: 0.5em; color: var(--text-sub); font-weight: 400;">Freelance Video Editor</span></h1>
+                <h1>NGÔ BÌNH MINH<br><span style="font-size: 0.3em; font-family: 'Bricolage Grotesque', sans-serif; color: var(--text-sub); font-weight: 400; letter-spacing: 0;">Freelance Video Editor</span></h1>
                 <p style="color: var(--text-sub); max-width: 600px; margin: 20px 0; line-height: 1.6; font-size: 1.1rem;">
                     Xin chào, tôi là một Video Editor & Cameraman. Với kinh nghiệm từ <b>KienlongBank</b> và <b>IMAP</b>, tôi chuyên sản xuất TVC, Viral Video, Motion Graphic và xây dựng kênh TikTok/YouTube chuyên nghiệp.
                 </p>
