@@ -103,12 +103,10 @@
         .portfolio-label { color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: block; }
         .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
         
-        /* FIX V78: Justify & Orphan words */
         .intro-para-mobile { 
             color: var(--text-sub); max-width: 600px; margin: 20px 0; 
             line-height: 1.6; font-size: 1.1rem;
-            text-align: justify; /* Căn đều */
-            text-justify: inter-word;
+            text-align: justify; text-justify: inter-word; /* Căn đều */
         }
 
         .hero-btn { display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 30px; box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); transition: all 0.4s; }
@@ -122,7 +120,7 @@
         .section-title { font-size: 2.5rem; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; letter-spacing: -0.5px; margin: 0; line-height: 1; }
         .section-number { font-size: 1.2rem; color: var(--accent); font-weight: 600; }
 
-        /* --- ABOUT SECTION V78 --- */
+        /* --- ABOUT SECTION V79 --- */
         #about { position: relative; }
         
         .about-layout { display: flex; gap: 100px; align-items: stretch; position: relative; z-index: 2; }
@@ -165,7 +163,6 @@
 
         .about-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         
-        /* FIX V78: Justify text */
         .about-desc { 
             font-size: 1.25rem; line-height: 1.9;
             color: var(--text-sub); margin-bottom: 50px; max-width: 100%; 
@@ -185,17 +182,11 @@
         }
         .badge-label i { background: var(--accent); color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 0.9rem; }
         
-        /* FIX V78: 1 line mobile (nowrap) */
         .pill-tag { 
             background: var(--bg-body); color: var(--text-sub); 
-            padding: 10px 25px; border-radius: 50px; 
-            font-size: 0.95rem; font-weight: 600; 
-            border: 1px solid var(--border); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            transition: 0.3s; 
-            display: inline-block; 
-            cursor: default; 
-            white-space: nowrap; /* BẮT BUỘC 1 DÒNG */
+            padding: 10px 25px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; 
+            border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            transition: 0.3s; display: inline-block; cursor: default; white-space: nowrap; 
         }
         body.dark-mode .pill-tag { background: #1a1a1a; }
         .pill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
@@ -261,8 +252,6 @@
             .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
             .exp-right { padding-top: 2px; width: 100%; padding-left: 10px; }
-            
-            /* FIX V78: JUSTIFY TEXT PC */
             .timeline-desc { 
                 margin: 0; font-size: 1.05rem; 
                 color: var(--text-sub); line-height: 1.6; 
@@ -277,8 +266,6 @@
             .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
             .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
             .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
-            
-            /* FIX V78: JUSTIFY TEXT MOBILE */
             .timeline-desc { 
                 font-size: 0.95rem; color: var(--text-sub); line-height: 1.6;
                 text-align: justify; text-justify: inter-word;
@@ -351,9 +338,7 @@
             .shape-orange, .shape-black { width: 200px; height: 200px; }
             
             .visual-connector { display: none; }
-            
-            /* FIX V78: SPACED OUT BADGE MOBILE */
-            .visual-badge-wrapper { margin-top: 10px; } 
+            .visual-badge-wrapper { margin-top: -30px; }
 
             .about-desc { font-size: 1.1rem; text-align: justify; text-justify: inter-word; }
             .stat-item h3 { font-size: 2.8rem; }
@@ -533,27 +518,27 @@
                         <span class="badge-label partner-header"><i class="fas fa-handshake"></i> Đối tác:</span>
                         
                         <div class="partner-grid">
-                            <div class="partner-item"><img src="logo-kienlongbank.png" alt="KienlongBank" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-mbank.png" alt="MB Bank" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-vietcombank.png" alt="Vietcombank" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-bidv.png" alt="BIDV" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="0"><img src="logo-kienlongbank.png" alt="KienlongBank" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="50"><img src="logo-mbank.png" alt="MB Bank" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-vietcombank.png" alt="Vietcombank" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="150"><img src="logo-bidv.png" alt="BIDV" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-vtv.png" alt="VTV" class="partner-logo"></div>
                             
-                            <div class="partner-item"><img src="logo-vtv.png" alt="VTV" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-vtv7.png" alt="VTV7" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-CafeBiz.png" alt="CafeBiz" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-tentun.png" alt="Ten Tun" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-tgmedia.png" alt="TGMedia" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-gapowork@4x.png" alt="GapoWork" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="250"><img src="logo-vtv7.png" alt="VTV7" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="300"><img src="logo-CafeBiz.png" alt="CafeBiz" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="350"><img src="logo-tentun.png" alt="Ten Tun" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="400"><img src="logo-tgmedia.png" alt="TGMedia" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="450"><img src="logo-gapowork@4x.png" alt="GapoWork" class="partner-logo"></div>
 
-                            <div class="partner-item"><img src="logo-imap.png" alt="IMAP" class="partner-logo logo-imap"></div>
-                            <div class="partner-item"><img src="logo-ieltsfighter@4x.png" alt="IELTS Fighter" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-mshoatoeic.png" alt="Ms Hoa TOEIC" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-Ms Hoa Junior.png" alt="Ms Hoa Junior" class="partner-logo logo-junior"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="500"><img src="logo-imap.png" alt="IMAP" class="partner-logo logo-imap"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="550"><img src="logo-ieltsfighter@4x.png" alt="IELTS Fighter" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="600"><img src="logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="650"><img src="logo-mshoatoeic.png" alt="Ms Hoa TOEIC" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="700"><img src="logo-Ms Hoa Junior.png" alt="Ms Hoa Junior" class="partner-logo logo-junior"></div>
                             
-                            <div class="partner-item"><img src="logo mhgt.png" alt="Ms Hoa GT" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-hvtc.png" alt="HVTC" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-hanoi.png" alt="Ha Noi" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="750"><img src="logo mhgt.png" alt="Ms Hoa GT" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="800"><img src="logo-hvtc.png" alt="HVTC" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="850"><img src="logo-hanoi.png" alt="Ha Noi" class="partner-logo"></div>
                         </div>
                     </div>
                 </div>
