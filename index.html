@@ -109,8 +109,23 @@
         .hero-image-box { flex: 1; display: flex; justify-content: center; align-items: center; }
         .hero-image-box img { max-width: 100%; height: auto; object-fit: contain; filter: drop-shadow(20px 20px 40px rgba(0,0,0,0.15)); }
 
-        section { padding: 80px; border-bottom: 1px solid var(--border); }
-        .section-title { font-size: 2.5rem; margin-bottom: 40px; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; letter-spacing: -0.5px; }
+        section { padding: 80px; }
+        
+        /* TIÊU ĐỀ GIỐNG MẪU: CÓ SỐ THỨ TỰ BÊN PHẢI */
+        .section-header {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px; margin-bottom: 40px;
+        }
+        .section-title { 
+            font-size: 2.5rem; color: var(--text-main); 
+            border-left: 5px solid var(--accent); padding-left: 20px; 
+            font-weight: 800; letter-spacing: -0.5px;
+            margin: 0; line-height: 1;
+        }
+        .section-number {
+            font-size: 1.2rem; color: var(--accent); font-weight: 600;
+        }
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
         .skill-item { background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
@@ -118,20 +133,19 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- EXPERIENCE CSS (NEW DESIGN FOR PC) --- */
+        /* --- EXPERIENCE CSS (PC REDESIGN V40) --- */
         
-        /* 1. Mặc định Mobile (Giữ nguyên style cũ) */
+        /* 1. Mặc định Mobile (Giữ nguyên thẻ Card) */
         .timeline-item {
-            display: block; /* Mobile xếp chồng */
+            display: block; 
             padding: 30px; 
             background: var(--bg-body); 
             border-radius: 15px; 
             margin-bottom: 20px; 
             border-left: 4px solid var(--accent); 
             border: 1px solid var(--border);
-            border-left-width: 4px; /* Fix cho viền trái */
         }
-        .exp-visual, .exp-type-pc { display: none; } /* Ẩn phần trang trí PC */
+        .exp-visual, .exp-type-pc { display: none; } 
         .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
         .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
         .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
@@ -139,40 +153,54 @@
 
         /* 2. Style Mới Cho PC (Min-width 993px) */
         @media (min-width: 993px) {
+            /* Container chứa Timeline để căn giữa */
+            .timeline-container {
+                max-width: 1000px; /* Giới hạn chiều rộng để đẹp hơn */
+                margin: 0 auto; /* CĂN GIỮA TOÀN BỘ KHỐI */
+            }
+
             .timeline-item {
-                display: grid; /* Chuyển sang Grid 4 cột */
-                grid-template-columns: 200px 50px 220px 1fr; /* Chia cột: Năm | Trục | Cty | Mô tả */
+                display: grid; 
+                /* Chia 4 cột chuẩn: Năm | Trục | Cty | Mô tả */
+                grid-template-columns: 180px 60px 220px 1fr;
                 gap: 20px;
-                padding: 40px 0; /* Tăng khoảng cách trên dưới */
-                background: transparent; /* Bỏ nền thẻ */
-                border: none; /* Bỏ viền thẻ */
+                padding-bottom: 50px; /* Dùng padding để nối dây liên tục */
+                background: transparent; 
+                border: none; 
                 border-radius: 0;
                 margin-bottom: 0;
                 align-items: flex-start;
+                position: relative;
             }
 
             /* Cột 1: Năm & Chức danh */
             .exp-left { text-align: left; }
-            .timeline-year { font-size: 1.8rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
-            .timeline-role { font-size: 1rem; color: var(--text-sub); font-weight: 600; }
+            .timeline-year { font-size: 2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; line-height: 1; }
+            .timeline-role { font-size: 1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
 
-            /* Cột 2: Trục thời gian (Chấm & Kẻ) */
+            /* Cột 2: Trục thời gian (QUAN TRỌNG: LIỀN MẠCH) */
             .exp-visual { 
-                display: flex; justify-content: center; height: 100%; position: relative; 
+                display: flex; justify-content: center; 
+                position: relative; height: 100%; /* Full chiều cao */
             }
             .exp-line {
-                position: absolute; top: 15px; bottom: -50px; left: 50%; width: 1px; background: var(--border); transform: translateX(-50%); z-index: 0;
+                position: absolute; 
+                top: 15px; /* Bắt đầu từ tâm chấm */
+                bottom: -20px; /* Kéo xuống quá padding để nối với item sau */
+                left: 50%; transform: translateX(-50%);
+                width: 1px; background: #e0e0e0; 
+                z-index: 0;
             }
-            .timeline-item:last-child .exp-line { display: none; } /* Bỏ kẻ ở mục cuối */
+            .timeline-item:last-child .exp-line { display: none; } /* Bỏ dây thừa ở cuối */
             
-            /* Chấm tròn mặc định (Rỗng) */
+            /* Chấm tròn */
             .exp-dot {
-                width: 14px; height: 14px; border-radius: 50%;
-                border: 2px solid #ccc; background: var(--bg-body);
-                z-index: 1; margin-top: 10px;
+                width: 16px; height: 16px; border-radius: 50%;
+                border: 2px solid #aaa; background: var(--bg-body);
+                z-index: 1; margin-top: 8px; /* Căn chỉnh với năm */
             }
             
-            /* Chấm tròn ACTIVE (Cam đặc) */
+            /* Chấm Active (Lõi cam) */
             .active-dot {
                 border-color: var(--accent);
                 position: relative;
@@ -180,16 +208,17 @@
             .active-dot::after {
                 content: ''; position: absolute;
                 top: 50%; left: 50%; transform: translate(-50%, -50%);
-                width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+                width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
             }
 
-            /* Cột 3: Công ty & Loại hình */
-            .exp-center { display: flex; flex-direction: column; }
-            .timeline-company { font-size: 1.1rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
+            /* Cột 3: Công ty */
+            .exp-center { display: flex; flex-direction: column; padding-top: 5px; }
+            .timeline-company { font-size: 1.1rem; color: var(--text-main); font-weight: 800; margin-bottom: 2px; }
             .exp-type-pc { display: block; font-size: 0.9rem; color: var(--text-sub); }
 
             /* Cột 4: Mô tả */
-            .timeline-desc { margin-top: 0; font-size: 1rem; color: var(--text-sub); }
+            .exp-right { padding-top: 5px; }
+            .timeline-desc { margin-top: 0; font-size: 1rem; color: var(--text-sub); line-height: 1.5; }
         }
 
         .swiper { width: 100%; padding: 60px 0 80px 0; cursor: grab; }
@@ -250,6 +279,14 @@
             .hero h1 { font-size: 2.5rem; }
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             section { padding: 40px 20px; }
+            /* Mobile giữ nguyên card dọc */
+            .section-header { margin-bottom: 20px; }
+            .section-title { font-size: 2rem; }
+            .section-number { font-size: 1rem; }
+            .timeline-item { display: block !important; padding: 20px; border: 1px solid var(--border); border-left: 4px solid var(--accent); }
+            .exp-left, .exp-center, .exp-right { text-align: left; }
+            .timeline-year { font-size: 0.9rem; margin-bottom: 5px; }
+            .timeline-role { font-size: 1.2rem; margin-bottom: 10px; }
             .swiper-slide { width: 280px; height: 420px; }
         }
     </style>
@@ -336,7 +373,11 @@
         </section>
 
         <section id="skills" style="background: var(--bg-block);">
-            <h2 class="section-title">Kỹ Năng & Thiết Bị</h2>
+            <div class="section-header">
+                <h2 class="section-title" style="margin-bottom:0;">Kỹ Năng & Thiết Bị</h2>
+                <span class="section-number">(02)</span>
+            </div>
+
             <h3 style="margin-bottom: 20px; color: var(--text-main);">Phần mềm (Software)</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
                 <div class="skill-item" data-aos="fade-up"><i class="fas fa-file-video" style="color:#9999ff;"></i><p>Premiere Pro</p></div>
@@ -355,81 +396,92 @@
         </section>
 
         <section id="experience">
-            <h2 class="section-title">Kinh Nghiệm Làm Việc</h2>
+            <div class="section-header">
+                <h2 class="section-title" style="margin-bottom:0;">Kinh Nghiệm Làm Việc</h2>
+                <span class="section-number">(03)</span>
+            </div>
             
-            <div class="timeline-item active">
-                <div class="exp-left">
-                    <span class="timeline-year">2024 - Nay</span>
-                    <div class="timeline-role">Video Editor</div>
+            <div class="timeline-container">
+                <div class="timeline-item active">
+                    <div class="exp-left">
+                        <span class="timeline-year">2024 - Nay</span>
+                        <div class="timeline-role">Video Editor</div>
+                    </div>
+                    <div class="exp-visual">
+                        <div class="exp-dot active-dot"></div>
+                        <div class="exp-line"></div>
+                    </div>
+                    <div class="exp-center">
+                        <span class="timeline-company">KienlongBank</span>
+                        <span class="exp-type-pc">Fulltime</span>
+                    </div>
+                    <div class="exp-right">
+                        <p class="timeline-desc">• Xây dựng kênh TikTok, tạo video motion và nội dung đa phương tiện.<br>• Quay phim, dựng video và chụp ảnh cho các hoạt động nội bộ.</p>
+                    </div>
                 </div>
-                <div class="exp-visual">
-                    <div class="exp-dot active-dot"></div> <div class="exp-line"></div>
-                </div>
-                <div class="exp-center">
-                    <span class="timeline-company">KienlongBank</span>
-                    <span class="exp-type-pc">Fulltime</span>
-                </div>
-                <div class="exp-right">
-                    <p class="timeline-desc">• Xây dựng kênh TikTok, tạo video motion và nội dung đa phương tiện.<br>• Quay phim, dựng video và chụp ảnh cho các hoạt động nội bộ.</p>
-                </div>
-            </div>
 
-            <div class="timeline-item">
-                <div class="exp-left">
-                    <span class="timeline-year">2022 - 2024</span>
-                    <div class="timeline-role">Video Editor</div>
+                <div class="timeline-item">
+                    <div class="exp-left">
+                        <span class="timeline-year">2022 - 2024</span>
+                        <div class="timeline-role">Video Editor</div>
+                    </div>
+                    <div class="exp-visual">
+                        <div class="exp-dot"></div>
+                        <div class="exp-line"></div>
+                    </div>
+                    <div class="exp-center">
+                        <span class="timeline-company">IMAP Việt Nam</span>
+                        <span class="exp-type-pc">Fulltime</span>
+                    </div>
+                    <div class="exp-right">
+                        <p class="timeline-desc">• Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>• Quay dựng chương trình "Super Junior" kết hợp VTV7.</p>
+                    </div>
                 </div>
-                <div class="exp-visual">
-                    <div class="exp-dot"></div> <div class="exp-line"></div>
-                </div>
-                <div class="exp-center">
-                    <span class="timeline-company">IMAP Việt Nam</span>
-                    <span class="exp-type-pc">Fulltime</span>
-                </div>
-                <div class="exp-right">
-                    <p class="timeline-desc">• Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>• Quay dựng chương trình "Super Junior" kết hợp VTV7.</p>
-                </div>
-            </div>
 
-            <div class="timeline-item">
-                <div class="exp-left">
-                    <span class="timeline-year">2021 - 2022</span>
-                    <div class="timeline-role">Game Artist</div>
+                <div class="timeline-item">
+                    <div class="exp-left">
+                        <span class="timeline-year">2021 - 2022</span>
+                        <div class="timeline-role">Game Artist</div>
+                    </div>
+                    <div class="exp-visual">
+                        <div class="exp-dot"></div>
+                        <div class="exp-line"></div>
+                    </div>
+                    <div class="exp-center">
+                        <span class="timeline-company">TGMedia Việt Nam</span>
+                        <span class="exp-type-pc">Fulltime</span>
+                    </div>
+                    <div class="exp-right">
+                        <p class="timeline-desc">• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity & Spine.</p>
+                    </div>
                 </div>
-                <div class="exp-visual">
-                    <div class="exp-dot"></div>
-                    <div class="exp-line"></div>
-                </div>
-                <div class="exp-center">
-                    <span class="timeline-company">TGMedia Việt Nam</span>
-                    <span class="exp-type-pc">Fulltime</span>
-                </div>
-                <div class="exp-right">
-                    <p class="timeline-desc">• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity & Spine.</p>
-                </div>
-            </div>
 
-            <div class="timeline-item">
-                <div class="exp-left">
-                    <span class="timeline-year">2020 - 2021</span>
-                    <div class="timeline-role">Video Editor</div>
-                </div>
-                <div class="exp-visual">
-                    <div class="exp-dot"></div>
-                    <div class="exp-line"></div>
-                </div>
-                <div class="exp-center">
-                    <span class="timeline-company">Ten Tun Group</span>
-                    <span class="exp-type-pc">Freelance</span>
-                </div>
-                <div class="exp-right">
-                    <p class="timeline-desc">• Xây dựng kênh YouTube "Ten Tun" từ 10.000 lên 100.000 Subscribers.<br>• Dựng video tổng hợp, đánh giá giải trí.</p>
+                <div class="timeline-item">
+                    <div class="exp-left">
+                        <span class="timeline-year">2020 - 2021</span>
+                        <div class="timeline-role">Video Editor</div>
+                    </div>
+                    <div class="exp-visual">
+                        <div class="exp-dot"></div>
+                        <div class="exp-line"></div>
+                    </div>
+                    <div class="exp-center">
+                        <span class="timeline-company">Ten Tun Group</span>
+                        <span class="exp-type-pc">Freelance</span>
+                    </div>
+                    <div class="exp-right">
+                        <p class="timeline-desc">• Xây dựng kênh YouTube "Ten Tun" từ 10.000 lên 100.000 Subscribers.<br>• Dựng video tổng hợp, đánh giá giải trí.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="portfolio" style="background: var(--bg-block);">
-            <h2 class="section-title">Dự án Tiêu biểu</h2>
+            <div class="section-header">
+                <h2 class="section-title" style="margin-bottom:0;">Dự án Tiêu biểu</h2>
+                <span class="section-number">(04)</span>
+            </div>
+            
             <p style="color: var(--text-sub); margin-bottom: 20px;">(Di chuột vào khung để lướt xem các dự án)</p>
             
             <div class="swiper mySwiper">
@@ -494,6 +546,7 @@
                     <p style="margin: 10px 0;"><i class="fas fa-phone" style="color:var(--accent); margin-right: 10px;"></i> 0395.393.868</p>
                     <p style="margin: 10px 0;"><i class="fas fa-envelope" style="color:var(--accent); margin-right: 10px;"></i> minh.nb0503@gmail.com</p>
                 </div>
+                
                 <a href="https://mail.google.com/mail/?view=cm&fs=1&to=minh.nb0503@gmail.com&su=Liên hệ từ Portfolio" target="_blank" class="hero-btn">Gửi Email Ngay</a>
             </div>
         </section>
