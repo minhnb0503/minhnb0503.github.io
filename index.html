@@ -26,6 +26,12 @@
             --header-height-mobile: 70px; 
         }
 
+        /* FIX V80: SMOOTH SCROLLING */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 20px; /* Khoảng cách đệm khi trượt tới section */
+        }
+
         body.dark-mode {
             --bg-body: #0a0a0a;
             --bg-block: #111111;
@@ -103,10 +109,10 @@
         .portfolio-label { color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: block; }
         .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
         
+        /* FIX V80: Justify & Widow words */
         .intro-para-mobile { 
             color: var(--text-sub); max-width: 600px; margin: 20px 0; 
             line-height: 1.6; font-size: 1.1rem;
-            /* FIX V79: Justify */
             text-align: justify; text-justify: inter-word;
         }
 
@@ -164,10 +170,10 @@
 
         .about-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         
+        /* FIX V80: Justify */
         .about-desc { 
             font-size: 1.25rem; line-height: 1.9;
             color: var(--text-sub); margin-bottom: 50px; max-width: 100%; 
-            /* FIX V79: Justify */
             text-align: justify; text-justify: inter-word;
         }
         
@@ -184,6 +190,7 @@
         }
         .badge-label i { background: var(--accent); color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 0.9rem; }
         
+        /* FIX V80: 1 line nowrap */
         .pill-tag { background: var(--bg-body); color: var(--text-sub); padding: 10px 25px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; display: inline-block; cursor: default; white-space: nowrap; }
         body.dark-mode .pill-tag { background: #1a1a1a; }
         .pill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
@@ -250,7 +257,7 @@
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
             .exp-right { padding-top: 2px; width: 100%; padding-left: 10px; }
             
-            /* FIX V79: JUSTIFY TEXT PC */
+            /* FIX V80: Justify */
             .timeline-desc { 
                 margin: 0; font-size: 1.05rem; 
                 color: var(--text-sub); line-height: 1.6; 
@@ -266,7 +273,7 @@
             .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
             .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
             
-            /* FIX V79: JUSTIFY TEXT MOBILE */
+            /* FIX V80: Justify Mobile */
             .timeline-desc { 
                 font-size: 0.95rem; color: var(--text-sub); line-height: 1.6;
                 text-align: justify; text-justify: inter-word;
@@ -340,17 +347,17 @@
             
             .visual-connector { display: none; }
             
-            /* FIX V79: INCREASE DISTANCE FOR BADGE MOBILE */
-            .visual-badge-wrapper { margin-top: 30px; } 
+            /* FIX V80: INCREASE DISTANCE BADGE MOBILE */
+            .visual-badge-wrapper { margin-top: 40px; } 
 
             .about-desc { font-size: 1.1rem; text-align: justify; text-justify: inter-word; }
             .stat-item h3 { font-size: 2.8rem; }
 
             .about-stats { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             
-            /* FIX V79: MOBILE BADGE STACK */
+            /* FIX V80: MOBILE BADGE STACK */
             .badge-row { 
-                flex-direction: column; /* Xếp dọc */
+                flex-direction: column; 
                 align-items: center;
                 gap: 15px; 
             }
@@ -371,7 +378,7 @@
             .swiper-slide { width: 280px; height: 420px; }
         }
 
-        /* FIX V78: MOBILE TITLE 1 LINE */
+        /* FIX V80: MOBILE TITLE 1 LINE */
         @media (max-width: 480px) {
             .section-title { font-size: 1.5rem !important; white-space: nowrap; }
         }
@@ -446,6 +453,7 @@
 
     <div class="mobile-nav" id="mobileNav" style="display: none;">
         <a href="#home">Intro</a>
+        <a href="#about">Về tôi</a>
         <a href="#skills">Kỹ năng</a>
         <a href="#experience">Kinh nghiệm</a>
         <a href="#portfolio">Dự án</a>
