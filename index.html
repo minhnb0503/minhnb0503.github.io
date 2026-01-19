@@ -109,6 +109,7 @@
         .portfolio-label { color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: block; }
         .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
         
+        /* FIX V83: Justify & Widow words */
         .intro-para-mobile { 
             color: var(--text-sub); max-width: 600px; margin: 20px 0; 
             line-height: 1.6; font-size: 1.1rem;
@@ -169,6 +170,7 @@
 
         .about-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         
+        /* FIX V83: Justify */
         .about-desc { 
             font-size: 1.25rem; line-height: 1.9;
             color: var(--text-sub); margin-bottom: 50px; max-width: 100%; 
@@ -188,6 +190,7 @@
         }
         .badge-label i { background: var(--accent); color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 0.9rem; }
         
+        /* FIX V83: 1 line nowrap */
         .pill-tag { background: var(--bg-body); color: var(--text-sub); padding: 10px 25px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; display: inline-block; cursor: default; white-space: nowrap; }
         body.dark-mode .pill-tag { background: #1a1a1a; }
         .pill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
@@ -228,9 +231,19 @@
 
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
-        .skill-item { background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        /* V83: Custom styling for Adobe Icons */
+        .skill-item { 
+            background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; 
+            border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
         .skill-item:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
+        
+        .skill-icon-img {
+            width: 50px; height: 50px; object-fit: contain; margin-bottom: 15px; border-radius: 8px; /* Rounded Adobe icons */
+        }
+        .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); } /* Fallback for gear icons */
+        
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
         /* --- 4. EXPERIENCE CSS --- */
@@ -254,6 +267,7 @@
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
             .exp-right { padding-top: 2px; width: 100%; padding-left: 10px; }
             
+            /* FIX V83: JUSTIFY TEXT PC */
             .timeline-desc { 
                 margin: 0; font-size: 1.05rem; 
                 color: var(--text-sub); line-height: 1.6; 
@@ -268,6 +282,8 @@
             .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
             .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
             .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
+            
+            /* FIX V83: JUSTIFY TEXT MOBILE */
             .timeline-desc { 
                 font-size: 0.95rem; color: var(--text-sub); line-height: 1.6;
                 text-align: justify; text-justify: inter-word;
@@ -341,7 +357,7 @@
             
             .visual-connector { display: none; }
             
-            /* FIX V80: INCREASE DISTANCE BADGE MOBILE */
+            /* FIX V83: INCREASE DISTANCE BADGE MOBILE */
             .visual-badge-wrapper { margin-top: 40px; } 
 
             .about-desc { font-size: 1.1rem; text-align: justify; text-justify: inter-word; }
@@ -349,7 +365,7 @@
 
             .about-stats { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             
-            /* FIX V80: MOBILE BADGE STACK */
+            /* FIX V83: MOBILE BADGE STACK */
             .badge-row { 
                 flex-direction: column; 
                 align-items: center;
@@ -372,7 +388,7 @@
             .swiper-slide { width: 280px; height: 420px; }
         }
 
-        /* FIX V80: MOBILE TITLE 1 LINE */
+        /* FIX V83: MOBILE TITLE 1 LINE */
         @media (max-width: 480px) {
             .section-title { font-size: 1.5rem !important; white-space: nowrap; }
         }
@@ -568,13 +584,32 @@
 
             <h3 style="margin-bottom: 20px; color: var(--text-main);">Phần mềm (Software)</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
-                <div class="skill-item" data-aos="fade-up"><i class="fas fa-file-video" style="color:#9999ff;"></i><p>Premiere Pro</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-magic" style="color:#cf9fff;"></i><p>After Effects</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-image" style="color:#3fa9f5;"></i><p>Photoshop</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-pen-nib" style="color:#f39c12;"></i><p>Illustrator</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-headphones" style="color:#2ecc71;"></i><p>Audition</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="500"><i class="fas fa-dragon" style="color:#e74c3c;"></i><p>Spine 2D</p></div>
+                <div class="skill-item" data-aos="fade-up">
+                    <img src="logo-adobe/premiere-pro.png" alt="Premiere Pro" class="skill-icon-img">
+                    <p>Premiere Pro</p>
+                </div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="logo-adobe/after-effects.png" alt="After Effects" class="skill-icon-img">
+                    <p>After Effects</p>
+                </div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="logo-adobe/photoshop.png" alt="Photoshop" class="skill-icon-img">
+                    <p>Photoshop</p>
+                </div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="300">
+                    <img src="logo-adobe/illustrator.png" alt="Illustrator" class="skill-icon-img">
+                    <p>Illustrator</p>
+                </div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="400">
+                    <img src="logo-adobe/adobe-audition.png" alt="Audition" class="skill-icon-img">
+                    <p>Audition</p>
+                </div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="500">
+                    <img src="logo-adobe/spine.png" alt="Spine 2D" class="skill-icon-img">
+                    <p>Spine 2D</p>
+                </div>
             </div>
+            
             <h3 style="margin-bottom: 20px; color: var(--text-main);">Thiết bị (Gear)</h3>
             <div class="skills-grid">
                 <div class="skill-item" data-aos="zoom-in"><i class="fas fa-camera"></i><p>Sony A7C</p></div>
