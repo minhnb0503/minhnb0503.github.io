@@ -135,7 +135,7 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V42: PERFECT ALIGNMENT & ANIMATION) --- */
+        /* --- 4. EXPERIENCE CSS (V43: ANIMATED LINE & FULL WIDTH) --- */
         
         /* [Mobile] Mặc định là Card dọc */
         .timeline-item {
@@ -147,7 +147,7 @@
             border-left: 4px solid var(--accent); 
             border: 1px solid var(--border);
         }
-        .exp-visual, .exp-type-pc { display: none; } 
+        .exp-visual, .exp-type-pc, .animated-timeline-line { display: none; } /* Ẩn trên mobile */
         .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
         .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
         .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
@@ -155,8 +155,34 @@
 
         /* [PC] Layout mới (Min-width 993px) */
         @media (min-width: 993px) {
+            /* Điều chỉnh padding cho section Experience trên PC để tràn viền */
+            #experience {
+                padding-left: 40px;
+                padding-right: 40px;
+            }
+
             .timeline-container {
                 width: 100%; /* Tràn viền Full Width */
+                position: relative; /* Để đặt dây nối tuyệt đối */
+            }
+
+            /* Dây nối Hoạt hình (Animated Line) */
+            .animated-timeline-line {
+                display: block;
+                position: absolute;
+                top: 20px; /* Bắt đầu từ tâm chấm đầu tiên */
+                left: 280px; /* Căn giữa cột Visual (250px + 30px) */
+                width: 2px;
+                background: var(--accent); /* Màu dây là màu chủ đạo */
+                height: 0; /* Chiều cao ban đầu bằng 0 */
+                z-index: 0;
+                transform: translateX(-50%);
+            }
+            
+            /* Hiệu ứng AOS: Kéo dài dây */
+            [data-aos="grow-height"].aos-animate {
+                height: calc(100% - 40px); /* Chiều cao cuối cùng (trừ đi phần dư cuối) */
+                transition: height 1.5s ease-in-out; /* Thời gian chạy hiệu ứng */
             }
 
             .timeline-item {
@@ -183,32 +209,27 @@
             }
             .timeline-role { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
 
-            /* Cột 2: Trục thời gian (Liền mạch) */
+            /* Cột 2: Trục thời gian (Chỉ còn chấm tròn) */
             .exp-visual { 
                 display: flex; justify-content: center; 
                 position: relative; height: 100%;
+                z-index: 1; /* Đặt lên trên dây nối */
             }
-            .exp-line {
-                position: absolute; 
-                top: 15px; 
-                bottom: -30px; /* Nối dài xuyên qua padding */
-                left: 50%; transform: translateX(-50%);
-                width: 1px; background: #d1d1d6; 
-                z-index: 0;
-            }
-            .timeline-item:last-child .exp-line { display: none; } /* Bỏ dây thừa cuối cùng */
             
             /* Chấm tròn */
             .exp-dot {
                 width: 14px; height: 14px; border-radius: 50%;
-                border: 2px solid #999; background: var(--bg-body);
-                z-index: 1; margin-top: 12px; /* Căn chỉnh với tâm chữ năm */
+                border: 2px solid #bdbdbd; background: var(--bg-body);
+                margin-top: 12px; /* Căn chỉnh với tâm chữ năm */
+                transition: all 0.3s;
             }
             
-            /* Chấm Active (Lõi cam) */
+            /* Chấm Active (Lõi cam & Viền cam) */
             .active-dot {
                 border-color: var(--accent);
+                background: var(--bg-body);
                 position: relative;
+                box-shadow: 0 0 0 4px rgba(255, 77, 41, 0.2); /* Hiệu ứng tỏa sáng nhẹ */
             }
             .active-dot::after {
                 content: ''; position: absolute;
@@ -228,7 +249,7 @@
                 font-size: 1.05rem; 
                 color: var(--text-sub); 
                 line-height: 1.6; 
-                text-align: left; /* Căn trái chuẩn portfolio */
+                text-align: left;
                 max-width: 100%; /* Đảm bảo full width */
             }
         }
@@ -415,6 +436,9 @@
             </div>
             
             <div class="timeline-container">
+                
+                <div class="animated-timeline-line" data-aos="grow-height" data-aos-duration="1500" data-aos-delay="300"></div>
+
                 <div class="timeline-item active" data-aos="fade-up" data-aos-delay="0">
                     <div class="exp-left">
                         <span class="timeline-year">2024 - Nay</span>
@@ -422,7 +446,6 @@
                     </div>
                     <div class="exp-visual">
                         <div class="exp-dot active-dot"></div>
-                        <div class="exp-line"></div>
                     </div>
                     <div class="exp-center">
                         <span class="timeline-company">KienlongBank</span>
@@ -433,14 +456,13 @@
                     </div>
                 </div>
 
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
                     <div class="exp-left">
                         <span class="timeline-year">2022 - 2024</span>
                         <div class="timeline-role">Video Editor</div>
                     </div>
                     <div class="exp-visual">
                         <div class="exp-dot"></div>
-                        <div class="exp-line"></div>
                     </div>
                     <div class="exp-center">
                         <span class="timeline-company">IMAP Việt Nam</span>
@@ -451,32 +473,29 @@
                     </div>
                 </div>
 
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
                     <div class="exp-left">
                         <span class="timeline-year">2021 - 2022</span>
                         <div class="timeline-role">Game Artist</div>
                     </div>
                     <div class="exp-visual">
                         <div class="exp-dot"></div>
-                        <div class="exp-line"></div>
                     </div>
                     <div class="exp-center">
                         <span class="timeline-company">TGMedia Việt Nam</span>
-                        <span class="exp-type-pc">Full-time</span>
-                    </div>
+                        <span class="exp-type-pc">Part-time</span> </div>
                     <div class="exp-right">
                         <p class="timeline-desc">• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity & Spine.</p>
                     </div>
                 </div>
 
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
                     <div class="exp-left">
                         <span class="timeline-year">2020 - 2021</span>
                         <div class="timeline-role">Video Editor</div>
                     </div>
                     <div class="exp-visual">
                         <div class="exp-dot"></div>
-                        <div class="exp-line"></div>
                     </div>
                     <div class="exp-center">
                         <span class="timeline-company">Ten Tun Group</span>
