@@ -114,9 +114,9 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V53: RESTORED ALIGNMENT & BALANCED SPACING) --- */
+        /* --- 4. EXPERIENCE CSS (V54: BALANCED & CENTERED) --- */
         
-        /* [Mobile] */
+        /* Mobile */
         .timeline-item { display: block; padding: 30px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
         .exp-visual, .exp-type-pc, .animated-timeline-line { display: none; }
         .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
@@ -124,7 +124,7 @@
         .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
         .timeline-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
 
-        /* [PC] (Min-width 993px) */
+        /* PC (Min-width 993px) */
         @media (min-width: 993px) {
             #experience {
                 width: 100%;
@@ -136,12 +136,12 @@
                 width: 100%; position: relative;
             }
 
-            /* DÂY NỐI: Khôi phục vị trí chuẩn 320px */
+            /* DÂY NỐI: 200px (Cột 1) + 30px (1/2 Cột 2) = 230px */
             .animated-timeline-line {
                 display: block;
                 position: absolute;
                 top: 20px; 
-                left: 320px; /* Vị trí tâm chuẩn */
+                left: 230px; /* CHÍNH GIỮA CỘT VISUAL */
                 width: 2px;
                 background: #e0e0e0; 
                 height: 100%; 
@@ -158,8 +158,8 @@
 
             .timeline-item {
                 display: grid; 
-                /* Khôi phục Grid chuẩn rộng rãi */
-                grid-template-columns: 280px 80px 250px 1fr; 
+                /* GRID 4 CỘT CHUẨN: 200px | 60px | 250px | 1fr */
+                grid-template-columns: 200px 60px 250px 1fr; 
                 gap: 0; 
                 padding-bottom: 60px; 
                 background: transparent; 
@@ -170,10 +170,10 @@
                 position: relative;
             }
 
-            /* Cột 1: Năm - Điều chỉnh padding để cân đối */
+            /* Cột 1: Năm (CĂN PHẢI - Tạo khoảng trống 50px với dây) */
             .exp-left { 
-                text-align: left; 
-                padding-right: 20px; /* 20px padding + 40px (nửa cột visual) = 60px khoảng cách */
+                text-align: right; /* Căn phải */
+                padding-right: 30px; /* Cách dây 30px + 20px (nửa padding cột visual) = 50px */
             } 
             .timeline-year { 
                 font-size: 2.2rem; color: var(--text-main); font-weight: 800; 
@@ -204,11 +204,11 @@
                 width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
             }
 
-            /* Cột 3: Công ty - Padding để cân đối */
+            /* Cột 3: Công ty (Cách dây 50px) */
             .exp-center { 
                 display: flex; flex-direction: column; 
                 padding-top: 2px; 
-                padding-left: 20px; /* 20px padding + 40px (nửa cột visual) = 60px khoảng cách */
+                padding-left: 30px; /* Cách dây 30px + 20px = 50px */
             }
             .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
@@ -218,7 +218,7 @@
             .timeline-desc { 
                 margin: 0; font-size: 1.05rem; 
                 color: var(--text-sub); line-height: 1.6; 
-                text-align: justify; width: 100%; 
+                text-align: left; width: 100%; 
             }
         }
 
@@ -274,6 +274,7 @@
             .hero h1 { font-size: 2.5rem; }
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             section { padding: 40px 20px; }
+            /* Mobile Timeline */
             .section-header { margin-bottom: 20px; padding-bottom: 15px; }
             .section-title { font-size: 2rem; padding-left: 15px; }
             .section-number { font-size: 1rem; }
