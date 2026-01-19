@@ -135,7 +135,7 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V43: ANIMATED LINE & FULL WIDTH) --- */
+        /* --- 4. EXPERIENCE CSS (V44: FIX ALIGNMENT & LINE Z-INDEX) --- */
         
         /* [Mobile] Mặc định là Card dọc */
         .timeline-item {
@@ -155,39 +155,37 @@
 
         /* [PC] Layout mới (Min-width 993px) */
         @media (min-width: 993px) {
-            /* Điều chỉnh padding cho section Experience trên PC để tràn viền */
             #experience {
                 padding-left: 40px;
                 padding-right: 40px;
             }
 
             .timeline-container {
-                width: 100%; /* Tràn viền Full Width */
-                position: relative; /* Để đặt dây nối tuyệt đối */
+                width: 100%; 
+                position: relative; 
             }
 
-            /* Dây nối Hoạt hình (Animated Line) */
+            /* Dây nối Hoạt hình - Đặt Z-index thấp để nằm dưới chấm */
             .animated-timeline-line {
                 display: block;
                 position: absolute;
-                top: 20px; /* Bắt đầu từ tâm chấm đầu tiên */
-                left: 280px; /* Căn giữa cột Visual (250px + 30px) */
+                top: 20px; 
+                /* Tính toán lại vị trí chính giữa cột thứ 2: 250px (cột 1) + 20px (gap) + 30px (một nửa cột 2) = 300px */
+                left: 300px; 
                 width: 2px;
-                background: var(--accent); /* Màu dây là màu chủ đạo */
-                height: 0; /* Chiều cao ban đầu bằng 0 */
-                z-index: 0;
+                background: var(--accent); 
+                height: 0; 
+                z-index: 0; /* Z-index thấp hơn chấm tròn */
                 transform: translateX(-50%);
             }
             
-            /* Hiệu ứng AOS: Kéo dài dây */
             [data-aos="grow-height"].aos-animate {
-                height: calc(100% - 40px); /* Chiều cao cuối cùng (trừ đi phần dư cuối) */
-                transition: height 1.5s ease-in-out; /* Thời gian chạy hiệu ứng */
+                height: calc(100% - 40px); 
+                transition: height 1.5s ease-in-out; 
             }
 
             .timeline-item {
                 display: grid; 
-                /* Chia cột: Năm (Rộng để 1 dòng) | Trục | Cty | Mô tả (Hết phần còn lại) */
                 grid-template-columns: 250px 60px 280px 1fr; 
                 gap: 20px; 
                 padding-bottom: 50px; 
@@ -199,37 +197,34 @@
                 position: relative;
             }
 
-            /* Cột 1: Năm (1 dòng) & Chức danh */
             .exp-left { text-align: left; }
             .timeline-year { 
-                font-size: 2.2rem; /* To hơn */
+                font-size: 2.2rem; 
                 color: var(--text-main); font-weight: 800; 
                 margin-bottom: 5px; line-height: 1; 
-                white-space: nowrap; /* BẮT BUỘC KHÔNG XUỐNG DÒNG */
+                white-space: nowrap; 
             }
             .timeline-role { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
 
-            /* Cột 2: Trục thời gian (Chỉ còn chấm tròn) */
+            /* Cột chứa chấm tròn - Đặt Z-index cao để đè lên dây */
             .exp-visual { 
                 display: flex; justify-content: center; 
                 position: relative; height: 100%;
-                z-index: 1; /* Đặt lên trên dây nối */
+                z-index: 2; /* Z-index cao hơn dây */
             }
             
-            /* Chấm tròn */
             .exp-dot {
                 width: 14px; height: 14px; border-radius: 50%;
                 border: 2px solid #bdbdbd; background: var(--bg-body);
-                margin-top: 12px; /* Căn chỉnh với tâm chữ năm */
+                margin-top: 12px; 
                 transition: all 0.3s;
             }
             
-            /* Chấm Active (Lõi cam & Viền cam) */
             .active-dot {
                 border-color: var(--accent);
                 background: var(--bg-body);
                 position: relative;
-                box-shadow: 0 0 0 4px rgba(255, 77, 41, 0.2); /* Hiệu ứng tỏa sáng nhẹ */
+                box-shadow: 0 0 0 4px rgba(255, 77, 41, 0.2); 
             }
             .active-dot::after {
                 content: ''; position: absolute;
@@ -237,20 +232,20 @@
                 width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
             }
 
-            /* Cột 3: Công ty */
             .exp-center { display: flex; flex-direction: column; padding-top: 5px; }
             .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
 
-            /* Cột 4: Mô tả (Tràn sang phải kịch khung) */
+            /* Cột 4: Mô tả - Căn đều 2 bên để sát cạnh phải */
             .exp-right { padding-top: 5px; }
             .timeline-desc { 
                 margin-top: 0; 
                 font-size: 1.05rem; 
                 color: var(--text-sub); 
                 line-height: 1.6; 
-                text-align: left;
-                max-width: 100%; /* Đảm bảo full width */
+                /* SỬA LỖI: Căn đều để mép phải thẳng tăm tắp */
+                text-align: justify; 
+                max-width: 100%; 
             }
         }
 
