@@ -21,7 +21,7 @@
             --text-main: #111111;
             --text-sub: #666666;
             --border: #e5e5e5;
-            --accent: #ff4d29;
+            --accent: #ff4d29; /* Màu cam chủ đạo */
             --sidebar-width: 280px;
             --header-height-mobile: 70px; 
         }
@@ -114,12 +114,38 @@
         .section-title { font-size: 2.5rem; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; letter-spacing: -0.5px; margin: 0; line-height: 1; }
         .section-number { font-size: 1.2rem; color: var(--accent); font-weight: 600; }
 
-        /* --- ABOUT SECTION V72 (BIGGER LOGOS & COLOR) --- */
+        /* --- ABOUT SECTION V73 (CSS Circles & Logo Fixes) --- */
         #about { position: relative; }
         
         .about-layout { display: flex; gap: 100px; align-items: flex-start; position: relative; z-index: 2; }
-        .about-visual { flex: 0 0 320px; display: flex; justify-content: center; }
-        .about-visual img { width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.08)); position: sticky; top: 100px; }
+        
+        /* V73: CSS Art Circles (Thay thế ảnh) */
+        .about-visual { 
+            flex: 0 0 320px; 
+            height: 320px; /* Chiều cao cố định cho khung chứa */
+            position: relative; /* Để các hình tròn con định vị tuyệt đối */
+        }
+        .art-shape { position: absolute; border-radius: 50%; }
+        .shape-orange {
+            width: 240px; height: 240px;
+            background: var(--accent); /* Màu cam */
+            top: 0; left: 0;
+            z-index: 1; opacity: 0.9;
+        }
+        .shape-black {
+            width: 240px; height: 240px;
+            background: #222; /* Màu đen */
+            bottom: 0; right: 0;
+            z-index: 2;
+            mix-blend-mode: multiply; /* Hiệu ứng chồng màu */
+        }
+        body.dark-mode .shape-black {
+            background: #444; /* Màu xám ở chế độ tối cho dễ nhìn */
+            mix-blend-mode: normal;
+            border: 4px solid var(--bg-body); /* Viền để tách biệt */
+        }
+
+
         .about-content { flex: 1; }
         .about-desc { font-size: 1.1rem; line-height: 1.8; color: var(--text-sub); margin-bottom: 40px; max-width: 100%; }
         
@@ -140,20 +166,13 @@
         body.dark-mode .pill-tag { background: #1a1a1a; }
         .pill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
 
-        /* --- PARTNER LOGO GRID V72 --- */
-        .partner-wrapper {
-            margin-top: 10px;
-        }
-        
-        /* FIX: Tăng khoảng cách chữ Đối tác và Logo */
-        .partner-header {
-            margin-bottom: 25px; /* Đẩy chữ "Đối tác" lên cao khỏi lưới logo */
-        }
+        /* --- PARTNER LOGO GRID V73 --- */
+        .partner-wrapper { margin-top: 10px; }
+        .partner-header { margin-bottom: 25px; }
 
         .partner-grid {
             display: grid;
-            /* PC: 5 cột cho thoáng, logo to */
-            grid-template-columns: repeat(5, 1fr); 
+            grid-template-columns: repeat(5, 1fr); /* PC: 5 cột */
             gap: 20px;
             align-items: center;
             justify-items: center;
@@ -161,14 +180,15 @@
         
         .partner-item {
             width: 100%;
-            height: 100px; /* Tăng chiều cao ô chứa logo lên 100px */
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg-body); /* Nền trắng cho sạch logo */
+            background: var(--bg-body);
             border-radius: 12px;
             border: 1px solid var(--border);
-            padding: 15px; /* Padding trong để logo không dính viền */
+            /* FIX V73: Tăng padding để tránh logo sát viền khi popup */
+            padding: 22px; 
             transition: all 0.3s ease;
             cursor: pointer;
         }
@@ -176,27 +196,32 @@
         .partner-logo {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* Đảm bảo logo luôn hiển thị trọn vẹn */
-            /* FIX: Bỏ filter grayscale -> Hiện màu luôn */
+            object-fit: contain;
             filter: none; 
             opacity: 1;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        
-        /* Darkmode chỉnh nền logo để dễ nhìn */
-        body.dark-mode .partner-item { background: #1a1a1a; }
-        body.dark-mode .partner-logo { filter: brightness(0) invert(1); } /* Logo trắng trên nền đen */
-        body.dark-mode .partner-item:hover .partner-logo { filter: none; } /* Hover hiện màu */
 
-        /* FIX: Hiệu ứng Popup khi di chuột */
+        /* FIX V73: Phóng to các logo bị bé (IMAP, Junior) */
+        .partner-logo.logo-imap { transform: scale(1.3); }
+        .partner-logo.logo-junior { transform: scale(1.4); }
+        
+        body.dark-mode .partner-item { background: #1a1a1a; }
+        body.dark-mode .partner-logo { filter: brightness(0) invert(1); }
+        body.dark-mode .partner-item:hover .partner-logo { filter: none; }
+
         .partner-item:hover {
             border-color: var(--accent);
             box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             transform: translateY(-5px);
         }
         .partner-item:hover .partner-logo {
-            transform: scale(1.15); /* Phóng to logo 15% */
+            transform: scale(1.15); /* Popup mặc định */
         }
+        /* FIX V73: Popup lớn hơn cho các logo bé */
+        .partner-item:hover .partner-logo.logo-imap { transform: scale(1.45); }
+        .partner-item:hover .partner-logo.logo-junior { transform: scale(1.55); }
+
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
         .skill-item { background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
@@ -292,13 +317,17 @@
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             
             .about-layout { flex-direction: column; gap: 30px; margin-top: 40px; }
-            .about-visual { flex: 0 0 auto; width: 100%; margin-bottom: 20px; }
-            .about-visual img { max-width: 250px; position: static; }
+            /* V73 Mobile Art Circles */
+            .about-visual { height: 250px; width: 100%; }
+            .shape-orange { width: 180px; height: 180px; }
+            .shape-black { width: 180px; height: 180px; }
+
             .about-stats { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             .badge-row { justify-content: center; }
             
             /* Partner Grid Mobile: 3 columns */
-            .partner-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; } 
+            .partner-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
+            .partner-item { height: 80px; padding: 15px; } /* Giảm padding trên mobile */
             
             section { padding: 40px 20px; }
             .section-header { margin-bottom: 20px; padding-bottom: 15px; }
@@ -407,7 +436,8 @@
 
             <div class="about-layout">
                 <div class="about-visual" data-aos="fade-right">
-                    <img src="image_99815a.png" alt="Artistic Shape">
+                    <div class="art-shape shape-orange"></div>
+                    <div class="art-shape shape-black"></div>
                 </div>
 
                 <div class="about-content" data-aos="fade-left">
@@ -444,23 +474,23 @@
                         <span class="badge-label partner-header"><i class="fas fa-handshake"></i> Đối tác:</span>
                         
                         <div class="partner-grid">
-                            <div class="partner-item"><img src="logo-mbank.png" alt="MB Bank" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-bidv.png" alt="BIDV" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-vietcombank.png" alt="Vietcombank" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-kienlongbank.png" alt="KienlongBank" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-vtv.png" alt="VTV" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-mbank.png" alt="MB Bank" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-vietcombank.png" alt="Vietcombank" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-bidv.png" alt="BIDV" class="partner-logo"></div>
                             
+                            <div class="partner-item"><img src="logo-vtv.png" alt="VTV" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-vtv7.png" alt="VTV7" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-CafeBiz.png" alt="CafeBiz" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-tentun.png" alt="Ten Tun" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-tgmedia.png" alt="TGMedia" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-gapowork@4x.png" alt="GapoWork" class="partner-logo"></div>
 
-                            <div class="partner-item"><img src="logo-imap.png" alt="IMAP" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-imap.png" alt="IMAP" class="partner-logo logo-imap"></div>
                             <div class="partner-item"><img src="logo-ieltsfighter@4x.png" alt="IELTS Fighter" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-mshoatoeic.png" alt="Ms Hoa TOEIC" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-Ms Hoa Junior.png" alt="Ms Hoa Junior" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-Ms Hoa Junior.png" alt="Ms Hoa Junior" class="partner-logo logo-junior"></div>
                             
                             <div class="partner-item"><img src="logo mhgt.png" alt="Ms Hoa GT" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-hvtc.png" alt="HVTC" class="partner-logo"></div>
