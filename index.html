@@ -21,7 +21,7 @@
             --text-main: #111111;
             --text-sub: #666666;
             --border: #e5e5e5;
-            --accent: #ff4d29; /* Màu cam chủ đạo */
+            --accent: #ff4d29;
             --sidebar-width: 280px;
             --header-height-mobile: 70px; 
         }
@@ -44,7 +44,7 @@
             transition: 0.3s;
         }
 
-        h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name {
+        h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name, .visual-signature {
             font-family: 'Bricolage Grotesque', sans-serif !important;
         }
 
@@ -114,44 +114,55 @@
         .section-title { font-size: 2.5rem; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; letter-spacing: -0.5px; margin: 0; line-height: 1; }
         .section-number { font-size: 1.2rem; color: var(--accent); font-weight: 600; }
 
-        /* --- ABOUT SECTION V73 (CSS Circles & Logo Fixes) --- */
+        /* --- ABOUT SECTION V74 (BIGGER TEXT & FILLED LEFT COLUMN) --- */
         #about { position: relative; }
         
-        .about-layout { display: flex; gap: 100px; align-items: flex-start; position: relative; z-index: 2; }
+        .about-layout { display: flex; gap: 100px; align-items: stretch; position: relative; z-index: 2; }
         
-        /* V73: CSS Art Circles (Thay thế ảnh) */
+        /* V74: Left Visual - Structured to fill space */
         .about-visual { 
             flex: 0 0 320px; 
-            height: 320px; /* Chiều cao cố định cho khung chứa */
-            position: relative; /* Để các hình tròn con định vị tuyệt đối */
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-start;
+            position: relative;
+        }
+        
+        /* Container for circles */
+        .visual-circles-container {
+             width: 320px; height: 320px; position: relative; flex-shrink: 0;
         }
         .art-shape { position: absolute; border-radius: 50%; }
-        .shape-orange {
-            width: 240px; height: 240px;
-            background: var(--accent); /* Màu cam */
-            top: 0; left: 0;
-            z-index: 1; opacity: 0.9;
+        .shape-orange { width: 240px; height: 240px; background: var(--accent); top: 0; left: 0; z-index: 1; opacity: 0.9; }
+        .shape-black { width: 240px; height: 240px; background: #222; bottom: 0; right: 0; z-index: 2; mix-blend-mode: multiply; }
+        body.dark-mode .shape-black { background: #444; mix-blend-mode: normal; border: 4px solid var(--bg-body); }
+
+        /* V74: Filler Elements for Left Column */
+        .visual-connector {
+            flex-grow: 1; /* Lấp đầy khoảng trống */
+            width: 2px;
+            background: linear-gradient(to bottom, var(--border) 0%, transparent 100%);
+            margin: 30px 0;
+            opacity: 0.6;
         }
-        .shape-black {
-            width: 240px; height: 240px;
-            background: #222; /* Màu đen */
-            bottom: 0; right: 0;
-            z-index: 2;
-            mix-blend-mode: multiply; /* Hiệu ứng chồng màu */
-        }
-        body.dark-mode .shape-black {
-            background: #444; /* Màu xám ở chế độ tối cho dễ nhìn */
-            mix-blend-mode: normal;
-            border: 4px solid var(--bg-body); /* Viền để tách biệt */
+        .visual-signature {
+            font-size: 1.5rem; font-weight: 900; color: var(--text-sub);
+            opacity: 0.5; letter-spacing: -1px;
         }
 
 
-        .about-content { flex: 1; }
-        .about-desc { font-size: 1.1rem; line-height: 1.8; color: var(--text-sub); margin-bottom: 40px; max-width: 100%; }
+        /* V74: Bigger Text */
+        .about-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .about-desc { 
+            font-size: 1.25rem; /* Increased from 1.1rem */
+            line-height: 1.9;   /* Increased line-height for balance */
+            color: var(--text-sub); margin-bottom: 50px; max-width: 100%; 
+        }
         
-        .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px; }
-        .stat-item h3 { font-size: 3rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px; line-height: 1; letter-spacing: -1px; }
-        .stat-item p { font-size: 1rem; color: var(--text-sub); font-weight: 500; }
+        .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 50px; }
+        .stat-item h3 { font-size: 3.5rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px; line-height: 1; letter-spacing: -2px; }
+        .stat-item p { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; }
         
         .about-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 40px; }
 
@@ -166,59 +177,44 @@
         body.dark-mode .pill-tag { background: #1a1a1a; }
         .pill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
 
-        /* --- PARTNER LOGO GRID V73 --- */
+        /* --- PARTNER LOGO GRID V74 (DARK MODE COLORS POP) --- */
         .partner-wrapper { margin-top: 10px; }
         .partner-header { margin-bottom: 25px; }
 
         .partner-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr); /* PC: 5 cột */
-            gap: 20px;
-            align-items: center;
-            justify-items: center;
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+            align-items: center; justify-items: center;
         }
-        
         .partner-item {
-            width: 100%;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-body);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            /* FIX V73: Tăng padding để tránh logo sát viền khi popup */
-            padding: 22px; 
-            transition: all 0.3s ease;
-            cursor: pointer;
+            width: 100%; height: 100px; display: flex; align-items: center; justify-content: center;
+            background: var(--bg-body); border-radius: 12px; border: 1px solid var(--border);
+            padding: 22px; transition: all 0.3s ease; cursor: pointer;
         }
         
         .partner-logo {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            filter: none; 
-            opacity: 1;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 100%; max-height: 100%; object-fit: contain;
+            filter: none; opacity: 1;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
         }
 
-        /* FIX V73: Phóng to các logo bị bé (IMAP, Junior) */
         .partner-logo.logo-imap { transform: scale(1.3); }
         .partner-logo.logo-junior { transform: scale(1.4); }
         
+        /* V74: Dark Mode Logo Pop (Keep colors, boost brightness & glow) */
         body.dark-mode .partner-item { background: #1a1a1a; }
-        body.dark-mode .partner-logo { filter: brightness(0) invert(1); }
-        body.dark-mode .partner-item:hover .partner-logo { filter: none; }
+        body.dark-mode .partner-logo { 
+            filter: brightness(1.2) drop-shadow(0 0 2px rgba(255,255,255,0.2)); /* Tăng sáng nhẹ và tạo glow */
+        }
+        body.dark-mode .partner-item:hover .partner-logo {
+             filter: brightness(1.3) drop-shadow(0 0 4px rgba(255,255,255,0.4)); /* Hover sáng hơn */
+        }
+
 
         .partner-item:hover {
-            border-color: var(--accent);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-color: var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             transform: translateY(-5px);
         }
-        .partner-item:hover .partner-logo {
-            transform: scale(1.15); /* Popup mặc định */
-        }
-        /* FIX V73: Popup lớn hơn cho các logo bé */
+        .partner-item:hover .partner-logo { transform: scale(1.15); }
         .partner-item:hover .partner-logo.logo-imap { transform: scale(1.45); }
         .partner-item:hover .partner-logo.logo-junior { transform: scale(1.55); }
 
@@ -309,7 +305,7 @@
             .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
             
-            /* V72 Mobile Adjustments */
+            /* V74 Mobile Adjustments */
             .hero { flex-direction: column-reverse; padding: 40px 25px; text-align: center; height: auto; }
             .hero-text { padding-right: 0; margin-top: 30px; }
             .hero h1 { font-size: 2.5rem; }
@@ -317,17 +313,21 @@
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             
             .about-layout { flex-direction: column; gap: 30px; margin-top: 40px; }
-            /* V73 Mobile Art Circles */
-            .about-visual { height: 250px; width: 100%; }
-            .shape-orange { width: 180px; height: 180px; }
-            .shape-black { width: 180px; height: 180px; }
+            /* V74 Mobile Visual */
+            .about-visual { height: auto; width: 100%; align-items: center; margin-bottom: 30px; }
+            .visual-circles-container { width: 260px; height: 260px; margin-bottom: 20px; }
+            .shape-orange, .shape-black { width: 200px; height: 200px; }
+            .visual-connector { display: none; } /* Hide connector on mobile */
+            
+            .about-desc { font-size: 1.1rem; }
+            .stat-item h3 { font-size: 2.8rem; }
 
             .about-stats { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             .badge-row { justify-content: center; }
             
             /* Partner Grid Mobile: 3 columns */
             .partner-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
-            .partner-item { height: 80px; padding: 15px; } /* Giảm padding trên mobile */
+            .partner-item { height: 80px; padding: 15px; }
             
             section { padding: 40px 20px; }
             .section-header { margin-bottom: 20px; padding-bottom: 15px; }
@@ -436,8 +436,12 @@
 
             <div class="about-layout">
                 <div class="about-visual" data-aos="fade-right">
-                    <div class="art-shape shape-orange"></div>
-                    <div class="art-shape shape-black"></div>
+                    <div class="visual-circles-container">
+                        <div class="art-shape shape-orange"></div>
+                        <div class="art-shape shape-black"></div>
+                    </div>
+                    <div class="visual-connector"></div>
+                    <div class="visual-signature">Minh Ngo.</div>
                 </div>
 
                 <div class="about-content" data-aos="fade-left">
