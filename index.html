@@ -106,7 +106,8 @@
         .intro-para-mobile { 
             color: var(--text-sub); max-width: 600px; margin: 20px 0; 
             line-height: 1.6; font-size: 1.1rem;
-            text-align: justify; text-justify: inter-word; /* Căn đều */
+            /* FIX V79: Justify */
+            text-align: justify; text-justify: inter-word;
         }
 
         .hero-btn { display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 30px; box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); transition: all 0.4s; }
@@ -120,7 +121,7 @@
         .section-title { font-size: 2.5rem; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; letter-spacing: -0.5px; margin: 0; line-height: 1; }
         .section-number { font-size: 1.2rem; color: var(--accent); font-weight: 600; }
 
-        /* --- ABOUT SECTION V79 --- */
+        /* --- ABOUT SECTION --- */
         #about { position: relative; }
         
         .about-layout { display: flex; gap: 100px; align-items: stretch; position: relative; z-index: 2; }
@@ -166,6 +167,7 @@
         .about-desc { 
             font-size: 1.25rem; line-height: 1.9;
             color: var(--text-sub); margin-bottom: 50px; max-width: 100%; 
+            /* FIX V79: Justify */
             text-align: justify; text-justify: inter-word;
         }
         
@@ -182,12 +184,7 @@
         }
         .badge-label i { background: var(--accent); color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 0.9rem; }
         
-        .pill-tag { 
-            background: var(--bg-body); color: var(--text-sub); 
-            padding: 10px 25px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; 
-            border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            transition: 0.3s; display: inline-block; cursor: default; white-space: nowrap; 
-        }
+        .pill-tag { background: var(--bg-body); color: var(--text-sub); padding: 10px 25px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; display: inline-block; cursor: default; white-space: nowrap; }
         body.dark-mode .pill-tag { background: #1a1a1a; }
         .pill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
 
@@ -252,6 +249,8 @@
             .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
             .exp-right { padding-top: 2px; width: 100%; padding-left: 10px; }
+            
+            /* FIX V79: JUSTIFY TEXT PC */
             .timeline-desc { 
                 margin: 0; font-size: 1.05rem; 
                 color: var(--text-sub); line-height: 1.6; 
@@ -266,6 +265,8 @@
             .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
             .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
             .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
+            
+            /* FIX V79: JUSTIFY TEXT MOBILE */
             .timeline-desc { 
                 font-size: 0.95rem; color: var(--text-sub); line-height: 1.6;
                 text-align: justify; text-justify: inter-word;
@@ -338,13 +339,27 @@
             .shape-orange, .shape-black { width: 200px; height: 200px; }
             
             .visual-connector { display: none; }
-            .visual-badge-wrapper { margin-top: -30px; }
+            
+            /* FIX V79: INCREASE DISTANCE FOR BADGE MOBILE */
+            .visual-badge-wrapper { margin-top: 30px; } 
 
             .about-desc { font-size: 1.1rem; text-align: justify; text-justify: inter-word; }
             .stat-item h3 { font-size: 2.8rem; }
 
             .about-stats { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-            .badge-row { justify-content: center; }
+            
+            /* FIX V79: MOBILE BADGE STACK */
+            .badge-row { 
+                flex-direction: column; /* Xếp dọc */
+                align-items: center;
+                gap: 15px; 
+            }
+            .badge-row > div {
+                display: flex; flex-direction: column; gap: 10px; /* Tiếng Việt trên, Anh dưới */
+                width: 100%;
+                align-items: center;
+            }
+            .pill-tag { width: auto; min-width: 150px; text-align: center; }
             
             .partner-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
             .partner-item { height: 80px; padding: 15px; }
@@ -358,8 +373,7 @@
 
         /* FIX V78: MOBILE TITLE 1 LINE */
         @media (max-width: 480px) {
-            .section-title { font-size: 1.6rem !important; white-space: nowrap; }
-            .pill-tag { font-size: 0.8rem; padding: 8px 15px; }
+            .section-title { font-size: 1.5rem !important; white-space: nowrap; }
         }
     </style>
 </head>
@@ -490,15 +504,15 @@
                     </p>
 
                     <div class="about-stats">
-                        <div class="stat-item">
+                        <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
                             <h3>05</h3>
                             <p>Năm kinh nghiệm</p>
                         </div>
-                        <div class="stat-item">
+                        <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
                             <h3>365+</h3>
                             <p>Khách hàng hài lòng</p>
                         </div>
-                        <div class="stat-item">
+                        <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
                             <h3>500+</h3>
                             <p>Dự án hoàn thành</p>
                         </div>
@@ -506,7 +520,7 @@
 
                     <div class="about-divider"></div>
 
-                    <div class="badge-row">
+                    <div class="badge-row" data-aos="fade-up" data-aos-delay="400">
                         <span class="badge-label"><i class="fas fa-globe"></i> Ngôn ngữ:</span>
                         <div style="display: flex; gap: 10px;">
                             <span class="pill-tag">Tiếng Việt (Native)</span>
@@ -607,7 +621,7 @@
                         <span class="exp-type-pc">Full-time</span>
                     </div>
                     <div class="exp-right">
-                        <p class="timeline-desc">• Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>• Quay dựng chương trình "Super Junior" kết hợp VTV7.</p>
+                        <p class="timeline-desc">• Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>• Quay dựng chương trình "Super Junior" kết hợp&nbsp;VTV7.</p>
                     </div>
                 </div>
 
@@ -624,7 +638,7 @@
                         <span class="exp-type-pc">Part-time</span>
                     </div>
                     <div class="exp-right">
-                        <p class="timeline-desc">• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity & Spine.</p>
+                        <p class="timeline-desc">• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity &amp; Spine.</p>
                     </div>
                 </div>
 
