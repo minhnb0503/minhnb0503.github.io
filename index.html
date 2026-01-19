@@ -114,7 +114,7 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V52: BALANCED SPACING) --- */
+        /* --- 4. EXPERIENCE CSS (V53: RESTORED ALIGNMENT & BALANCED SPACING) --- */
         
         /* [Mobile] */
         .timeline-item { display: block; padding: 30px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
@@ -136,12 +136,12 @@
                 width: 100%; position: relative;
             }
 
-            /* DÂY NỐI: Đặt ở vị trí 180 (Cột 1) + 30 (1/2 Cột 2) = 210px */
+            /* DÂY NỐI: Khôi phục vị trí chuẩn 320px */
             .animated-timeline-line {
                 display: block;
                 position: absolute;
                 top: 20px; 
-                left: 210px; /* Vị trí CHUẨN XÁC */
+                left: 320px; /* Vị trí tâm chuẩn */
                 width: 2px;
                 background: #e0e0e0; 
                 height: 100%; 
@@ -158,9 +158,8 @@
 
             .timeline-item {
                 display: grid; 
-                /* GRID CÂN ĐỐI: 180px | 60px | 220px | 1fr */
-                /* Cột Năm nhỏ lại để gần dây hơn */
-                grid-template-columns: 180px 60px 220px 1fr; 
+                /* Khôi phục Grid chuẩn rộng rãi */
+                grid-template-columns: 280px 80px 250px 1fr; 
                 gap: 0; 
                 padding-bottom: 60px; 
                 background: transparent; 
@@ -171,8 +170,11 @@
                 position: relative;
             }
 
-            /* Cột 1: Năm */
-            .exp-left { text-align: left; /* Để mặc định sát lề trái cột */ } 
+            /* Cột 1: Năm - Điều chỉnh padding để cân đối */
+            .exp-left { 
+                text-align: left; 
+                padding-right: 20px; /* 20px padding + 40px (nửa cột visual) = 60px khoảng cách */
+            } 
             .timeline-year { 
                 font-size: 2.2rem; color: var(--text-main); font-weight: 800; 
                 margin-bottom: 5px; line-height: 1; white-space: nowrap; 
@@ -202,11 +204,11 @@
                 width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
             }
 
-            /* Cột 3: Công ty - THÊM PADDING ĐỂ CÂN BẰNG KHOẢNG CÁCH */
+            /* Cột 3: Công ty - Padding để cân đối */
             .exp-center { 
                 display: flex; flex-direction: column; 
                 padding-top: 2px; 
-                padding-left: 25px; /* Đẩy chữ ra xa dây 1 chút cho cân với bên trái */
+                padding-left: 20px; /* 20px padding + 40px (nửa cột visual) = 60px khoảng cách */
             }
             .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
