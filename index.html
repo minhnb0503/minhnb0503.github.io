@@ -111,18 +111,17 @@
 
         section { padding: 80px; border-bottom: 1px solid var(--border); }
         
-        /* HEADER CỦA TỪNG PHẦN (CÓ SỐ THỨ TỰ) */
+        /* HEADER SECTION */
         .section-header {
             display: flex; justify-content: space-between; align-items: flex-end;
             border-bottom: 1px solid var(--border);
-            padding-bottom: 20px; margin-bottom: 40px;
+            padding-bottom: 20px; margin-bottom: 60px; /* Tăng margin bottom */
             width: 100%;
         }
         .section-title { 
             font-size: 2.5rem; color: var(--text-main); 
             border-left: 5px solid var(--accent); padding-left: 20px; 
-            font-weight: 800; letter-spacing: -0.5px;
-            margin: 0; line-height: 1;
+            font-weight: 800; letter-spacing: -0.5px; margin: 0; line-height: 1;
         }
         .section-number {
             font-size: 1.2rem; color: var(--accent); font-weight: 600;
@@ -134,9 +133,9 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V45: FIXED ALIGNMENT & THROUGH LINE) --- */
+        /* --- 4. EXPERIENCE CSS (V46: PIXEL PERFECT FIX) --- */
         
-        /* [Mobile] Card Style */
+        /* [Mobile Style] */
         .timeline-item {
             display: block; 
             padding: 30px; 
@@ -152,90 +151,85 @@
         .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
         .timeline-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
 
-        /* [PC] Layout Mới (Rewrite) */
+        /* [PC Style] */
         @media (min-width: 993px) {
             #experience {
-                /* Đảm bảo container full width */
-                width: 100%;
-                padding-left: 60px; /* Căn chỉnh lại lề section */
-                padding-right: 60px;
+                /* Quan trọng: Padding để căn lề chuẩn với header */
+                padding-left: 80px; 
+                padding-right: 80px; 
             }
 
             .timeline-container {
-                width: 100%; 
-                position: relative; /* Để đặt dây nối */
-                margin-top: 40px;
+                width: 100%; position: relative;
             }
 
-            /* Dây nối Hoạt hình - Đặt chính xác vào tâm cột visual */
+            /* DÂY NỐI (ĐẶT CHÍNH XÁC VÀO TÂM CỘT VISUAL) */
             .animated-timeline-line {
                 display: block;
                 position: absolute;
-                top: 15px; /* Bắt đầu từ tâm chấm đầu tiên */
-                /* Tính toán vị trí: 
-                   Cột 1 (220px) + Gap (0) + 1/2 Cột 2 (30px) = 250px 
+                top: 20px; /* Bắt đầu từ tâm chấm đầu tiên */
+                
+                /* TÍNH TOÁN VỊ TRÍ:
+                   Cột 1 (180px) + Gap (30px) + 1/2 Cột Visual (60px/2 = 30px)
+                   = 180 + 30 + 30 = 240px
                 */
-                left: 250px; 
+                left: 240px; 
                 width: 2px;
-                background: #e5e5e5; /* Màu xám nhạt nền */
+                background: #e0e0e0; /* Màu xám nhạt nền */
                 height: 100%; 
                 z-index: 0; /* Nằm dưới chấm */
                 transform: translateX(-50%);
             }
             
-            /* Lớp phủ màu cam chạy đè lên */
+            /* Dây màu cam chạy đè lên */
             .line-progress {
                 position: absolute; top: 0; left: 0; width: 100%; 
                 background: var(--accent); height: 0;
                 transition: height 1.5s ease-out;
             }
-            
-            /* Kích hoạt animation khi cuộn tới */
-            [data-aos="line-grow"].aos-animate .line-progress {
-                height: 100%;
-            }
+            [data-aos="line-grow"].aos-animate .line-progress { height: 100%; }
 
             .timeline-item {
                 display: grid; 
-                /* GRID CHUẨN: 
-                   220px (Năm/Role) | 60px (Visual) | 220px (Company) | 1fr (Description - Lấy hết phần còn lại) 
-                */
-                grid-template-columns: 220px 60px 220px 1fr; 
-                gap: 20px; 
-                padding-bottom: 60px; 
+                /* GRID MỚI: 180px | 60px | 220px | 1fr (Tự động chiếm hết phần còn lại) */
+                grid-template-columns: 180px 60px 220px 1fr; 
+                gap: 30px; 
+                padding-bottom: 60px; /* Khoảng cách giữa các mục */
                 background: transparent; 
-                border: none; 
+                border: none; /* BỎ HOÀN TOÀN VIỀN */
                 border-radius: 0; 
                 margin: 0;
                 align-items: flex-start;
+                position: relative;
             }
 
-            /* Cột 1: Năm (Không xuống dòng) */
-            .exp-left { text-align: left; padding-top: 0; }
+            /* Cột 1: Năm */
+            .exp-left { text-align: left; }
             .timeline-year { 
-                font-size: 2rem; color: var(--text-main); font-weight: 800; 
+                font-size: 2.2rem; color: var(--text-main); font-weight: 800; 
                 margin-bottom: 5px; line-height: 1; white-space: nowrap; 
             }
-            .timeline-role { font-size: 1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
+            .timeline-role { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
 
             /* Cột 2: Visual (Chấm tròn) */
             .exp-visual { 
-                display: flex; justify-content: center; align-items: flex-start;
-                height: 100%; z-index: 2; /* Đè lên dây */
+                display: flex; justify-content: center; 
+                position: relative; height: 100%; z-index: 2;
             }
             
             .exp-dot {
                 width: 14px; height: 14px; border-radius: 50%;
                 border: 2px solid #ccc; background: var(--bg-body);
-                margin-top: 8px; /* Căn giữa với dòng chữ năm */
+                margin-top: 12px; /* Căn ngang với chữ năm 2024 */
                 transition: 0.3s;
             }
             
             .active-dot {
                 border-color: var(--accent);
                 position: relative;
+                box-shadow: 0 0 0 4px rgba(255, 77, 41, 0.2); 
             }
-            /* Lõi cam bên trong chấm */
+            /* Lõi cam */
             .active-dot::after {
                 content: ''; position: absolute;
                 top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -243,19 +237,19 @@
             }
 
             /* Cột 3: Công ty */
-            .exp-center { display: flex; flex-direction: column; }
-            .timeline-company { font-size: 1.1rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
-            .exp-type-pc { display: block; font-size: 0.9rem; color: var(--text-sub); font-weight: 500; }
+            .exp-center { display: flex; flex-direction: column; padding-top: 5px; }
+            .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
+            .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
 
-            /* Cột 4: Mô tả (TRÀN VIỀN) */
-            .exp-right { width: 100%; }
+            /* Cột 4: Mô tả - QUAN TRỌNG: WIDTH 100% ĐỂ TRÀN SANG PHẢI */
+            .exp-right { padding-top: 5px; width: 100%; }
             .timeline-desc { 
                 margin: 0; 
-                font-size: 1rem; 
+                font-size: 1.05rem; 
                 color: var(--text-sub); 
                 line-height: 1.6; 
-                text-align: left; 
-                width: 100%; /* Đảm bảo chiếm hết 1fr */
+                text-align: left;
+                width: 100%; /* Ép chiếm hết không gian còn lại */
             }
         }
 
@@ -317,6 +311,8 @@
             .hero h1 { font-size: 2.5rem; }
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             section { padding: 40px 20px; }
+            
+            /* Mobile Timeline (Card Style) */
             .section-header { margin-bottom: 20px; padding-bottom: 15px; }
             .section-title { font-size: 2rem; padding-left: 15px; }
             .section-number { font-size: 1rem; }
