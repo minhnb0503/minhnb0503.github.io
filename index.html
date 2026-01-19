@@ -100,40 +100,49 @@
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; background: radial-gradient(circle at 70% 30%, var(--bg-block) 0%, var(--bg-body) 70%); overflow: hidden; }
         
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
+        
+        /* FIX: Tách "Portfolio 2026" ra xa tên */
+        .portfolio-label { 
+            color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; 
+            margin-bottom: 15px; display: block; 
+        }
+
         .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
         
-        /* NEW: INFO BADGES (STYLE NHƯ ẢNH MẪU) */
+        /* FIX: INFO BADGES SEPARATE BOX (Ô RIÊNG) */
         .info-badges {
-            margin: 30px 0;
+            margin-top: 40px; /* Cách xa đoạn intro */
+            padding-top: 30px; /* Đệm bên trong */
+            border-top: 1px solid var(--border); /* Đường kẻ ngăn cách */
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
         .badge-group {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 15px;
         }
         .badge-label {
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-main);
             margin-right: 5px;
-            font-size: 0.95rem;
-            display: flex; align-items: center; gap: 5px;
+            font-size: 1rem;
+            display: flex; align-items: center; gap: 8px;
+            min-width: 100px;
         }
         .badge-label i { color: var(--accent); }
         
-        /* Pill Tag Style */
         .pill-tag {
             background: var(--bg-body);
             color: var(--text-sub);
-            padding: 8px 18px; /* Padding rộng hơn chút cho giống pill */
+            padding: 8px 20px;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 600;
             border: 1px solid var(--border);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03); /* Đổ bóng nhẹ */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
             transition: 0.3s;
             display: inline-block;
             cursor: default;
@@ -145,7 +154,7 @@
             box-shadow: 0 5px 15px rgba(255, 77, 41, 0.15);
         }
 
-        .hero-btn { display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 15px; box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); transition: all 0.4s; }
+        .hero-btn { display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 30px; box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); transition: all 0.4s; }
         .hero-btn:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 20px 30px rgba(255, 77, 41, 0.5); }
         .hero-image-box { flex: 1; display: flex; justify-content: center; align-items: center; }
         .hero-image-box img { max-width: 100%; height: auto; object-fit: contain; filter: drop-shadow(20px 20px 40px rgba(0,0,0,0.15)); }
@@ -161,8 +170,7 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V64 - PERFECT ALIGNMENT RETAINED) --- */
-        
+        /* --- 4. EXPERIENCE CSS (V65 - V60 PRESERVED) --- */
         /* Mobile */
         .timeline-item { display: block; padding: 30px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
         .exp-visual, .exp-type-pc, .animated-timeline-line { display: none; }
@@ -241,13 +249,14 @@
             .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
             
-            /* V64 Mobile Adjustments */
+            /* V65 Mobile Adjustments */
             .hero { flex-direction: column-reverse; padding: 40px 25px; text-align: center; height: auto; }
             .hero-text { padding-right: 0; margin-top: 30px; }
             .hero h1 { font-size: 2.5rem; }
             .intro-para-mobile { text-align: left; margin-bottom: 30px; }
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
-            .info-badges { align-items: flex-start; /* Căn trái cho mobile dễ đọc */ } 
+            .info-badges { align-items: flex-start; margin-top: 30px; } 
+            .badge-group { justify-content: flex-start; }
             
             section { padding: 40px 20px; }
             .section-header { margin-bottom: 20px; padding-bottom: 15px; }
@@ -339,7 +348,7 @@
         
         <section id="home" class="hero">
             <div class="hero-text">
-                <p data-aos="fade-down" data-aos-delay="0" style="color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">Portfolio 2026</p>
+                <p class="portfolio-label" data-aos="fade-down" data-aos-delay="0">Portfolio 2026</p>
                 
                 <h1 data-aos="fade-right" data-aos-delay="200">NGÔ BÌNH MINH<br><span style="font-size: 0.5em; color: var(--text-sub); font-weight: 400;">Freelance Video Editor</span></h1>
                 
