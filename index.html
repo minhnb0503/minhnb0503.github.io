@@ -48,7 +48,7 @@
             font-family: 'Bricolage Grotesque', sans-serif !important;
         }
 
-        /* --- 2. SIDEBAR (PC V51: COLORED & BALANCED ICONS) --- */
+        /* --- 2. SIDEBAR --- */
         .sidebar {
             position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
             background: var(--bg-body); padding: 40px 30px;
@@ -64,65 +64,34 @@
         .mobile-header-wrapper { display: none; }
         .menu-overlay { display: none; }
 
-        .profile-img { 
-            width: 100px; height: 100px; border-radius: 50%; object-fit: cover; 
-            margin-bottom: 20px; border: 3px solid var(--accent); padding: 3px; background: var(--bg-body);
-        }
-
+        .profile-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid var(--accent); padding: 3px; background: var(--bg-body); }
+        
         .nav-links { 
             display: flex; flex-direction: column; justify-content: center;
             gap: 15px; flex-grow: 1; padding: 20px 0;
         }
-        .nav-links a { 
-            color: var(--text-sub); text-decoration: none; font-size: 1rem; font-weight: 600; 
-            transition: 0.3s; padding: 10px 15px; border-radius: 8px;
-        }
-        .nav-links a:hover, .nav-links a.active { 
-            background: rgba(255, 77, 41, 0.1); color: var(--accent); transform: translateX(5px); 
-        }
-        
+        .nav-links a { color: var(--text-sub); text-decoration: none; font-size: 1rem; font-weight: 600; transition: 0.3s; padding: 10px 15px; border-radius: 8px; }
+        .nav-links a:hover, .nav-links a.active { background: rgba(255, 77, 41, 0.1); color: var(--accent); transform: translateX(5px); }
         .contact-mini { font-size: 0.85rem; color: var(--text-sub); margin-top: 20px; }
         
-        /* BOTTOM AREA - NEW ICONS LAYOUT */
         .sidebar-bottom { margin-top: auto; display: flex; flex-direction: column; align-items: center; }
-
-        /* Container cho các hàng icon */
-        .social-icons-container {
-            display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; width: 100%;
-        }
-        /* Hàng chứa icon: Căn giữa */
-        .social-row-4, .social-row-3 {
-            display: flex; justify-content: center; gap: 12px;
-        }
-
-        /* Style chung cho nút icon */
-        .icon-btn { 
-            display: flex; align-items: center; justify-content: center;
-            width: 34px; height: 34px; border-radius: 50%; background: var(--bg-block);
-            text-decoration: none !important; border: none !important; transition: 0.3s;
-            font-size: 1.1rem;
-        }
+        .social-icons-container { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; width: 100%; }
+        .social-row-4, .social-row-3 { display: flex; justify-content: center; gap: 12px; }
+        .icon-btn { display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--bg-block); text-decoration: none !important; border: none !important; transition: 0.3s; font-size: 1.1rem; }
         
-        /* MÀU SẮC CHO TỪNG ICON */
-        .ico-email i { color: #EA4335; } /* Gmail */
-        .ico-zalo span { color: #0068FF; font-family: sans-serif; font-weight: 900; font-size: 0.95rem; } /* Zalo */
-        .ico-tele i { color: #229ED9; } /* Telegram */
-        .ico-fb i { color: #1877F2; } /* Facebook */
-        .ico-insta i { color: #E1306C; } /* Instagram */
-        .ico-tiktok i { color: #000000; } /* TikTok (Dark mode sẽ tự đổi sang trắng do body color) */
+        .ico-email i { color: #EA4335; }
+        .ico-zalo span { color: #0068FF; font-family: sans-serif; font-weight: 900; font-size: 0.95rem; }
+        .ico-tele i { color: #229ED9; }
+        .ico-fb i { color: #1877F2; }
+        .ico-insta i { color: #E1306C; }
+        .ico-tiktok i { color: #000000; }
         body.dark-mode .ico-tiktok i { color: #ffffff; }
-        .ico-drive i { color: #0F9D58; } /* Drive */
+        .ico-drive i { color: #0F9D58; }
 
-        /* Hover Effect: Nền cam, icon trắng */
         .icon-btn:hover { background: var(--accent); transform: translateY(-3px); }
         .icon-btn:hover i, .icon-btn:hover span { color: #ffffff !important; }
 
-        .theme-btn {
-            cursor: pointer; background: transparent; border: 1px solid var(--border);
-            color: var(--text-main); padding: 8px 15px; border-radius: 20px;
-            font-size: 0.9rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px;
-            font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600;
-        }
+        .theme-btn { cursor: pointer; background: transparent; border: 1px solid var(--border); color: var(--text-main); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; }
 
         /* --- 3. MAIN CONTENT --- */
         .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); transition: 0.3s; }
@@ -135,7 +104,6 @@
         .hero-image-box img { max-width: 100%; height: auto; object-fit: contain; filter: drop-shadow(20px 20px 40px rgba(0,0,0,0.15)); }
 
         section { padding: 80px; border-bottom: 1px solid var(--border); }
-        
         .section-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 60px; width: 100%; }
         .section-title { font-size: 2.5rem; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; letter-spacing: -0.5px; margin: 0; line-height: 1; }
         .section-number { font-size: 1.2rem; color: var(--accent); font-weight: 600; }
@@ -146,36 +114,110 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V48) --- */
-        /* PC */
+        /* --- 4. EXPERIENCE CSS (V52: BALANCED SPACING) --- */
+        
+        /* [Mobile] */
+        .timeline-item { display: block; padding: 30px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
+        .exp-visual, .exp-type-pc, .animated-timeline-line { display: none; }
+        .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
+        .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
+        .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
+        .timeline-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
+
+        /* [PC] (Min-width 993px) */
         @media (min-width: 993px) {
-            #experience { width: 100%; padding-left: 80px; padding-right: 80px; }
-            .timeline-container { width: 100%; position: relative; }
-            .animated-timeline-line { display: block; position: absolute; top: 20px; left: 320px; width: 2px; background: #e0e0e0; height: 100%; z-index: 0; transform: translateX(-50%); }
-            .line-progress { position: absolute; top: 0; left: 0; width: 100%; background: var(--accent); height: 0; transition: height 1.5s ease-out; }
+            #experience {
+                width: 100%;
+                padding-left: 80px; 
+                padding-right: 80px; 
+            }
+
+            .timeline-container {
+                width: 100%; position: relative;
+            }
+
+            /* DÂY NỐI: Đặt ở vị trí 180 (Cột 1) + 30 (1/2 Cột 2) = 210px */
+            .animated-timeline-line {
+                display: block;
+                position: absolute;
+                top: 20px; 
+                left: 210px; /* Vị trí CHUẨN XÁC */
+                width: 2px;
+                background: #e0e0e0; 
+                height: 100%; 
+                z-index: 0; 
+                transform: translateX(-50%);
+            }
+            
+            .line-progress {
+                position: absolute; top: 0; left: 0; width: 100%; 
+                background: var(--accent); height: 0;
+                transition: height 1.5s ease-out;
+            }
             [data-aos="line-grow"].aos-animate .line-progress { height: 100%; }
-            .timeline-item { display: grid; grid-template-columns: 280px 80px 250px 1fr; gap: 0; padding-bottom: 60px; background: transparent; border: none !important; border-radius: 0; margin: 0; align-items: flex-start; position: relative; }
-            .exp-left { text-align: left; padding-right: 30px; }
-            .timeline-year { font-size: 2.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; line-height: 1; white-space: nowrap; }
+
+            .timeline-item {
+                display: grid; 
+                /* GRID CÂN ĐỐI: 180px | 60px | 220px | 1fr */
+                /* Cột Năm nhỏ lại để gần dây hơn */
+                grid-template-columns: 180px 60px 220px 1fr; 
+                gap: 0; 
+                padding-bottom: 60px; 
+                background: transparent; 
+                border: none !important; 
+                border-radius: 0; 
+                margin: 0;
+                align-items: flex-start;
+                position: relative;
+            }
+
+            /* Cột 1: Năm */
+            .exp-left { text-align: left; /* Để mặc định sát lề trái cột */ } 
+            .timeline-year { 
+                font-size: 2.2rem; color: var(--text-main); font-weight: 800; 
+                margin-bottom: 5px; line-height: 1; white-space: nowrap; 
+            }
             .timeline-role { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
-            .exp-visual { display: flex; justify-content: center; position: relative; height: 100%; z-index: 2; }
-            .exp-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #ccc; background: var(--bg-body); margin-top: 10px; transition: 0.3s; }
-            .active-dot { border-color: var(--accent); position: relative; box-shadow: 0 0 0 4px rgba(255, 77, 41, 0.2); }
-            .active-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
-            .exp-center { display: flex; flex-direction: column; padding-top: 2px; padding-left: 20px; }
+
+            /* Cột 2: Visual (Chấm tròn) */
+            .exp-visual { 
+                display: flex; justify-content: center; 
+                position: relative; height: 100%; z-index: 2;
+            }
+            
+            .exp-dot {
+                width: 14px; height: 14px; border-radius: 50%;
+                border: 2px solid #ccc; background: var(--bg-body);
+                margin-top: 10px; 
+                transition: 0.3s;
+            }
+            
+            .active-dot {
+                border-color: var(--accent); position: relative;
+                box-shadow: 0 0 0 4px rgba(255, 77, 41, 0.2); 
+            }
+            .active-dot::after {
+                content: ''; position: absolute;
+                top: 50%; left: 50%; transform: translate(-50%, -50%);
+                width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+            }
+
+            /* Cột 3: Công ty - THÊM PADDING ĐỂ CÂN BẰNG KHOẢNG CÁCH */
+            .exp-center { 
+                display: flex; flex-direction: column; 
+                padding-top: 2px; 
+                padding-left: 25px; /* Đẩy chữ ra xa dây 1 chút cho cân với bên trái */
+            }
             .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
+
+            /* Cột 4: Mô tả */
             .exp-right { padding-top: 2px; width: 100%; padding-left: 10px; }
-            .timeline-desc { margin: 0; font-size: 1.05rem; color: var(--text-sub); line-height: 1.6; text-align: left; width: 100%; }
-        }
-        /* Mobile */
-        @media (max-width: 992px) {
-            .timeline-item { display: block; padding: 30px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
-            .exp-visual, .exp-type-pc, .animated-timeline-line { display: none; }
-            .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
-            .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
-            .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
-            .timeline-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
+            .timeline-desc { 
+                margin: 0; font-size: 1.05rem; 
+                color: var(--text-sub); line-height: 1.6; 
+                text-align: justify; width: 100%; 
+            }
         }
 
         .swiper { width: 100%; padding: 60px 0 80px 0; cursor: grab; }
@@ -194,7 +236,7 @@
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
         .bottom-socials { display: none; }
 
-        /* --- MOBILE HEADER CSS --- */
+        /* --- MOBILE CSS --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             .sidebar { width: 100%; height: var(--header-height-mobile); position: fixed !important; top: 0; left: 0; display: flex !important; flex-direction: row !important; align-items: center !important; justify-content: space-between !important; padding: 0 15px; border-bottom: 1px solid var(--border); z-index: 10000; background: var(--bg-body); }
@@ -230,6 +272,13 @@
             .hero h1 { font-size: 2.5rem; }
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             section { padding: 40px 20px; }
+            .section-header { margin-bottom: 20px; padding-bottom: 15px; }
+            .section-title { font-size: 2rem; padding-left: 15px; }
+            .section-number { font-size: 1rem; }
+            .timeline-item { display: block !important; padding: 25px; border: 1px solid var(--border); border-left: 4px solid var(--accent); margin-bottom: 20px; border-radius: 12px; }
+            .exp-left, .exp-center, .exp-right { text-align: left; }
+            .timeline-year { font-size: 0.9rem; margin-bottom: 5px; white-space: normal; }
+            .timeline-role { font-size: 1.2rem; margin-bottom: 10px; }
             .swiper-slide { width: 280px; height: 420px; }
         }
     </style>
