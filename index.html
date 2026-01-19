@@ -114,114 +114,89 @@
         .section-title { font-size: 2.5rem; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; letter-spacing: -0.5px; margin: 0; line-height: 1; }
         .section-number { font-size: 1.2rem; color: var(--accent); font-weight: 600; }
 
-        /* --- NEW ABOUT SECTION STYLE (V71: LOGO GRID) --- */
+        /* --- ABOUT SECTION V72 (BIGGER LOGOS & COLOR) --- */
         #about { position: relative; }
         
-        .about-layout { 
-            display: flex; 
-            gap: 100px; 
-            align-items: flex-start; /* Canh trên để nội dung dài không kéo dãn ảnh */
-            position: relative; 
-            z-index: 2; 
-        }
-        
-        /* Left Visual */
+        .about-layout { display: flex; gap: 100px; align-items: flex-start; position: relative; z-index: 2; }
         .about-visual { flex: 0 0 320px; display: flex; justify-content: center; }
         .about-visual img { width: 100%; height: auto; object-fit: contain; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.08)); position: sticky; top: 100px; }
-
-        /* Right Content */
         .about-content { flex: 1; }
+        .about-desc { font-size: 1.1rem; line-height: 1.8; color: var(--text-sub); margin-bottom: 40px; max-width: 100%; }
         
-        .about-desc { 
-            font-size: 1.1rem; 
-            line-height: 1.8; 
-            color: var(--text-sub); 
-            margin-bottom: 40px; 
-            max-width: 100%;
-        }
-        
-        /* Stats Grid */
-        .about-stats { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 30px; 
-            margin-bottom: 40px; 
-        }
+        .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 40px; }
         .stat-item h3 { font-size: 3rem; font-weight: 900; color: var(--text-main); margin-bottom: 5px; line-height: 1; letter-spacing: -1px; }
         .stat-item p { font-size: 1rem; color: var(--text-sub); font-weight: 500; }
         
         .about-divider { width: 100%; height: 1px; background: var(--border); margin-bottom: 40px; }
 
-        /* BADGES ROW (LANGUAGES) */
-        .badge-row { 
-            display: flex; 
-            align-items: center; 
-            gap: 30px; 
-            margin-bottom: 30px; 
-        }
+        .badge-row { display: flex; align-items: center; gap: 30px; margin-bottom: 30px; }
         .badge-label { 
-            font-weight: 800; color: var(--text-main); 
-            font-size: 1.1rem; display: flex; align-items: center; gap: 10px; 
-            min-width: 120px; flex-shrink: 0;
+            font-weight: 800; color: var(--text-main); font-size: 1.1rem; 
+            display: flex; align-items: center; gap: 10px; min-width: 120px; flex-shrink: 0;
         }
-        .badge-label i { 
-            background: var(--accent); color: #fff; width: 28px; height: 28px; 
-            display: flex; align-items: center; justify-content: center; 
-            border-radius: 6px; font-size: 0.9rem;
-        }
-        .pill-tag { 
-            background: var(--bg-body); color: var(--text-sub); 
-            padding: 8px 20px; border-radius: 50px; 
-            font-size: 0.9rem; font-weight: 600; 
-            border: 1px solid var(--border); 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            display: inline-block; cursor: default; 
-        }
+        .badge-label i { background: var(--accent); color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 0.9rem; }
         
-        /* --- PARTNER LOGO GRID (LƯỚI LOGO) --- */
+        .pill-tag { background: var(--bg-body); color: var(--text-sub); padding: 10px 25px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; display: inline-block; cursor: default; }
+        body.dark-mode .pill-tag { background: #1a1a1a; }
+        .pill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
+
+        /* --- PARTNER LOGO GRID V72 --- */
         .partner-wrapper {
             margin-top: 10px;
         }
+        
+        /* FIX: Tăng khoảng cách chữ Đối tác và Logo */
+        .partner-header {
+            margin-bottom: 25px; /* Đẩy chữ "Đối tác" lên cao khỏi lưới logo */
+        }
+
         .partner-grid {
             display: grid;
-            /* Tự động chia cột, mỗi cột tối thiểu 90px */
-            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            /* PC: 5 cột cho thoáng, logo to */
+            grid-template-columns: repeat(5, 1fr); 
             gap: 20px;
             align-items: center;
             justify-items: center;
         }
+        
         .partner-item {
             width: 100%;
-            height: 60px; /* Chiều cao cố định ô chứa logo */
+            height: 100px; /* Tăng chiều cao ô chứa logo lên 100px */
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--bg-block);
+            background: var(--bg-body); /* Nền trắng cho sạch logo */
             border-radius: 12px;
             border: 1px solid var(--border);
-            padding: 10px;
+            padding: 15px; /* Padding trong để logo không dính viền */
             transition: all 0.3s ease;
+            cursor: pointer;
         }
-        .partner-item:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+        
         .partner-logo {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain;
-            filter: grayscale(100%); /* Đen trắng */
-            opacity: 0.6;
-            transition: all 0.3s ease;
-        }
-        body.dark-mode .partner-logo { filter: grayscale(100%) invert(1); } /* Darkmode */
-        
-        .partner-item:hover .partner-logo {
-            filter: grayscale(0%); /* Hiện màu khi hover */
+            object-fit: contain; /* Đảm bảo logo luôn hiển thị trọn vẹn */
+            /* FIX: Bỏ filter grayscale -> Hiện màu luôn */
+            filter: none; 
             opacity: 1;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        body.dark-mode .partner-item:hover .partner-logo { filter: none; }
+        
+        /* Darkmode chỉnh nền logo để dễ nhìn */
+        body.dark-mode .partner-item { background: #1a1a1a; }
+        body.dark-mode .partner-logo { filter: brightness(0) invert(1); } /* Logo trắng trên nền đen */
+        body.dark-mode .partner-item:hover .partner-logo { filter: none; } /* Hover hiện màu */
+
+        /* FIX: Hiệu ứng Popup khi di chuột */
+        .partner-item:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+        }
+        .partner-item:hover .partner-logo {
+            transform: scale(1.15); /* Phóng to logo 15% */
+        }
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
         .skill-item { background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
@@ -309,20 +284,21 @@
             .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
             
-            /* V68 Mobile Adjustments */
+            /* V72 Mobile Adjustments */
             .hero { flex-direction: column-reverse; padding: 40px 25px; text-align: center; height: auto; }
             .hero-text { padding-right: 0; margin-top: 30px; }
             .hero h1 { font-size: 2.5rem; }
             .intro-para-mobile { text-align: left; margin-bottom: 30px; }
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             
-            /* ABOUT SECTION MOBILE V71 */
             .about-layout { flex-direction: column; gap: 30px; margin-top: 40px; }
             .about-visual { flex: 0 0 auto; width: 100%; margin-bottom: 20px; }
             .about-visual img { max-width: 250px; position: static; }
             .about-stats { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             .badge-row { justify-content: center; }
-            .partner-grid { grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); } /* Nhỏ hơn cho mobile */
+            
+            /* Partner Grid Mobile: 3 columns */
+            .partner-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; } 
             
             section { padding: 40px 20px; }
             .section-header { margin-bottom: 20px; padding-bottom: 15px; }
@@ -465,27 +441,28 @@
                     </div>
                     
                     <div class="partner-wrapper">
-                        <span class="badge-label" style="margin-bottom:15px; display:block;"><i class="fas fa-handshake"></i> Đối tác:</span>
+                        <span class="badge-label partner-header"><i class="fas fa-handshake"></i> Đối tác:</span>
+                        
                         <div class="partner-grid">
-                            <div class="partner-item"><img src="logo-mb.png" alt="MB Bank" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-mbank.png" alt="MB Bank" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-bidv.png" alt="BIDV" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-vcb.png" alt="Vietcombank" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-klb.png" alt="KienlongBank" class="partner-logo"></div>
-                            
+                            <div class="partner-item"><img src="logo-vietcombank.png" alt="Vietcombank" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-kienlongbank.png" alt="KienlongBank" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-vtv.png" alt="VTV" class="partner-logo"></div>
+                            
                             <div class="partner-item"><img src="logo-vtv7.png" alt="VTV7" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-cafebiz.png" alt="CafeBiz" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-CafeBiz.png" alt="CafeBiz" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-tentun.png" alt="Ten Tun" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-tgmedia.png" alt="TGMedia" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-gapo.png" alt="GapoWork" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-gapowork@4x.png" alt="GapoWork" class="partner-logo"></div>
 
                             <div class="partner-item"><img src="logo-imap.png" alt="IMAP" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-ielts.png" alt="IELTS Fighter" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-mshoa.png" alt="Ms Hoa" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-toeic.png" alt="Ms Hoa TOEIC" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-junior.png" alt="Ms Hoa Junior" class="partner-logo"></div>
-                            <div class="partner-item"><img src="logo-mhgt.png" alt="Ms Hoa GT" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-ieltsfighter@4x.png" alt="IELTS Fighter" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-mshoatoeic.png" alt="Ms Hoa TOEIC" class="partner-logo"></div>
+                            <div class="partner-item"><img src="logo-Ms Hoa Junior.png" alt="Ms Hoa Junior" class="partner-logo"></div>
                             
+                            <div class="partner-item"><img src="logo mhgt.png" alt="Ms Hoa GT" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-hvtc.png" alt="HVTC" class="partner-logo"></div>
                             <div class="partner-item"><img src="logo-hanoi.png" alt="Ha Noi" class="partner-logo"></div>
                         </div>
