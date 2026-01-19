@@ -109,6 +109,7 @@
         .portfolio-label { color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: block; }
         .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
         
+        /* Justify & Widow words */
         .intro-para-mobile { 
             color: var(--text-sub); max-width: 600px; margin: 20px 0; 
             line-height: 1.6; font-size: 1.1rem;
@@ -195,44 +196,31 @@
         .partner-wrapper { margin-top: 10px; }
         .partner-header { margin-bottom: 25px; }
 
-        /* V85 GRID CONFIGURATION */
         .partner-grid {
-            display: grid; 
-            /* Grid 5 columns on PC */
-            grid-template-columns: repeat(5, 1fr); 
-            gap: 20px;
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
             align-items: center; justify-items: center;
         }
-        
-        /* ITEM BOX */
         .partner-item {
-            width: 100%; 
-            height: 100px; 
-            display: flex; align-items: center; justify-content: center;
+            width: 100%; height: 100px; display: flex; align-items: center; justify-content: center;
             background: var(--bg-body); border-radius: 12px; border: 1px solid var(--border);
-            padding: 10px; /* Reduced padding to give logos more space inside */
-            transition: all 0.3s ease; cursor: pointer;
+            padding: 10px; transition: all 0.3s ease; cursor: pointer;
         }
         
-        /* LOGO SIZING LOGIC (VISUAL BALANCE) */
         .partner-logo {
-            width: auto;
-            height: auto;
-            /* Limits for balance */
-            max-width: 85%; /* Don't touch edges */
-            max-height: 55px; /* HEIGHT CAP: Forces square logos to be same height as text logos */
+            width: auto; height: auto;
+            max-width: 85%; max-height: 55px; /* Cap height to balance square/rect logos */
             object-fit: contain;
             filter: none; opacity: 1;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
         }
 
-        /* Specific Overrides for Small Logos */
-        .partner-logo.logo-imap { transform: scale(1.6); }
-        .partner-logo.logo-junior { transform: scale(1.7); }
+        /* --- FINE TUNING SIZES (V86) --- */
+        .partner-logo.logo-imap { transform: scale(1.8); }
+        .partner-logo.logo-junior { transform: scale(1.4); } /* Reduced to 1.4 for Mobile Balance */
+        .partner-logo.logo-klb { transform: scale(1.3); } /* KienlongBank Bigger */
+        .partner-logo.logo-mshoa { transform: scale(1.3); } /* Ms Hoa Bigger */
+        .partner-logo.logo-vcb { transform: scale(1.25); } /* Vietcombank Bigger */
         
-        /* Specific Overrides for Wide Logos (Optional) */
-        .partner-logo.logo-wide { max-height: 45px; transform: scale(1.1); } 
-
         body.dark-mode .partner-item { background: #1a1a1a; }
         body.dark-mode .partner-logo { filter: brightness(1.2) drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
         body.dark-mode .partner-item:hover .partner-logo { filter: brightness(1.3) drop-shadow(0 0 4px rgba(255,255,255,0.4)); }
@@ -241,12 +229,13 @@
             border-color: var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             transform: translateY(-5px);
         }
-        /* Default Hover Popup */
         .partner-item:hover .partner-logo { transform: scale(1.15); }
-        
-        /* Custom Hover Popup for Small Logos */
-        .partner-item:hover .partner-logo.logo-imap { transform: scale(1.8); }
-        .partner-item:hover .partner-logo.logo-junior { transform: scale(1.9); }
+        /* POPUP SCALES */
+        .partner-item:hover .partner-logo.logo-imap { transform: scale(2.0); }
+        .partner-item:hover .partner-logo.logo-junior { transform: scale(1.55); } 
+        .partner-item:hover .partner-logo.logo-klb { transform: scale(1.45); }
+        .partner-item:hover .partner-logo.logo-mshoa { transform: scale(1.45); }
+        .partner-item:hover .partner-logo.logo-vcb { transform: scale(1.4); }
 
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
@@ -330,7 +319,6 @@
             .pc-content { display: none !important; }
             .mobile-header-wrapper { display: flex !important; width: 100%; justify-content: space-between; align-items: center; }
             .left-info { display: flex; align-items: center; }
-            /* FIX V84: Avatar root */
             .mobile-ava { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); margin-right: 10px; }
             .mobile-name { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--text-main); white-space: nowrap; }
             .right-controls { display: flex; align-items: center; gap: 10px; }
@@ -505,7 +493,8 @@
         <section id="about" style="background: var(--bg-body);">
             <div class="section-header">
                 <h2 class="section-title" style="margin-bottom:0;">Ngôn ngữ và đối tác</h2>
-                <span class="section-number">(02)</span> </div>
+                <span class="section-number">(02)</span>
+            </div>
 
             <div class="about-layout">
                 <div class="about-visual" data-aos="fade-right">
@@ -564,9 +553,9 @@
                         <span class="badge-label partner-header"><i class="fas fa-handshake"></i> Đối tác:</span>
                         
                         <div class="partner-grid">
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="0"><img src="logo-port bm/logo-kienlongbank.png" alt="KienlongBank" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="0"><img src="logo-port bm/logo-kienlongbank.png" alt="KienlongBank" class="partner-logo logo-klb"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="50"><img src="logo-port bm/logo-mbank.png" alt="MB Bank" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-port bm/logo-vietcombank.png" alt="Vietcombank" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-port bm/logo-vietcombank.png" alt="Vietcombank" class="partner-logo logo-vcb"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="150"><img src="logo-port bm/logo-bidv.png" alt="BIDV" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-port bm/logo-vtv.png" alt="VTV" class="partner-logo"></div>
                             
@@ -578,7 +567,7 @@
 
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="500"><img src="logo-port bm/logo-imap.png" alt="IMAP" class="partner-logo logo-imap"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="550"><img src="logo-port bm/logo-ieltsfighter@4x.png" alt="IELTS Fighter" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="600"><img src="logo-port bm/logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="600"><img src="logo-port bm/logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo logo-mshoalogo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="650"><img src="logo-port bm/logo-mshoatoeic.png" alt="Ms Hoa TOEIC" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="700"><img src="logo-port bm/logo-Ms Hoa Junior.png" alt="Ms Hoa Junior" class="partner-logo logo-junior"></div>
                             
@@ -594,7 +583,8 @@
         <section id="skills" style="background: var(--bg-block);">
             <div class="section-header">
                 <h2 class="section-title" style="margin-bottom:0;">Kỹ Năng & Thiết Bị</h2>
-                <span class="section-number">(03)</span> </div>
+                <span class="section-number">(03)</span>
+            </div>
 
             <h3 style="margin-bottom: 20px; color: var(--text-main);">Phần mềm (Software)</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
@@ -635,7 +625,8 @@
         <section id="experience">
             <div class="section-header">
                 <h2 class="section-title" style="margin-bottom:0;">Kinh Nghiệm Làm Việc</h2>
-                <span class="section-number">(04)</span> </div>
+                <span class="section-number">(04)</span>
+            </div>
             
             <div class="timeline-container">
                 <div class="animated-timeline-line" data-aos="line-grow" data-aos-duration="1500" data-aos-anchor="#experience">
@@ -715,7 +706,8 @@
         <section id="portfolio" style="background: var(--bg-block);">
             <div class="section-header">
                 <h2 class="section-title" style="margin-bottom:0;">Dự án Tiêu biểu</h2>
-                <span class="section-number">(05)</span> </div>
+                <span class="section-number">(05)</span>
+            </div>
             
             <p style="color: var(--text-sub); margin-bottom: 20px;">(Di chuột vào khung để lướt xem các dự án)</p>
             
