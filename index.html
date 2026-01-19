@@ -44,7 +44,7 @@
             transition: 0.3s;
         }
 
-        h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name, .visual-signature {
+        h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name {
             font-family: 'Bricolage Grotesque', sans-serif !important;
         }
 
@@ -103,6 +103,14 @@
         .portfolio-label { color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: block; }
         .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
         
+        /* FIX V76: Justify intro paragraph */
+        .intro-para-mobile { 
+            color: var(--text-sub); max-width: 600px; margin: 20px 0; 
+            line-height: 1.6; font-size: 1.1rem;
+            text-align: justify; /* Căn đều 2 bên */
+            text-justify: inter-word;
+        }
+
         .hero-btn { display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 30px; box-shadow: 0 10px 20px rgba(255, 77, 41, 0.3); transition: all 0.4s; }
         .hero-btn:hover { transform: scale(1.1) translateY(-5px); box-shadow: 0 20px 30px rgba(255, 77, 41, 0.5); }
         .hero-image-box { flex: 1; display: flex; justify-content: center; align-items: center; }
@@ -114,50 +122,67 @@
         .section-title { font-size: 2.5rem; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; letter-spacing: -0.5px; margin: 0; line-height: 1; }
         .section-number { font-size: 1.2rem; color: var(--accent); font-weight: 600; }
 
-        /* --- ABOUT SECTION V74 (BIGGER TEXT & FILLED LEFT COLUMN) --- */
+        /* --- ABOUT SECTION V76 (SPINNING BADGE + JUSTIFIED TEXT) --- */
         #about { position: relative; }
         
         .about-layout { display: flex; gap: 100px; align-items: stretch; position: relative; z-index: 2; }
         
-        /* V74: Left Visual - Structured to fill space */
+        /* Left Visual */
         .about-visual { 
             flex: 0 0 320px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: flex-start;
+            display: flex; flex-direction: column; 
+            align-items: center; justify-content: flex-start;
             position: relative;
         }
         
-        /* Container for circles */
-        .visual-circles-container {
-             width: 320px; height: 320px; position: relative; flex-shrink: 0;
-        }
+        .visual-circles-container { width: 320px; height: 320px; position: relative; flex-shrink: 0; }
         .art-shape { position: absolute; border-radius: 50%; }
         .shape-orange { width: 240px; height: 240px; background: var(--accent); top: 0; left: 0; z-index: 1; opacity: 0.9; }
         .shape-black { width: 240px; height: 240px; background: #222; bottom: 0; right: 0; z-index: 2; mix-blend-mode: multiply; }
         body.dark-mode .shape-black { background: #444; mix-blend-mode: normal; border: 4px solid var(--bg-body); }
 
-        /* V74: Filler Elements for Left Column */
         .visual-connector {
-            flex-grow: 1; /* Lấp đầy khoảng trống */
-            width: 2px;
+            flex-grow: 1; width: 2px;
             background: linear-gradient(to bottom, var(--border) 0%, transparent 100%);
-            margin: 30px 0;
-            opacity: 0.6;
-        }
-        .visual-signature {
-            font-size: 1.5rem; font-weight: 900; color: var(--text-sub);
-            opacity: 0.5; letter-spacing: -1px;
+            margin: 20px 0; opacity: 0.6;
         }
 
+        /* V76: SPINNING BADGE (Phương án 1) */
+        .visual-badge-wrapper {
+            position: relative;
+            width: 140px; height: 140px;
+            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--bg-body); /* Nền trùng màu web để che dây */
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            z-index: 5;
+        }
+        body.dark-mode .visual-badge-wrapper { background: #1a1a1a; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
-        /* V74: Bigger Text */
+        .badge-text-svg {
+            width: 100%; height: 100%;
+            animation: spin-text 12s linear infinite;
+        }
+        .badge-text-path {
+            fill: var(--text-main); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+        }
+        .badge-center-icon {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 1.8rem; color: var(--accent);
+        }
+        @keyframes spin-text { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+
+        /* Right Content */
         .about-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        
+        /* FIX V76: JUSTIFY TEXT */
         .about-desc { 
-            font-size: 1.25rem; /* Increased from 1.1rem */
-            line-height: 1.9;   /* Increased line-height for balance */
+            font-size: 1.25rem; line-height: 1.9;
             color: var(--text-sub); margin-bottom: 50px; max-width: 100%; 
+            text-align: justify; /* Căn đều 2 bên */
+            text-justify: inter-word;
         }
         
         .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 50px; }
@@ -177,7 +202,7 @@
         body.dark-mode .pill-tag { background: #1a1a1a; }
         .pill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
 
-        /* --- PARTNER LOGO GRID V74 (DARK MODE COLORS POP) --- */
+        /* --- PARTNER LOGO GRID V76 --- */
         .partner-wrapper { margin-top: 10px; }
         .partner-header { margin-bottom: 25px; }
 
@@ -197,26 +222,20 @@
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
         }
 
-        .partner-logo.logo-imap { transform: scale(1.3); }
-        .partner-logo.logo-junior { transform: scale(1.4); }
+        .partner-logo.logo-imap { transform: scale(1.8); }
+        .partner-logo.logo-junior { transform: scale(1.9); }
         
-        /* V74: Dark Mode Logo Pop (Keep colors, boost brightness & glow) */
         body.dark-mode .partner-item { background: #1a1a1a; }
-        body.dark-mode .partner-logo { 
-            filter: brightness(1.2) drop-shadow(0 0 2px rgba(255,255,255,0.2)); /* Tăng sáng nhẹ và tạo glow */
-        }
-        body.dark-mode .partner-item:hover .partner-logo {
-             filter: brightness(1.3) drop-shadow(0 0 4px rgba(255,255,255,0.4)); /* Hover sáng hơn */
-        }
-
+        body.dark-mode .partner-logo { filter: brightness(1.2) drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
+        body.dark-mode .partner-item:hover .partner-logo { filter: brightness(1.3) drop-shadow(0 0 4px rgba(255,255,255,0.4)); }
 
         .partner-item:hover {
             border-color: var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             transform: translateY(-5px);
         }
         .partner-item:hover .partner-logo { transform: scale(1.15); }
-        .partner-item:hover .partner-logo.logo-imap { transform: scale(1.45); }
-        .partner-item:hover .partner-logo.logo-junior { transform: scale(1.55); }
+        .partner-item:hover .partner-logo.logo-imap { transform: scale(2.0); }
+        .partner-item:hover .partner-logo.logo-junior { transform: scale(2.1); }
 
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
@@ -245,7 +264,14 @@
             .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
             .exp-right { padding-top: 2px; width: 100%; padding-left: 10px; }
-            .timeline-desc { margin: 0; font-size: 1.05rem; color: var(--text-sub); line-height: 1.6; text-align: justify; width: 100%; }
+            
+            /* FIX V76: JUSTIFY TIMELINE DESC */
+            .timeline-desc { 
+                margin: 0; font-size: 1.05rem; 
+                color: var(--text-sub); line-height: 1.6; 
+                text-align: justify; text-justify: inter-word; /* Căn đều */
+                width: 100%; 
+            }
         }
         /* Mobile Timeline */
         @media (max-width: 992px) {
@@ -254,7 +280,10 @@
             .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
             .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
             .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
-            .timeline-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
+            .timeline-desc { 
+                font-size: 0.95rem; color: var(--text-sub); line-height: 1.6;
+                text-align: justify; text-justify: inter-word; /* Căn đều Mobile */
+            }
         }
 
         .swiper { width: 100%; padding: 60px 0 80px 0; cursor: grab; }
@@ -309,23 +338,31 @@
             .hero { flex-direction: column-reverse; padding: 40px 25px; text-align: center; height: auto; }
             .hero-text { padding-right: 0; margin-top: 30px; }
             .hero h1 { font-size: 2.5rem; }
-            .intro-para-mobile { text-align: left; margin-bottom: 30px; }
+            
+            /* V76: Justify Intro Mobile */
+            .intro-para-mobile { 
+                text-align: justify; text-justify: inter-word;
+                margin-bottom: 30px; 
+            }
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             
             .about-layout { flex-direction: column; gap: 30px; margin-top: 40px; }
-            /* V74 Mobile Visual */
+            /* V76 Mobile Visual */
             .about-visual { height: auto; width: 100%; align-items: center; margin-bottom: 30px; }
             .visual-circles-container { width: 260px; height: 260px; margin-bottom: 20px; }
             .shape-orange, .shape-black { width: 200px; height: 200px; }
-            .visual-connector { display: none; } /* Hide connector on mobile */
             
-            .about-desc { font-size: 1.1rem; }
+            /* Hide Connector/Badge on Mobile to save space or adjust style? 
+               Let's keep it but simpler layout */
+            .visual-connector { display: none; }
+            .visual-badge-wrapper { margin-top: -30px; } /* Pull up a bit */
+
+            .about-desc { font-size: 1.1rem; text-align: justify; text-justify: inter-word; }
             .stat-item h3 { font-size: 2.8rem; }
 
             .about-stats { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             .badge-row { justify-content: center; }
             
-            /* Partner Grid Mobile: 3 columns */
             .partner-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
             .partner-item { height: 80px; padding: 15px; }
             
@@ -418,9 +455,11 @@
             <div class="hero-text">
                 <p class="portfolio-label" data-aos="fade-down" data-aos-delay="0">Portfolio 2026</p>
                 <h1 data-aos="fade-right" data-aos-delay="200">NGÔ BÌNH MINH<br><span style="font-size: 0.5em; color: var(--text-sub); font-weight: 400;">Freelance Video Editor</span></h1>
-                <p class="intro-para-mobile" data-aos="fade-up" data-aos-delay="400" style="color: var(--text-sub); max-width: 600px; margin: 20px 0; line-height: 1.6; font-size: 1.1rem;">
+                
+                <p class="intro-para-mobile" data-aos="fade-up" data-aos-delay="400">
                     Tôi là Minh – Video Editor & Cameraman chuyên nghiệp. Với kinh nghiệm thực chiến tại <b>KienlongBank</b> và <b>IMAP</b>, tôi cung cấp giải pháp video toàn diện: từ sản xuất TVC, Motion Graphics đến xây dựng kênh TikTok/YouTube bài bản. Tôi tập trung vào chất lượng hình ảnh và hiệu quả truyền thông thực tế của từng sản phẩm.
                 </p>
+                
                 <a href="#portfolio" class="hero-btn" data-aos="zoom-in" data-aos-delay="600">Xem Dự Án Của Tôi</a>
             </div>
             <div class="hero-image-box" data-aos="fade-left" data-aos-delay="400">
@@ -441,7 +480,20 @@
                         <div class="art-shape shape-black"></div>
                     </div>
                     <div class="visual-connector"></div>
-                    <div class="visual-signature">Minh Ngo.</div>
+                    
+                    <div class="visual-badge-wrapper">
+                        <svg class="badge-text-svg" viewBox="0 0 100 100" width="100" height="100">
+                            <defs>
+                                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+                            </defs>
+                            <text class="badge-text-path">
+                                <textPath xlink:href="#circlePath">
+                                    VIDEO EDITOR • CAMERAMAN • 
+                                </textPath>
+                            </text>
+                        </svg>
+                        <i class="fas fa-play badge-center-icon"></i>
+                    </div>
                 </div>
 
                 <div class="about-content" data-aos="fade-left">
@@ -455,7 +507,7 @@
                             <p>Năm kinh nghiệm</p>
                         </div>
                         <div class="stat-item">
-                            <h3>65+</h3>
+                            <h3>365+</h3>
                             <p>Khách hàng hài lòng</p>
                         </div>
                         <div class="stat-item">
