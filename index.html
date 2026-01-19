@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ngô Bình Minh | Video Editor Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -36,9 +39,15 @@
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
+            /* FONT INTER CHO TOÀN BỘ WEB */
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             transition: 0.3s;
+        }
+
+        /* Áp dụng Font Inter cho các tiêu đề để đồng bộ */
+        h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name {
+            font-family: 'Inter', sans-serif !important;
         }
 
         /* --- SIDEBAR (PC) --- */
@@ -49,7 +58,7 @@
             border-right: 1px solid var(--border); z-index: 1000; transition: 0.3s;
         }
         
-        /* PC Styles */
+        /* Ẩn hiện theo thiết bị */
         .pc-content { display: block; }
         .mobile-header-wrapper { display: none; }
         .menu-overlay { display: none; }
@@ -81,6 +90,7 @@
             cursor: pointer; background: transparent; border: 1px solid var(--border);
             color: var(--text-main); padding: 8px 15px; border-radius: 20px;
             font-size: 0.9rem; transition: 0.3s; display: inline-flex; align-items: center; gap: 5px;
+            font-family: 'Inter', sans-serif; font-weight: 600;
         }
 
         /* MAIN CONTENT */
@@ -92,7 +102,7 @@
             overflow: hidden;
         }
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
-        .hero h1 { font-family: 'Outfit', sans-serif; font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); }
+        .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; }
         .hero-btn {
             display: inline-block; background: var(--accent); color: #fff; padding: 15px 40px; 
             border-radius: 50px; text-decoration: none; font-weight: bold; margin-top: 20px; 
@@ -103,7 +113,7 @@
         .hero-image-box img { max-width: 100%; height: auto; object-fit: contain; filter: drop-shadow(20px 20px 40px rgba(0,0,0,0.15)); }
 
         section { padding: 80px; border-bottom: 1px solid var(--border); }
-        .section-title { font-family: 'Outfit', sans-serif; font-size: 2.5rem; margin-bottom: 40px; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; }
+        .section-title { font-size: 2.5rem; margin-bottom: 40px; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; }
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
         .skill-item { background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
@@ -133,7 +143,7 @@
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
         .bottom-socials { display: none; }
 
-        /* --- MOBILE CSS (V33.0 - MENU ĐỀU TĂM TẮP) --- */
+        /* --- MOBILE CSS (V34.0 - FONT INTER & ALIGNMENT) --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             
@@ -164,17 +174,18 @@
                 margin-right: 10px; 
             }
             .mobile-name {
-                font-family: 'Outfit', sans-serif;
-                font-size: 1.1rem; font-weight: 700;
+                /* Font Inter Mạnh mẽ */
+                font-family: 'Inter', sans-serif;
+                font-size: 1.1rem; font-weight: 800; /* Đậm hơn */
                 color: var(--text-main); white-space: nowrap; 
             }
             .right-controls { display: flex; align-items: center; gap: 10px; }
             
-            /* Nút Liên Hệ */
+            /* Nút Liên Hệ (Màu Cam) */
             .contact-btn {
                 background: var(--accent); color: #fff; border: none;
                 padding: 8px 15px; border-radius: 20px;
-                font-size: 0.9rem; font-weight: 700;
+                font-size: 0.9rem; font-weight: 700; font-family: 'Inter', sans-serif;
                 cursor: pointer; display: flex; align-items: center; gap: 5px;
                 box-shadow: 0 4px 10px rgba(255, 77, 41, 0.3);
             }
@@ -188,11 +199,11 @@
                 font-size: 1.1rem; cursor: pointer;
             }
 
-            /* --- OVERLAY LÀM MỜ --- */
+            /* --- OVERLAY LÀM MỜ (KÍNH SÁNG) --- */
             .menu-overlay {
                 display: block !important;
                 position: fixed; inset: 0;
-                background: rgba(255, 255, 255, 0.5); 
+                background: rgba(255, 255, 255, 0.5); /* Nền sáng */
                 backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
                 z-index: 9999;
                 opacity: 0; pointer-events: none;
@@ -204,45 +215,42 @@
             .floating-menu-container {
                 position: absolute;
                 top: 80px; right: 15px;
-                display: flex; flex-direction: column; align-items: flex-end; /* Căn phải */
+                display: flex; flex-direction: column; align-items: flex-end;
                 gap: 12px;
             }
 
-            /* --- MENU ITEM (ĐÃ CHỈNH CHIỀU RỘNG CỐ ĐỊNH) --- */
+            /* --- MENU ITEM (V34: FONT INTER & ALIGNMENT) --- */
             .menu-item {
                 display: flex; align-items: center; 
-                justify-content: flex-start; /* Nội dung căn trái */
+                justify-content: flex-start;
                 background: #ffffff; 
                 color: #111111; 
                 padding: 12px 20px;
                 border-radius: 50px;
                 text-decoration: none;
+                font-family: 'Inter', sans-serif; /* Font chuẩn */
                 font-weight: 700; font-size: 0.95rem;
                 box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
                 border: 1px solid #eee;
                 
-                /* QUAN TRỌNG: CỐ ĐỊNH CHIỀU RỘNG ĐỂ ĐỀU NHAU */
-                width: 220px; 
+                width: 220px; /* Fixed width */
                 box-sizing: border-box; 
-                padding-left: 25px; /* Căn lề để icon thẳng hàng */
+                padding-left: 25px; 
 
-                /* Hiệu ứng bay ra */
                 opacity: 0; transform: translateY(20px) scale(0.9);
                 transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 pointer-events: none;
             }
 
-            /* Khi Active */
             .menu-overlay.active .menu-item {
                 opacity: 1; transform: translateY(0) scale(1);
                 pointer-events: auto;
             }
 
-            /* Icon bên trong khối */
             .menu-item i {
-                font-size: 1.2rem; margin-right: 15px; /* Tăng khoảng cách icon-text */
+                font-size: 1.2rem; margin-right: 15px; 
                 color: var(--accent); 
-                width: 25px; /* Cố định width của icon để chữ thẳng hàng */
+                width: 25px; 
                 text-align: center;
             }
             
@@ -253,7 +261,7 @@
                 width: 25px; text-align: center; display: inline-block;
             }
 
-            /* Delay lần lượt (Stagger) */
+            /* Delay Animation */
             .menu-overlay.active .menu-item:nth-child(1) { transition-delay: 0.05s; }
             .menu-overlay.active .menu-item:nth-child(2) { transition-delay: 0.1s; }
             .menu-overlay.active .menu-item:nth-child(3) { transition-delay: 0.15s; }
@@ -265,7 +273,7 @@
             .main-content { width: 100%; margin-left: 0; padding-top: calc(var(--header-height-mobile) + 40px); }
             .bottom-socials { display: none !important; }
             .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); padding: 10px; border-bottom: 1px solid var(--border); position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; z-index: 999; }
-            .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; }
+            .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; font-family: 'Inter', sans-serif; font-weight: 600; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
             .hero { flex-direction: column-reverse; padding: 20px; text-align: center; height: auto; padding-top: 40px; }
             .hero-text { padding-right: 0; margin-top: 20px; }
