@@ -73,7 +73,6 @@
         .nav-links a { color: var(--text-sub); text-decoration: none; font-size: 1rem; font-weight: 600; transition: 0.3s; padding: 10px 15px; border-radius: 8px; }
         .nav-links a:hover, .nav-links a.active { background: rgba(255, 77, 41, 0.1); color: var(--accent); transform: translateX(5px); }
         
-        /* Updated Contact Info */
         .contact-mini { font-size: 0.85rem; color: var(--text-sub); margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
         .contact-mini div { display: flex; align-items: center; gap: 8px; }
         
@@ -99,10 +98,11 @@
         /* --- 3. MAIN CONTENT --- */
         .main-content { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); transition: 0.3s; }
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; background: radial-gradient(circle at 70% 30%, var(--bg-block) 0%, var(--bg-body) 70%); overflow: hidden; }
+        /* V64: Removed parent data-aos from hero-text to allow individual children animations */
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
         .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
         
-        /* NEW: INFO BADGES (Language & Brands) */
+        /* INFO BADGES STYLE */
         .info-badges {
             margin: 30px 0;
             display: flex;
@@ -157,7 +157,7 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V62: RETAIN V60 PERFECTION) --- */
+        /* --- 4. EXPERIENCE CSS (V64 - RETAIN V60 ALIGNMENT) --- */
         
         /* Mobile */
         .timeline-item { display: block; padding: 30px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
@@ -236,10 +236,14 @@
             .mobile-nav { display: flex; overflow-x: auto; white-space: nowrap; background: var(--bg-body); padding: 10px; border-bottom: 1px solid var(--border); position: fixed; top: var(--header-height-mobile); left: 0; width: 100%; z-index: 999; }
             .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
-            .hero { flex-direction: column-reverse; padding: 20px; text-align: center; height: auto; padding-top: 40px; }
-            .hero-text { padding-right: 0; margin-top: 20px; }
+            /* V64 Mobile Hero Adjustments */
+            .hero { flex-direction: column-reverse; padding: 40px 25px; text-align: center; height: auto; }
+            .hero-text { padding-right: 0; margin-top: 30px; }
             .hero h1 { font-size: 2.5rem; }
+            /* Left align intro paragraph on mobile for readability */
+            .hero-text p.intro-para-mobile { text-align: left; margin-bottom: 30px; }
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
+            .info-badges { align-items: center; }
             section { padding: 40px 20px; }
             /* Mobile Timeline */
             .section-header { margin-bottom: 20px; padding-bottom: 15px; }
@@ -330,14 +334,16 @@
     <div class="main-content">
         
         <section id="home" class="hero">
-            <div class="hero-text" data-aos="fade-right">
-                <p style="color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">Portfolio 2025</p>
-                <h1>NGÔ BÌNH MINH<br><span style="font-size: 0.5em; color: var(--text-sub); font-weight: 400;">Freelance Video Editor</span></h1>
-                <p style="color: var(--text-sub); max-width: 600px; margin: 20px 0; line-height: 1.6; font-size: 1.1rem;">
-                    Không chỉ là cắt ghép, tôi kể chuyện qua từng khung hình. Với hành trang từ <b>KienlongBank</b> và <b>IMAP</b>, tôi biến ý tưởng thành những thước phim TVC, Motion Graphics sống động và xây dựng những kênh TikTok/YouTube viral, mang lại hiệu quả thực tế.
+            <div class="hero-text">
+                <p data-aos="fade-down" data-aos-delay="0" style="color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase;">Portfolio 2026</p>
+                
+                <h1 data-aos="fade-right" data-aos-delay="200">NGÔ BÌNH MINH<br><span style="font-size: 0.5em; color: var(--text-sub); font-weight: 400;">Freelance Video Editor</span></h1>
+                
+                <p class="intro-para-mobile" data-aos="fade-up" data-aos-delay="400" style="color: var(--text-sub); max-width: 600px; margin: 20px 0; line-height: 1.6; font-size: 1.1rem;">
+                    Tôi là Minh – Video Editor & Cameraman chuyên nghiệp. Với kinh nghiệm thực chiến tại <b>KienlongBank</b> và <b>IMAP</b>, tôi cung cấp giải pháp video toàn diện: từ sản xuất TVC, Motion Graphics đến xây dựng kênh TikTok/YouTube bài bản. Tôi tập trung vào chất lượng hình ảnh và hiệu quả truyền thông thực tế của từng sản phẩm.
                 </p>
                 
-                <div class="info-badges">
+                <div class="info-badges" data-aos="fade-up" data-aos-delay="600">
                     <div class="badge-group">
                         <span class="badge-label"><i class="fas fa-globe"></i> Ngôn ngữ:</span>
                         <span class="pill-tag">Tiếng Việt (Native)</span>
@@ -352,9 +358,9 @@
                     </div>
                 </div>
 
-                <a href="#portfolio" class="hero-btn">Xem Dự Án Của Tôi</a>
+                <a href="#portfolio" class="hero-btn" data-aos="zoom-in" data-aos-delay="800">Xem Dự Án Của Tôi</a>
             </div>
-            <div class="hero-image-box" data-aos="fade-left">
+            <div class="hero-image-box" data-aos="fade-left" data-aos-delay="400">
                 <img src="minh3.png" alt="Ngô Bình Minh" style="width: 90%; margin-top: 0;">
             </div>
         </section>
