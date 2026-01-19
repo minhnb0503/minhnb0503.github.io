@@ -109,7 +109,6 @@
         .portfolio-label { color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: block; }
         .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
         
-        /* FIX V83: Justify & Widow words */
         .intro-para-mobile { 
             color: var(--text-sub); max-width: 600px; margin: 20px 0; 
             line-height: 1.6; font-size: 1.1rem;
@@ -170,7 +169,6 @@
 
         .about-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         
-        /* FIX V83: Justify */
         .about-desc { 
             font-size: 1.25rem; line-height: 1.9;
             color: var(--text-sub); margin-bottom: 50px; max-width: 100%; 
@@ -190,7 +188,6 @@
         }
         .badge-label i { background: var(--accent); color: #fff; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 0.9rem; }
         
-        /* FIX V83: 1 line nowrap */
         .pill-tag { background: var(--bg-body); color: var(--text-sub); padding: 10px 25px; border-radius: 50px; font-size: 0.95rem; font-weight: 600; border: 1px solid var(--border); box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; display: inline-block; cursor: default; white-space: nowrap; }
         body.dark-mode .pill-tag { background: #1a1a1a; }
         .pill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
@@ -198,25 +195,44 @@
         .partner-wrapper { margin-top: 10px; }
         .partner-header { margin-bottom: 25px; }
 
+        /* V85 GRID CONFIGURATION */
         .partner-grid {
-            display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px;
+            display: grid; 
+            /* Grid 5 columns on PC */
+            grid-template-columns: repeat(5, 1fr); 
+            gap: 20px;
             align-items: center; justify-items: center;
         }
+        
+        /* ITEM BOX */
         .partner-item {
-            width: 100%; height: 100px; display: flex; align-items: center; justify-content: center;
+            width: 100%; 
+            height: 100px; 
+            display: flex; align-items: center; justify-content: center;
             background: var(--bg-body); border-radius: 12px; border: 1px solid var(--border);
-            padding: 22px; transition: all 0.3s ease; cursor: pointer;
+            padding: 10px; /* Reduced padding to give logos more space inside */
+            transition: all 0.3s ease; cursor: pointer;
         }
         
+        /* LOGO SIZING LOGIC (VISUAL BALANCE) */
         .partner-logo {
-            max-width: 100%; max-height: 100%; object-fit: contain;
+            width: auto;
+            height: auto;
+            /* Limits for balance */
+            max-width: 85%; /* Don't touch edges */
+            max-height: 55px; /* HEIGHT CAP: Forces square logos to be same height as text logos */
+            object-fit: contain;
             filter: none; opacity: 1;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
         }
 
-        .partner-logo.logo-imap { transform: scale(1.8); }
-        .partner-logo.logo-junior { transform: scale(1.9); }
+        /* Specific Overrides for Small Logos */
+        .partner-logo.logo-imap { transform: scale(1.6); }
+        .partner-logo.logo-junior { transform: scale(1.7); }
         
+        /* Specific Overrides for Wide Logos (Optional) */
+        .partner-logo.logo-wide { max-height: 45px; transform: scale(1.1); } 
+
         body.dark-mode .partner-item { background: #1a1a1a; }
         body.dark-mode .partner-logo { filter: brightness(1.2) drop-shadow(0 0 2px rgba(255,255,255,0.2)); }
         body.dark-mode .partner-item:hover .partner-logo { filter: brightness(1.3) drop-shadow(0 0 4px rgba(255,255,255,0.4)); }
@@ -225,13 +241,15 @@
             border-color: var(--accent); box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             transform: translateY(-5px);
         }
+        /* Default Hover Popup */
         .partner-item:hover .partner-logo { transform: scale(1.15); }
-        .partner-item:hover .partner-logo.logo-imap { transform: scale(2.0); }
-        .partner-item:hover .partner-logo.logo-junior { transform: scale(2.1); }
+        
+        /* Custom Hover Popup for Small Logos */
+        .partner-item:hover .partner-logo.logo-imap { transform: scale(1.8); }
+        .partner-item:hover .partner-logo.logo-junior { transform: scale(1.9); }
 
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
-        /* SKILL ITEMS */
         .skill-item { 
             background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; 
             border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
@@ -243,7 +261,6 @@
             width: 50px; height: 50px; object-fit: contain; margin-bottom: 15px; border-radius: 8px;
         }
         
-        /* FIX V84: SPINE LOGO SCALE */
         .skill-icon-img.skill-spine { transform: scale(1.6); }
 
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
@@ -270,7 +287,6 @@
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
             .exp-right { padding-top: 2px; width: 100%; padding-left: 10px; }
             
-            /* FIX V83: JUSTIFY TEXT PC */
             .timeline-desc { 
                 margin: 0; font-size: 1.05rem; 
                 color: var(--text-sub); line-height: 1.6; 
@@ -285,8 +301,6 @@
             .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
             .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
             .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
-            
-            /* FIX V83: JUSTIFY TEXT MOBILE */
             .timeline-desc { 
                 font-size: 0.95rem; color: var(--text-sub); line-height: 1.6;
                 text-align: justify; text-justify: inter-word;
@@ -360,8 +374,6 @@
             .shape-orange, .shape-black { width: 200px; height: 200px; }
             
             .visual-connector { display: none; }
-            
-            /* FIX V83: INCREASE DISTANCE BADGE MOBILE */
             .visual-badge-wrapper { margin-top: 40px; } 
 
             .about-desc { font-size: 1.1rem; text-align: justify; text-justify: inter-word; }
@@ -369,7 +381,6 @@
 
             .about-stats { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             
-            /* FIX V83: MOBILE BADGE STACK */
             .badge-row { 
                 flex-direction: column; 
                 align-items: center;
@@ -392,7 +403,6 @@
             .swiper-slide { width: 280px; height: 420px; }
         }
 
-        /* FIX V83: MOBILE TITLE 1 LINE */
         @media (max-width: 480px) {
             .section-title { font-size: 1.5rem !important; white-space: nowrap; }
         }
