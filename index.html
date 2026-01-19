@@ -44,7 +44,7 @@
             transition: 0.3s;
         }
 
-        h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name {
+        h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name, .visual-signature {
             font-family: 'Bricolage Grotesque', sans-serif !important;
         }
 
@@ -103,11 +103,10 @@
         .portfolio-label { color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: block; }
         .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
         
-        /* FIX V76: Justify intro paragraph */
         .intro-para-mobile { 
             color: var(--text-sub); max-width: 600px; margin: 20px 0; 
             line-height: 1.6; font-size: 1.1rem;
-            text-align: justify; /* Căn đều 2 bên */
+            text-align: justify; 
             text-justify: inter-word;
         }
 
@@ -122,12 +121,11 @@
         .section-title { font-size: 2.5rem; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; letter-spacing: -0.5px; margin: 0; line-height: 1; }
         .section-number { font-size: 1.2rem; color: var(--accent); font-weight: 600; }
 
-        /* --- ABOUT SECTION V76 (SPINNING BADGE + JUSTIFIED TEXT) --- */
+        /* --- ABOUT SECTION V77 --- */
         #about { position: relative; }
         
         .about-layout { display: flex; gap: 100px; align-items: stretch; position: relative; z-index: 2; }
         
-        /* Left Visual */
         .about-visual { 
             flex: 0 0 320px; 
             display: flex; flex-direction: column; 
@@ -147,42 +145,30 @@
             margin: 20px 0; opacity: 0.6;
         }
 
-        /* V76: SPINNING BADGE (Phương án 1) */
+        /* SPINNING BADGE */
         .visual-badge-wrapper {
             position: relative;
             width: 140px; height: 140px;
             flex-shrink: 0;
             display: flex; align-items: center; justify-content: center;
-            background: var(--bg-body); /* Nền trùng màu web để che dây */
+            background: var(--bg-body);
             border-radius: 50%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             z-index: 5;
         }
         body.dark-mode .visual-badge-wrapper { background: #1a1a1a; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
-        .badge-text-svg {
-            width: 100%; height: 100%;
-            animation: spin-text 12s linear infinite;
-        }
-        .badge-text-path {
-            fill: var(--text-main); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
-        }
-        .badge-center-icon {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 1.8rem; color: var(--accent);
-        }
+        .badge-text-svg { width: 100%; height: 100%; animation: spin-text 12s linear infinite; }
+        .badge-text-path { fill: var(--text-main); font-weight: 700; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+        .badge-center-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.8rem; color: var(--accent); }
         @keyframes spin-text { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-
-        /* Right Content */
         .about-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         
-        /* FIX V76: JUSTIFY TEXT */
         .about-desc { 
             font-size: 1.25rem; line-height: 1.9;
             color: var(--text-sub); margin-bottom: 50px; max-width: 100%; 
-            text-align: justify; /* Căn đều 2 bên */
-            text-justify: inter-word;
+            text-align: justify; text-justify: inter-word; /* Căn đều 2 bên */
         }
         
         .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 50px; }
@@ -202,7 +188,6 @@
         body.dark-mode .pill-tag { background: #1a1a1a; }
         .pill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
 
-        /* --- PARTNER LOGO GRID V76 --- */
         .partner-wrapper { margin-top: 10px; }
         .partner-header { margin-bottom: 25px; }
 
@@ -244,7 +229,7 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V65 - PRESERVED) --- */
+        /* --- 4. EXPERIENCE CSS --- */
         /* PC */
         @media (min-width: 993px) {
             #experience { width: 100%; padding-left: 60px; padding-right: 60px; }
@@ -264,12 +249,10 @@
             .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
             .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
             .exp-right { padding-top: 2px; width: 100%; padding-left: 10px; }
-            
-            /* FIX V76: JUSTIFY TIMELINE DESC */
             .timeline-desc { 
                 margin: 0; font-size: 1.05rem; 
                 color: var(--text-sub); line-height: 1.6; 
-                text-align: justify; text-justify: inter-word; /* Căn đều */
+                text-align: justify; text-justify: inter-word; 
                 width: 100%; 
             }
         }
@@ -282,7 +265,7 @@
             .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
             .timeline-desc { 
                 font-size: 0.95rem; color: var(--text-sub); line-height: 1.6;
-                text-align: justify; text-justify: inter-word; /* Căn đều Mobile */
+                text-align: justify; text-justify: inter-word;
             }
         }
 
@@ -339,7 +322,6 @@
             .hero-text { padding-right: 0; margin-top: 30px; }
             .hero h1 { font-size: 2.5rem; }
             
-            /* V76: Justify Intro Mobile */
             .intro-para-mobile { 
                 text-align: justify; text-justify: inter-word;
                 margin-bottom: 30px; 
@@ -352,10 +334,8 @@
             .visual-circles-container { width: 260px; height: 260px; margin-bottom: 20px; }
             .shape-orange, .shape-black { width: 200px; height: 200px; }
             
-            /* Hide Connector/Badge on Mobile to save space or adjust style? 
-               Let's keep it but simpler layout */
             .visual-connector { display: none; }
-            .visual-badge-wrapper { margin-top: -30px; } /* Pull up a bit */
+            .visual-badge-wrapper { margin-top: -30px; }
 
             .about-desc { font-size: 1.1rem; text-align: justify; text-justify: inter-word; }
             .stat-item h3 { font-size: 2.8rem; }
@@ -363,6 +343,7 @@
             .about-stats { grid-template-columns: 1fr; gap: 30px; text-align: center; }
             .badge-row { justify-content: center; }
             
+            /* Partner Grid Mobile */
             .partner-grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }
             .partner-item { height: 80px; padding: 15px; }
             
@@ -498,7 +479,7 @@
 
                 <div class="about-content" data-aos="fade-left">
                     <p class="about-desc">
-                        Không chỉ dừng lại ở kỹ thuật, tôi luôn tìm tòi những xu hướng hình ảnh mới nhất để áp dụng vào từng thước phim. Sự chỉn chu trong từng frame hình và tư duy kể chuyện mạch lạc là cam kết của tôi cho mọi dự án.
+                        Không chỉ dừng lại ở kỹ thuật, tôi luôn tìm tòi những xu hướng hình ảnh mới nhất để áp dụng vào từng thước&nbsp;phim. Sự chỉn chu trong từng frame hình và tư duy kể chuyện mạch lạc là cam kết của tôi cho mọi dự&nbsp;án.
                     </p>
 
                     <div class="about-stats">
