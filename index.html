@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        /* --- 1. CẤU HÌNH MÀU SẮC & CƠ BẢN --- */
+        /* --- 1. CẤU HÌNH CƠ BẢN --- */
         :root {
             --bg-body: #ffffff;
             --bg-block: #f8f9fa;
             --text-main: #111111;
             --text-sub: #666666;
             --border: #e5e5e5;
-            --accent: #ff4d29; /* Cam chủ đạo */
+            --accent: #ff4d29;
             --sidebar-width: 280px;
             --header-height-mobile: 70px; 
         }
@@ -44,7 +44,6 @@
             transition: 0.3s;
         }
 
-        /* Đồng bộ Font cho toàn bộ tiêu đề */
         h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name {
             font-family: 'Bricolage Grotesque', sans-serif !important;
         }
@@ -135,9 +134,9 @@
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
 
-        /* --- 4. EXPERIENCE CSS (V44: FIX ALIGNMENT & LINE Z-INDEX) --- */
+        /* --- 4. EXPERIENCE CSS (V45: FIXED ALIGNMENT & THROUGH LINE) --- */
         
-        /* [Mobile] Mặc định là Card dọc */
+        /* [Mobile] Card Style */
         .timeline-item {
             display: block; 
             padding: 30px; 
@@ -147,105 +146,116 @@
             border-left: 4px solid var(--accent); 
             border: 1px solid var(--border);
         }
-        .exp-visual, .exp-type-pc, .animated-timeline-line { display: none; } /* Ẩn trên mobile */
+        .exp-visual, .exp-type-pc, .animated-timeline-line { display: none; }
         .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
         .timeline-role { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; }
         .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
         .timeline-desc { font-size: 0.95rem; color: var(--text-sub); line-height: 1.6; }
 
-        /* [PC] Layout mới (Min-width 993px) */
+        /* [PC] Layout Mới (Rewrite) */
         @media (min-width: 993px) {
             #experience {
-                padding-left: 40px;
-                padding-right: 40px;
+                /* Đảm bảo container full width */
+                width: 100%;
+                padding-left: 60px; /* Căn chỉnh lại lề section */
+                padding-right: 60px;
             }
 
             .timeline-container {
                 width: 100%; 
-                position: relative; 
+                position: relative; /* Để đặt dây nối */
+                margin-top: 40px;
             }
 
-            /* Dây nối Hoạt hình - Đặt Z-index thấp để nằm dưới chấm */
+            /* Dây nối Hoạt hình - Đặt chính xác vào tâm cột visual */
             .animated-timeline-line {
                 display: block;
                 position: absolute;
-                top: 20px; 
-                /* Tính toán lại vị trí chính giữa cột thứ 2: 250px (cột 1) + 20px (gap) + 30px (một nửa cột 2) = 300px */
-                left: 300px; 
+                top: 15px; /* Bắt đầu từ tâm chấm đầu tiên */
+                /* Tính toán vị trí: 
+                   Cột 1 (220px) + Gap (0) + 1/2 Cột 2 (30px) = 250px 
+                */
+                left: 250px; 
                 width: 2px;
-                background: var(--accent); 
-                height: 0; 
-                z-index: 0; /* Z-index thấp hơn chấm tròn */
+                background: #e5e5e5; /* Màu xám nhạt nền */
+                height: 100%; 
+                z-index: 0; /* Nằm dưới chấm */
                 transform: translateX(-50%);
             }
             
-            [data-aos="grow-height"].aos-animate {
-                height: calc(100% - 40px); 
-                transition: height 1.5s ease-in-out; 
+            /* Lớp phủ màu cam chạy đè lên */
+            .line-progress {
+                position: absolute; top: 0; left: 0; width: 100%; 
+                background: var(--accent); height: 0;
+                transition: height 1.5s ease-out;
+            }
+            
+            /* Kích hoạt animation khi cuộn tới */
+            [data-aos="line-grow"].aos-animate .line-progress {
+                height: 100%;
             }
 
             .timeline-item {
                 display: grid; 
-                grid-template-columns: 250px 60px 280px 1fr; 
+                /* GRID CHUẨN: 
+                   220px (Năm/Role) | 60px (Visual) | 220px (Company) | 1fr (Description - Lấy hết phần còn lại) 
+                */
+                grid-template-columns: 220px 60px 220px 1fr; 
                 gap: 20px; 
-                padding-bottom: 50px; 
+                padding-bottom: 60px; 
                 background: transparent; 
                 border: none; 
-                border-radius: 0;
-                margin-bottom: 0;
+                border-radius: 0; 
+                margin: 0;
                 align-items: flex-start;
-                position: relative;
             }
 
-            .exp-left { text-align: left; }
+            /* Cột 1: Năm (Không xuống dòng) */
+            .exp-left { text-align: left; padding-top: 0; }
             .timeline-year { 
-                font-size: 2.2rem; 
-                color: var(--text-main); font-weight: 800; 
-                margin-bottom: 5px; line-height: 1; 
-                white-space: nowrap; 
+                font-size: 2rem; color: var(--text-main); font-weight: 800; 
+                margin-bottom: 5px; line-height: 1; white-space: nowrap; 
             }
-            .timeline-role { font-size: 1.1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
+            .timeline-role { font-size: 1rem; color: var(--text-sub); font-weight: 600; margin-top: 5px; }
 
-            /* Cột chứa chấm tròn - Đặt Z-index cao để đè lên dây */
+            /* Cột 2: Visual (Chấm tròn) */
             .exp-visual { 
-                display: flex; justify-content: center; 
-                position: relative; height: 100%;
-                z-index: 2; /* Z-index cao hơn dây */
+                display: flex; justify-content: center; align-items: flex-start;
+                height: 100%; z-index: 2; /* Đè lên dây */
             }
             
             .exp-dot {
                 width: 14px; height: 14px; border-radius: 50%;
-                border: 2px solid #bdbdbd; background: var(--bg-body);
-                margin-top: 12px; 
-                transition: all 0.3s;
+                border: 2px solid #ccc; background: var(--bg-body);
+                margin-top: 8px; /* Căn giữa với dòng chữ năm */
+                transition: 0.3s;
             }
             
             .active-dot {
                 border-color: var(--accent);
-                background: var(--bg-body);
                 position: relative;
-                box-shadow: 0 0 0 4px rgba(255, 77, 41, 0.2); 
             }
+            /* Lõi cam bên trong chấm */
             .active-dot::after {
                 content: ''; position: absolute;
                 top: 50%; left: 50%; transform: translate(-50%, -50%);
                 width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
             }
 
-            .exp-center { display: flex; flex-direction: column; padding-top: 5px; }
-            .timeline-company { font-size: 1.2rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
-            .exp-type-pc { display: block; font-size: 0.95rem; color: var(--text-sub); font-weight: 500; }
+            /* Cột 3: Công ty */
+            .exp-center { display: flex; flex-direction: column; }
+            .timeline-company { font-size: 1.1rem; color: var(--text-main); font-weight: 800; margin-bottom: 5px; }
+            .exp-type-pc { display: block; font-size: 0.9rem; color: var(--text-sub); font-weight: 500; }
 
-            /* Cột 4: Mô tả - Căn đều 2 bên để sát cạnh phải */
-            .exp-right { padding-top: 5px; }
+            /* Cột 4: Mô tả (TRÀN VIỀN) */
+            .exp-right { width: 100%; }
             .timeline-desc { 
-                margin-top: 0; 
-                font-size: 1.05rem; 
+                margin: 0; 
+                font-size: 1rem; 
                 color: var(--text-sub); 
                 line-height: 1.6; 
-                /* SỬA LỖI: Căn đều để mép phải thẳng tăm tắp */
-                text-align: justify; 
-                max-width: 100%; 
+                text-align: left; 
+                width: 100%; /* Đảm bảo chiếm hết 1fr */
             }
         }
 
@@ -265,7 +275,7 @@
         .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
         .bottom-socials { display: none; }
 
-        /* --- MOBILE CSS (GIỮ NGUYÊN BỐ CỤC MOBILE CHUẨN) --- */
+        /* --- MOBILE CSS --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             
@@ -307,8 +317,6 @@
             .hero h1 { font-size: 2.5rem; }
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             section { padding: 40px 20px; }
-            
-            /* Mobile Timeline (Card Style) */
             .section-header { margin-bottom: 20px; padding-bottom: 15px; }
             .section-title { font-size: 2rem; padding-left: 15px; }
             .section-number { font-size: 1rem; }
@@ -432,7 +440,9 @@
             
             <div class="timeline-container">
                 
-                <div class="animated-timeline-line" data-aos="grow-height" data-aos-duration="1500" data-aos-delay="300"></div>
+                <div class="animated-timeline-line" data-aos="line-grow" data-aos-duration="1500" data-aos-anchor="#experience">
+                    <div class="line-progress"></div>
+                </div>
 
                 <div class="timeline-item active" data-aos="fade-up" data-aos-delay="0">
                     <div class="exp-left">
@@ -478,7 +488,8 @@
                     </div>
                     <div class="exp-center">
                         <span class="timeline-company">TGMedia Việt Nam</span>
-                        <span class="exp-type-pc">Part-time</span> </div>
+                        <span class="exp-type-pc">Part-time</span>
+                    </div>
                     <div class="exp-right">
                         <p class="timeline-desc">• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity & Spine.</p>
                     </div>
