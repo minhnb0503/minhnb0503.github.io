@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    
     <title>Ngô Bình Minh | Video Editor Portfolio</title>
     
     <link rel="icon" href="minh3.png" type="image/png">
@@ -10,14 +12,15 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        /* --- 1. CẤU HÌNH --- */
+        /* --- 1. CẤU HÌNH & BẢO MẬT CSS --- */
         :root {
             --bg-body: #ffffff;
             --bg-block: #f8f9fa;
@@ -27,6 +30,21 @@
             --accent: #ff4d29;
             --sidebar-width: 280px;
             --header-height-mobile: 70px; 
+        }
+
+        /* CHỐNG COPY - CHỐNG BÔI ĐEN */
+        body {
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+            -webkit-touch-callout: none; /* iOS Safari */
+        }
+
+        /* CHỐNG KÉO ẢNH */
+        img {
+            pointer-events: none;
+            -webkit-user-drag: none;
+            user-select: none;
         }
 
         html { scroll-behavior: smooth; scroll-padding-top: 20px; }
@@ -44,16 +62,22 @@
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
-            /* Font stack ưu tiên Bricolage, sau đó đến các font ngôn ngữ cụ thể */
             font-family: 'Bricolage Grotesque', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
             overflow-x: hidden;
-            transition: 0.3s;
-            line-height: 1.6; /* Khoảng cách dòng thoáng */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            line-height: 1.6;
+            text-rendering: optimizeLegibility; /* Tăng độ nét chữ */
         }
 
         h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name {
-            font-family: 'Bricolage Grotesque', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif !important;
+            font-family: 'Bricolage Grotesque', sans-serif !important;
             line-height: 1.2;
+        }
+
+        /* GPU ACCELERATION (Mượt mà hơn) */
+        .sidebar, .hero-btn, .skill-item, .partner-item, .lang-fab-container, .menu-overlay {
+            transform: translateZ(0);
+            will-change: transform, opacity;
         }
 
         /* --- 2. SIDEBAR --- */
@@ -72,7 +96,7 @@
         .mobile-header-wrapper { display: none; }
         .menu-overlay { display: none; }
 
-        .profile-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid var(--accent); padding: 3px; background: var(--bg-body); }
+        .profile-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid var(--accent); padding: 3px; background: var(--bg-body); pointer-events: none; }
         
         .nav-links { 
             display: flex; flex-direction: column; justify-content: center;
@@ -569,24 +593,24 @@
                     <div class="partner-wrapper">
                         <span class="badge-label partner-header"><i class="fas fa-handshake"></i> <span data-i18n="lbl_partner">Đối tác:</span></span>
                         <div class="partner-grid">
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="0"><img src="logo-port bm/logo-kienlongbank.png" alt="KienlongBank" class="partner-logo logo-klb"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="50"><img src="logo-port bm/logo-mbank.png" alt="MB Bank" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-port bm/logo-vietcombank.png" alt="Vietcombank" class="partner-logo logo-vcb"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="150"><img src="logo-port bm/logo-bidv.png" alt="BIDV" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-port bm/logo-vtv.png" alt="VTV" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="250"><img src="logo-port bm/logo-vtv7.png" alt="VTV7" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="300"><img src="logo-port bm/logo-CafeBiz.png" alt="CafeBiz" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="350"><img src="logo-port bm/logo-tentun.png" alt="Ten Tun" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="400"><img src="logo-port bm/logo-tgmedia.png" alt="TGMedia" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="450"><img src="logo-port bm/logo-gapowork@4x.png" alt="GapoWork" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="500"><img src="logo-port bm/logo-imap.png" alt="IMAP" class="partner-logo logo-imap"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="550"><img src="logo-port bm/logo-ieltsfighter@4x.png" alt="IELTS Fighter" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="600"><img src="logo-port bm/logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo logo-mshoalogo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="650"><img src="logo-port bm/logo-mshoatoeic.png" alt="Ms Hoa TOEIC" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="700"><img src="logo-port bm/logo-Ms Hoa Junior.png" alt="Ms Hoa Junior" class="partner-logo logo-junior"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="750"><img src="logo-port bm/logo mhgt.png" alt="Ms Hoa GT" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="800"><img src="logo-port bm/logo-hvtc.png" alt="HVTC" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="850"><img src="logo-port bm/logo-hanoi.png" alt="Ha Noi" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="0"><img src="logo-port bm/logo-kienlongbank.png" alt="KienlongBank" class="partner-logo logo-klb" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="50"><img src="logo-port bm/logo-mbank.png" alt="MB Bank" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-port bm/logo-vietcombank.png" alt="Vietcombank" class="partner-logo logo-vcb" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="150"><img src="logo-port bm/logo-bidv.png" alt="BIDV" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-port bm/logo-vtv.png" alt="VTV" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="250"><img src="logo-port bm/logo-vtv7.png" alt="VTV7" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="300"><img src="logo-port bm/logo-CafeBiz.png" alt="CafeBiz" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="350"><img src="logo-port bm/logo-tentun.png" alt="Ten Tun" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="400"><img src="logo-port bm/logo-tgmedia.png" alt="TGMedia" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="450"><img src="logo-port bm/logo-gapowork@4x.png" alt="GapoWork" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="500"><img src="logo-port bm/logo-imap.png" alt="IMAP" class="partner-logo logo-imap" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="550"><img src="logo-port bm/logo-ieltsfighter@4x.png" alt="IELTS Fighter" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="600"><img src="logo-port bm/logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo logo-mshoalogo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="650"><img src="logo-port bm/logo-mshoatoeic.png" alt="Ms Hoa TOEIC" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="700"><img src="logo-port bm/logo-Ms Hoa Junior.png" alt="Ms Hoa Junior" class="partner-logo logo-junior" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="750"><img src="logo-port bm/logo mhgt.png" alt="Ms Hoa GT" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="800"><img src="logo-port bm/logo-hvtc.png" alt="HVTC" class="partner-logo" loading="lazy"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="850"><img src="logo-port bm/logo-hanoi.png" alt="Ha Noi" class="partner-logo" loading="lazy"></div>
                         </div>
                     </div>
                 </div>
@@ -601,19 +625,19 @@
 
             <h3 style="margin-bottom: 20px; color: var(--text-main);" data-i18n="sub_soft">Phần mềm (Software)</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
-                <div class="skill-item" data-aos="fade-up"><img src="logo-adobe/premiere-pro.png" alt="Pr" class="skill-icon-img"><p>Premiere Pro</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-adobe/after-effects.png" alt="Ae" class="skill-icon-img"><p>After Effects</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-adobe/photoshop.png" alt="Ps" class="skill-icon-img"><p>Photoshop</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="300"><img src="logo-adobe/illustrator.png" alt="Ai" class="skill-icon-img"><p>Illustrator</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="400"><img src="logo-adobe/adobe-audition.png" alt="Au" class="skill-icon-img"><p>Audition</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="500"><img src="logo-adobe/spine.png" alt="Spine" class="skill-icon-img skill-spine"><p>Spine 2D</p></div>
+                <div class="skill-item" data-aos="fade-up"><img src="logo-adobe/premiere-pro.png" alt="Pr" class="skill-icon-img" loading="lazy"><p>Premiere Pro</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-adobe/after-effects.png" alt="Ae" class="skill-icon-img" loading="lazy"><p>After Effects</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-adobe/photoshop.png" alt="Ps" class="skill-icon-img" loading="lazy"><p>Photoshop</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="300"><img src="logo-adobe/illustrator.png" alt="Ai" class="skill-icon-img" loading="lazy"><p>Illustrator</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="400"><img src="logo-adobe/adobe-audition.png" alt="Au" class="skill-icon-img" loading="lazy"><p>Audition</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="500"><img src="logo-adobe/spine.png" alt="Spine" class="skill-icon-img skill-spine" loading="lazy"><p>Spine 2D</p></div>
             </div>
 
             <h3 style="margin-bottom: 20px; color: var(--text-main);" data-i18n="sub_ai">Công cụ AI Hỗ trợ</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
-                <div class="skill-item" data-aos="fade-up"><div class="ai-display-box"><img src="logo-ai/logo-gemini.png" alt="Gemini"></div><p>Gemini</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="100"><div class="ai-display-box"><img src="logo-ai/logo-openai.png" alt="OpenAI"></div><p>OpenAI</p></div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="200"><div class="ai-display-box"><img src="logo-ai/logo-kling.png" alt="Kling AI"></div><p>Kling AI</p></div>
+                <div class="skill-item" data-aos="fade-up"><div class="ai-display-box"><img src="logo-ai/logo-gemini.png" alt="Gemini" loading="lazy"></div><p>Gemini</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="100"><div class="ai-display-box"><img src="logo-ai/logo-openai.png" alt="OpenAI" loading="lazy"></div><p>OpenAI</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="200"><div class="ai-display-box"><img src="logo-ai/logo-kling.png" alt="Kling AI" loading="lazy"></div><p>Kling AI</p></div>
             </div>
             
             <h3 style="margin-bottom: 20px; color: var(--text-main);" data-i18n="sub_gear">Thiết bị (Gear)</h3>
@@ -708,37 +732,58 @@
 
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
     
-    <script>
-        AOS.init({ once: true, offset: 50, duration: 800 });
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function() {
+            // INIT AOS
+            AOS.init({ once: true, offset: 50, duration: 800 });
 
-        var swiper = new Swiper(".mySwiper", {
-            effect: "coverflow",
-            grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: "auto",
-            spaceBetween: 60,
-            coverflowEffect: {
-                rotate: 0, stretch: 0, depth: 100, modifier: 1, slideShadows: false,
-            },
-            mousewheel: {
-                enabled: true, eventsTarget: '.swiper', forceToAxis: false, sensitivity: 1.5, releaseOnEdges: true,
-            },
-            loop: false
+            // INIT SWIPER
+            var swiper = new Swiper(".mySwiper", {
+                effect: "coverflow",
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: "auto",
+                spaceBetween: 60,
+                coverflowEffect: {
+                    rotate: 0, stretch: 0, depth: 100, modifier: 1, slideShadows: false,
+                },
+                mousewheel: {
+                    enabled: true, eventsTarget: '.swiper', forceToAxis: false, sensitivity: 1.5, releaseOnEdges: true,
+                },
+                loop: false
+            });
+
+            // CHECK MOBILE NAV
+            if (window.innerWidth < 992) {
+                document.getElementById('mobileNav').style.display = 'flex';
+            }
+
+            // --- SECURITY SHIELD (CHỐNG COPY) ---
+            document.addEventListener('contextmenu', event => event.preventDefault()); // Chặn chuột phải
+            document.onkeydown = function(e) {
+                if (e.keyCode == 123) return false; // F12
+                if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+                if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+                if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+                if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+                if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S
+            };
+
+            // Init language on load
+            const savedLang = localStorage.getItem('preferred_lang') || 'vi';
+            changeLanguage(savedLang);
+            
+            // Check theme
+            if (localStorage.getItem('theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                updateIcons(true);
+            }
         });
 
-        if (window.innerWidth < 992) {
-            document.getElementById('mobileNav').style.display = 'flex';
-        }
-
-        const body = document.body;
-        const iconMobile = document.querySelector('.mobile-theme-btn i');
-        const iconPC = document.querySelector('.theme-btn-pc i');
-        const textPC = document.querySelector('.theme-btn-pc span'); // Updated selector
-
-        // --- INSTANT TRANSLATION DATA (KHO DỮ LIỆU DỊCH) ---
+        // --- INSTANT TRANSLATION DATA (LOCALIZED) ---
         const translations = {
             vi: {
                 nav_home: "Giới thiệu", nav_about: "Ngôn ngữ & Đối tác", nav_skills: "Kỹ năng & Gear", nav_exp: "Kinh nghiệm", nav_port: "Dự án",
@@ -858,16 +903,14 @@
         };
 
         function changeLanguage(lang) {
-            // Update text elements
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
-                    el.innerHTML = translations[lang][key]; // innerHTML to support <b> and <br>
+                    el.innerHTML = translations[lang][key]; 
                 }
             });
 
-            // Update main button icon/text
             const flagMap = {
                 'vi': { url: 'https://flagcdn.com/w40/vn.png', text: 'Tiếng Việt' },
                 'en': { url: 'https://flagcdn.com/w40/us.png', text: 'English' },
@@ -878,67 +921,81 @@
             
             const mainBtn = document.getElementById('mainLangBtn');
             mainBtn.innerHTML = `<img src="${flagMap[lang].url}" style="width:20px;height:20px;border-radius:50%;object-fit:cover;"> <span>${flagMap[lang].text}</span>`;
-
-            // Save preference
             localStorage.setItem('preferred_lang', lang);
+            
+            // Re-update icons to reflect language change in button text
+            const isDark = document.body.classList.contains('dark-mode');
+            updateIcons(isDark);
         }
 
-        // Init Language
-        const savedLang = localStorage.getItem('preferred_lang') || 'vi';
-        changeLanguage(savedLang);
+        // --- UI HELPERS ---
+        const iconPC = document.querySelector('.theme-btn-pc i');
+        const textPC = document.querySelector('.theme-btn-pc span');
 
         function toggleTheme() {
-            body.classList.toggle('dark-mode');
-            const isDark = body.classList.contains('dark-mode');
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
             updateIcons(isDark);
         }
 
         function toggleMenu() {
-            const overlay = document.getElementById('menuOverlay');
-            overlay.classList.toggle('active');
+            document.getElementById('menuOverlay').classList.toggle('active');
         }
 
         function closeMenu() {
-            const overlay = document.getElementById('menuOverlay');
-            overlay.classList.remove('active');
+            document.getElementById('menuOverlay').classList.remove('active');
         }
 
         function updateIcons(isDark) {
             if (iconPC) {
                 iconPC.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-                // Update PC button text based on current language (simple hack or re-run translation)
                 const currentLang = localStorage.getItem('preferred_lang') || 'vi';
-                const lightText = currentLang === 'vi' ? 'Chế độ Sáng' : (currentLang === 'ko' ? '라이트 모드' : (currentLang === 'zh' ? '浅色模式' : (currentLang === 'ja' ? 'ライトモード' : 'Light Mode')));
-                const darkText = translations[currentLang].btn_darkmode;
-                
+                const lightText = translations[currentLang].btn_lightmode || 'Light Mode';
+                const darkText = translations[currentLang].btn_darkmode || 'Dark Mode';
                 if(textPC) textPC.innerHTML = isDark ? lightText : darkText;
             }
+            const iconMobile = document.querySelector('.mobile-theme-btn i');
             if (iconMobile) {
                 iconMobile.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
             }
         }
 
-        // Check saved theme
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            updateIcons(true);
-        }
-
-        // --- CUSTOM LANGUAGE FAB LOGIC V101 ---
         function toggleLang() {
-            const list = document.getElementById('langList');
-            list.classList.toggle('active');
+            document.getElementById('langList').classList.toggle('active');
         }
 
-        // Đóng menu khi click ra ngoài
         document.addEventListener('click', function(event) {
             const container = document.querySelector('.lang-fab-container');
-            const list = document.getElementById('langList');
             if (!container.contains(event.target)) {
-                list.classList.remove('active');
+                document.getElementById('langList').classList.remove('active');
             }
         });
     </script>
+    
+    <div class="lang-fab-container">
+        <div class="lang-options" id="langList">
+            <button class="lang-btn" onclick="changeLanguage('vi'); toggleLang()">
+                <img src="https://flagcdn.com/w40/vn.png" alt="VN"> Tiếng Việt
+            </button>
+            <button class="lang-btn" onclick="changeLanguage('en'); toggleLang()">
+                <img src="https://flagcdn.com/w40/us.png" alt="US"> English
+            </button>
+            <button class="lang-btn" onclick="changeLanguage('ko'); toggleLang()">
+                <img src="https://flagcdn.com/w40/kr.png" alt="KR"> 한국어
+            </button>
+            <button class="lang-btn" onclick="changeLanguage('zh'); toggleLang()">
+                <img src="https://flagcdn.com/w40/cn.png" alt="CN"> 中文 (Zh)
+            </button>
+            <button class="lang-btn" onclick="changeLanguage('ja'); toggleLang()">
+                <img src="https://flagcdn.com/w40/jp.png" alt="JP"> 日本語
+            </button>
+        </div>
+
+        <button class="lang-main-btn" id="mainLangBtn" onclick="toggleLang()">
+            <img src="https://flagcdn.com/w40/vn.png" style="width:20px;height:20px;border-radius:50%;object-fit:cover;"> <span>Tiếng Việt</span>
+        </button>
+    </div>
+
 </body>
 </html>
