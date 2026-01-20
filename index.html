@@ -53,16 +53,6 @@
             font-family: 'Bricolage Grotesque', sans-serif !important;
         }
 
-        /* --- GTRANSLATE STYLE --- */
-        #gtranslate_wrapper {
-            position: fixed; bottom: 20px; left: 20px; z-index: 999999;
-            background: var(--bg-body); padding: 5px; border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1); border: 1px solid var(--border);
-        }
-        @media (max-width: 992px) {
-            #gtranslate_wrapper { bottom: 80px; left: 10px; }
-        }
-
         /* --- 2. SIDEBAR --- */
         .sidebar {
             position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
@@ -332,6 +322,7 @@
             .pc-content { display: none !important; }
             .mobile-header-wrapper { display: flex !important; width: 100%; justify-content: space-between; align-items: center; }
             .left-info { display: flex; align-items: center; }
+            /* FIX V84: Avatar root */
             .mobile-ava { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); margin-right: 10px; }
             .mobile-name { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--text-main); white-space: nowrap; }
             .right-controls { display: flex; align-items: center; gap: 10px; }
@@ -394,9 +385,19 @@
         @media (max-width: 480px) {
             .section-title { font-size: 1.5rem !important; white-space: nowrap; }
         }
+        
+        /* GTRANSLATE CSS FIX (Đẩy lên trên cùng) */
+        .gtranslate_wrapper {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999999; /* Đảm bảo luôn nằm trên cùng */
+        }
     </style>
 </head>
 <body>
+
+    <div class="gtranslate_wrapper"></div>
 
     <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()">
         <div class="floating-menu-container">
@@ -803,6 +804,7 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
     <script>window.gtranslateSettings = {"default_language":"vi","languages":["vi","en","ko","zh-CN","ja"],"wrapper_selector":".gtranslate_wrapper","alt_flags":{"en":"usa"}}</script>
     <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
 
@@ -873,7 +875,5 @@
             }
         }
     </script>
-    
-    <script src="//code.tidio.co/o7lpk8lujdr6xy7dqrfdw4m35atxzkjt.js" async></script>
 </body>
 </html>
