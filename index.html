@@ -236,6 +236,7 @@
 
 
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; }
+        
         .skill-item { 
             background: var(--bg-body); padding: 25px; border-radius: 15px; text-align: center; 
             border: 1px solid var(--border); transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
@@ -243,28 +244,30 @@
         }
         .skill-item:hover { transform: translateY(-5px); border-color: var(--accent); }
         
+        /* FIX V91: AI CARDS = DARK MODE CARDS */
+        .skill-item.ai-card {
+            background-color: #1e1e1e; /* Nền xám đen sang trọng */
+            border-color: #333;
+        }
+        .skill-item.ai-card p {
+            color: #ffffff; /* Chữ trắng nổi bật */
+        }
+        .skill-item.ai-card:hover {
+            border-color: var(--accent);
+            background-color: #000; /* Đen hơn khi hover */
+        }
+
         .skill-icon-img {
             width: 50px; height: 50px; object-fit: contain; margin-bottom: 15px; border-radius: 8px;
         }
         .skill-icon-img.skill-spine { transform: scale(1.6); }
 
-        /* FIX V90: APP ICON STYLE CHO AI (Nền đen làm nổi bật logo trắng) */
+        /* FIX V91: LOGO AI SIZE (Giảm về chuẩn 45px) */
         .skill-icon-ai {
-            height: 80px; /* SIZE UP */
+            height: 45px; /* Chuẩn bằng Adobe */
             width: auto;
             object-fit: contain;
-            /* Tạo nền đệm màu đen mờ để làm nổi bật logo trắng/màu */
-            background: #1a1a1a;
-            padding: 12px;
-            border-radius: 16px; /* Bo góc mềm mại như App icon */
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        /* Dark mode: Giữ nền đen nhưng thêm viền nhẹ để tách biệt khỏi nền body */
-        body.dark-mode .skill-icon-ai {
-            background: #1a1a1a; 
-            border: 1px solid #333;
+            margin-bottom: 15px;
         }
 
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
@@ -391,7 +394,7 @@
                 gap: 15px; 
             }
             .badge-row > div {
-                display: flex; flex-direction: column; gap: 10px; /* Tiếng Việt trên, Anh dưới */
+                display: flex; flex-direction: column; gap: 10px;
                 width: 100%;
                 align-items: center;
             }
@@ -405,6 +408,10 @@
             .section-title { font-size: 1.5rem !important; white-space: nowrap; padding-left: 15px; }
             .section-number { font-size: 1rem; }
             .swiper-slide { width: 280px; height: 420px; }
+        }
+
+        @media (max-width: 480px) {
+            .section-title { font-size: 1.5rem !important; white-space: nowrap; }
         }
     </style>
 </head>
@@ -627,15 +634,15 @@
 
             <h3 style="margin-bottom: 20px; color: var(--text-main);">Công cụ AI Hỗ trợ</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
-                <div class="skill-item" data-aos="fade-up">
+                <div class="skill-item ai-card" data-aos="fade-up">
                     <img src="logo-ai/logo-gemini.png" alt="Gemini" class="skill-icon-ai">
                     <p>Gemini</p>
                 </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="skill-item ai-card" data-aos="fade-up" data-aos-delay="100">
                     <img src="logo-ai/logo-openai.png" alt="OpenAI" class="skill-icon-ai">
                     <p>OpenAI</p>
                 </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="skill-item ai-card" data-aos="fade-up" data-aos-delay="200">
                     <img src="logo-ai/logo-kling.png" alt="Kling AI" class="skill-icon-ai">
                     <p>Kling AI</p>
                 </div>
