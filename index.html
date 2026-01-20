@@ -248,9 +248,24 @@
         }
         .skill-icon-img.skill-spine { transform: scale(1.6); }
 
-        /* FIX V89: AUTO-INVERT CLASS (Biến trắng thành đen ở nền trắng) */
-        .auto-invert { filter: invert(1); }
-        body.dark-mode .auto-invert { filter: invert(0); }
+        /* FIX V90: APP ICON STYLE CHO AI (Nền đen làm nổi bật logo trắng) */
+        .skill-icon-ai {
+            height: 80px; /* SIZE UP */
+            width: auto;
+            object-fit: contain;
+            /* Tạo nền đệm màu đen mờ để làm nổi bật logo trắng/màu */
+            background: #1a1a1a;
+            padding: 12px;
+            border-radius: 16px; /* Bo góc mềm mại như App icon */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Dark mode: Giữ nền đen nhưng thêm viền nhẹ để tách biệt khỏi nền body */
+        body.dark-mode .skill-icon-ai {
+            background: #1a1a1a; 
+            border: 1px solid #333;
+        }
 
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
@@ -319,6 +334,7 @@
             .pc-content { display: none !important; }
             .mobile-header-wrapper { display: flex !important; width: 100%; justify-content: space-between; align-items: center; }
             .left-info { display: flex; align-items: center; }
+            /* FIX V84: Avatar root */
             .mobile-ava { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); margin-right: 10px; }
             .mobile-name { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--text-main); white-space: nowrap; }
             .right-controls { display: flex; align-items: center; gap: 10px; }
@@ -344,6 +360,7 @@
             .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
             
+            /* V74 Mobile Adjustments */
             .hero { flex-direction: column-reverse; padding: 40px 25px; text-align: center; height: auto; }
             .hero-text { padding-right: 0; margin-top: 30px; }
             .hero h1 { font-size: 2.5rem; }
@@ -355,6 +372,7 @@
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             
             .about-layout { flex-direction: column; gap: 30px; margin-top: 40px; }
+            /* V76 Mobile Visual */
             .about-visual { height: auto; width: 100%; align-items: center; margin-bottom: 30px; }
             .visual-circles-container { width: 260px; height: 260px; margin-bottom: 20px; }
             .shape-orange, .shape-black { width: 200px; height: 200px; }
@@ -373,7 +391,7 @@
                 gap: 15px; 
             }
             .badge-row > div {
-                display: flex; flex-direction: column; gap: 10px;
+                display: flex; flex-direction: column; gap: 10px; /* Tiếng Việt trên, Anh dưới */
                 width: 100%;
                 align-items: center;
             }
@@ -487,8 +505,7 @@
         <section id="about" style="background: var(--bg-body);">
             <div class="section-header">
                 <h2 class="section-title" style="margin-bottom:0;">Ngôn ngữ và đối tác</h2>
-                <span class="section-number">(02)</span>
-            </div>
+                <span class="section-number">(02)</span> </div>
 
             <div class="about-layout">
                 <div class="about-visual" data-aos="fade-right">
@@ -611,15 +628,15 @@
             <h3 style="margin-bottom: 20px; color: var(--text-main);">Công cụ AI Hỗ trợ</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
                 <div class="skill-item" data-aos="fade-up">
-                    <img src="logo-ai/logo-gemini.png" alt="Gemini" class="skill-icon-img auto-invert">
+                    <img src="logo-ai/logo-gemini.png" alt="Gemini" class="skill-icon-ai">
                     <p>Gemini</p>
                 </div>
                 <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
-                    <img src="logo-ai/logo-openai.png" alt="OpenAI" class="skill-icon-img auto-invert">
+                    <img src="logo-ai/logo-openai.png" alt="OpenAI" class="skill-icon-ai">
                     <p>OpenAI</p>
                 </div>
                 <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
-                    <img src="logo-ai/logo-kling.png" alt="Kling AI" class="skill-icon-img auto-invert">
+                    <img src="logo-ai/logo-kling.png" alt="Kling AI" class="skill-icon-ai">
                     <p>Kling AI</p>
                 </div>
             </div>
