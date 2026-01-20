@@ -29,11 +29,7 @@
             --header-height-mobile: 70px; 
         }
 
-        /* SMOOTH SCROLLING */
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 20px;
-        }
+        html { scroll-behavior: smooth; scroll-padding-top: 20px; }
 
         body.dark-mode {
             --bg-body: #0a0a0a;
@@ -250,8 +246,11 @@
         .skill-icon-img {
             width: 50px; height: 50px; object-fit: contain; margin-bottom: 15px; border-radius: 8px;
         }
-        
         .skill-icon-img.skill-spine { transform: scale(1.6); }
+
+        /* FIX V89: AUTO-INVERT CLASS (Biến trắng thành đen ở nền trắng) */
+        .auto-invert { filter: invert(1); }
+        body.dark-mode .auto-invert { filter: invert(0); }
 
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
         .skill-item p { font-weight: 600; color: var(--text-main); }
@@ -320,7 +319,6 @@
             .pc-content { display: none !important; }
             .mobile-header-wrapper { display: flex !important; width: 100%; justify-content: space-between; align-items: center; }
             .left-info { display: flex; align-items: center; }
-            /* FIX V84: Avatar root */
             .mobile-ava { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); margin-right: 10px; }
             .mobile-name { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; font-weight: 800; color: var(--text-main); white-space: nowrap; }
             .right-controls { display: flex; align-items: center; gap: 10px; }
@@ -346,7 +344,6 @@
             .mobile-nav a { color: var(--text-sub); text-decoration: none; padding: 8px 20px; background: var(--bg-block); margin-right: 10px; border-radius: 20px; font-size: 0.8rem; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; }
             .mobile-nav a.active { background: var(--accent); color: #fff; }
             
-            /* V74 Mobile Adjustments */
             .hero { flex-direction: column-reverse; padding: 40px 25px; text-align: center; height: auto; }
             .hero-text { padding-right: 0; margin-top: 30px; }
             .hero h1 { font-size: 2.5rem; }
@@ -358,7 +355,6 @@
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
             
             .about-layout { flex-direction: column; gap: 30px; margin-top: 40px; }
-            /* V76 Mobile Visual */
             .about-visual { height: auto; width: 100%; align-items: center; margin-bottom: 30px; }
             .visual-circles-container { width: 260px; height: 260px; margin-bottom: 20px; }
             .shape-orange, .shape-black { width: 200px; height: 200px; }
@@ -388,13 +384,9 @@
             
             section { padding: 40px 20px; }
             .section-header { margin-bottom: 20px; padding-bottom: 15px; }
-            .section-title { font-size: 2rem; padding-left: 15px; }
+            .section-title { font-size: 1.5rem !important; white-space: nowrap; padding-left: 15px; }
             .section-number { font-size: 1rem; }
             .swiper-slide { width: 280px; height: 420px; }
-        }
-
-        @media (max-width: 480px) {
-            .section-title { font-size: 1.5rem !important; white-space: nowrap; }
         }
     </style>
 </head>
@@ -495,7 +487,8 @@
         <section id="about" style="background: var(--bg-body);">
             <div class="section-header">
                 <h2 class="section-title" style="margin-bottom:0;">Ngôn ngữ và đối tác</h2>
-                <span class="section-number">(02)</span> </div>
+                <span class="section-number">(02)</span>
+            </div>
 
             <div class="about-layout">
                 <div class="about-visual" data-aos="fade-right">
@@ -584,7 +577,8 @@
         <section id="skills" style="background: var(--bg-block);">
             <div class="section-header">
                 <h2 class="section-title" style="margin-bottom:0;">Kỹ Năng & Thiết Bị</h2>
-                <span class="section-number">(03)</span> </div>
+                <span class="section-number">(03)</span>
+            </div>
 
             <h3 style="margin-bottom: 20px; color: var(--text-main);">Phần mềm (Software)</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
@@ -612,16 +606,20 @@
                     <img src="logo-adobe/spine.png" alt="Spine 2D" class="skill-icon-img skill-spine">
                     <p>Spine 2D</p>
                 </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="600">
-                    <img src="logo-ai/logo-gemini.png" alt="Gemini" class="skill-icon-img">
+            </div>
+
+            <h3 style="margin-bottom: 20px; color: var(--text-main);">Công cụ AI Hỗ trợ</h3>
+            <div class="skills-grid" style="margin-bottom: 40px;">
+                <div class="skill-item" data-aos="fade-up">
+                    <img src="logo-ai/logo-gemini.png" alt="Gemini" class="skill-icon-img auto-invert">
                     <p>Gemini</p>
                 </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="700">
-                    <img src="logo-ai/logo-openai.png" alt="OpenAI" class="skill-icon-img">
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="logo-ai/logo-openai.png" alt="OpenAI" class="skill-icon-img auto-invert">
                     <p>OpenAI</p>
                 </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="800">
-                    <img src="logo-ai/logo-kling.png" alt="Kling AI" class="skill-icon-img">
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="logo-ai/logo-kling.png" alt="Kling AI" class="skill-icon-img auto-invert">
                     <p>Kling AI</p>
                 </div>
             </div>
@@ -637,7 +635,8 @@
         <section id="experience">
             <div class="section-header">
                 <h2 class="section-title" style="margin-bottom:0;">Kinh Nghiệm Làm Việc</h2>
-                <span class="section-number">(04)</span> </div>
+                <span class="section-number">(04)</span>
+            </div>
             
             <div class="timeline-container">
                 <div class="animated-timeline-line" data-aos="line-grow" data-aos-duration="1500" data-aos-anchor="#experience">
@@ -717,7 +716,8 @@
         <section id="portfolio" style="background: var(--bg-block);">
             <div class="section-header">
                 <h2 class="section-title" style="margin-bottom:0;">Dự án Tiêu biểu</h2>
-                <span class="section-number">(05)</span> </div>
+                <span class="section-number">(05)</span>
+            </div>
             
             <p style="color: var(--text-sub); margin-bottom: 20px;">(Di chuột vào khung để lướt xem các dự án)</p>
             
