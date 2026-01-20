@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     
     <title>Ngô Bình Minh | Video Editor Portfolio</title>
@@ -20,7 +21,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        /* --- 1. CẤU HÌNH & BẢO MẬT CSS --- */
+        /* --- 1. CẤU HÌNH CỐT LÕI --- */
         :root {
             --bg-body: #ffffff;
             --bg-block: #f8f9fa;
@@ -32,19 +33,18 @@
             --header-height-mobile: 70px; 
         }
 
-        /* CHỐNG COPY - CHỐNG BÔI ĐEN */
+        /* --- BẢO MẬT CẤP CAO (ANTI-THEFT) --- */
         body {
-            -webkit-user-select: none; /* Safari */
-            -ms-user-select: none; /* IE 10 and IE 11 */
-            user-select: none; /* Standard syntax */
+            -webkit-user-select: none; /* Chrome/Safari */
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+ */
+            user-select: none; /* Chuẩn */
             -webkit-touch-callout: none; /* iOS Safari */
         }
-
-        /* CHỐNG KÉO ẢNH */
         img {
-            pointer-events: none;
-            -webkit-user-drag: none;
-            user-select: none;
+            pointer-events: none; /* Không thể click vào ảnh */
+            -webkit-user-drag: none; /* Không thể kéo ảnh */
+            user-drag: none;
         }
 
         html { scroll-behavior: smooth; scroll-padding-top: 20px; }
@@ -66,21 +66,20 @@
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
             line-height: 1.6;
-            text-rendering: optimizeLegibility; /* Tăng độ nét chữ */
+            text-rendering: optimizeLegibility;
         }
 
         h1, h2, h3, h4, h5, h6, .hero h1, .section-title, .mobile-name {
             font-family: 'Bricolage Grotesque', sans-serif !important;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
-        /* GPU ACCELERATION (Mượt mà hơn) */
+        /* GPU ACCELERATION */
         .sidebar, .hero-btn, .skill-item, .partner-item, .lang-fab-container, .menu-overlay {
-            transform: translateZ(0);
-            will-change: transform, opacity;
+            transform: translateZ(0); will-change: transform, opacity;
         }
 
-        /* --- 2. SIDEBAR --- */
+        /* --- 2. SIDEBAR (PC) --- */
         .sidebar {
             position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
             background: var(--bg-body); padding: 40px 30px;
@@ -137,7 +136,18 @@
         
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
         .portfolio-label { color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: block; }
-        .hero h1 { font-size: clamp(3rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -1px; }
+        
+        /* --- [FIX V106] TỐI ƯU HIỂN THỊ TÊN TRÊN MỌI MÀN HÌNH --- */
+        .hero h1 { 
+            /* Công thức toán học: Tự động tính toán kích thước chữ dựa trên chiều ngang màn hình */
+            font-size: clamp(2.5rem, 5.5vw, 5.5rem); 
+            line-height: 1.1; 
+            margin-bottom: 20px; 
+            color: var(--text-main); 
+            font-weight: 800; 
+            letter-spacing: -2px;
+            white-space: nowrap; /* Bắt buộc tên nằm trên 1 dòng */
+        }
         
         .intro-para-mobile { 
             color: var(--text-sub); max-width: 600px; margin: 20px 0; 
@@ -155,6 +165,14 @@
         .section-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 60px; width: 100%; position: relative; z-index: 2; }
         .section-title { font-size: 2.5rem; color: var(--text-main); border-left: 5px solid var(--accent); padding-left: 20px; font-weight: 800; letter-spacing: -0.5px; margin: 0; line-height: 1; }
         .section-number { font-size: 1.2rem; color: var(--accent); font-weight: 600; }
+
+        /* --- [FIX V106] LAPTOP 13-14 INCH (MACBOOK AIR/PRO) --- */
+        @media (min-width: 992px) and (max-width: 1366px) {
+            .hero { padding: 0 40px; } /* Giảm padding 2 bên để tăng đất cho chữ */
+            .hero h1 { font-size: 4rem; } /* Ép cứng cỡ chữ nhỏ hơn cho Laptop nhỏ */
+            .hero-image-box img { max-width: 90%; } /* Thu nhỏ ảnh 1 chút */
+            section { padding: 60px 40px; }
+        }
 
         /* --- ABOUT SECTION --- */
         #about { position: relative; }
@@ -237,30 +255,7 @@
             .exp-right { padding-top: 2px; width: 100%; padding-left: 10px; }
             .timeline-desc { margin: 0; font-size: 1.05rem; color: var(--text-sub); line-height: 1.6; text-align: justify; text-justify: inter-word; width: 100%; }
         }
-        @media (max-width: 992px) {
-            .timeline-item { display: block; padding: 25px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
-            .exp-visual, .exp-type-pc, .animated-timeline-line { display: none; }
-            .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
-            .timeline-role { font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; line-height: 1.3; }
-            .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
-            .timeline-desc { font-size: 1rem; color: var(--text-sub); line-height: 1.6; text-align: justify; text-justify: inter-word; }
-        }
-
-        .swiper { width: 100%; padding: 60px 0 80px 0; cursor: grab; }
-        .swiper-slide { width: 300px; height: 450px; border-radius: 20px; overflow: hidden; background: var(--bg-body); border: 1px solid var(--border); opacity: 0.5; transform: scale(0.9); filter: blur(3px) grayscale(80%); transition: all 0.5s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .swiper-slide-active { opacity: 1; transform: scale(1.1); filter: blur(0) grayscale(0%); z-index: 10; border-color: var(--accent); box-shadow: 0 25px 50px rgba(0,0,0,0.2); }
-        .video-wrapper { position: relative; width: 100%; height: 65%; background: #000; }
-        .video-wrapper iframe { width: 100%; height: 100%; border: none; }
-        .video-mask { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.1); z-index: 10; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
-        .video-mask:hover { background: rgba(0,0,0,0.3); }
-        .play-btn { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.7); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); padding: 15px 35px; border-radius: 12px; color: #fff; font-weight: 800; font-size: 1.1rem; text-transform: uppercase; pointer-events: none; display: flex; align-items: center; gap: 10px; transition: 0.3s; }
-        .swiper-slide-active .play-btn { background: rgba(255, 77, 41, 0.9); border-color: transparent; }
-        .project-info { padding: 20px; height: 35%; background: var(--bg-body); position: relative; }
-        .project-info h3 { color: var(--text-main); margin-bottom: 5px; font-size: 1.1rem; }
-        .project-tag { background: rgba(255, 77, 41, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: bold; display: inline-block; margin-top: 5px; }
-        .contact-box { background: var(--bg-body); padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); max-width: 600px; margin: 0 auto; border: 1px solid var(--border); }
-        .bottom-socials { display: none; }
-
+        
         /* --- MOBILE CSS --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
@@ -295,7 +290,8 @@
             
             .hero { flex-direction: column-reverse; padding: 40px 25px; text-align: center; height: auto; }
             .hero-text { padding-right: 0; margin-top: 30px; }
-            .hero h1 { font-size: 2.5rem; }
+            /* Mobile giữ font chữ vừa phải để không bị vỡ */
+            .hero h1 { font-size: 2.5rem; white-space: normal; line-height: 1.1; }
             
             .intro-para-mobile { text-align: justify; text-justify: inter-word; margin-bottom: 30px; }
             .hero-image-box img { max-width: 70%; margin-top: 10px; }
@@ -325,13 +321,20 @@
             .section-title { font-size: 1.5rem !important; white-space: nowrap; padding-left: 15px; }
             .section-number { font-size: 1rem; }
             .swiper-slide { width: 280px; height: 420px; }
+            
+            .timeline-item { display: block; padding: 25px; background: var(--bg-body); border-radius: 15px; margin-bottom: 20px; border-left: 4px solid var(--accent); border: 1px solid var(--border); }
+            .exp-visual, .exp-type-pc, .animated-timeline-line { display: none; }
+            .timeline-year { font-size: 0.9rem; color: var(--accent); font-weight: bold; margin-bottom: 5px; display: block; }
+            .timeline-role { font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 5px; line-height: 1.3; }
+            .timeline-company { color: var(--text-sub); font-weight: 600; font-style: normal; margin-bottom: 15px; display: block;}
+            .timeline-desc { font-size: 1rem; color: var(--text-sub); line-height: 1.6; text-align: justify; text-justify: inter-word; }
         }
 
         @media (max-width: 480px) {
             .section-title { font-size: 1.5rem !important; white-space: nowrap; }
         }
 
-        /* --- V101: CUSTOM LANGUAGE ANIMATION (WATERFALL) --- */
+        /* --- CUSTOM LANGUAGE FAB (V101) --- */
         .lang-fab-container {
             position: fixed; bottom: 30px; right: 30px; z-index: 99999;
             display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
@@ -355,8 +358,6 @@
             font-family: 'Bricolage Grotesque', sans-serif;
             font-weight: 600; color: var(--text-main); font-size: 0.95rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            
-            /* Trạng thái ẩn: Bay xuống dưới và mờ đi */
             opacity: 0; 
             transform: translateY(20px) scale(0.9);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -365,22 +366,15 @@
         .lang-btn:hover { background: #fff; color: var(--accent); transform: scale(1.05) translateY(0); }
         .lang-btn img { width: 24px; height: 24px; object-fit: cover; border-radius: 50%; }
 
-        /* --- HIỆU ỨNG THÁC ĐỔ (WATERFALL) KHI HIỆN --- */
         .lang-options.active { pointer-events: auto; }
-        
-        .lang-options.active .lang-btn {
-            opacity: 1; 
-            transform: translateY(0) scale(1);
-        }
+        .lang-options.active .lang-btn { opacity: 1; transform: translateY(0) scale(1); }
 
-        /* Delay từng cái khi hiện (1->5) */
         .lang-options.active .lang-btn:nth-child(5) { transition-delay: 0.05s; }
         .lang-options.active .lang-btn:nth-child(4) { transition-delay: 0.1s; }
         .lang-options.active .lang-btn:nth-child(3) { transition-delay: 0.15s; }
         .lang-options.active .lang-btn:nth-child(2) { transition-delay: 0.2s; }
         .lang-options.active .lang-btn:nth-child(1) { transition-delay: 0.25s; }
 
-        /* Delay từng cái khi ẩn (Ngược lại 5->1) để mượt mà */
         .lang-options .lang-btn:nth-child(1) { transition-delay: 0s; }
         .lang-options .lang-btn:nth-child(2) { transition-delay: 0.05s; }
         .lang-options .lang-btn:nth-child(3) { transition-delay: 0.1s; }
@@ -411,7 +405,6 @@
         .lang-main-btn:active { transform: scale(0.95); }
         .lang-main-btn img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; }
 
-        /* Dark mode overrides */
         body.dark-mode .lang-btn, body.dark-mode .lang-main-btn {
             background: rgba(30, 30, 30, 0.9); border-color: #444; color: #fff;
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
@@ -737,22 +730,18 @@
     
     <script defer>
         document.addEventListener("DOMContentLoaded", function() {
-            // INIT AOS
+            // INIT ANIMATIONS
             AOS.init({ once: true, offset: 50, duration: 800 });
 
-            // INIT SWIPER
+            // INIT SLIDER
             var swiper = new Swiper(".mySwiper", {
                 effect: "coverflow",
                 grabCursor: true,
                 centeredSlides: true,
                 slidesPerView: "auto",
                 spaceBetween: 60,
-                coverflowEffect: {
-                    rotate: 0, stretch: 0, depth: 100, modifier: 1, slideShadows: false,
-                },
-                mousewheel: {
-                    enabled: true, eventsTarget: '.swiper', forceToAxis: false, sensitivity: 1.5, releaseOnEdges: true,
-                },
+                coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 1, slideShadows: false },
+                mousewheel: { enabled: true, eventsTarget: '.swiper', forceToAxis: false, sensitivity: 1.5, releaseOnEdges: true },
                 loop: false
             });
 
@@ -761,7 +750,7 @@
                 document.getElementById('mobileNav').style.display = 'flex';
             }
 
-            // --- SECURITY SHIELD (CHỐNG COPY) ---
+            // --- [SECURITY] CHỐNG COPY TUYỆT ĐỐI ---
             document.addEventListener('contextmenu', event => event.preventDefault()); // Chặn chuột phải
             document.onkeydown = function(e) {
                 if (e.keyCode == 123) return false; // F12
@@ -769,7 +758,7 @@
                 if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
                 if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
                 if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
-                if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S
+                if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S (Save)
             };
 
             // Init language on load
