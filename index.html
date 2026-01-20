@@ -249,27 +249,31 @@
         }
         .skill-icon-img.skill-spine { transform: scale(1.6); }
 
-        /* FIX V92: TECH BADGE (Huy hiệu công nghệ nền đen cho AI) */
-        .tech-badge-container {
-            width: 64px; height: 64px;
-            /* Gradient đen xám, tạo cảm giác nổi khối */
-            background: linear-gradient(145deg, #2b2b2b, #1a1a1a);
-            border-radius: 16px; /* Bo góc mềm mại như App icon */
+        /* FIX V93: AI MODULE STYLE (Màn hình hiển thị ngang) */
+        .ai-display-box {
+            width: 100%; /* Chiếm full chiều ngang của thẻ */
+            height: 70px; /* Chiều cao cố định */
+            background: linear-gradient(145deg, #2b2b2b, #1a1a1a); /* Nền tối High-tech */
+            border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
             margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            padding: 10px; /* Padding để logo không dính lề */
             border: 1px solid #333;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5); /* Đổ bóng vào trong (Inset) tạo chiều sâu */
             transition: transform 0.3s ease;
         }
-        
-        .tech-badge-container img {
-            width: 70%; height: 70%; /* Logo nằm gọn bên trong */
+
+        /* Logo trong AI box sẽ được phép to hơn */
+        .ai-display-box img {
+            width: auto;
+            height: 100%; /* Cao full box */
+            max-width: 90%; /* Ngang tối đa 90% box */
             object-fit: contain;
         }
 
-        .skill-item:hover .tech-badge-container {
-            transform: scale(1.1); /* Phóng to nhẹ khi hover */
-            border-color: var(--accent); /* Viền cam khi hover */
+        .skill-item:hover .ai-display-box {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(255, 77, 41, 0.2); /* Hiệu ứng phát sáng nhẹ khi hover */
         }
 
         .skill-item i { font-size: 2.5rem; margin-bottom: 15px; display: block; color: var(--text-main); }
@@ -396,7 +400,7 @@
                 gap: 15px; 
             }
             .badge-row > div {
-                display: flex; flex-direction: column; gap: 10px;
+                display: flex; flex-direction: column; gap: 10px; /* Tiếng Việt trên, Anh dưới */
                 width: 100%;
                 align-items: center;
             }
@@ -637,19 +641,19 @@
             <h3 style="margin-bottom: 20px; color: var(--text-main);">Công cụ AI Hỗ trợ</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
                 <div class="skill-item" data-aos="fade-up">
-                    <div class="tech-badge-container">
+                    <div class="ai-display-box">
                         <img src="logo-ai/logo-gemini.png" alt="Gemini">
                     </div>
                     <p>Gemini</p>
                 </div>
                 <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="tech-badge-container">
+                    <div class="ai-display-box">
                         <img src="logo-ai/logo-openai.png" alt="OpenAI">
                     </div>
                     <p>OpenAI</p>
                 </div>
                 <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="tech-badge-container">
+                    <div class="ai-display-box">
                         <img src="logo-ai/logo-kling.png" alt="Kling AI">
                     </div>
                     <p>Kling AI</p>
