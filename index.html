@@ -8,10 +8,6 @@
     <link rel="icon" href="minh3.png" type="image/png">
     <link rel="apple-touch-icon" href="minh3.png">
 
-    <link rel="preconnect" href="https://translate.googleapis.com">
-    <link rel="preconnect" href="https://translate.google.com">
-    <link rel="preconnect" href="https://cdn.gtranslate.net">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
@@ -402,35 +398,33 @@
 
     <div class="lang-fab-container">
         <div class="lang-options" id="langList">
-            <button class="lang-btn" onclick="selectLang('vi|vi', 'Tiếng Việt', 'https://flagcdn.com/w40/vn.png')">
+            <button class="lang-btn" onclick="changeLanguage('vi'); toggleLang()">
                 <img src="https://flagcdn.com/w40/vn.png" alt="VN"> Tiếng Việt
             </button>
-            <button class="lang-btn" onclick="selectLang('vi|en', 'English', 'https://flagcdn.com/w40/us.png')">
+            <button class="lang-btn" onclick="changeLanguage('en'); toggleLang()">
                 <img src="https://flagcdn.com/w40/us.png" alt="US"> English
             </button>
-            <button class="lang-btn" onclick="selectLang('vi|ko', '한국어', 'https://flagcdn.com/w40/kr.png')">
+            <button class="lang-btn" onclick="changeLanguage('ko'); toggleLang()">
                 <img src="https://flagcdn.com/w40/kr.png" alt="KR"> 한국어
             </button>
-            <button class="lang-btn" onclick="selectLang('vi|zh-CN', '中文 (Zh)', 'https://flagcdn.com/w40/cn.png')">
+            <button class="lang-btn" onclick="changeLanguage('zh'); toggleLang()">
                 <img src="https://flagcdn.com/w40/cn.png" alt="CN"> 中文 (Zh)
             </button>
-            <button class="lang-btn" onclick="selectLang('vi|ja', '日本語', 'https://flagcdn.com/w40/jp.png')">
+            <button class="lang-btn" onclick="changeLanguage('ja'); toggleLang()">
                 <img src="https://flagcdn.com/w40/jp.png" alt="JP"> 日本語
             </button>
         </div>
 
         <button class="lang-main-btn" id="mainLangBtn" onclick="toggleLang()">
-            <i class="fas fa-globe"></i> <span>Ngôn ngữ</span>
+            <img src="https://flagcdn.com/w40/vn.png" style="width:20px;height:20px;border-radius:50%;object-fit:cover;"> <span>Tiếng Việt</span>
         </button>
     </div>
 
-    <div id="google_translate_element2" style="display:none"></div>
-
     <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()">
         <div class="floating-menu-container">
-            <a href="mailto:minh.nb0503@gmail.com" class="menu-item"><i class="fas fa-envelope"></i> Gửi Email</a>
-            <a href="https://zalo.me/0395393868" target="_blank" class="menu-item"><span class="zalo-text">Z</span> Chat Zalo</a>
-            <a href="https://t.me/minhnb0503" target="_blank" class="menu-item"><i class="fab fa-telegram" style="color:#0088cc"></i> Chat Telegram</a>
+            <a href="mailto:minh.nb0503@gmail.com" class="menu-item"><i class="fas fa-envelope"></i> <span data-i18n="menu_email">Gửi Email</span></a>
+            <a href="https://zalo.me/0395393868" target="_blank" class="menu-item"><span class="zalo-text">Z</span> <span data-i18n="menu_zalo">Chat Zalo</span></a>
+            <a href="https://t.me/minhnb0503" target="_blank" class="menu-item"><i class="fab fa-telegram" style="color:#0088cc"></i> <span data-i18n="menu_tele">Chat Telegram</span></a>
             <a href="https://www.facebook.com/minh.nb0503" target="_blank" class="menu-item"><i class="fab fa-facebook-f" style="color:#1877F2"></i> Facebook</a>
             <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank" class="menu-item"><i class="fab fa-instagram" style="color:#E1306C"></i> Instagram</a>
             <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank" class="menu-item"><i class="fab fa-tiktok" style="color:#000"></i> TikTok</a>
@@ -445,7 +439,7 @@
                 <div class="mobile-name">Ngô Bình Minh</div>
             </div>
             <div class="right-controls">
-                <button class="contact-btn" onclick="toggleMenu()">Liên hệ <i class="fas fa-chevron-down" style="font-size:0.8em"></i></button>
+                <button class="contact-btn" onclick="toggleMenu()"><span data-i18n="btn_contact">Liên hệ</span> <i class="fas fa-chevron-down" style="font-size:0.8em"></i></button>
                 <button class="mobile-theme-btn" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
             </div>
         </div>
@@ -459,17 +453,17 @@
                     <div class="contact-mini">
                         <div><i class="fas fa-phone"></i> 0395.393.868</div>
                         <div><i class="fas fa-envelope"></i> minh.nb0503@gmail.com</div>
-                        <div><i class="fas fa-map-marker-alt"></i> Cầu Giấy - Hà Nội</div>
+                        <div><i class="fas fa-map-marker-alt"></i> <span data-i18n="location">Cầu Giấy - Hà Nội</span></div>
                     </div>
                 </div>
             </div>
 
             <div class="nav-links">
-                <a href="#home">01. Giới thiệu</a>
-                <a href="#about">02. Ngôn ngữ & Đối tác</a>
-                <a href="#skills">03. Kỹ năng & Gear</a>
-                <a href="#experience">04. Kinh nghiệm</a>
-                <a href="#portfolio">05. Dự án</a>
+                <a href="#home">01. <span data-i18n="nav_home">Giới thiệu</span></a>
+                <a href="#about">02. <span data-i18n="nav_about">Ngôn ngữ & Đối tác</span></a>
+                <a href="#skills">03. <span data-i18n="nav_skills">Kỹ năng & Gear</span></a>
+                <a href="#experience">04. <span data-i18n="nav_exp">Kinh nghiệm</span></a>
+                <a href="#portfolio">05. <span data-i18n="nav_port">Dự án</span></a>
             </div>
             
             <div class="sidebar-bottom">
@@ -486,18 +480,18 @@
                         <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" class="icon-btn ico-drive" title="Drive"><i class="fab fa-google-drive"></i></a>
                     </div>
                 </div>
-                <button class="theme-btn theme-btn-pc" onclick="toggleTheme()"><i class="fas fa-moon"></i> Chế độ Tối</button>
+                <button class="theme-btn theme-btn-pc" onclick="toggleTheme()"><i class="fas fa-moon"></i> <span data-i18n="btn_darkmode">Chế độ Tối</span></button>
             </div>
         </div>
     </div>
 
     <div class="mobile-nav" id="mobileNav" style="display: none;">
-        <a href="#home">Intro</a>
-        <a href="#about">Về tôi</a>
-        <a href="#skills">Kỹ năng</a>
-        <a href="#experience">Kinh nghiệm</a>
-        <a href="#portfolio">Dự án</a>
-        <a href="#contact">Liên hệ</a>
+        <a href="#home" data-i18n="mob_nav_intro">Intro</a>
+        <a href="#about" data-i18n="mob_nav_about">Về tôi</a>
+        <a href="#skills" data-i18n="mob_nav_skills">Kỹ năng</a>
+        <a href="#experience" data-i18n="mob_nav_exp">Kinh nghiệm</a>
+        <a href="#portfolio" data-i18n="mob_nav_port">Dự án</a>
+        <a href="#contact" data-i18n="mob_nav_contact">Liên hệ</a>
     </div>
 
     <div class="main-content">
@@ -507,11 +501,11 @@
                 <p class="portfolio-label" data-aos="fade-down" data-aos-delay="0">Portfolio 2026</p>
                 <h1 data-aos="fade-right" data-aos-delay="200">NGÔ BÌNH MINH<br><span style="font-size: 0.5em; color: var(--text-sub); font-weight: 400;">Freelance Video Editor</span></h1>
                 
-                <p class="intro-para-mobile" data-aos="fade-up" data-aos-delay="400">
-                    Tôi là Minh – Video Editor & Cameraman chuyên nghiệp. Với kinh nghiệm thực chiến tại <b>KienlongBank</b> và <b>IMAP</b>, tôi cung cấp giải pháp video toàn diện: từ sản xuất TVC, Motion Graphics đến xây dựng kênh TikTok/YouTube bài bản. Tôi tập trung vào chất lượng hình ảnh và hiệu quả truyền thông thực tế của từng sản&nbsp;phẩm.
+                <p class="intro-para-mobile" data-aos="fade-up" data-aos-delay="400" data-i18n="hero_desc">
+                    Tôi là Minh – Video Editor & Cameraman chuyên nghiệp. Với kinh nghiệm thực chiến tại <b>KienlongBank</b> và <b>IMAP</b>, tôi cung cấp giải pháp video toàn diện: từ sản xuất TVC, Motion Graphics đến xây dựng kênh TikTok/YouTube bài bản. Tôi tập trung vào chất lượng hình ảnh và hiệu quả truyền thông thực tế của từng sản phẩm.
                 </p>
                 
-                <a href="#portfolio" class="hero-btn" data-aos="zoom-in" data-aos-delay="600">Xem Dự Án Của Tôi</a>
+                <a href="#portfolio" class="hero-btn" data-aos="zoom-in" data-aos-delay="600" data-i18n="hero_btn">Xem Dự Án Của Tôi</a>
             </div>
             <div class="hero-image-box" data-aos="fade-left" data-aos-delay="400">
                 <img src="minh3.png" alt="Ngô Bình Minh" style="width: 90%; margin-top: 0;">
@@ -520,8 +514,9 @@
 
         <section id="about" style="background: var(--bg-body);">
             <div class="section-header">
-                <h2 class="section-title" style="margin-bottom:0;">Ngôn ngữ và đối tác</h2>
-                <span class="section-number">(02)</span> </div>
+                <h2 class="section-title" style="margin-bottom:0;" data-i18n="sec_about_title">Ngôn ngữ và đối tác</h2>
+                <span class="section-number">(02)</span>
+            </div>
 
             <div class="about-layout">
                 <div class="about-visual" data-aos="fade-right">
@@ -533,43 +528,37 @@
                     
                     <div class="visual-badge-wrapper">
                         <svg class="badge-text-svg" viewBox="0 0 100 100" width="100" height="100">
-                            <defs>
-                                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
-                            </defs>
-                            <text class="badge-text-path">
-                                <textPath xlink:href="#circlePath">
-                                    VIDEO EDITOR • CAMERAMAN • 
-                                </textPath>
-                            </text>
+                            <defs><path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" /></defs>
+                            <text class="badge-text-path"><textPath xlink:href="#circlePath">VIDEO EDITOR • CAMERAMAN • </textPath></text>
                         </svg>
                         <i class="fas fa-play badge-center-icon"></i>
                     </div>
                 </div>
 
                 <div class="about-content" data-aos="fade-left">
-                    <p class="about-desc">
-                        Không chỉ dừng lại ở kỹ thuật, tôi luôn tìm tòi những xu hướng hình ảnh mới nhất để áp dụng vào từng thước&nbsp;phim. Sự chỉn chu trong từng frame hình và tư duy kể chuyện mạch lạc là cam kết của tôi cho mọi dự&nbsp;án.
+                    <p class="about-desc" data-i18n="about_desc">
+                        Không chỉ dừng lại ở kỹ thuật, tôi luôn tìm tòi những xu hướng hình ảnh mới nhất để áp dụng vào từng thước phim. Sự chỉn chu trong từng frame hình và tư duy kể chuyện mạch lạc là cam kết của tôi cho mọi dự án.
                     </p>
 
                     <div class="about-stats">
                         <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
                             <h3>05</h3>
-                            <p>Năm kinh nghiệm</p>
+                            <p data-i18n="stat_exp">Năm kinh nghiệm</p>
                         </div>
                         <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
                             <h3>365+</h3>
-                            <p>Khách hàng hài lòng</p>
+                            <p data-i18n="stat_clients">Khách hàng hài lòng</p>
                         </div>
                         <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
                             <h3>500+</h3>
-                            <p>Dự án hoàn thành</p>
+                            <p data-i18n="stat_projects">Dự án hoàn thành</p>
                         </div>
                     </div>
 
                     <div class="about-divider"></div>
 
                     <div class="badge-row" data-aos="fade-up" data-aos-delay="400">
-                        <span class="badge-label"><i class="fas fa-globe"></i> Ngôn ngữ:</span>
+                        <span class="badge-label"><i class="fas fa-globe"></i> <span data-i18n="lbl_lang">Ngôn ngữ:</span></span>
                         <div style="display: flex; gap: 10px;">
                             <span class="pill-tag">Tiếng Việt (Native)</span>
                             <span class="pill-tag">English (Basic)</span>
@@ -577,27 +566,23 @@
                     </div>
                     
                     <div class="partner-wrapper">
-                        <span class="badge-label partner-header"><i class="fas fa-handshake"></i> Đối tác:</span>
-                        
+                        <span class="badge-label partner-header"><i class="fas fa-handshake"></i> <span data-i18n="lbl_partner">Đối tác:</span></span>
                         <div class="partner-grid">
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="0"><img src="logo-port bm/logo-kienlongbank.png" alt="KienlongBank" class="partner-logo logo-klb"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="50"><img src="logo-port bm/logo-mbank.png" alt="MB Bank" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-port bm/logo-vietcombank.png" alt="Vietcombank" class="partner-logo logo-vcb"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="150"><img src="logo-port bm/logo-bidv.png" alt="BIDV" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-port bm/logo-vtv.png" alt="VTV" class="partner-logo"></div>
-                            
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="250"><img src="logo-port bm/logo-vtv7.png" alt="VTV7" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="300"><img src="logo-port bm/logo-CafeBiz.png" alt="CafeBiz" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="350"><img src="logo-port bm/logo-tentun.png" alt="Ten Tun" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="400"><img src="logo-port bm/logo-tgmedia.png" alt="TGMedia" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="450"><img src="logo-port bm/logo-gapowork@4x.png" alt="GapoWork" class="partner-logo"></div>
-
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="500"><img src="logo-port bm/logo-imap.png" alt="IMAP" class="partner-logo logo-imap"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="550"><img src="logo-port bm/logo-ieltsfighter@4x.png" alt="IELTS Fighter" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="600"><img src="logo-port bm/logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo logo-mshoalogo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="650"><img src="logo-port bm/logo-mshoatoeic.png" alt="Ms Hoa TOEIC" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="700"><img src="logo-port bm/logo-Ms Hoa Junior.png" alt="Ms Hoa Junior" class="partner-logo logo-junior"></div>
-                            
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="750"><img src="logo-port bm/logo mhgt.png" alt="Ms Hoa GT" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="800"><img src="logo-port bm/logo-hvtc.png" alt="HVTC" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="850"><img src="logo-port bm/logo-hanoi.png" alt="Ha Noi" class="partner-logo"></div>
@@ -609,61 +594,28 @@
 
         <section id="skills" style="background: var(--bg-block);">
             <div class="section-header">
-                <h2 class="section-title" style="margin-bottom:0;">Kỹ Năng & Thiết Bị</h2>
+                <h2 class="section-title" style="margin-bottom:0;" data-i18n="sec_skills_title">Kỹ Năng & Thiết Bị</h2>
                 <span class="section-number">(03)</span>
             </div>
 
-            <h3 style="margin-bottom: 20px; color: var(--text-main);">Phần mềm (Software)</h3>
+            <h3 style="margin-bottom: 20px; color: var(--text-main);" data-i18n="sub_soft">Phần mềm (Software)</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
-                <div class="skill-item" data-aos="fade-up">
-                    <img src="logo-adobe/premiere-pro.png" alt="Premiere Pro" class="skill-icon-img">
-                    <p>Premiere Pro</p>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
-                    <img src="logo-adobe/after-effects.png" alt="After Effects" class="skill-icon-img">
-                    <p>After Effects</p>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
-                    <img src="logo-adobe/photoshop.png" alt="Photoshop" class="skill-icon-img">
-                    <p>Photoshop</p>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="300">
-                    <img src="logo-adobe/illustrator.png" alt="Illustrator" class="skill-icon-img">
-                    <p>Illustrator</p>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="400">
-                    <img src="logo-adobe/adobe-audition.png" alt="Audition" class="skill-icon-img">
-                    <p>Audition</p>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="500">
-                    <img src="logo-adobe/spine.png" alt="Spine 2D" class="skill-icon-img skill-spine">
-                    <p>Spine 2D</p>
-                </div>
+                <div class="skill-item" data-aos="fade-up"><img src="logo-adobe/premiere-pro.png" alt="Pr" class="skill-icon-img"><p>Premiere Pro</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-adobe/after-effects.png" alt="Ae" class="skill-icon-img"><p>After Effects</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-adobe/photoshop.png" alt="Ps" class="skill-icon-img"><p>Photoshop</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="300"><img src="logo-adobe/illustrator.png" alt="Ai" class="skill-icon-img"><p>Illustrator</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="400"><img src="logo-adobe/adobe-audition.png" alt="Au" class="skill-icon-img"><p>Audition</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="500"><img src="logo-adobe/spine.png" alt="Spine" class="skill-icon-img skill-spine"><p>Spine 2D</p></div>
             </div>
 
-            <h3 style="margin-bottom: 20px; color: var(--text-main);">Công cụ AI Hỗ trợ</h3>
+            <h3 style="margin-bottom: 20px; color: var(--text-main);" data-i18n="sub_ai">Công cụ AI Hỗ trợ</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
-                <div class="skill-item" data-aos="fade-up">
-                    <div class="ai-display-box">
-                        <img src="logo-ai/logo-gemini.png" alt="Gemini">
-                    </div>
-                    <p>Gemini</p>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
-                    <div class="ai-display-box">
-                        <img src="logo-ai/logo-openai.png" alt="OpenAI">
-                    </div>
-                    <p>OpenAI</p>
-                </div>
-                <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="ai-display-box">
-                        <img src="logo-ai/logo-kling.png" alt="Kling AI">
-                    </div>
-                    <p>Kling AI</p>
-                </div>
+                <div class="skill-item" data-aos="fade-up"><div class="ai-display-box"><img src="logo-ai/logo-gemini.png" alt="Gemini"></div><p>Gemini</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="100"><div class="ai-display-box"><img src="logo-ai/logo-openai.png" alt="OpenAI"></div><p>OpenAI</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="200"><div class="ai-display-box"><img src="logo-ai/logo-kling.png" alt="Kling AI"></div><p>Kling AI</p></div>
             </div>
             
-            <h3 style="margin-bottom: 20px; color: var(--text-main);">Thiết bị (Gear)</h3>
+            <h3 style="margin-bottom: 20px; color: var(--text-main);" data-i18n="sub_gear">Thiết bị (Gear)</h3>
             <div class="skills-grid">
                 <div class="skill-item" data-aos="zoom-in"><i class="fas fa-camera"></i><p>Sony A7C</p></div>
                 <div class="skill-item" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-bullseye"></i><p>Tamron 28-75mm</p></div>
@@ -673,142 +625,68 @@
 
         <section id="experience">
             <div class="section-header">
-                <h2 class="section-title" style="margin-bottom:0;">Kinh Nghiệm Làm Việc</h2>
+                <h2 class="section-title" style="margin-bottom:0;" data-i18n="sec_exp_title">Kinh Nghiệm Làm Việc</h2>
                 <span class="section-number">(04)</span>
             </div>
             
             <div class="timeline-container">
-                <div class="animated-timeline-line" data-aos="line-grow" data-aos-duration="1500" data-aos-anchor="#experience">
-                    <div class="line-progress"></div>
-                </div>
+                <div class="animated-timeline-line" data-aos="line-grow" data-aos-duration="1500" data-aos-anchor="#experience"><div class="line-progress"></div></div>
 
                 <div class="timeline-item active" data-aos="fade-up" data-aos-delay="0">
-                    <div class="exp-left">
-                        <span class="timeline-year">2024 - Nay</span>
-                        <div class="timeline-role">Chuyên viên Media</div>
-                    </div>
-                    <div class="exp-visual">
-                        <div class="exp-dot active-dot"></div>
-                    </div>
-                    <div class="exp-center">
-                        <span class="timeline-company">KienlongBank</span>
-                        <span class="exp-type-pc">Full-time</span>
-                    </div>
-                    <div class="exp-right">
-                        <p class="timeline-desc">• Xây dựng kênh TikTok, tạo video motion và nội dung đa phương tiện.<br>• Quay phim, dựng video và chụp ảnh cho các hoạt động nội&nbsp;bộ.</p>
-                    </div>
+                    <div class="exp-left"><span class="timeline-year">2024 - Nay</span><div class="timeline-role" data-i18n="role_media">Chuyên viên Media</div></div>
+                    <div class="exp-visual"><div class="exp-dot active-dot"></div></div>
+                    <div class="exp-center"><span class="timeline-company">KienlongBank</span><span class="exp-type-pc">Full-time</span></div>
+                    <div class="exp-right"><p class="timeline-desc" data-i18n="desc_klb">• Xây dựng kênh TikTok, tạo video motion và nội dung đa phương tiện.<br>• Quay phim, dựng video và chụp ảnh cho các hoạt động nội bộ.</p></div>
                 </div>
 
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="exp-left">
-                        <span class="timeline-year">2022 - 2024</span>
-                        <div class="timeline-role">Video Editor</div>
-                    </div>
-                    <div class="exp-visual">
-                        <div class="exp-dot"></div>
-                    </div>
-                    <div class="exp-center">
-                        <span class="timeline-company">IMAP Việt Nam</span>
-                        <span class="exp-type-pc">Full-time</span>
-                    </div>
-                    <div class="exp-right">
-                        <p class="timeline-desc">• Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>• Quay dựng chương trình "Super Junior" kết hợp&nbsp;VTV7.</p>
-                    </div>
+                    <div class="exp-left"><span class="timeline-year">2022 - 2024</span><div class="timeline-role">Video Editor</div></div>
+                    <div class="exp-visual"><div class="exp-dot"></div></div>
+                    <div class="exp-center"><span class="timeline-company">IMAP Việt Nam</span><span class="exp-type-pc">Full-time</span></div>
+                    <div class="exp-right"><p class="timeline-desc" data-i18n="desc_imap">• Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>• Quay dựng chương trình "Super Junior" kết hợp VTV7.</p></div>
                 </div>
 
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="exp-left">
-                        <span class="timeline-year">2021 - 2022</span>
-                        <div class="timeline-role">Game Artist</div>
-                    </div>
-                    <div class="exp-visual">
-                        <div class="exp-dot"></div>
-                    </div>
-                    <div class="exp-center">
-                        <span class="timeline-company">TGMedia Việt Nam</span>
-                        <span class="exp-type-pc">Part-time</span>
-                    </div>
-                    <div class="exp-right">
-                        <p class="timeline-desc">• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity &amp; Spine.</p>
-                    </div>
+                    <div class="exp-left"><span class="timeline-year">2021 - 2022</span><div class="timeline-role">Game Artist</div></div>
+                    <div class="exp-visual"><div class="exp-dot"></div></div>
+                    <div class="exp-center"><span class="timeline-company">TGMedia Việt Nam</span><span class="exp-type-pc">Part-time</span></div>
+                    <div class="exp-right"><p class="timeline-desc" data-i18n="desc_tgmedia">• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity & Spine.</p></div>
                 </div>
 
                 <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
-                    <div class="exp-left">
-                        <span class="timeline-year">2020 - 2021</span>
-                        <div class="timeline-role">Video Editor</div>
-                    </div>
-                    <div class="exp-visual">
-                        <div class="exp-dot"></div>
-                    </div>
-                    <div class="exp-center">
-                        <span class="timeline-company">Ten Tun Group</span>
-                        <span class="exp-type-pc">Freelance</span>
-                    </div>
-                    <div class="exp-right">
-                        <p class="timeline-desc">• Xây dựng kênh YouTube "Ten Tun" từ 10.000 lên 100.000 Subscribers.<br>• Dựng video tổng hợp, đánh giá giải&nbsp;trí.</p>
-                    </div>
+                    <div class="exp-left"><span class="timeline-year">2020 - 2021</span><div class="timeline-role">Video Editor</div></div>
+                    <div class="exp-visual"><div class="exp-dot"></div></div>
+                    <div class="exp-center"><span class="timeline-company">Ten Tun Group</span><span class="exp-type-pc">Freelance</span></div>
+                    <div class="exp-right"><p class="timeline-desc" data-i18n="desc_tentun">• Xây dựng kênh YouTube "Ten Tun" từ 10.000 lên 100.000 Subscribers.<br>• Dựng video tổng hợp, đánh giá giải trí.</p></div>
                 </div>
             </div>
         </section>
 
         <section id="portfolio" style="background: var(--bg-block);">
             <div class="section-header">
-                <h2 class="section-title" style="margin-bottom:0;">Dự án Tiêu biểu</h2>
+                <h2 class="section-title" style="margin-bottom:0;" data-i18n="sec_port_title">Dự án Tiêu biểu</h2>
                 <span class="section-number">(05)</span>
             </div>
             
-            <p style="color: var(--text-sub); margin-bottom: 20px;">(Di chuột vào khung để lướt xem các dự án)</p>
+            <p style="color: var(--text-sub); margin-bottom: 20px;" data-i18n="port_hint">(Di chuột vào khung để lướt xem các dự án)</p>
             
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <div class="video-wrapper">
-                            <div class="video-mask" onclick="this.style.display='none'">
-                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
-                            </div>
-                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
-                        </div>
-                        <div class="project-info">
-                            <h3>Vinh Danh Tiếp Lửa KLB</h3>
-                            <span class="project-tag">Motion Graphics</span>
-                        </div>
+                        <div class="video-wrapper"><div class="video-mask" onclick="this.style.display='none'"><button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button></div><iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe></div>
+                        <div class="project-info"><h3 data-i18n="proj_1">Vinh Danh Tiếp Lửa KLB</h3><span class="project-tag">Motion Graphics</span></div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="video-wrapper">
-                            <div class="video-mask" onclick="this.style.display='none'">
-                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
-                            </div>
-                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
-                        </div>
-                        <div class="project-info">
-                            <h3>Viral Clip IMAP</h3>
-                            <span class="project-tag">Storytelling</span>
-                        </div>
+                        <div class="video-wrapper"><div class="video-mask" onclick="this.style.display='none'"><button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button></div><iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe></div>
+                        <div class="project-info"><h3 data-i18n="proj_2">Viral Clip IMAP</h3><span class="project-tag">Storytelling</span></div>
                     </div>
                     <div class="swiper-slide">
-                        <div class="video-wrapper">
-                            <div class="video-mask" onclick="this.style.display='none'">
-                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
-                            </div>
-                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
-                        </div>
-                        <div class="project-info">
-                            <h3>YouTube Ten Tun</h3>
-                            <span class="project-tag">Entertainment</span>
-                        </div>
+                        <div class="video-wrapper"><div class="video-mask" onclick="this.style.display='none'"><button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button></div><iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe></div>
+                        <div class="project-info"><h3 data-i18n="proj_3">YouTube Ten Tun</h3><span class="project-tag">Entertainment</span></div>
                     </div>
                      <div class="swiper-slide">
-                        <div class="video-wrapper">
-                            <div class="video-mask" onclick="this.style.display='none'">
-                                <button class="play-btn"><i class="fas fa-play"></i> XEM VIDEO</button>
-                            </div>
-                            <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
-                        </div>
-                        <div class="project-info">
-                            <h3>Animation Spine 2D</h3>
-                            <span class="project-tag">Game Art</span>
-                        </div>
+                        <div class="video-wrapper"><div class="video-mask" onclick="this.style.display='none'"><button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button></div><iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe></div>
+                        <div class="project-info"><h3 data-i18n="proj_4">Animation Spine 2D</h3><span class="project-tag">Game Art</span></div>
                     </div>
                 </div>
             </div>
@@ -816,14 +694,14 @@
 
         <section id="contact" style="text-align: center; padding: 100px 20px;">
             <div class="contact-box">
-                <h2 style="font-size: 2rem; margin-bottom: 20px; color: var(--text-main);">Liên hệ hợp tác</h2>
-                <p style="margin: 20px 0; color: var(--text-sub);">Sẵn sàng cho các dự án TVC, MV và Viral Video chất lượng cao.</p>
+                <h2 style="font-size: 2rem; margin-bottom: 20px; color: var(--text-main);" data-i18n="contact_title">Liên hệ hợp tác</h2>
+                <p style="margin: 20px 0; color: var(--text-sub);" data-i18n="contact_sub">Sẵn sàng cho các dự án TVC, MV và Viral Video chất lượng cao.</p>
                 <div style="font-size: 1.1rem; margin-bottom: 30px; color: var(--text-main);">
                     <p style="margin: 10px 0;"><i class="fas fa-phone" style="color:var(--accent); margin-right: 10px;"></i> 0395.393.868</p>
                     <p style="margin: 10px 0;"><i class="fas fa-envelope" style="color:var(--accent); margin-right: 10px;"></i> minh.nb0503@gmail.com</p>
                 </div>
                 
-                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=minh.nb0503@gmail.com&su=Liên hệ từ Portfolio" target="_blank" class="hero-btn">Gửi Email Ngay</a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=minh.nb0503@gmail.com&su=Liên hệ từ Portfolio" target="_blank" class="hero-btn" data-i18n="btn_email">Gửi Email Ngay</a>
             </div>
         </section>
 
@@ -832,11 +710,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
-    <script type="text/javascript">
-        window.gtranslateSettings = {"default_language":"vi","languages":["vi","en","ko","zh-CN","ja"],"wrapper_selector":".gtranslate_wrapper"};
-    </script>
-    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
-
     <script>
         AOS.init({ once: true, offset: 50, duration: 800 });
 
@@ -847,18 +720,10 @@
             slidesPerView: "auto",
             spaceBetween: 60,
             coverflowEffect: {
-                rotate: 0, 
-                stretch: 0, 
-                depth: 100, 
-                modifier: 1, 
-                slideShadows: false,
+                rotate: 0, stretch: 0, depth: 100, modifier: 1, slideShadows: false,
             },
             mousewheel: {
-                enabled: true,
-                eventsTarget: '.swiper', 
-                forceToAxis: false,
-                sensitivity: 1.5,
-                releaseOnEdges: true,
+                enabled: true, eventsTarget: '.swiper', forceToAxis: false, sensitivity: 1.5, releaseOnEdges: true,
             },
             loop: false
         });
@@ -870,12 +735,156 @@
         const body = document.body;
         const iconMobile = document.querySelector('.mobile-theme-btn i');
         const iconPC = document.querySelector('.theme-btn-pc i');
-        const textPC = document.querySelector('.theme-btn-pc');
+        const textPC = document.querySelector('.theme-btn-pc span'); // Updated selector
 
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            updateIcons(true);
+        // --- INSTANT TRANSLATION DATA (KHO DỮ LIỆU DỊCH) ---
+        const translations = {
+            vi: {
+                nav_home: "Giới thiệu", nav_about: "Ngôn ngữ & Đối tác", nav_skills: "Kỹ năng & Gear", nav_exp: "Kinh nghiệm", nav_port: "Dự án",
+                mob_nav_intro: "Intro", mob_nav_about: "Về tôi", mob_nav_skills: "Kỹ năng", mob_nav_exp: "Kinh nghiệm", mob_nav_port: "Dự án", mob_nav_contact: "Liên hệ",
+                btn_contact: "Liên hệ", location: "Cầu Giấy - Hà Nội", btn_darkmode: "Chế độ Tối", btn_lightmode: "Chế độ Sáng",
+                hero_desc: "Tôi là Minh – Video Editor & Cameraman chuyên nghiệp. Với kinh nghiệm thực chiến tại <b>KienlongBank</b> và <b>IMAP</b>, tôi cung cấp giải pháp video toàn diện: từ sản xuất TVC, Motion Graphics đến xây dựng kênh TikTok/YouTube bài bản. Tôi tập trung vào chất lượng hình ảnh và hiệu quả truyền thông thực tế của từng sản phẩm.",
+                hero_btn: "Xem Dự Án Của Tôi",
+                sec_about_title: "Ngôn ngữ và đối tác",
+                about_desc: "Không chỉ dừng lại ở kỹ thuật, tôi luôn tìm tòi những xu hướng hình ảnh mới nhất để áp dụng vào từng thước phim. Sự chỉn chu trong từng frame hình và tư duy kể chuyện mạch lạc là cam kết của tôi cho mọi dự án.",
+                stat_exp: "Năm kinh nghiệm", stat_clients: "Khách hàng hài lòng", stat_projects: "Dự án hoàn thành",
+                lbl_lang: "Ngôn ngữ:", lbl_partner: "Đối tác:",
+                sec_skills_title: "Kỹ Năng & Thiết Bị", sub_soft: "Phần mềm (Software)", sub_ai: "Công cụ AI Hỗ trợ", sub_gear: "Thiết bị (Gear)",
+                sec_exp_title: "Kinh Nghiệm Làm Việc",
+                role_media: "Chuyên viên Media",
+                desc_klb: "• Xây dựng kênh TikTok, tạo video motion và nội dung đa phương tiện.<br>• Quay phim, dựng video và chụp ảnh cho các hoạt động nội bộ.",
+                desc_imap: "• Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>• Quay dựng chương trình \"Super Junior\" kết hợp VTV7.",
+                desc_tgmedia: "• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity & Spine.",
+                desc_tentun: "• Xây dựng kênh YouTube \"Ten Tun\" từ 10.000 lên 100.000 Subscribers.<br>• Dựng video tổng hợp, đánh giá giải trí.",
+                sec_port_title: "Dự án Tiêu biểu", port_hint: "(Di chuột vào khung để lướt xem các dự án)",
+                btn_watch: "XEM VIDEO",
+                proj_1: "Vinh Danh Tiếp Lửa KLB", proj_2: "Viral Clip IMAP", proj_3: "YouTube Ten Tun", proj_4: "Animation Spine 2D",
+                contact_title: "Liên hệ hợp tác", contact_sub: "Sẵn sàng cho các dự án TVC, MV và Viral Video chất lượng cao.", btn_email: "Gửi Email Ngay",
+                menu_email: "Gửi Email", menu_zalo: "Chat Zalo", menu_tele: "Chat Telegram"
+            },
+            en: {
+                nav_home: "Intro", nav_about: "Partners", nav_skills: "Skills & Gear", nav_exp: "Experience", nav_port: "Projects",
+                mob_nav_intro: "Intro", mob_nav_about: "About", mob_nav_skills: "Skills", mob_nav_exp: "Experience", mob_nav_port: "Projects", mob_nav_contact: "Contact",
+                btn_contact: "Contact", location: "Cau Giay - Hanoi", btn_darkmode: "Dark Mode", btn_lightmode: "Light Mode",
+                hero_desc: "I'm Minh – A professional Video Editor & Cameraman. With practical experience at <b>KienlongBank</b> and <b>IMAP</b>, I provide comprehensive video solutions: from TVC production, Motion Graphics to building professional TikTok/YouTube channels. I focus on visual quality and effective communication in every product.",
+                hero_btn: "View My Projects",
+                sec_about_title: "Languages & Partners",
+                about_desc: "Beyond technical skills, I constantly explore the latest visual trends to apply to every footage. Meticulousness in every frame and coherent storytelling mindset are my commitments for every project.",
+                stat_exp: "Years Experience", stat_clients: "Happy Clients", stat_projects: "Projects Done",
+                lbl_lang: "Languages:", lbl_partner: "Partners:",
+                sec_skills_title: "Skills & Gear", sub_soft: "Software", sub_ai: "AI Tools", sub_gear: "Gear",
+                sec_exp_title: "Work Experience",
+                role_media: "Media Specialist",
+                desc_klb: "• Building TikTok channels, creating motion videos and multimedia content.<br>• Filming, editing videos and taking photos for internal activities.",
+                desc_imap: "• Producing TVCs, MVs, lecture videos and Animation for Marketing.<br>• Filming and editing \"Super Junior\" program with VTV7.",
+                desc_tgmedia: "• Editing motion ads for Word Games series.<br>• Designing and developing Animations on Unity & Spine.",
+                desc_tentun: "• Growing \"Ten Tun\" YouTube channel from 10k to 100k Subscribers.<br>• Editing entertainment review and compilation videos.",
+                sec_port_title: "Featured Projects", port_hint: "(Hover to swipe through projects)",
+                btn_watch: "WATCH VIDEO",
+                proj_1: "KLB Honoring Event", proj_2: "IMAP Viral Clip", proj_3: "Ten Tun YouTube", proj_4: "Spine 2D Animation",
+                contact_title: "Work With Me", contact_sub: "Ready for high-quality TVC, MV and Viral Video projects.", btn_email: "Send Email Now",
+                menu_email: "Send Email", menu_zalo: "Chat Zalo", menu_tele: "Chat Telegram"
+            },
+            ko: {
+                nav_home: "소개", nav_about: "파트너", nav_skills: "스킬 & 장비", nav_exp: "경력", nav_port: "프로젝트",
+                mob_nav_intro: "소개", mob_nav_about: "정보", mob_nav_skills: "스킬", mob_nav_exp: "경력", mob_nav_port: "프로젝트", mob_nav_contact: "연락처",
+                btn_contact: "연락하기", location: "하노이 - 꺼우저이", btn_darkmode: "다크 모드", btn_lightmode: "라이트 모드",
+                hero_desc: "저는 전문 비디오 에디터이자 촬영 감독인 민(Minh)입니다. <b>KienlongBank</b>와 <b>IMAP</b>에서의 실무 경험을 바탕으로, TVC 제작, 모션 그래픽부터 전문적인 틱톡/유튜브 채널 구축까지 포괄적인 비디오 솔루션을 제공합니다. 모든 영상의 시각적 품질과 효과적인 커뮤니케이션에 집중합니다.",
+                hero_btn: "프로젝트 보기",
+                sec_about_title: "언어 및 파트너",
+                about_desc: "기술을 넘어, 저는 항상 최신 비주얼 트렌드를 탐구하여 영상에 적용합니다. 모든 프레임에 대한 세심함과 일관된 스토리텔링 사고방식은 모든 프로젝트에 대한 저의 약속입니다.",
+                stat_exp: "년 경력", stat_clients: "만족한 고객", stat_projects: "완료한 프로젝트",
+                lbl_lang: "언어:", lbl_partner: "파트너:",
+                sec_skills_title: "기술 및 장비", sub_soft: "소프트웨어", sub_ai: "AI 도구", sub_gear: "장비",
+                sec_exp_title: "업무 경력",
+                role_media: "미디어 전문가",
+                desc_klb: "• 틱톡 채널 구축, 모션 비디오 및 멀티미디어 콘텐츠 제작.<br>• 사내 활동을 위한 영상 촬영, 편집 및 사진 촬영.",
+                desc_imap: "• 마케팅을 위한 TVC, MV, 강의 영상 및 애니메이션 제작.<br>• VTV7과 함께 \"Super Junior\" 프로그램 촬영 및 편집.",
+                desc_tgmedia: "• 워드 게임 시리즈를 위한 모션 광고 편집.<br>• Unity & Spine에서 애니메이션 디자인 및 개발.",
+                desc_tentun: "• \"Ten Tun\" 유튜브 채널 구독자 1만명에서 10만명으로 성장.<br>• 엔터테인먼트 리뷰 및 모음 영상 편집.",
+                sec_port_title: "주요 프로젝트", port_hint: "(프로젝트를 넘기려면 마우스를 올리세요)",
+                btn_watch: "영상 보기",
+                proj_1: "KLB 시상식", proj_2: "IMAP 바이럴 클립", proj_3: "Ten Tun 유튜브", proj_4: "Spine 2D 애니메이션",
+                contact_title: "제휴 문의", contact_sub: "고품질 TVC, MV 및 바이럴 비디오 프로젝트를 준비하고 있습니다.", btn_email: "이메일 보내기",
+                menu_email: "이메일", menu_zalo: "Zalo 채팅", menu_tele: "텔레그램"
+            },
+            zh: {
+                nav_home: "简介", nav_about: "合作伙伴", nav_skills: "技能与设备", nav_exp: "工作经验", nav_port: "项目",
+                mob_nav_intro: "简介", mob_nav_about: "关于", mob_nav_skills: "技能", mob_nav_exp: "经验", mob_nav_port: "项目", mob_nav_contact: "联系",
+                btn_contact: "联系我", location: "河内 - 纸桥", btn_darkmode: "深色模式", btn_lightmode: "浅色模式",
+                hero_desc: "我是 Minh —— 一名专业的视频编辑和摄影师。凭借在 <b>KienlongBank</b> 和 <b>IMAP</b> 的实战经验，我提供全面的视频解决方案：从 TVC 制作、动态图形到专业的 TikTok/YouTube 频道建设。我专注于每个产品的视觉质量和有效的传播效果。",
+                hero_btn: "查看我的项目",
+                sec_about_title: "语言与合作伙伴",
+                about_desc: "不仅仅是技术，我总是探索最新的视觉趋势并应用于每一个镜头。每一帧画面的细致入微和连贯的叙事思维是我对每个项目的承诺。",
+                stat_exp: "年经验", stat_clients: "满意客户", stat_projects: "完成项目",
+                lbl_lang: "语言:", lbl_partner: "合作伙伴:",
+                sec_skills_title: "技能与设备", sub_soft: "软件", sub_ai: "AI 工具", sub_gear: "设备",
+                sec_exp_title: "工作经验",
+                role_media: "媒体专员",
+                desc_klb: "• 建设 TikTok 频道，制作动态视频和多媒体内容。<br>• 为内部活动拍摄、编辑视频和拍照。",
+                desc_imap: "• 制作 TVC、MV、讲座视频和用于营销的动画。<br>• 与 VTV7 合作拍摄和编辑 “Super Junior” 节目。",
+                desc_tgmedia: "• 为 Word Games 系列编辑动态广告。<br>• 在 Unity & Spine 上设计和开发动画。",
+                desc_tentun: "• 将 “Ten Tun” YouTube 频道从 1万订阅者增长到 10万。<br>• 编辑娱乐评论和合集视频。",
+                sec_port_title: "精选项目", port_hint: "(将鼠标悬停以滑动项目)",
+                btn_watch: "观看视频",
+                proj_1: "KLB 表彰活动", proj_2: "IMAP 病毒视频", proj_3: "Ten Tun YouTube", proj_4: "Spine 2D 动画",
+                contact_title: "合作联系", contact_sub: "随时准备进行高质量的 TVC、MV 和病毒视频项目。", btn_email: "立即发送邮件",
+                menu_email: "发邮件", menu_zalo: "Zalo 聊天", menu_tele: "Telegram 聊天"
+            },
+            ja: {
+                nav_home: "紹介", nav_about: "パートナー", nav_skills: "スキル・機材", nav_exp: "経歴", nav_port: "プロジェクト",
+                mob_nav_intro: "紹介", mob_nav_about: "私について", mob_nav_skills: "スキル", mob_nav_exp: "経歴", mob_nav_port: "プロジェクト", mob_nav_contact: "連絡先",
+                btn_contact: "お問い合わせ", location: "ハノイ - カウギアイ", btn_darkmode: "ダークモード", btn_lightmode: "ライトモード",
+                hero_desc: "私はミンです。プロのビデオエディター兼カメラマンです。<b>KienlongBank</b>と<b>IMAP</b>での実務経験を活かし、TVC制作、モーショングラフィックスからプロフェッショナルなTikTok/YouTubeチャンネルの構築まで、包括的なビデオソリューションを提供します。すべての作品において、映像品質と効果的なコミュニケーションに重点を置いています。",
+                hero_btn: "プロジェクトを見る",
+                sec_about_title: "言語とパートナー",
+                about_desc: "技術にとどまらず、常に最新のビジュアルトレンドを探求し、映像に取り入れています。すべてのフレームにおける丁寧さと一貫したストーリーテリングは、私のプロジェクトに対する約束です。",
+                stat_exp: "年の経験", stat_clients: "満足した顧客", stat_projects: "完了プロジェクト",
+                lbl_lang: "言語:", lbl_partner: "パートナー:",
+                sec_skills_title: "スキル & 機材", sub_soft: "ソフトウェア", sub_ai: "AI ツール", sub_gear: "機材",
+                sec_exp_title: "職務経歴",
+                role_media: "メディアスペシャリスト",
+                desc_klb: "• TikTokチャンネルの構築、モーションビデオおよびマルチメディアコンテンツの作成。<br>• 社内活動のための撮影、編集、写真撮影。",
+                desc_imap: "• TVC、MV、講義動画、マーケティング用アニメーションの制作。<br>• VTV7と連携した「Super Junior」番組の撮影・編集。",
+                desc_tgmedia: "• Word Gamesシリーズのモーション広告編集。<br>• Unity & Spineでのアニメーション設計・開発。",
+                desc_tentun: "• 「Ten Tun」YouTubeチャンネルを登録者1万人から10万人に成長。<br>• エンターテインメントレビューおよびまとめ動画の編集。",
+                sec_port_title: "主なプロジェクト", port_hint: "(プロジェクトをスワイプするにはホバーしてください)",
+                btn_watch: "動画を見る",
+                proj_1: "KLB 表彰イベント", proj_2: "IMAP バイラルクリップ", proj_3: "Ten Tun YouTube", proj_4: "Spine 2D アニメ",
+                contact_title: "お問い合わせ", contact_sub: "高品質なTVC、MV、バイラルビデオプロジェクトに対応可能です。", btn_email: "今すぐメールする",
+                menu_email: "メール送信", menu_zalo: "Zalo チャット", menu_tele: "Telegram チャット"
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Update text elements
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key]; // innerHTML to support <b> and <br>
+                }
+            });
+
+            // Update main button icon/text
+            const flagMap = {
+                'vi': { url: 'https://flagcdn.com/w40/vn.png', text: 'Tiếng Việt' },
+                'en': { url: 'https://flagcdn.com/w40/us.png', text: 'English' },
+                'ko': { url: 'https://flagcdn.com/w40/kr.png', text: '한국어' },
+                'zh': { url: 'https://flagcdn.com/w40/cn.png', text: '中文 (Zh)' },
+                'ja': { url: 'https://flagcdn.com/w40/jp.png', text: '日本語' }
+            };
+            
+            const mainBtn = document.getElementById('mainLangBtn');
+            mainBtn.innerHTML = `<img src="${flagMap[lang].url}" style="width:20px;height:20px;border-radius:50%;object-fit:cover;"> <span>${flagMap[lang].text}</span>`;
+
+            // Save preference
+            localStorage.setItem('preferred_lang', lang);
         }
+
+        // Init Language
+        const savedLang = localStorage.getItem('preferred_lang') || 'vi';
+        changeLanguage(savedLang);
 
         function toggleTheme() {
             body.classList.toggle('dark-mode');
@@ -897,35 +906,28 @@
         function updateIcons(isDark) {
             if (iconPC) {
                 iconPC.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
-                if(textPC) textPC.innerHTML = isDark ? '<i class="fas fa-sun"></i> Chế độ Sáng' : '<i class="fas fa-moon"></i> Chế độ Tối';
+                // Update PC button text based on current language (simple hack or re-run translation)
+                const currentLang = localStorage.getItem('preferred_lang') || 'vi';
+                const lightText = currentLang === 'vi' ? 'Chế độ Sáng' : (currentLang === 'ko' ? '라이트 모드' : (currentLang === 'zh' ? '浅色模式' : (currentLang === 'ja' ? 'ライトモード' : 'Light Mode')));
+                const darkText = translations[currentLang].btn_darkmode;
+                
+                if(textPC) textPC.innerHTML = isDark ? lightText : darkText;
             }
             if (iconMobile) {
                 iconMobile.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
             }
         }
 
+        // Check saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            updateIcons(true);
+        }
+
         // --- CUSTOM LANGUAGE FAB LOGIC V101 ---
         function toggleLang() {
             const list = document.getElementById('langList');
             list.classList.toggle('active');
-        }
-
-        function selectLang(langCode, langName, flagUrl) {
-            // 1. Trigger GTranslate Logic
-            if(document.querySelector('.gtranslate_wrapper select')) {
-                var select = document.querySelector('.gtranslate_wrapper select');
-                select.value = langCode;
-                select.dispatchEvent(new Event('change'));
-            }
-
-            // 2. Cập nhật nút chính (Mượt mà)
-            const mainBtn = document.getElementById('mainLangBtn');
-            mainBtn.innerHTML = `<img src="${flagUrl}" style="width:20px;height:20px;border-radius:50%;object-fit:cover;"> <span>${langName}</span>`;
-
-            // 3. Đóng menu sau 300ms để người dùng thấy hiệu ứng click
-            setTimeout(() => {
-                toggleLang();
-            }, 300);
         }
 
         // Đóng menu khi click ra ngoài
