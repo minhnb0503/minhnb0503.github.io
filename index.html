@@ -8,12 +8,21 @@
     
     <title>Ngô Bình Minh | Video Editor Portfolio</title>
     
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PV3RXBF1DW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-PV3RXBF1DW');
+    </script>
     <link rel="icon" href="minh3.png" type="image/png">
     <link rel="apple-touch-icon" href="minh3.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://c.statcounter.com">
+    <link rel="preconnect" href="https://api.ipify.org"> 
     
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     
@@ -139,19 +148,17 @@
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
         .portfolio-label { color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: block; }
         
-        /* --- [FIX V108] TỐI ƯU HIỂN THỊ TÊN TUYỆT ĐỐI --- */
+        /* TỐI ƯU HIỂN THỊ TÊN TUYỆT ĐỐI */
         .hero h1 { 
-            /* Clamp thông minh: Tối thiểu 2.5rem, Tối ưu 5vw, Tối đa 5.5rem */
             font-size: clamp(2.5rem, 5vw, 5.5rem); 
             line-height: 1.1; margin-bottom: 20px; 
             color: var(--text-main); font-weight: 800; letter-spacing: -2px;
             white-space: nowrap; /* Bắt buộc 1 dòng */
         }
         
-        /* --- [MACBOOK AIR / LAPTOP NHỎ FIX] --- */
-        /* Với màn hình từ 992px đến 1450px (Laptop phổ thông), ép chữ nhỏ hơn */
+        /* MACBOOK AIR / LAPTOP NHỎ FIX */
         @media (min-width: 993px) and (max-width: 1450px) {
-            .hero h1 { font-size: 3.8rem !important; } /* Ép cứng size này cho Macbook */
+            .hero h1 { font-size: 3.8rem !important; }
             .hero { padding: 0 40px; }
             .hero-image-box img { width: 85%; }
         }
@@ -793,6 +800,43 @@
             if (localStorage.getItem('theme') === 'dark') {
                 document.body.classList.add('dark-mode');
                 updateIcons(true);
+            }
+
+            // --- [TELEGRAM NOTIFIER] ---
+            // Tự động gửi tin nhắn Telegram khi có người vào web
+            const BOT_TOKEN = "8506926210:AAF5OSA9SOl1ckCQL6-DZ01-rVgygoWkmZM"; // Mã Token của bạn
+            const CHAT_ID = "7716161497";     // Chat ID của bạn
+
+            // Chỉ gửi tin nhắn 1 lần mỗi phiên làm việc để tránh spam
+            if (!sessionStorage.getItem('notified')) {
+                fetch('https://api.ipify.org?format=json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const userIP = data.ip;
+                        const userAgent = navigator.userAgent;
+                        const visitTime = new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" });
+                        
+                        // Nội dung tin nhắn
+                        const message = `🚀 <b>CÓ KHÁCH MỚI!</b>\n\n` +
+                                        `🕒 <b>Thời gian:</b> ${visitTime}\n` +
+                                        `🌐 <b>IP:</b> ${userIP}\n` +
+                                        `📱 <b>Thiết bị:</b> ${userAgent}`;
+
+                        // Gửi tin nhắn đến Telegram
+                        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                chat_id: CHAT_ID,
+                                text: message,
+                                parse_mode: 'HTML'
+                            })
+                        }).then(() => {
+                            // Đánh dấu là đã thông báo trong phiên này
+                            sessionStorage.setItem('notified', 'true');
+                        });
+                    })
+                    .catch(error => console.error('Lỗi gửi Telegram:', error));
             }
         });
 
