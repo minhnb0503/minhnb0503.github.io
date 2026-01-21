@@ -14,6 +14,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+
       gtag('config', 'G-PV3RXBF1DW');
     </script>
     <link rel="icon" href="minh3.png" type="image/png">
@@ -31,6 +32,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
+        /* ================================================================= */
+        /* [PHẦN 2] CSS STYLING (BẢN FULL CHI TIẾT) */
+        /* ================================================================= */
+
         /* --- 1. CẤU HÌNH CỐT LÕI (CORE) --- */
         :root {
             --bg-body: #ffffff;
@@ -1590,13 +1595,13 @@
     
     <script defer>
         document.addEventListener("DOMContentLoaded", function() {
-            // INIT ANIMATIONS
+            // INIT ANIMATIONS (CHẬM, MƯỢT, DOMINO)
             AOS.init({ 
                 once: false, 
-                mirror: true, // QUAN TRỌNG: Hiệu ứng gương
+                mirror: true, 
                 offset: 50, 
-                duration: 800, // Tốc độ vừa phải
-                easing: 'ease-out-cubic', // Mượt mà, trượt êm
+                duration: 1200, 
+                easing: 'ease-in-out', 
                 anchorPlacement: 'top-bottom'
             });
 
@@ -1658,7 +1663,7 @@
                                         `🌐 <b>IP:</b> ${userIP}\n` +
                                         `📱 <b>Thiết bị:</b> ${userAgent}`;
 
-                        // Gửi tin nhắn đến Telegram
+                        // Gửi tin nhắn đến Telegram (DÙNG TRY-CATCH ĐỂ BẮT LỖI ADBLOCK)
                         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
@@ -1667,9 +1672,13 @@
                                 text: message,
                                 parse_mode: 'HTML'
                             })
-                        }).then(() => {
+                        })
+                        .then(() => {
                             // Đánh dấu là đã thông báo trong phiên này
                             sessionStorage.setItem('notified', 'true');
+                        })
+                        .catch(err => {
+                            console.log("Bot Notification Blocked by AdBlock (This is normal)");
                         });
                     })
                     .catch(error => console.error('Lỗi gửi Telegram:', error));
