@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Portfolio của Ngô Bình Minh - Video Editor & Cameraman chuyên nghiệp tại Hà Nội.">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     
@@ -13,7 +14,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-PV3RXBF1DW');
     </script>
     <link rel="icon" href="minh3.png" type="image/png">
@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
-        /* --- 1. CẤU HÌNH CỐT LÕI --- */
+        /* --- 1. CẤU HÌNH CỐT LÕI (CORE) --- */
         :root {
             --bg-body: #ffffff;
             --bg-block: #f8f9fa;
@@ -43,7 +43,7 @@
             --header-height-mobile: 70px; 
         }
 
-        /* --- BẢO MẬT CẤP CAO (ANTI-THEFT) --- */
+        /* CHỐNG COPY & TỐI ƯU TRẢI NGHIỆM */
         body {
             -webkit-user-select: none;
             -ms-user-select: none;
@@ -55,10 +55,9 @@
             overflow-x: hidden;
             transition: background-color 0.3s ease, color 0.3s ease;
             line-height: 1.6;
-            text-rendering: optimizeLegibility;
+            text-rendering: optimizeLegibility; /* Tối ưu hiển thị chữ */
         }
         
-        /* CHẶN KÉO ẢNH CHUNG */
         img {
             pointer-events: none; 
             -webkit-user-drag: none;
@@ -70,11 +69,12 @@
             scroll-padding-top: 20px; 
         }
 
-        /* GHI ĐÈ AOS ĐỂ TẠO ĐỘ MƯỢT VẬT LÝ */
+        /* GHI ĐÈ AOS ĐỂ TẠO ĐỘ MƯỢT VẬT LÝ (PHYSICS) */
         [data-aos] {
             transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
         }
 
+        /* DARK MODE VARS */
         body.dark-mode {
             --bg-body: #0a0a0a;
             --bg-block: #111111;
@@ -95,7 +95,7 @@
             line-height: 1.1;
         }
 
-        /* GPU ACCELERATION */
+        /* GPU ACCELERATION (Tăng tốc độ render) */
         .sidebar, .hero-btn, .skill-item, .partner-item, .lang-fab-container, .menu-overlay {
             transform: translateZ(0); 
             will-change: transform, opacity;
@@ -564,7 +564,7 @@
             justify-items: center; 
         }
         
-        /* STATIC PARTNER ITEM (NO FLOAT) */
+        /* PARTNER ITEM (STATIC - NO FLOAT) */
         .partner-item { 
             width: 100%; 
             height: 90px; 
@@ -575,7 +575,7 @@
             border-radius: 12px; 
             border: 1px solid var(--border); 
             padding: 10px; 
-            transition: all 0.3s ease; /* Quay về ease */
+            transition: all 0.3s ease; 
             cursor: pointer; 
             pointer-events: auto; 
         }
@@ -620,14 +620,14 @@
             gap: 20px; 
         }
         
-        /* STATIC SKILL ITEM (NO FLOAT) */
+        /* SKILL ITEM (STATIC - NO FLOAT) */
         .skill-item { 
             background: var(--bg-body); 
             padding: 20px; 
             border-radius: 15px; 
             text-align: center; 
             border: 1px solid var(--border); 
-            transition: 0.3s ease; /* Quay về ease */
+            transition: 0.3s ease; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
             display: flex; 
             flex-direction: column; 
@@ -1385,7 +1385,7 @@
                 <a href="#portfolio" class="hero-btn" data-aos="zoom-in" data-aos-delay="600" data-i18n="hero_btn">Xem Dự Án Của Tôi</a>
             </div>
             <div class="hero-image-box" data-aos="fade-left" data-aos-delay="400">
-                <img src="minh3.png" alt="Ngô Bình Minh" style="width: 90%; margin-top: 0;">
+                <img src="minh3.png" alt="Ngô Bình Minh" style="width: 90%; margin-top: 0;" loading="eager">
             </div>
         </section>
 
