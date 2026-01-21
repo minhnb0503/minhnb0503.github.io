@@ -33,7 +33,7 @@
 
     <style>
         /* ================================================================= */
-        /* [PHẦN 2] CSS STYLING (BẢN FULL CHI TIẾT) */
+        /* [PHẦN 2] CSS STYLING (BẢN FULL CHI TIẾT - KHÔNG RÚT GỌN) */
         /* ================================================================= */
 
         /* --- 1. CẤU HÌNH CỐT LÕI (CORE) --- */
@@ -63,6 +63,7 @@
             text-rendering: optimizeLegibility; /* Tối ưu hiển thị chữ */
         }
         
+        /* CHẶN KÉO ẢNH CHUNG */
         img {
             pointer-events: none; 
             -webkit-user-drag: none;
@@ -1424,15 +1425,15 @@
 
                     <div class="about-stats">
                         <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
-                            <h3>05</h3>
+                            <h3><span class="counter" data-target="5">0</span></h3>
                             <p data-i18n="stat_exp">Năm kinh nghiệm</p>
                         </div>
                         <div class="stat-item" data-aos="fade-up" data-aos-delay="150">
-                            <h3>365+</h3>
+                            <h3><span class="counter" data-target="365">0</span>+</h3>
                             <p data-i18n="stat_clients">Khách hàng hài lòng</p>
                         </div>
                         <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                            <h3>500+</h3>
+                            <h3><span class="counter" data-target="500">0</span>+</h3>
                             <p data-i18n="stat_projects">Dự án hoàn thành</p>
                         </div>
                     </div>
@@ -1595,17 +1596,17 @@
     
     <script defer>
         document.addEventListener("DOMContentLoaded", function() {
-            // INIT ANIMATIONS (CHẬM, MƯỢT, DOMINO)
+            // 1. INIT ANIMATION (CHẬM, MƯỢT, DOMINO)
             AOS.init({ 
                 once: false, 
-                mirror: true, 
+                mirror: true, // QUAN TRỌNG: Hiệu ứng gương
                 offset: 50, 
                 duration: 1200, 
                 easing: 'ease-in-out', 
                 anchorPlacement: 'top-bottom'
             });
 
-            // INIT SLIDER
+            // 2. INIT SWIPER
             var swiper = new Swiper(".mySwiper", {
                 effect: "coverflow",
                 grabCursor: true,
@@ -1617,12 +1618,43 @@
                 loop: false
             });
 
-            // CHECK MOBILE NAV
+            // 3. NUMBER COUNTER ANIMATION (SỐ NHẢY)
+            const counters = document.querySelectorAll('.counter');
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = +counter.getAttribute('data-target');
+                        const speed = 200; // Tốc độ chạy (càng nhỏ càng nhanh)
+                        
+                        const updateCount = () => {
+                            const count = +counter.innerText;
+                            const inc = target / speed;
+
+                            if (count < target) {
+                                let nextCount = Math.ceil(count + inc);
+                                // Xử lý số 05 (Thêm số 0 đằng trước nếu nhỏ hơn 10)
+                                counter.innerText = (target < 10 && nextCount < 10) ? "0" + nextCount : nextCount;
+                                setTimeout(updateCount, 20); // Mượt mà
+                            } else {
+                                counter.innerText = target < 10 ? "0" + target : target;
+                            }
+                        };
+                        updateCount();
+                        observer.unobserve(counter); // Chỉ chạy 1 lần khi cuộn tới
+                    }
+                });
+            }, { threshold: 0.5 }); // Khi nhìn thấy 50% là chạy
+
+            counters.forEach(counter => {
+                counterObserver.observe(counter);
+            });
+
             if (window.innerWidth < 992) {
                 document.getElementById('mobileNav').style.display = 'flex';
             }
 
-            // --- [SECURITY] CHỐNG COPY ---
+            // 4. SECURITY & PREVENT COPY
             document.addEventListener('contextmenu', event => event.preventDefault()); // Chặn chuột phải
             document.onkeydown = function(e) {
                 if (e.keyCode == 123) return false; // F12
@@ -1633,38 +1665,33 @@
                 if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; // Ctrl+S (Save)
             };
 
-            // Init language on load
+            // 5. LOAD SETTINGS
             const savedLang = localStorage.getItem('preferred_lang') || 'vi';
             changeLanguage(savedLang);
             
-            // Check theme
             if (localStorage.getItem('theme') === 'dark') {
                 document.body.classList.add('dark-mode');
                 updateIcons(true);
             }
 
-            // --- [TELEGRAM NOTIFIER] ---
-            // Tự động gửi tin nhắn Telegram khi có người vào web
-            const BOT_TOKEN = "8506926210:AAF50SA9S0l1ckCQL6-DZ01-rVgygoWkmZM"; // Mã Token của bạn
-            const CHAT_ID = "7716161497";     // Chat ID của bạn
+            // 6. BOT TELEGRAM (TRY-CATCH BLOCK - FIX ADBLOCK ERROR)
+            const BOT_TOKEN = "8506926210:AAF50SA9S0l1ckCQL6-DZ01-rVgygoWkmZM"; 
+            const CHAT_ID = "7716161497";     
 
-            // Chỉ gửi tin nhắn 1 lần mỗi phiên làm việc để tránh spam
             if (!sessionStorage.getItem('notified')) {
-                fetch('https://api.ipify.org?format=json')
-                    .then(response => response.json())
-                    .then(data => {
-                        const userIP = data.ip;
-                        const userAgent = navigator.userAgent;
-                        const visitTime = new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" });
+                // Sử dụng try-catch để bắt lỗi nếu bị AdBlock chặn
+                const sendNotification = async () => {
+                    try {
+                        const response = await fetch('https://api.ipify.org?format=json');
+                        if (!response.ok) throw new Error('IP Fetch Failed');
+                        const data = await response.json();
                         
-                        // Nội dung tin nhắn
-                        const message = `🚀 <b>CÓ KHÁCH MỚI!</b>\n\n` +
-                                        `🕒 <b>Thời gian:</b> ${visitTime}\n` +
-                                        `🌐 <b>IP:</b> ${userIP}\n` +
-                                        `📱 <b>Thiết bị:</b> ${userAgent}`;
+                        const msg = `🚀 <b>CÓ KHÁCH MỚI!</b>\n\n` +
+                                    `🕒 <b>Thời gian:</b> ${new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" })}\n` +
+                                    `🌐 <b>IP:</b> ${data.ip}\n` +
+                                    `📱 <b>Thiết bị:</b> ${navigator.userAgent}`;
 
-                        // Gửi tin nhắn đến Telegram (DÙNG TRY-CATCH ĐỂ BẮT LỖI ADBLOCK)
-                        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({
@@ -1672,16 +1699,16 @@
                                 text: message,
                                 parse_mode: 'HTML'
                             })
-                        })
-                        .then(() => {
-                            // Đánh dấu là đã thông báo trong phiên này
-                            sessionStorage.setItem('notified', 'true');
-                        })
-                        .catch(err => {
-                            console.log("Bot Notification Blocked by AdBlock (This is normal)");
                         });
-                    })
-                    .catch(error => console.error('Lỗi gửi Telegram:', error));
+                        
+                        sessionStorage.setItem('notified', 'true');
+                        console.log("Bot Notification Sent!");
+                    } catch (error) {
+                        // Nếu lỗi (do AdBlock hoặc mạng), chỉ log nhẹ nhàng, không báo đỏ lòm
+                        console.warn("Bot notification skipped (AdBlock or Network issue). This is normal.");
+                    }
+                };
+                sendNotification();
             }
         });
 
