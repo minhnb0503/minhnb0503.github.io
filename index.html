@@ -416,7 +416,7 @@
             font-weight: 600; 
         }
 
-        /* --- 5. PHẦN ABOUT & ĐỐI TÁC --- */
+        /* --- 5. ABOUT SECTION & PARTNERS --- */
         #about { position: relative; }
         .about-layout { 
             display: flex; 
@@ -564,6 +564,7 @@
             margin-bottom: 40px; 
         }
         
+        /* FIX CĂN CHỈNH NGÔN NGỮ */
         .badge-row { 
             display: flex; 
             align-items: center; 
@@ -618,17 +619,17 @@
         .partner-wrapper { margin-top: 10px; }
         .partner-header { margin-bottom: 25px; }
         
-        /* [UPGRADE] FIX LƯỚI ĐỐI TÁC: DÙNG FLEXBOX ĐỂ CĂN GIỮA HÀNG CUỐI */
+        /* PARTNER GRID (FIXED FLEXBOX) */
         .partner-grid { 
             display: flex; 
             flex-wrap: wrap; 
-            justify-content: center; /* Tự động căn giữa */
+            justify-content: center; 
             gap: 15px; 
             margin-top: 20px; 
         }
         
         .partner-item { 
-            width: calc(20% - 15px); /* 5 cột */
+            width: calc(20% - 15px); 
             min-width: 140px; 
             height: 90px; 
             display: flex; 
@@ -652,9 +653,9 @@
             display: block; 
         }
         
-        /* [UPGRADE] SCALE LOGO: FIX MS HOA TO LÊN */
+        /* Scale từng logo */
         .partner-logo.logo-imap { transform: scale(1.4); }
-        .partner-logo.logo-junior { transform: scale(1.9); } /* Đã tăng to lên 1.9 */
+        .partner-logo.logo-junior { transform: scale(1.9); } 
         .partner-logo.logo-klb { transform: scale(1.1); } 
         .partner-logo.logo-mshoa { transform: scale(1.1); }
         .partner-logo.logo-vcb { transform: scale(1.1); }
@@ -668,6 +669,8 @@
             box-shadow: 0 15px 30px rgba(255, 77, 41, 0.15); 
             transform: translateY(-5px); 
         }
+        
+        /* Scale khi hover */
         .partner-item:hover .partner-logo { transform: scale(1.1); }
         .partner-item:hover .partner-logo.logo-imap { transform: scale(1.55); }
         .partner-item:hover .partner-logo.logo-junior { transform: scale(2.0); } 
@@ -675,7 +678,7 @@
         .partner-item:hover .partner-logo.logo-mshoa { transform: scale(1.25); }
         .partner-item:hover .partner-logo.logo-vcb { transform: scale(1.25); }
 
-        /* --- 6. KỸ NĂNG (SKILLS) --- */
+        /* 6. KỸ NĂNG (SKILLS) */
         .skills-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
@@ -762,7 +765,7 @@
         }
         .skill-item:hover p { color: var(--accent); }
 
-        /* --- 7. KINH NGHIỆM (TIMELINE) --- */
+        /* 7. KINH NGHIỆM (TIMELINE) */
         @media (min-width: 993px) {
             #experience { 
                 width: 100%; 
@@ -941,7 +944,7 @@
             }
         }
 
-        /* --- 8. PORTFOLIO & VIDEO LIGHTBOX --- */
+        /* 8. PORTFOLIO & VIDEO LIGHTBOX */
         .swiper { 
             width: 100%; 
             padding: 60px 0 80px 0; 
@@ -1121,7 +1124,7 @@
         }
         .close-lightbox:hover { color: var(--accent); transform: rotate(90deg); }
 
-        /* MOBILE CSS */
+        /* 9. MOBILE CSS */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             .sidebar { 
@@ -1157,7 +1160,6 @@
                 font-weight: 800; 
             }
             .right-controls { display: flex; align-items: center; gap: 10px; }
-            
             .contact-btn { 
                 background: var(--accent); 
                 color: #fff; 
@@ -1197,7 +1199,6 @@
                 background: var(--border); 
             }
             
-            /* [FIX 1] GHOST CLICK: Thêm visibility */
             .menu-overlay { 
                 display: block !important; 
                 position: fixed; 
@@ -1205,7 +1206,7 @@
                 background: rgba(255, 255, 255, 0.95); 
                 z-index: 9999; 
                 opacity: 0; 
-                visibility: hidden; 
+                visibility: hidden; /* Fix Ghost Click */
                 pointer-events: none; 
                 transition: 0.3s; 
             }
@@ -1237,6 +1238,7 @@
             .menu-overlay.active .menu-item { opacity: 1; transform: translateY(0); }
             
             .main-content { 
+                width: 100%; 
                 margin-left: 0; 
                 padding-top: 110px; 
             }
@@ -1281,7 +1283,7 @@
             .close-lightbox { top: -40px; right: 20px; }
         }
 
-        /* LANG FAB */
+        /* 10. LANGUAGE FAB */
         .lang-fab-container { 
             position: fixed; 
             bottom: 30px; 
@@ -1376,9 +1378,9 @@
     <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()">
         <div class="floating-menu-container">
             <a href="mailto:minh.nb0503@gmail.com" class="menu-item"><i class="fas fa-envelope"></i> Gửi Email</a>
-            <a href="https://zalo.me/0395393868" target="_blank" class="menu-item"><span style="color:#0068FF;font-weight:900;width:25px;text-align:center;">Z</span> Chat Zalo</a>
-            <a href="https://t.me/minhnb0503" target="_blank" class="menu-item"><i class="fab fa-telegram" style="color:#0088cc"></i> Telegram</a>
-            <a href="https://www.facebook.com/minh.nb0503" target="_blank" class="menu-item"><i class="fab fa-facebook-f" style="color:#1877F2"></i> Facebook</a>
+            <a href="#" class="menu-item"><span style="color:#0068FF;font-weight:900;width:25px;text-align:center;">Z</span> Chat Zalo</a>
+            <a href="#" class="menu-item"><i class="fab fa-telegram" style="color:#0088cc"></i> Telegram</a>
+            <a href="#" class="menu-item"><i class="fab fa-facebook-f" style="color:#1877F2"></i> Facebook</a>
         </div>
     </div>
 
@@ -1411,9 +1413,9 @@
                 <div class="social-icons-container">
                     <div class="social-row-4">
                         <a href="mailto:minh.nb0503@gmail.com" class="icon-btn"><i class="fas fa-envelope"></i></a>
-                        <a href="https://zalo.me/0395393868" target="_blank" class="icon-btn"><span>Z</span></a>
-                        <a href="https://t.me/minhnb0503" target="_blank" class="icon-btn"><i class="fab fa-telegram"></i></a>
-                        <a href="https://www.facebook.com/minh.nb0503" target="_blank" class="icon-btn"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="icon-btn"><span>Z</span></a>
+                        <a href="#" class="icon-btn"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="icon-btn"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
                 <button class="theme-btn theme-btn-pc" onclick="toggleTheme()"><i class="fas fa-moon"></i> <span>Chế độ Tối</span></button>
@@ -1426,11 +1428,12 @@
     </div>
 
     <div class="main-content">
+        
         <section id="home" class="hero">
             <div class="hero-text">
                 <p class="portfolio-label" data-aos="fade-down">Portfolio 2026</p>
                 <h1 data-aos="fade-right">NGÔ BÌNH MINH<br><span style="font-size:0.5em;color:var(--text-sub);font-weight:400;">Freelance Video Editor</span></h1>
-                <p class="intro-para-mobile" data-aos="fade-up">Tôi là Minh – Video Editor & Cameraman chuyên nghiệp. Với kinh nghiệm thực chiến tại <b>KienlongBank</b> và <b>IMAP</b>, tôi cung cấp giải pháp video toàn diện: từ sản xuất TVC, Motion Graphics đến xây dựng kênh TikTok/YouTube bài bản. Tôi tập trung vào chất lượng hình ảnh và hiệu quả truyền thông thực tế của từng sản phẩm.</p>
+                <p class="intro-para-mobile" data-aos="fade-up">Tôi là Minh – Video Editor & Cameraman chuyên nghiệp. Với kinh nghiệm thực chiến tại <b>KienlongBank</b> và <b>IMAP</b>.</p>
                 <a href="#portfolio" class="hero-btn" data-aos="zoom-in">Xem Dự Án Của Tôi</a>
             </div>
             <div class="hero-image-box" data-aos="fade-left"><img src="minh3.png" style="width:90%;"></div>
@@ -1441,14 +1444,13 @@
             <div class="about-layout">
                 <div class="about-visual" data-aos="fade-right">
                     <div class="visual-circles-container"><div class="art-shape shape-orange"></div><div class="art-shape shape-black"></div></div>
-                    <div class="visual-connector"></div>
                     <div class="visual-badge-wrapper">
                         <svg class="badge-text-svg" viewBox="0 0 100 100"><defs><path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" /></defs><text class="badge-text-path"><textPath xlink:href="#circlePath">VIDEO EDITOR • CAMERAMAN • </textPath></text></svg>
                         <i class="fas fa-play badge-center-icon"></i>
                     </div>
                 </div>
                 <div class="about-content" data-aos="fade-left">
-                    <p class="about-desc">Không chỉ dừng lại ở kỹ thuật, tôi luôn tìm tòi những xu hướng hình ảnh mới nhất để áp dụng vào từng thước phim. Sự chỉn chu trong từng frame hình và tư duy kể chuyện mạch lạc là cam kết của tôi cho mọi dự án.</p>
+                    <p class="about-desc">Không chỉ dừng lại ở kỹ thuật, tôi luôn tìm tòi những xu hướng hình ảnh mới nhất.</p>
                     <div class="about-stats">
                         <div class="stat-item"><h3><span class="counter" data-target="5">0</span></h3><p>Năm kinh nghiệm</p></div>
                         <div class="stat-item"><h3><span class="counter" data-target="500">0</span>+</h3><p>Dự án</p></div>
@@ -1458,32 +1460,27 @@
                         <span class="badge-label"><i class="fas fa-globe"></i> Ngôn ngữ:</span>
                         <div style="display:flex;gap:10px;"><span class="pill-tag">Tiếng Việt</span><span class="pill-tag">English</span></div>
                     </div>
-                    
                     <div class="partner-wrapper">
                         <span class="badge-label partner-header"><i class="fas fa-handshake"></i> Đối tác:</span>
-                        
                         <div class="partner-grid">
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="0"><img src="logo-port bm/logo-kienlongbank.png" class="partner-logo logo-klb"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-port bm/logo-mbank.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-port bm/logo-vietcombank.png" class="partner-logo logo-vcb"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="300"><img src="logo-port bm/logo-bidv.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="400"><img src="logo-port bm/logo-vtv.png" class="partner-logo"></div>
-                            
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="500"><img src="logo-port bm/logo-vtv7.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="600"><img src="logo-port bm/logo-CafeBiz.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="700"><img src="logo-port bm/logo-tentun.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="800"><img src="logo-port bm/logo-tgmedia.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="900"><img src="logo-port bm/logo-gapowork@4x.png" class="partner-logo"></div>
-                            
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="1000"><img src="logo-port bm/logo-imap.png" class="partner-logo logo-imap"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="1100"><img src="logo-port bm/logo-ieltsfighter@4x.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="1200"><img src="logo-port bm/logo-thuonghieuMsHoa.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="1300"><img src="logo-port bm/logo-mshoatoeic.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="1400"><img src="logo-port bm/logo-Ms Hoa Junior.png" class="partner-logo logo-junior"></div>
-                            
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="1500"><img src="logo-port bm/logo mhgt.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="1600"><img src="logo-port bm/logo-hvtc.png" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="1700"><img src="logo-port bm/logo-hanoi.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="50"><img src="logo-port bm/logo-mbank.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-port bm/logo-vietcombank.png" class="partner-logo logo-vcb"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="150"><img src="logo-port bm/logo-bidv.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-port bm/logo-vtv.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="250"><img src="logo-port bm/logo-vtv7.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="300"><img src="logo-port bm/logo-CafeBiz.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="350"><img src="logo-port bm/logo-tentun.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="400"><img src="logo-port bm/logo-tgmedia.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="450"><img src="logo-port bm/logo-gapowork@4x.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="500"><img src="logo-port bm/logo-imap.png" class="partner-logo logo-imap"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="550"><img src="logo-port bm/logo-ieltsfighter@4x.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="600"><img src="logo-port bm/logo-thuonghieuMsHoa.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="650"><img src="logo-port bm/logo-mshoatoeic.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="700"><img src="logo-port bm/logo-Ms Hoa Junior.png" class="partner-logo logo-junior"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="750"><img src="logo-port bm/logo mhgt.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="800"><img src="logo-port bm/logo-hvtc.png" class="partner-logo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="850"><img src="logo-port bm/logo-hanoi.png" class="partner-logo"></div>
                         </div>
                     </div>
                 </div>
@@ -1527,11 +1524,11 @@
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                         <div class="video-wrapper" onclick="openLightbox('VIDEO_ID_1')">
+                        <div class="video-wrapper" onclick="openLightbox('VIDEO_ID_1')">
                             <img src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg" class="video-thumb">
                             <div class="play-overlay"><button class="play-btn"><i class="fas fa-play"></i> XEM TO</button></div>
                         </div>
-                        <div class="project-info"><h3>Vinh Danh Tiếp Lửa KLB</h3><span class="project-tag">Motion</span></div>
+                        <div class="project-info"><h3>Vinh Danh Tiếp Lửa KLB</h3><span class="project-tag">Motion Graphics</span></div>
                     </div>
                     <div class="swiper-slide">
                         <div class="video-wrapper" onclick="openLightbox('VIDEO_ID_2')">
@@ -1565,16 +1562,15 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // INIT AOS
-            AOS.init({ once: false, mirror: true, offset: 50, duration: 1200 });
+            AOS.init({ once: false, mirror: true, offset: 50, duration: 2000, easing: 'cubic-bezier(0.25, 0.8, 0.25, 1)' });
             
-            // INIT SWIPER (FIXED MOBILE TOUCH)
+            // INIT SWIPER
             var swiper = new Swiper(".mySwiper", {
                 effect: "coverflow", grabCursor: true, centeredSlides: true, slidesPerView: "auto",
-                coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 1, slideShadows: false }, loop: false,
-                touchStartPreventDefault: false // [FIX 3] Vuốt mượt trên mobile
+                coverflowEffect: { rotate: 0, stretch: 0, depth: 100, modifier: 1, slideShadows: false }, loop: false
             });
             
-            // COUNTER (FIXED THRESHOLD)
+            // COUNTER UP
             const counters = document.querySelectorAll('.counter');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1589,7 +1585,8 @@
                         updateCount(); observer.unobserve(counter);
                     }
                 });
-            }, { threshold: 0.1 }); // [FIX 2] 10% là chạy ngay
+            }, { threshold: 0.1 }); 
+
             counters.forEach(c => observer.observe(c));
 
             if(localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); updateIcons(true); }
@@ -1602,7 +1599,7 @@
                 fetch('https://api.ipify.org?format=json').then(r=>r.json()).then(d=>{
                     fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                         method: 'POST', headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify({chat_id: CHAT_ID, text: `🚀 V130 FULL MOBILE FIX!\nIP: ${d.ip}`})
+                        body: JSON.stringify({chat_id: CHAT_ID, text: `🚀 V131 MOBILE PERFECT!\nIP: ${d.ip}`})
                     });
                     sessionStorage.setItem('notified', 'true');
                 }).catch(e=>{});
@@ -1620,7 +1617,7 @@
         function closeLightbox() {
             const lightbox = document.getElementById('videoLightbox');
             const iframe = document.getElementById('lightboxIframe');
-            iframe.src = ""; // Dừng video
+            iframe.src = ""; // Stop video
             lightbox.classList.remove('active');
         }
 
