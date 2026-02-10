@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Portfolio của Ngô Bình Minh - Video Editor & Cameraman chuyên nghiệp tại Hà Nội.">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="description" content="Portfolio của Ngô Bình Minh - Video Editor & Cameraman chuyên nghiệp tại Hà Nội.">
     
     <title>Ngô Bình Minh | Video Editor Portfolio</title>
     
@@ -22,8 +22,6 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://c.statcounter.com">
-    <link rel="preconnect" href="https://api.ipify.org"> 
     
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     
@@ -33,10 +31,10 @@
 
     <style>
         /* ================================================================= */
-        /* [PHẦN 2] CSS STYLING (BẢN FULL EXTENDED - KHÔNG GỘP DÒNG) */
+        /* [PHẦN 2] CSS STYLING (BẢN FULL CHI TIẾT - KHÔNG RÚT GỌN) */
         /* ================================================================= */
 
-        /* --- 1. CẤU HÌNH CỐT LÕI (CORE) --- */
+        /* --- 1. CẤU HÌNH CỐT LÕI (ROOT VARIABLES) --- */
         :root {
             --bg-body: #ffffff;
             --bg-block: #f8f9fa;
@@ -46,10 +44,12 @@
             --accent: #ff4d29;
             --sidebar-width: 280px;
             --header-height-mobile: 70px;
-            --smooth-ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+            
+            /* Hiệu ứng chuyển động mượt mới */
+            --smooth-ease: cubic-bezier(0.25, 0.8, 0.25, 1); 
         }
 
-        /* DARK MODE VARIABLES */
+        /* CHẾ ĐỘ TỐI (DARK MODE) */
         body.dark-mode {
             --bg-body: #0a0a0a;
             --bg-block: #111111;
@@ -58,7 +58,14 @@
             --border: #333333;
         }
 
-        /* --- 2. BASE STYLES --- */
+        /* --- 2. CÀI ĐẶT CƠ BẢN (RESET & BASE) --- */
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+
         body {
             -webkit-user-select: none;
             -ms-user-select: none;
@@ -69,8 +76,6 @@
             font-family: 'Bricolage Grotesque', 'Noto Sans KR', sans-serif;
             overflow-x: hidden;
             transition: background-color 0.4s var(--smooth-ease), color 0.4s var(--smooth-ease);
-            margin: 0;
-            padding: 0;
             line-height: 1.6;
             text-rendering: optimizeLegibility;
         }
@@ -86,15 +91,9 @@
             scroll-padding-top: 20px; 
         }
 
+        /* Ghi đè AOS để mượt hơn */
         [data-aos] {
             transition-timing-function: var(--smooth-ease) !important;
-        }
-
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            -webkit-tap-highlight-color: transparent; 
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -104,13 +103,13 @@
             letter-spacing: -1px;
         }
 
-        /* GPU ACCELERATION */
+        /* Tăng tốc phần cứng (GPU Acceleration) */
         .sidebar, .hero-btn, .skill-item, .partner-item, .lang-fab-container, .menu-overlay, .icon-btn, .theme-btn {
             transform: translateZ(0); 
             will-change: transform, opacity, background-color, box-shadow;
         }
 
-        /* --- 3. SIDEBAR (PC) --- */
+        /* --- 3. THANH BÊN (SIDEBAR PC) --- */
         .sidebar {
             position: fixed; 
             top: 0; 
@@ -185,6 +184,7 @@
             flex-direction: column; 
             gap: 8px; 
         }
+        
         .contact-mini div { 
             display: flex; 
             align-items: center; 
@@ -212,6 +212,7 @@
             gap: 12px; 
         }
         
+        /* Icon mạng xã hội */
         .icon-btn { 
             display: flex; 
             align-items: center; 
@@ -229,6 +230,7 @@
             color: var(--text-main);
         }
         
+        /* Màu sắc từng icon */
         .ico-email i { color: #EA4335; }
         .ico-zalo span { color: #0068FF; font-family: sans-serif; font-weight: 900; font-size: 1rem; }
         .ico-tele i { color: #229ED9; }
@@ -256,7 +258,7 @@
             padding: 8px 18px; 
             border-radius: 20px; 
             font-size: 0.9rem; 
-            transition: all 0.4s var(--smooth-ease);
+            transition: all 0.4s var(--smooth-ease); 
             display: inline-flex; 
             align-items: center; 
             gap: 8px; 
@@ -270,7 +272,7 @@
              transform: translateY(-2px);
         }
 
-        /* --- 4. MAIN CONTENT --- */
+        /* --- 4. KHUNG NỘI DUNG CHÍNH --- */
         .main-content { 
             margin-left: var(--sidebar-width); 
             width: calc(100% - var(--sidebar-width)); 
@@ -395,7 +397,7 @@
             font-weight: 600; 
         }
 
-        /* --- 5. ABOUT SECTION --- */
+        /* --- 5. PHẦN ABOUT & ĐỐI TÁC --- */
         #about { position: relative; }
         .about-layout { 
             display: flex; 
@@ -543,10 +545,10 @@
             margin-bottom: 40px; 
         }
         
-        /* FIX ALIGNMENT FOR LANGUAGES */
+        /* FIX CĂN CHỈNH NGÔN NGỮ */
         .badge-row { 
             display: flex; 
-            align-items: center; /* Đã căn giữa trục dọc */
+            align-items: center; 
             gap: 20px; 
             margin-bottom: 30px; 
             flex-wrap: wrap; 
@@ -598,7 +600,7 @@
         .partner-wrapper { margin-top: 10px; }
         .partner-header { margin-bottom: 25px; }
         
-        /* FIX PARTNER GRID: FLEXBOX ĐỂ CĂN GIỮA */
+        /* FIX LƯỚI ĐỐI TÁC: DÙNG FLEXBOX ĐỂ CĂN GIỮA */
         .partner-grid { 
             display: flex; 
             flex-wrap: wrap; 
@@ -608,7 +610,7 @@
         }
         
         .partner-item { 
-            width: calc(20% - 15px); /* 5 cột */
+            width: calc(20% - 15px); 
             min-width: 140px; 
             height: 90px; 
             display: flex; 
@@ -632,9 +634,9 @@
             display: block; 
         }
         
-        /* SCALE LOGO FIX */
+        /* FIX SCALE LOGO CỤ THỂ */
         .partner-logo.logo-imap { transform: scale(1.4); }
-        .partner-logo.logo-junior { transform: scale(1.9); } /* LOGO MS HOA TO LÊN */
+        .partner-logo.logo-junior { transform: scale(1.9); } /* ĐÃ TĂNG TO CHO MS HOA */
         .partner-logo.logo-klb { transform: scale(1.1); } 
         .partner-logo.logo-mshoa { transform: scale(1.1); }
         .partner-logo.logo-vcb { transform: scale(1.1); }
@@ -655,7 +657,7 @@
         .partner-item:hover .partner-logo.logo-mshoa { transform: scale(1.25); }
         .partner-item:hover .partner-logo.logo-vcb { transform: scale(1.25); }
 
-        /* --- 6. SKILLS SECTION --- */
+        /* --- 6. KỸ NĂNG (SKILLS) --- */
         .skills-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); 
@@ -742,7 +744,7 @@
         }
         .skill-item:hover p { color: var(--accent); }
 
-        /* --- 7. EXPERIENCE CSS --- */
+        /* --- 7. KINH NGHIỆM (TIMELINE) --- */
         @media (min-width: 993px) {
             #experience { 
                 width: 100%; 
@@ -920,7 +922,7 @@
             }
         }
 
-        /* --- 8. SWIPER & PROJECTS --- */
+        /* --- 8. PORTFOLIO & YOUTUBE PLAYER --- */
         .swiper { 
             width: 100%; 
             padding: 60px 0 80px 0; 
@@ -952,56 +954,69 @@
             width: 100%; 
             height: 65%; 
             background: #000; 
+            cursor: pointer;
+            overflow: hidden;
         }
-        .video-wrapper iframe { 
+        
+        /* Thumbnail Ảnh */
+        .video-thumb { 
             width: 100%; 
             height: 100%; 
-            border: none; 
+            object-fit: cover; 
+            opacity: 0.8; 
+            transition: 0.3s; 
+            display: block;
         }
-        .video-mask { 
+        .video-wrapper:hover .video-thumb { 
+            opacity: 0.4; 
+            transform: scale(1.05); 
+        }
+        
+        /* Lớp phủ nút Play */
+        .play-overlay {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 5;
+            transition: 0.3s;
+        }
+        .play-btn { 
+            background: rgba(255, 77, 41, 0.9); 
+            padding: 12px 25px; 
+            border-radius: 50px; 
+            color: #fff; 
+            font-weight: 800; 
+            font-size: 1rem; 
+            text-transform: uppercase; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+            transition: 0.3s;
+            border: none;
+        }
+        .video-wrapper:hover .play-btn { 
+            transform: scale(1.1); 
+            background: #fff; 
+            color: var(--accent); 
+        }
+        
+        /* Iframe Video */
+        .video-wrapper iframe { 
             position: absolute; 
             top: 0; 
             left: 0; 
             width: 100%; 
             height: 100%; 
-            background: rgba(0,0,0,0.1); 
-            z-index: 10; 
-            cursor: pointer; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            transition: 0.3s ease; 
-            pointer-events: auto; 
+            border: none; 
+            z-index: 10;
         }
-        .video-mask:hover { background: rgba(0,0,0,0.4); }
-        
-        .play-btn { 
-            background: rgba(255, 255, 255, 0.15); 
-            backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.5); 
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2); 
-            padding: 15px 35px; 
-            border-radius: 12px; 
-            color: #fff; 
-            font-weight: 800; 
-            font-size: 1.1rem; 
-            text-transform: uppercase; 
-            pointer-events: none; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-            transition: all 0.4s var(--smooth-ease); 
-        }
-        .video-mask:hover .play-btn { 
-            transform: scale(1.05); 
-            background: rgba(255, 77, 41, 0.9); 
-            border-color: transparent; 
-        }
-        .swiper-slide-active .play-btn { 
-            background: rgba(255, 77, 41, 0.9); 
-            border-color: transparent; 
-        }
-        
+
         .project-info { 
             padding: 20px; 
             height: 35%; 
@@ -1042,7 +1057,7 @@
         
         .bottom-socials { display: none; }
 
-        /* --- 9. MOBILE CSS --- */
+        /* --- 9. MOBILE RESPONSIVE --- */
         @media (max-width: 992px) {
             :root { --sidebar-width: 0px; }
             .sidebar { 
@@ -1267,7 +1282,7 @@
             .pill-tag { width: auto; min-width: 150px; text-align: center; }
             
             .partner-grid { gap: 15px; }
-            .partner-item { width: 45%; } /* Mobile 2 cột */
+            .partner-item { width: 45%; } 
             
             section { padding: 40px 20px; }
             .section-header { margin-bottom: 20px; padding-bottom: 15px; }
@@ -1287,7 +1302,7 @@
             .section-title { font-size: 1.5rem !important; white-space: nowrap; }
         }
 
-        /* --- 10. CUSTOM LANGUAGE FAB --- */
+        /* --- 10. NÚT ĐỔI NGÔN NGỮ (LANG FAB) --- */
         .lang-fab-container {
             position: fixed; 
             bottom: 30px; 
@@ -1308,7 +1323,7 @@
             pointer-events: none;
         }
 
-        /* Nút ngôn ngữ con */
+        /* Nút con */
         .lang-btn {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(15px); 
@@ -1679,22 +1694,47 @@
             
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
+                    
                     <div class="swiper-slide">
-                        <div class="video-wrapper"><div class="video-mask" onclick="this.style.display='none'"><button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button></div><iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe></div>
+                        <div class="video-wrapper" data-id="VIDEO_ID_1">
+                            <img src="https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg" class="video-thumb" alt="Thumb">
+                            <div class="play-overlay">
+                                <button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button>
+                            </div>
+                        </div>
                         <div class="project-info"><h3 data-i18n="proj_1">Vinh Danh Tiếp Lửa KLB</h3><span class="project-tag">Motion Graphics</span></div>
                     </div>
+
                     <div class="swiper-slide">
-                        <div class="video-wrapper"><div class="video-mask" onclick="this.style.display='none'"><button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button></div><iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe></div>
+                        <div class="video-wrapper" data-id="VIDEO_ID_2">
+                            <img src="https://img.youtube.com/vi/VIDEO_ID_2/hqdefault.jpg" class="video-thumb" alt="Thumb">
+                            <div class="play-overlay">
+                                <button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button>
+                            </div>
+                        </div>
                         <div class="project-info"><h3 data-i18n="proj_2">Viral Clip IMAP</h3><span class="project-tag">Storytelling</span></div>
                     </div>
+
                     <div class="swiper-slide">
-                        <div class="video-wrapper"><div class="video-mask" onclick="this.style.display='none'"><button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button></div><iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe></div>
+                        <div class="video-wrapper" data-id="VIDEO_ID_3">
+                            <img src="https://img.youtube.com/vi/VIDEO_ID_3/hqdefault.jpg" class="video-thumb" alt="Thumb">
+                            <div class="play-overlay">
+                                <button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button>
+                            </div>
+                        </div>
                         <div class="project-info"><h3 data-i18n="proj_3">YouTube Ten Tun</h3><span class="project-tag">Entertainment</span></div>
                     </div>
+
                      <div class="swiper-slide">
-                        <div class="video-wrapper"><div class="video-mask" onclick="this.style.display='none'"><button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button></div><iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe></div>
+                        <div class="video-wrapper" data-id="VIDEO_ID_4">
+                            <img src="https://img.youtube.com/vi/VIDEO_ID_4/hqdefault.jpg" class="video-thumb" alt="Thumb">
+                            <div class="play-overlay">
+                                <button class="play-btn"><i class="fas fa-play"></i> <span data-i18n="btn_watch">XEM VIDEO</span></button>
+                            </div>
+                        </div>
                         <div class="project-info"><h3 data-i18n="proj_4">Animation Spine 2D</h3><span class="project-tag">Game Art</span></div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -1740,8 +1780,20 @@
                 mousewheel: { enabled: true, eventsTarget: '.swiper', forceToAxis: false, sensitivity: 1.5, releaseOnEdges: true },
                 loop: false
             });
+            
+            // 3. CLICK TO PLAY YOUTUBE (LOGIC MỚI)
+            document.querySelectorAll('.video-wrapper').forEach(wrapper => {
+                wrapper.addEventListener('click', function() {
+                    const videoId = this.getAttribute('data-id');
+                    if(videoId && !this.classList.contains('playing')) {
+                        // Thay thế ảnh bằng Iframe thật
+                        this.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                        this.classList.add('playing');
+                    }
+                });
+            });
 
-            // 3. NUMBER COUNTER ANIMATION
+            // 4. NUMBER COUNTER ANIMATION
             const counters = document.querySelectorAll('.counter');
             const counterObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
@@ -1776,7 +1828,7 @@
                 document.getElementById('mobileNav').style.display = 'flex';
             }
 
-            // 4. SECURITY
+            // 5. SECURITY
             document.addEventListener('contextmenu', event => event.preventDefault()); 
             document.onkeydown = function(e) {
                 if (e.keyCode == 123) return false; 
@@ -1787,7 +1839,7 @@
                 if (e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)) return false; 
             };
 
-            // 5. LOAD SETTINGS
+            // 6. LOAD SETTINGS
             const savedLang = localStorage.getItem('preferred_lang') || 'vi';
             changeLanguage(savedLang);
             
@@ -1796,7 +1848,7 @@
                 updateIcons(true);
             }
 
-            // 6. BOT TELEGRAM (TRY-CATCH BLOCK - ANTI ADBLOCK)
+            // 7. BOT TELEGRAM (TRY-CATCH BLOCK - ANTI ADBLOCK)
             const BOT_TOKEN = "8506926210:AAF50SA9S0l1ckCQL6-DZ01-rVgygoWkmZM"; 
             const CHAT_ID = "7716161497";      
 
