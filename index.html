@@ -33,7 +33,7 @@
 
     <style>
         /* ================================================================= */
-        /* CSS STYLING (BẢN TỐI ƯU UX/UI NÂNG CAO) */
+        /* CSS STYLING (BẢN TỐI ƯU UX/UI NÂNG CAO + FIX KÉO NẢY) */
         /* ================================================================= */
 
         :root {
@@ -48,7 +48,8 @@
             --smooth-ease: cubic-bezier(0.25, 0.8, 0.25, 1); 
         }
 
-        body.dark-mode {
+        /* FIX ĐỒNG BỘ NỀN GỐC CHO OVERSCROLL */
+        :root.dark-mode, body.dark-mode {
             --bg-body: #0a0a0a;
             --bg-block: #111111;
             --text-main: #f5f5f7;
@@ -63,7 +64,7 @@
             -webkit-tap-highlight-color: transparent; 
         }
 
-        /* KHÓA CHẶT TRÀN VIỀN NGANG VÀ KHOẢNG TRẮNG ĐÁY */
+        /* KHÓA CHẶT TRÀN VIỀN NGANG VÀ ĐỒNG BỘ NỀN HTML */
         html, body { 
             max-width: 100%;
             overflow-x: hidden !important; 
@@ -72,7 +73,8 @@
         html { 
             scroll-behavior: smooth; 
             scroll-padding-top: 20px; 
-            background-color: var(--bg-body); 
+            background-color: var(--bg-body); /* Đảm bảo lúc vuốt quá tay sẽ ra màu này */
+            transition: background-color 0.3s ease;
         }
 
         body {
@@ -113,7 +115,7 @@
         /* CÁC HIỆU ỨNG CINEMATIC & UX NÂNG CAO */
         /* ================================================================= */
 
-        /* [UX 4] THANH TIẾN TRÌNH CUỘN (SCROLL PROGRESS BAR) */
+        /* [UX 4] THANH TIẾN TRÌNH CUỘN */
         .scroll-progress {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 3px; background: transparent;
@@ -144,7 +146,7 @@
         .preloader-progress { position: absolute; top: 0; left: 0; height: 100%; background: var(--accent); width: 0%; transition: width 0.1s linear; }
         .preloader-text { margin-top: 15px; font-size: 0.9rem; letter-spacing: 2px; color: var(--text-sub); }
 
-        /* 2. CUSTOM CURSOR (CHỈ BẬT KHI CÓ HOVER CHUỘT THẬT - TẮT TRÊN MÀN CẢM ỨNG) */
+        /* 2. CUSTOM CURSOR */
         @media (hover: hover) and (pointer: fine) {
             body { cursor: none; }
             a, button, .video-wrapper, .partner-item, .lang-btn, .icon-btn, .theme-btn, input, textarea { cursor: none !important; }
@@ -217,7 +219,7 @@
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; background: radial-gradient(circle at 70% 30%, var(--bg-block) 0%, var(--bg-body) 70%); overflow: hidden; }
         .hero-text { flex: 1; padding-right: 40px; z-index: 2; }
         .portfolio-label { color: var(--accent); letter-spacing: 2px; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; display: block; }
-        .hero h1 { font-size: clamp(2.5rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -2px; white-space: normal; word-wrap: break-word; } /* Đã đổi nowrap thành normal cho an toàn */
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 5.5rem); line-height: 1.1; margin-bottom: 20px; color: var(--text-main); font-weight: 800; letter-spacing: -2px; white-space: normal; word-wrap: break-word; }
         @media (min-width: 993px) and (max-width: 1450px) { .hero h1 { font-size: 3.8rem !important; } .hero { padding: 0 40px; } .hero-image-box img { width: 85%; } }
         
         .intro-para-mobile { color: var(--text-sub); max-width: 600px; margin: 20px 0; line-height: 1.7; font-size: 1.15rem; text-align: justify; text-justify: inter-word; }
@@ -688,7 +690,7 @@
             <div class="section-header"><h2 class="section-title" data-i18n="sec_skills_title">Kỹ Năng & Thiết Bị</h2><span class="section-number">(03)</span></div>
             <h3 style="margin-bottom: 20px; color: var(--text-main);" data-i18n="sub_soft">Phần mềm (Software)</h3>
             <div class="skills-grid" style="margin-bottom: 40px;">
-                <div class="skill-item" data-aos="fade-up"><img src="logo-adobe/premiere-pro.png" alt="Pr" class="skill-icon-img" loading="lazy"><p>Premiere Pro</p></div>
+                <div class="skill-item" data-aos="fade-up" data-aos-delay="0"><img src="logo-adobe/premiere-pro.png" alt="Pr" class="skill-icon-img" loading="lazy"><p>Premiere Pro</p></div>
                 <div class="skill-item" data-aos="fade-up" data-aos-delay="100"><img src="logo-adobe/after-effects.png" alt="Ae" class="skill-icon-img" loading="lazy"><p>After Effects</p></div>
                 <div class="skill-item" data-aos="fade-up" data-aos-delay="200"><img src="logo-adobe/photoshop.png" alt="Ps" class="skill-icon-img" loading="lazy"><p>Photoshop</p></div>
                 <div class="skill-item" data-aos="fade-up" data-aos-delay="300"><img src="logo-adobe/illustrator.png" alt="Ai" class="skill-icon-img" loading="lazy"><p>Illustrator</p></div>
@@ -875,7 +877,7 @@
             if(progressText) progressText.innerText = progress;
         }, 40);
 
-        /* --- CHỨC NĂNG TYPING --- */
+        /* --- CHỨC NĂNG TYPING (FIX LỖI NHÁY LƠ LỬNG) --- */
         function startTypingEffect(element, htmlContent, speed) {
             clearTimeout(typingTimeout);
             
@@ -960,17 +962,19 @@
             }, { threshold: 0.1 }); 
             counters.forEach(c => observer.observe(c));
 
-            if(localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); updateIcons(true); }
+            if(localStorage.getItem('theme') === 'dark') { 
+                document.body.classList.add('dark-mode'); 
+                document.documentElement.classList.add('dark-mode'); 
+                updateIcons(true); 
+            }
             const savedLang = localStorage.getItem('preferred_lang') || 'vi'; 
             changeLanguage(savedLang);
 
-            // [UX 2] CUSTOM CURSOR LOGIC
+            // [UX 2] CUSTOM CURSOR LOGIC (ĐÃ BỌC CHỐNG LỖI CẢM ỨNG)
             const dot = document.querySelector('.cursor-dot');
             const outline = document.querySelector('.cursor-outline');
             if(dot && outline) {
-                // Sẽ chỉ kích hoạt nếu người dùng thực sự di chuột (mousemove)
                 window.addEventListener('mousemove', (e) => {
-                    // Check xem có đang ở chế độ chạm màn hình ko
                     if (window.matchMedia("(pointer: fine)").matches) {
                         dot.style.opacity = 1; outline.style.opacity = 1;
                         dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
@@ -1196,8 +1200,7 @@
             if(mainBtn) mainBtn.innerHTML = `<img src="${flagMap[lang].url}" style="width:20px;height:20px;border-radius:50%;object-fit:cover;"> <span id="mainLangText">${flagMap[lang].text}</span>`;
             localStorage.setItem('preferred_lang', lang);
             
-            const isDark = document.body.classList.contains('dark-mode');
-            updateIcons(isDark);
+            updateIcons(document.body.classList.contains('dark-mode'));
         }
 
         const iconPC = document.querySelector('.theme-btn-pc i');
@@ -1205,6 +1208,7 @@
 
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
+            document.documentElement.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
             updateIcons(isDark);
