@@ -423,9 +423,10 @@
         .fader-panel-title { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--accent); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
         .fader-panel-status { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--text-sub); }
         
-        .fader-row { display: grid; grid-template-columns: 100px 1fr 60px; align-items: center; gap: 20px; margin-bottom: 25px; }
+        .fader-row { display: grid; grid-template-columns: 36px 110px 1fr 60px; align-items: center; gap: 20px; margin-bottom: 25px; }
         .fader-row:last-child { margin-bottom: 0; }
         
+        .fader-img { width: 32px; height: 32px; object-fit: contain; border-radius: 6px; }
         .fader-label { display: flex; flex-direction: column; }
         .fader-name { font-size: 0.85rem; font-weight: 700; color: var(--text-main); }
         .fader-track-id { font-family: 'Space Mono', monospace; font-size: 0.65rem; color: var(--text-sub); text-transform: uppercase; }
@@ -461,6 +462,7 @@
         .ai-card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: var(--apple-shadow-hover); }
         .ai-logo-container { height: 40px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px; width: 100%; }
         .ai-logo-container img { max-height: 100%; max-width: 85%; object-fit: contain; }
+        body.light-mode .ai-card img[alt="OpenAI"] { filter: invert(1) brightness(0.2); }
         .ai-card p { font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.8rem; font-weight: 700; color: var(--text-main); }
 
         /* ================================================================= */
@@ -747,7 +749,7 @@
         @media (max-width: 480px) {
             .hero-image-box img { max-width: 80%; }
             .partner-grid { grid-template-columns: repeat(2, 1fr); }
-            .fader-row { grid-template-columns: 80px 1fr; gap: 10px; }
+            .fader-row { grid-template-columns: 30px 80px 1fr; gap: 12px; }
             .fader-controls { grid-column: span 2; justify-content: flex-start; margin-top: 5px; }
             .ai-grid { grid-template-columns: 1fr; }
         }
@@ -1044,6 +1046,7 @@
                     
                     <!-- Fader Premiere -->
                     <div class="fader-row">
+                        <img src="https://minhnb0503.github.io/logo-adobe/premiere-pro.png" class="fader-img" alt="Pr">
                         <div class="fader-label">
                             <span class="fader-name">Premiere Pro</span>
                             <span class="fader-track-id mono">Track V1</span>
@@ -1060,6 +1063,7 @@
                     
                     <!-- Fader AE -->
                     <div class="fader-row">
+                        <img src="https://minhnb0503.github.io/logo-adobe/after-effects.png" class="fader-img" alt="Ae">
                         <div class="fader-label">
                             <span class="fader-name">After Effects</span>
                             <span class="fader-track-id mono">Track V2</span>
@@ -1076,6 +1080,7 @@
                     
                     <!-- Fader Spine 2D -->
                     <div class="fader-row">
+                        <img src="https://minhnb0503.github.io/logo-adobe/spine.png" class="fader-img" alt="Spine" style="transform: scale(1.4);">
                         <div class="fader-label">
                             <span class="fader-name">Spine 2D</span>
                             <span class="fader-track-id mono">Track V3</span>
@@ -1092,6 +1097,7 @@
                     
                     <!-- Fader Au -->
                     <div class="fader-row">
+                        <img src="https://minhnb0503.github.io/logo-adobe/adobe-audition.png" class="fader-img" alt="Au">
                         <div class="fader-label">
                             <span class="fader-name">Audition</span>
                             <span class="fader-track-id mono">Track A1</span>
@@ -1108,6 +1114,7 @@
                     
                     <!-- Fader Photoshop -->
                     <div class="fader-row">
+                        <img src="https://minhnb0503.github.io/logo-adobe/photoshop.png" class="fader-img" alt="Ps">
                         <div class="fader-label">
                             <span class="fader-name">Photoshop</span>
                             <span class="fader-track-id mono">Track G1</span>
@@ -1124,6 +1131,7 @@
 
                     <!-- Fader Illustrator -->
                     <div class="fader-row">
+                        <img src="https://minhnb0503.github.io/logo-adobe/illustrator.png" class="fader-img" alt="Ai">
                         <div class="fader-label">
                             <span class="fader-name">Illustrator</span>
                             <span class="fader-track-id mono">Track G2</span>
