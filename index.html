@@ -51,7 +51,7 @@
             --apple-shadow-hover: rgba(0, 0, 0, 0.16) 0px 12px 32px;
         }
 
-        :root.dark-mode, body.dark-mode {
+        body.dark-mode, html.dark-mode {
             --bg-body: #0a0a0a;
             --bg-block: #111111;
             --text-main: #f5f5f7;
@@ -100,7 +100,7 @@
             min-height: 100vh;
         }
         
-        img { pointer-events: none; -webkit-user-drag: none; user-drag: none; }
+        img { pointer-events: none; -webkit-user-drag: none; }
 
         [data-aos] { transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94) !important; }
 
@@ -115,9 +115,12 @@
             font-family: 'Bricolage Grotesque', sans-serif;
         }
 
-        .sidebar, .hero-btn, .skill-item, .partner-item, .lang-fab-container, .menu-overlay {
-            transform: translateZ(0); 
-            will-change: transform, opacity;
+        .hero-btn, .skill-item, .partner-item {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        .lang-fab-container {
+            transform: translateZ(0);
         }
 
         .statcounter, a[title="Web Analytics"], img.statcounter, div.statcounter {
@@ -197,8 +200,8 @@
         .pc-content { display: flex; flex-direction: column; height: 100%; width: 100%; justify-content: space-between; }
         .mobile-header-wrapper { display: none; }
         
-        .menu-overlay { 
-            display: block !important; position: fixed; inset: 0; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 99999; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0.3s ease; 
+        .menu-overlay {
+            position: fixed; inset: 0; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 99999; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0.3s ease;
         }
         .menu-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
         .profile-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 3px solid var(--accent); padding: 3px; background: var(--bg-body); pointer-events: none; }
@@ -514,7 +517,7 @@
 
         /* --- 10. LANGUAGE FAB --- */
         .lang-fab-container {
-            position: fixed; bottom: 30px; right: 30px; z-index: 214748364; 
+            position: fixed; bottom: 30px; right: 30px; z-index: 9000; 
             display: flex; flex-direction: column; align-items: flex-end; gap: 10px; pointer-events: auto !important; 
         }
         .lang-options { background: transparent; display: none; flex-direction: column; gap: 8px; pointer-events: none; }
@@ -552,6 +555,33 @@
 
         body.dark-mode .lang-btn, body.dark-mode .lang-main-btn { background: rgba(30, 30, 30, 0.9); border-color: #444; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         body.dark-mode .lang-btn:hover { background: rgba(255,255,255,0.1); color: var(--accent); }
+
+        /* --- 11. VIDEO LIGHTBOX --- */
+        .video-lightbox {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.92);
+            z-index: 9999999; display: flex; align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden; pointer-events: none;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+        .video-lightbox.active {
+            opacity: 1; visibility: visible; pointer-events: auto;
+        }
+        .lightbox-content {
+            position: relative; width: 90%; max-width: 900px;
+            aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+        }
+        .lightbox-iframe {
+            width: 100%; height: 100%; border: none; display: block;
+        }
+        .close-lightbox {
+            position: absolute; top: -48px; right: 0;
+            color: #ffffff; font-size: 2.2rem; line-height: 1;
+            background: none; border: none; cursor: pointer;
+            opacity: 0.75; transition: opacity 0.2s ease, transform 0.2s ease;
+            padding: 4px 8px;
+        }
+        .close-lightbox:hover { opacity: 1; transform: scale(1.15); }
     </style>
 </head>
 <body>
@@ -589,19 +619,19 @@
     <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()">
         <div class="floating-menu-container">
             <a href="mailto:minh.nb0503@gmail.com" class="menu-item"><i class="fas fa-envelope"></i> <span data-i18n="menu_email">Gửi Email</span></a>
-            <a href="https://zalo.me/0395393868" target="_blank" class="menu-item"><span class="zalo-text">Z</span> <span data-i18n="menu_zalo">Chat Zalo</span></a>
-            <a href="https://t.me/minhnb0503" target="_blank" class="menu-item"><i class="fab fa-telegram" style="color:#0088cc"></i> <span data-i18n="menu_tele">Chat Telegram</span></a>
-            <a href="https://www.facebook.com/minh.nb0503" target="_blank" class="menu-item"><i class="fab fa-facebook-f" style="color:#1877F2"></i> Facebook</a>
-            <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank" class="menu-item"><i class="fab fa-instagram" style="color:#E1306C"></i> Instagram</a>
-            <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank" class="menu-item"><i class="fab fa-tiktok" style="color:#000"></i> TikTok</a>
-            <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" class="menu-item"><i class="fab fa-google-drive" style="color:#0F9D58"></i> Google Drive</a>
+            <a href="https://zalo.me/0395393868" target="_blank" rel="noopener noreferrer" class="menu-item"><span class="zalo-text">Z</span> <span data-i18n="menu_zalo">Chat Zalo</span></a>
+            <a href="https://t.me/minhnb0503" target="_blank" rel="noopener noreferrer" class="menu-item"><i class="fab fa-telegram" style="color:#0088cc"></i> <span data-i18n="menu_tele">Chat Telegram</span></a>
+            <a href="https://www.facebook.com/minh.nb0503" target="_blank" rel="noopener noreferrer" class="menu-item"><i class="fab fa-facebook-f" style="color:#1877F2"></i> Facebook</a>
+            <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank" rel="noopener noreferrer" class="menu-item"><i class="fab fa-instagram" style="color:#E1306C"></i> Instagram</a>
+            <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="menu-item"><i class="fab fa-tiktok" style="color:#000"></i> TikTok</a>
+            <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" rel="noopener noreferrer" class="menu-item"><i class="fab fa-google-drive" style="color:#0F9D58"></i> Google Drive</a>
         </div>
     </div>
 
     <div class="sidebar">
         <div class="mobile-header-wrapper">
             <div class="left-info">
-                <img src="minh3.png" class="mobile-ava" alt="Ava">
+                <img src="minh3.png" class="mobile-ava" alt="Ngô Bình Minh">
                 <div class="mobile-name">Ngô Bình Minh</div>
             </div>
             <div class="right-controls">
@@ -611,7 +641,7 @@
         </div>
         <div class="pc-content">
             <div style="text-align:center;">
-                <img src="minh3.png" class="profile-img">
+                <img src="minh3.png" class="profile-img" alt="Ngô Bình Minh">
                 <h2 style="color:var(--text-main);">Ngô Bình Minh</h2>
                 <p style="color:var(--text-sub); font-size:0.9rem; margin-bottom: 5px;">Video Editor & Camera Op</p>
                 <div class="contact-mini">
@@ -630,15 +660,15 @@
             <div class="sidebar-bottom">
                 <div class="social-icons-container">
                     <div class="social-row-4">
-                        <a href="mailto:minh.nb0503@gmail.com" target="_blank" class="icon-btn ico-email" title="Email"><i class="fas fa-envelope"></i></a>
-                        <a href="https://zalo.me/0395393868" target="_blank" class="icon-btn ico-zalo" title="Zalo"><span>Z</span></a>
-                        <a href="https://t.me/minhnb0503" target="_blank" class="icon-btn ico-tele" title="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="https://www.facebook.com/minh.nb0503" target="_blank" class="icon-btn ico-fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="mailto:minh.nb0503@gmail.com" class="icon-btn ico-email" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://zalo.me/0395393868" target="_blank" rel="noopener noreferrer" class="icon-btn ico-zalo" title="Zalo"><span>Z</span></a>
+                        <a href="https://t.me/minhnb0503" target="_blank" rel="noopener noreferrer" class="icon-btn ico-tele" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.facebook.com/minh.nb0503" target="_blank" rel="noopener noreferrer" class="icon-btn ico-fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                     </div>
                     <div class="social-row-3">
-                        <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank" class="icon-btn ico-insta" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank" class="icon-btn ico-tiktok" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" class="icon-btn ico-drive" title="Drive"><i class="fab fa-google-drive"></i></a>
+                        <a href="https://www.instagram.com/minhnb.cine?igsh=bWF1ajdyZnpuZGxw" target="_blank" rel="noopener noreferrer" class="icon-btn ico-insta" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@minhnb.cine?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" class="icon-btn ico-tiktok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" rel="noopener noreferrer" class="icon-btn ico-drive" title="Drive"><i class="fab fa-google-drive"></i></a>
                     </div>
                 </div>
                 <button class="theme-btn theme-btn-pc" onclick="toggleTheme()"><i class="fas fa-moon"></i> <span data-i18n="btn_darkmode">Chế độ Tối</span></button>
@@ -664,7 +694,7 @@
                 
                 <a href="#portfolio" class="hero-btn btn-pill" data-aos="zoom-in" data-aos-delay="600" data-i18n="hero_btn">Xem Dự Án Của Tôi</a>
             </div>
-            <div class="hero-image-box" data-aos="fade-left" data-aos-delay="400"><img src="minh3.png" style="width:90%;"></div>
+            <div class="hero-image-box" data-aos="fade-left" data-aos-delay="400"><img src="minh3.png" alt="Ngô Bình Minh - Video Editor" style="width:90%;"></div>
         </section>
 
         <div class="marquee-section">
@@ -713,7 +743,7 @@
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="900"><img src="logo-port bm/logo-gapowork@4x.png" alt="GapoWork" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="1000"><img src="logo-port bm/logo-imap.png" alt="IMAP" class="partner-logo logo-imap"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="1100"><img src="logo-port bm/logo-ieltsfighter@4x.png" alt="IELTS Fighter" class="partner-logo"></div>
-                            <div class="partner-item" data-aos="fade-up" data-aos-delay="1200"><img src="logo-port bm/logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo logo-mshoalogo"></div>
+                            <div class="partner-item" data-aos="fade-up" data-aos-delay="1200"><img src="logo-port bm/logo-thuonghieuMsHoa.png" alt="Ms Hoa" class="partner-logo logo-mshoa"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="1300"><img src="logo-port bm/logo-mshoatoeic.png" alt="Ms Hoa TOEIC" class="partner-logo"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="1400"><img src="logo-port bm/logo-Ms Hoa Junior.png" alt="Ms Hoa Junior" class="partner-logo logo-junior"></div>
                             <div class="partner-item" data-aos="fade-up" data-aos-delay="1500"><img src="logo-port bm/logo mhgt.png" alt="Ms Hoa GT" class="partner-logo"></div>
@@ -884,7 +914,7 @@
                 const sections = document.querySelectorAll('section');
                 sections.forEach(section => {
                     const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 200) { current = section.getAttribute('id'); }
+                    if (window.scrollY >= sectionTop - 200) { current = section.getAttribute('id'); }
                 });
                 document.querySelectorAll('.mobile-nav a').forEach(a => {
                     a.classList.remove('active');
@@ -1059,7 +1089,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('dev') === 'minh') {
                 localStorage.setItem('isAdmin', 'true');
-                alert('🔓 Kích hoạt chế độ Admin! Đã mở khóa F12 và Chuột phải.');
+                console.log('🔓 Admin mode activated. F12 and right-click unlocked.');
             }
 
             if (localStorage.getItem('isAdmin') !== 'true') {
