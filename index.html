@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#020408" id="themeColor">
+    <meta name="theme-color" content="#020408">
     <meta name="description" content="Portfolio của Ngô Bình Minh - Video Editor & Cameraman chuyên nghiệp tại Hà Nội.">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -28,7 +28,7 @@
 
     <style>
 /* ============================================================
-   DESIGN SYSTEM — HIGH-TECH DARK
+   DESIGN SYSTEM - HIGH-TECH DARK
    Tech Minimal + Sci-Fi HUD + Dark Glass
 ============================================================ */
 :root {
@@ -57,25 +57,6 @@
     --ease:         cubic-bezier(0.25,0.8,0.25,1);
 }
 
-body.light-mode {
-    --void:         #f0f4f8;
-    --deep:         #e4eaf0;
-    --panel:        #ffffff;
-    --glass:        rgba(255,255,255,0.92);
-    --glass-border: rgba(0,150,180,0.12);
-    --cyan:         #0097b2;
-    --cyan-dim:     rgba(0,150,180,0.6);
-    --cyan-glow:    rgba(0,150,180,0.08);
-    --cyan-pulse:   rgba(0,150,180,0.15);
-    --text-bright:  #0a1628;
-    --text-mid:     #3a6080;
-    --text-dim:     #8aabb8;
-    --grid:         rgba(0,150,180,0.04);
-    --border:       rgba(0,150,180,0.15);
-    --border-bright:rgba(0,150,180,0.35);
-    --shadow:       0 8px 40px rgba(0,0,0,0.08);
-    --shadow-cyan:  0 0 20px rgba(0,150,180,0.08);
-}
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{max-width:100%;overflow-x:hidden}
@@ -114,12 +95,14 @@ h1,h2,h3,h4,h5,h6,.brand-name,.section-title,.nav-label{
     background:transparent;z-index:99999;pointer-events:none;
 }
 .scroll-fill{
-    height:100%;width:0%;
+    height:100%;width:100%;
     background:linear-gradient(90deg,var(--cyan),var(--green));
     box-shadow:0 0 8px var(--cyan);
-    transition:width .08s ease-out;
+    transform-origin:left;
+    animation: scroll-progress linear;
+    animation-timeline: scroll();
 }
-
+@keyframes scroll-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 /* ---- PRELOADER ---- */
 #preloader{
     position:fixed;inset:0;background:#020408;z-index:9999999;
@@ -205,13 +188,6 @@ h1,h2,h3,h4,h5,h6,.brand-name,.section-title,.nav-label{
     body.cur-hover .cur-ring{width:44px;height:44px;background:var(--cyan-glow)}
 }
 @media(hover:none),(pointer:coarse){.cur-dot,.cur-ring{display:none!important}}
-
-/* ---- FILM GRAIN ---- */
-#filmGrain{
-    position:fixed;inset:0;z-index:99997;pointer-events:none;
-    mix-blend-mode:soft-light;opacity:.35;
-}
-@media(max-width:768px){#filmGrain{display:none}}
 
 /* ---- SECTION FLASH ---- */
 .sec-flash{position:fixed;inset:0;background:#00e5ff;z-index:99998;pointer-events:none;opacity:0}
@@ -466,7 +442,7 @@ section{padding:100px 40px;border-bottom:1px solid var(--border);position:relati
 }
 
 /* ============================================================
-   SECTION 01 — HERO
+   SECTION 01 - HERO
 ============================================================ */
 .hero{
     min-height:calc(100vh - 40px);margin-top:20px;
@@ -549,7 +525,7 @@ section{padding:100px 40px;border-bottom:1px solid var(--border);position:relati
 .chip-cyan{background:var(--cyan-glow);border-color:var(--border);color:var(--cyan)}
 .chip-amber{background:rgba(255,179,0,.1);border-color:rgba(255,179,0,.2);color:var(--amber)}
 
-.hero-btn{
+.hero-btn{white-space:nowrap;
     display:inline-flex;align-items:center;gap:10px;
     background:var(--cyan);color:#020408;
     padding:14px 36px;border-radius:10px;
@@ -576,11 +552,10 @@ section{padding:100px 40px;border-bottom:1px solid var(--border);position:relati
     filter:drop-shadow(0 20px 60px rgba(0,229,255,.1)) drop-shadow(0 0 0 rgba(0,0,0,.5));
     transition:transform .5s var(--ease);
 }
-body.light-mode .hero-img img{filter:drop-shadow(0 20px 40px rgba(0,0,0,.1))}
 .hero-img img:hover{transform:scale(1.03) translateY(-4px)}
 
 /* ============================================================
-   SECTION 02 — ABOUT & PARTNERS
+   SECTION 02 - ABOUT & PARTNERS
 ============================================================ */
 .about-wrap{display:flex;gap:70px;align-items:flex-start;position:relative;z-index:1}
 .about-visual{flex:0 0 260px;display:flex;justify-content:center}
@@ -671,7 +646,6 @@ body.light-mode .hero-img img{filter:drop-shadow(0 20px 40px rgba(0,0,0,.1))}
     padding:10px;box-shadow:0 4px 16px rgba(0,0,0,.4);
     transition:all .3s var(--ease);overflow:hidden;cursor:pointer;
 }
-body:not(.light-mode) .partner-card{border-color:rgba(255,255,255,.06)}
 .partner-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,229,255,.12);border-color:rgba(0,229,255,.3)!important}
 .partner-logo{max-width:80%;max-height:44px;object-fit:contain;opacity:.8;transition:all .3s var(--ease)}
 .partner-card:hover .partner-logo{opacity:1;transform:scale(1.07)}
@@ -681,7 +655,7 @@ body:not(.light-mode) .partner-card{border-color:rgba(255,255,255,.06)}
 .partner-card:hover .logo-junior{transform:scale(1.6)}
 
 /* ============================================================
-   SECTION 03 — SKILLS & GEAR
+   SECTION 03 - SKILLS & GEAR
 ============================================================ */
 .skills-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start}
 
@@ -788,21 +762,15 @@ body:not(.light-mode) .partner-card{border-color:rgba(255,255,255,.06)}
     border:1px solid var(--border);
     padding:10px;
 }
-body.light-mode .ai-logo{
-    background:#f5f8fa;
-    border-color:rgba(0,0,0,.08);
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
-}
 .ai-logo img{
     max-height:34px;max-width:34px;object-fit:contain;
     transition:transform .3s;
 }
-body.light-mode .ai-logo img{filter:brightness(0.2)}
 .ai-card:hover .ai-logo img{transform:scale(1.1)}
 .ai-name{font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:700;color:var(--text-bright)}
 
 /* ============================================================
-   SECTION 04 — EXPERIENCE TIMELINE
+   SECTION 04 - EXPERIENCE TIMELINE
 ============================================================ */
 .exp-wrap{display:grid;grid-template-columns:60px 1fr;gap:24px}
 .timeline-track{position:relative;display:flex;justify-content:center}
@@ -856,7 +824,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
 .spec-val{font-family:'JetBrains Mono',monospace;font-size:.75rem;font-weight:700;color:var(--text-bright)}
 
 /* ============================================================
-   SECTION 05 — PORTFOLIO CAROUSEL
+   SECTION 05 - PORTFOLIO CAROUSEL
 ============================================================ */
 .film-outer{position:relative;padding:36px 0}
 .sprocket-strip{
@@ -914,7 +882,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
 }
 
 /* ============================================================
-   SECTION 06 — CONTACT FORM
+   SECTION 06 - CONTACT FORM
 ============================================================ */
 .contact-shell{
     background:var(--panel);border:1px solid var(--border);border-radius:22px;
@@ -1029,7 +997,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
     .hero-text .hero-desc{font-size:.9rem;min-height:auto;margin:16px 0}
     .hero-img{width:100%;order:2;margin-top:0}
     .hero-img img{max-width:min(60%,260px)}
-    .hero-btn{order:3;width:100%;justify-content:center;padding:14px 20px;font-size:.8rem}
+    .hero-btn{white-space:nowrap;order:3;width:100%;justify-content:center;padding:14px 20px;font-size:.8rem}
     .hud-corner,.hero-grid{display:none}
     .hud-label{font-size:.5rem}
     .hud-rec{top:auto;bottom:8px;left:14px}
@@ -1095,7 +1063,9 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
 <div class="scroll-bar"><div class="scroll-fill" id="scrollFill"></div></div>
 
 <!-- Film Grain Canvas -->
-<canvas id="filmGrain"></canvas>
+<!-- CSS Film Grain (SVG filter, zero JS) -->
+<svg style="display:none"><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter></svg>
+<div id="cssGrain" style="position:fixed;inset:0;z-index:99997;pointer-events:none;opacity:0.04;mix-blend-mode:color-dodge;filter:url(#noiseFilter)"></div>
 <div class="sec-flash" id="secFlash"></div>
 
 <!-- Custom Cursor -->
@@ -1168,7 +1138,6 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
         </div>
         <div class="mob-controls">
             <button class="mob-contact-btn" onclick="toggleMobMenu()" data-i18n="btn_contact">Liên hệ</button>
-            <button class="mob-theme-btn" onclick="toggleTheme()"><i class="fas fa-moon" id="mobThemeIcon"></i></button>
         </div>
     </div>
 
@@ -1211,7 +1180,6 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
                 <a href="https://www.tiktok.com/@minhnb.cine" target="_blank" rel="noopener" class="soc-btn tt" title="TikTok"><i class="fab fa-tiktok"></i></a>
                 <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" rel="noopener" class="soc-btn gd" title="Drive"><i class="fab fa-google-drive"></i></a>
             </div>
-            <button class="theme-toggle" onclick="toggleTheme()">
                 <i class="fas fa-sun" id="pcThemeIcon"></i>
                 <span id="pcThemeText" data-i18n="btn_darkmode">Chế độ Tối</span>
             </button>
@@ -1281,7 +1249,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
 <section id="about">
     <div class="sec-header">
         <h2 class="section-title" data-i18n="sec_about_title">Ngôn ngữ và đối tác</h2>
-        <span class="sec-num">02</span>
+        
     </div>
     <div class="about-wrap">
         <div class="about-visual">
@@ -1358,7 +1326,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
         <div class="console-panel">
             <div class="console-header">
                 <span class="console-title" data-i18n="sub_soft">PHẦN MỀM (SOFTWARE)</span>
-                <span class="console-status"><span>●</span>CONSOLE STATE: READY</span>
+                <span class="console-status">CONSOLE STATE: READY</span>
             </div>
             <div class="fader-row">
                 <img src="https://minhnb0503.github.io/logo-adobe/premiere-pro.png" class="fader-icon" alt="Pr">
@@ -1441,7 +1409,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
 <section id="experience">
     <div class="sec-header">
         <h2 class="section-title" data-i18n="sec_exp_title">Kinh Nghiệm Làm Việc</h2>
-        <span class="sec-num">04</span>
+        
     </div>
     <div class="exp-wrap">
         <div class="timeline-track">
@@ -1455,7 +1423,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
                 <div class="exp-top">
                     <div class="exp-meta">
                         <span class="exp-seq">Sequence V1 • Scene 01</span>
-                        <span class="exp-period">2024 — PRESENT</span>
+                        <span class="exp-period">2024 - PRESENT</span>
                     </div>
                     <div class="exp-tags">
                         <span class="tag tag-g" data-i18n="role_media">Chuyên viên Media</span>
@@ -1478,7 +1446,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
                 <div class="exp-top">
                     <div class="exp-meta">
                         <span class="exp-seq">Sequence V2 • Scene 02</span>
-                        <span class="exp-period">2022 — 2024</span>
+                        <span class="exp-period">2022 - 2024</span>
                     </div>
                     <div class="exp-tags">
                         <span class="tag tag-c">Video Editor</span>
@@ -1501,7 +1469,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
                 <div class="exp-top">
                     <div class="exp-meta">
                         <span class="exp-seq">Sequence V3 • Scene 03</span>
-                        <span class="exp-period">2021 — 2022</span>
+                        <span class="exp-period">2021 - 2022</span>
                     </div>
                     <div class="exp-tags">
                         <span class="tag tag-p">Game Artist</span>
@@ -1524,7 +1492,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
                 <div class="exp-top">
                     <div class="exp-meta">
                         <span class="exp-seq">Sequence V4 • Scene 04</span>
-                        <span class="exp-period">2020 — 2021</span>
+                        <span class="exp-period">2020 - 2021</span>
                     </div>
                     <div class="exp-tags">
                         <span class="tag tag-a">Video Editor</span>
@@ -1550,7 +1518,7 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
 <section id="portfolio">
     <div class="sec-header">
         <h2 class="section-title" data-i18n="sec_port_title">Dự án Tiêu biểu</h2>
-        <span class="sec-num">05</span>
+        
     </div>
     <p style="color:var(--text-dim);margin-bottom:28px;font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:1px" data-i18n="port_hint">(Di chuột vào khung để lướt xem các dự án)</p>
     <div class="film-outer">
@@ -1643,10 +1611,10 @@ body.light-mode .ai-logo img{filter:brightness(0.2)}
    TRANSLATIONS
 ============================================================ */
 const T = {
-    vi:{nav_home:"Giới thiệu",nav_about:"Ngôn ngữ & Đối tác",nav_skills:"Kỹ năng & Gear",nav_exp:"Kinh nghiệm",nav_port:"Dự án",mob_nav_intro:"Intro",mob_nav_about:"Về tôi",mob_nav_skills:"Kỹ năng",mob_nav_exp:"Kinh nghiệm",mob_nav_port:"Dự án",btn_contact:"Liên hệ",location:"Cầu Giấy - Hà Nội",btn_darkmode:"Chế độ Tối",btn_lightmode:"Chế độ Sáng",hero_desc:"Tôi là Minh – Video Editor & Cameraman chuyên nghiệp. Với kinh nghiệm thực chiến tại <b>KienlongBank</b> và <b>IMAP</b>, tôi cung cấp giải pháp video toàn diện: từ sản xuất TVC, Motion Graphics đến xây dựng kênh TikTok/YouTube bài bản. Tôi tập trung vào chất lượng hình ảnh và hiệu quả truyền thông thực tế của từng sản phẩm.",hero_btn:"Xem Dự Án Của Tôi",sec_about_title:"Ngôn ngữ và đối tác",about_desc:"Không chỉ dừng lại ở kỹ thuật, tôi luôn tìm tòi những xu hướng hình ảnh mới nhất để áp dụng vào từng thước phim. Sự chỉn chu trong từng frame hình và tư duy kể chuyện mạch lạc là cam kết của tôi cho mọi dự án.",stat_exp:"Năm kinh nghiệm",stat_clients:"Khách hàng hài lòng",stat_projects:"Dự án hoàn thành",lbl_lang:"Ngôn ngữ:",lbl_partner:"Đối tác:",sec_skills_title:"Kỹ Năng & Thiết Bị",sub_soft:"Phần mềm (Software)",sub_ai:"Công cụ AI Hỗ trợ",sub_gear:"Thiết bị (Gear)",sec_exp_title:"Kinh Nghiệm Làm Việc",role_media:"Chuyên viên Media",desc_klb:"• Xây dựng kênh TikTok, tạo video motion và nội dung đa phương tiện.<br>• Quay phim, dựng video và chụp ảnh cho các hoạt động nội bộ.",desc_imap:"• Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>• Quay dựng chương trình \"Super Junior\" kết hợp VTV7.",desc_tgmedia:"• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity & Spine.",desc_tentun:"• Xây dựng kênh YouTube \"Ten Tun\" từ 10.000 lên 100.000 Subscribers.<br>• Dựng video tổng hợp, đánh giá giải trí.",sec_port_title:"Dự án Tiêu biểu",port_hint:"(Di chuột vào khung để lướt xem các dự án)",btn_watch:"XEM VIDEO",proj_1:"Vinh Danh Tiếp Lửa KLB",proj_2:"Viral Clip IMAP",proj_3:"YouTube Ten Tun",proj_4:"Animation Spine 2D",contact_title:"Liên hệ hợp tác",contact_sub:"Sẵn sàng cho các dự án TVC, MV và Viral Video chất lượng cao.",menu_email:"Gửi Email",menu_zalo:"Chat Zalo",menu_tele:"Chat Telegram",form_name:"Tên của bạn",form_email:"Email của bạn",form_msg:"Dự án của bạn (TVC, MV...)",btn_send:"Gửi Yêu Cầu",form_success:"Gửi thành công!",form_success_sub:"Tôi sẽ phản hồi bạn trong thời gian sớm nhất.",btn_back:"Gửi thêm"},
-    en:{nav_home:"Intro",nav_about:"Partners",nav_skills:"Skills & Gear",nav_exp:"Experience",nav_port:"Projects",mob_nav_intro:"Intro",mob_nav_about:"About",mob_nav_skills:"Skills",mob_nav_exp:"Experience",mob_nav_port:"Projects",btn_contact:"Contact",location:"Cau Giay - Hanoi",btn_darkmode:"Dark Mode",btn_lightmode:"Light Mode",hero_desc:"I'm Minh – A professional Video Editor & Cameraman. With practical experience at <b>KienlongBank</b> and <b>IMAP</b>, I provide comprehensive video solutions: from TVC production, Motion Graphics to building professional TikTok/YouTube channels. I focus on visual quality and effective communication in every product.",hero_btn:"View My Projects",sec_about_title:"Languages & Partners",about_desc:"Beyond technical skills, I constantly explore the latest visual trends to apply to every footage. Meticulousness in every frame and coherent storytelling mindset are my commitments for every project.",stat_exp:"Years Experience",stat_clients:"Happy Clients",stat_projects:"Projects Done",lbl_lang:"Languages:",lbl_partner:"Partners:",sec_skills_title:"Skills & Gear",sub_soft:"Software",sub_ai:"AI Tools",sub_gear:"Gear",sec_exp_title:"Work Experience",role_media:"Media Specialist",desc_klb:"• Building TikTok channels, creating motion videos and multimedia content.<br>• Filming, editing videos and taking photos for internal activities.",desc_imap:"• Producing TVCs, MVs, lecture videos and Animation for Marketing.<br>• Filming and editing \"Super Junior\" program with VTV7.",desc_tgmedia:"• Editing motion ads for Word Games series.<br>• Designing and developing Animations on Unity & Spine.",desc_tentun:"• Growing \"Ten Tun\" YouTube channel from 10k to 100k Subs.<br>• Editing entertainment review videos.",sec_port_title:"Featured Projects",port_hint:"(Hover to swipe through projects)",btn_watch:"WATCH VIDEO",proj_1:"KLB Honoring Event",proj_2:"IMAP Viral Clip",proj_3:"Ten Tun YouTube",proj_4:"Spine 2D Animation",contact_title:"Work With Me",contact_sub:"Ready for high-quality TVC, MV and Viral Video projects.",menu_email:"Send Email",menu_zalo:"Chat Zalo",menu_tele:"Chat Telegram",form_name:"Your Name",form_email:"Your Email",form_msg:"Your Project (TVC, MV...)",btn_send:"Send Request",form_success:"Successfully Sent!",form_success_sub:"I will get back to you as soon as possible.",btn_back:"Send Another"},
+    vi:{nav_home:"Giới thiệu",nav_about:"Ngôn ngữ & Đối tác",nav_skills:"Kỹ năng & Gear",nav_exp:"Kinh nghiệm",nav_port:"Dự án",mob_nav_intro:"Intro",mob_nav_about:"Về tôi",mob_nav_skills:"Kỹ năng",mob_nav_exp:"Kinh nghiệm",mob_nav_port:"Dự án",btn_contact:"Liên hệ",location:"Cầu Giấy - Hà Nội",btn_darkmode:"Chế độ Tối",btn_lightmode:"Chế độ Sáng",hero_desc:"Tôi là Minh - Video Editor & Cameraman chuyên nghiệp. Với kinh nghiệm thực chiến tại <b>KienlongBank</b> và <b>IMAP</b>, tôi cung cấp giải pháp video toàn diện: từ sản xuất TVC, Motion Graphics đến xây dựng kênh TikTok/YouTube bài bản. Tôi tập trung vào chất lượng hình ảnh và hiệu quả truyền thông thực tế của từng sản phẩm.",hero_btn:"Xem Dự Án Của Tôi",sec_about_title:"Ngôn ngữ và đối tác",about_desc:"Không chỉ dừng lại ở kỹ thuật, tôi luôn tìm tòi những xu hướng hình ảnh mới nhất để áp dụng vào từng thước phim. Sự chỉn chu trong từng frame hình và tư duy kể chuyện mạch lạc là cam kết của tôi cho mọi dự án.",stat_exp:"Năm kinh nghiệm",stat_clients:"Khách hàng hài lòng",stat_projects:"Dự án hoàn thành",lbl_lang:"Ngôn ngữ:",lbl_partner:"Đối tác:",sec_skills_title:"Kỹ Năng & Thiết Bị",sub_soft:"Phần mềm (Software)",sub_ai:"Công cụ AI Hỗ trợ",sub_gear:"Thiết bị (Gear)",sec_exp_title:"Kinh Nghiệm Làm Việc",role_media:"Chuyên viên Media",desc_klb:"• Xây dựng kênh TikTok, tạo video motion và nội dung đa phương tiện.<br>• Quay phim, dựng video và chụp ảnh cho các hoạt động nội bộ.",desc_imap:"• Sản xuất TVC, MV, video bài giảng và Animation hỗ trợ Marketing.<br>• Quay dựng chương trình \"Super Junior\" kết hợp VTV7.",desc_tgmedia:"• Dựng video motion quảng cáo cho dòng Word Games.<br>• Thiết kế và phát triển Animation trên Unity & Spine.",desc_tentun:"• Xây dựng kênh YouTube \"Ten Tun\" từ 10.000 lên 100.000 Subscribers.<br>• Dựng video tổng hợp, đánh giá giải trí.",sec_port_title:"Dự án Tiêu biểu",port_hint:"(Di chuột vào khung để lướt xem các dự án)",btn_watch:"XEM VIDEO",proj_1:"Vinh Danh Tiếp Lửa KLB",proj_2:"Viral Clip IMAP",proj_3:"YouTube Ten Tun",proj_4:"Animation Spine 2D",contact_title:"Liên hệ hợp tác",contact_sub:"Sẵn sàng cho các dự án TVC, MV và Viral Video chất lượng cao.",menu_email:"Gửi Email",menu_zalo:"Chat Zalo",menu_tele:"Chat Telegram",form_name:"Tên của bạn",form_email:"Email của bạn",form_msg:"Dự án của bạn (TVC, MV...)",btn_send:"Gửi Yêu Cầu",form_success:"Gửi thành công!",form_success_sub:"Tôi sẽ phản hồi bạn trong thời gian sớm nhất.",btn_back:"Gửi thêm"},
+    en:{nav_home:"Intro",nav_about:"Partners",nav_skills:"Skills & Gear",nav_exp:"Experience",nav_port:"Projects",mob_nav_intro:"Intro",mob_nav_about:"About",mob_nav_skills:"Skills",mob_nav_exp:"Experience",mob_nav_port:"Projects",btn_contact:"Contact",location:"Cau Giay - Hanoi",btn_darkmode:"Dark Mode",btn_lightmode:"Light Mode",hero_desc:"I'm Minh - A professional Video Editor & Cameraman. With practical experience at <b>KienlongBank</b> and <b>IMAP</b>, I provide comprehensive video solutions: from TVC production, Motion Graphics to building professional TikTok/YouTube channels. I focus on visual quality and effective communication in every product.",hero_btn:"View My Projects",sec_about_title:"Languages & Partners",about_desc:"Beyond technical skills, I constantly explore the latest visual trends to apply to every footage. Meticulousness in every frame and coherent storytelling mindset are my commitments for every project.",stat_exp:"Years Experience",stat_clients:"Happy Clients",stat_projects:"Projects Done",lbl_lang:"Languages:",lbl_partner:"Partners:",sec_skills_title:"Skills & Gear",sub_soft:"Software",sub_ai:"AI Tools",sub_gear:"Gear",sec_exp_title:"Work Experience",role_media:"Media Specialist",desc_klb:"• Building TikTok channels, creating motion videos and multimedia content.<br>• Filming, editing videos and taking photos for internal activities.",desc_imap:"• Producing TVCs, MVs, lecture videos and Animation for Marketing.<br>• Filming and editing \"Super Junior\" program with VTV7.",desc_tgmedia:"• Editing motion ads for Word Games series.<br>• Designing and developing Animations on Unity & Spine.",desc_tentun:"• Growing \"Ten Tun\" YouTube channel from 10k to 100k Subs.<br>• Editing entertainment review videos.",sec_port_title:"Featured Projects",port_hint:"(Hover to swipe through projects)",btn_watch:"WATCH VIDEO",proj_1:"KLB Honoring Event",proj_2:"IMAP Viral Clip",proj_3:"Ten Tun YouTube",proj_4:"Spine 2D Animation",contact_title:"Work With Me",contact_sub:"Ready for high-quality TVC, MV and Viral Video projects.",menu_email:"Send Email",menu_zalo:"Chat Zalo",menu_tele:"Chat Telegram",form_name:"Your Name",form_email:"Your Email",form_msg:"Your Project (TVC, MV...)",btn_send:"Send Request",form_success:"Successfully Sent!",form_success_sub:"I will get back to you as soon as possible.",btn_back:"Send Another"},
     ko:{nav_home:"소개",nav_about:"파트너",nav_skills:"스킬 & 장비",nav_exp:"경력",nav_port:"프로젝트",mob_nav_intro:"소개",mob_nav_about:"정보",mob_nav_skills:"스킬",mob_nav_exp:"경력",mob_nav_port:"프로젝트",btn_contact:"연락하기",location:"하노이 - 꺼우저이",btn_darkmode:"다크 모드",btn_lightmode:"라이트 모드",hero_desc:"저는 전문 비디오 에디터이자 촬영 감독인 민(Minh)입니다. <b>KienlongBank</b>와 <b>IMAP</b>에서의 실무 경험을 바탕으로, TVC 제작, 모션 그래픽부터 전문적인 틱톡/유튜브 채널 구축까지 포괄적인 비디오 솔루션을 제공합니다.",hero_btn:"프로젝트 보기",sec_about_title:"언어 및 파트너",about_desc:"기술을 넘어, 저는 항상 최신 비주얼 트렌드를 탐구하여 영상에 적용합니다. 모든 프레임에 대한 세심함과 일관된 스토리텔링은 모든 프로젝트에 대한 저의 약속입니다.",stat_exp:"년 경력",stat_clients:"만족한 고객",stat_projects:"완료한 프로젝트",lbl_lang:"언어:",lbl_partner:"파트너:",sec_skills_title:"기술 및 장비",sub_soft:"소프트웨어",sub_ai:"AI 도구",sub_gear:"장비",sec_exp_title:"업무 경력",role_media:"미디어 전문가",desc_klb:"• 틱톡 채널 구축, 모션 비디오 및 멀티미디어 콘텐츠 제작.<br>• 사내 활동을 위한 영상 촬영, 편집 및 사진 촬영.",desc_imap:"• 마케팅을 위한 TVC, MV, 강의 영상 및 애니메이션 제작.<br>• VTV7과 함께 \"Super Junior\" 프로그램 촬영 및 편집.",desc_tgmedia:"• 워드 게임 시리즈를 위한 모션 광고 편집.<br>• Unity & Spine에서 애니메이션 디자인 및 개발.",desc_tentun:"• \"Ten Tun\" 유튜브 채널 구독자 1만명에서 10만명으로 성장.<br>• 엔터테인먼트 리뷰 및 모음 영상 편집.",sec_port_title:"주요 프로젝트",port_hint:"(프로젝트를 넘기려면 마우스를 올리세요)",btn_watch:"영상 보기",proj_1:"KLB 시상식",proj_2:"IMAP 바이럴 클립",proj_3:"Ten Tun 유튜브",proj_4:"Spine 2D 애니메이션",contact_title:"제휴 문의",contact_sub:"고품질 TVC, MV 및 바이럴 비디오 프로젝트를 준비하고 있습니다.",menu_email:"이메일",menu_zalo:"Zalo 채팅",menu_tele:"텔레그램",form_name:"이름",form_email:"이메일",form_msg:"프로젝트 설명",btn_send:"요청 보내기",form_success:"성공적으로 전송되었습니다!",form_success_sub:"가능한 한 빨리 연락드리겠습니다.",btn_back:"다시 보내기"},
-    zh:{nav_home:"简介",nav_about:"合作伙伴",nav_skills:"技能与设备",nav_exp:"工作经验",nav_port:"项目",mob_nav_intro:"简介",mob_nav_about:"关于",mob_nav_skills:"技能",mob_nav_exp:"经验",mob_nav_port:"项目",btn_contact:"联系我",location:"河内 - 纸桥",btn_darkmode:"深色模式",btn_lightmode:"浅色模式",hero_desc:"我是 Minh —— 一名专业的视频编辑和摄影师。凭借在 <b>KienlongBank</b> 和 <b>IMAP</b> 的实战经验，我提供全面的视频解决方案：从 TVC 制作、动态图形到专业的 TikTok/YouTube 频道建设。",hero_btn:"查看我的项目",sec_about_title:"语言与合作伙伴",about_desc:"不仅仅是技术，我总是探索最新的视觉趋势并应用于每一个镜头。每一帧画面的细致入微和连贯的叙事思维是我对每个项目的承诺。",stat_exp:"年经验",stat_clients:"满意客户",stat_projects:"完成项目",lbl_lang:"语言:",lbl_partner:"合作伙伴:",sec_skills_title:"技能与设备",sub_soft:"软件",sub_ai:"AI 工具",sub_gear:"设备",sec_exp_title:"工作经验",role_media:"媒体专员",desc_klb:"• 建设 TikTok 频道，制作动态视频和多媒体内容。<br>• 为内部活动拍摄、编辑视频和拍照。",desc_imap:"• 制作 TVC、MV、讲座视频和用于营销的动画。<br>• 与 VTV7 合作拍摄和编辑 \"Super Junior\" 节目。",desc_tgmedia:"• 为 Word Games 系列编辑动态广告。<br>• 在 Unity & Spine 上设计和开发动画。",desc_tentun:"• 将 \"Ten Tun\" YouTube 频道从1万增长到10万订阅者。<br>• 编辑娱乐评论和合集视频。",sec_port_title:"精选项目",port_hint:"(将鼠标悬停以滑动项目)",btn_watch:"观看视频",proj_1:"KLB 表彰活动",proj_2:"IMAP 病毒视频",proj_3:"Ten Tun YouTube",proj_4:"Spine 2D 动画",contact_title:"合作联系",contact_sub:"随时准备进行高质量的 TVC、MV 和病毒视频项目。",menu_email:"发邮件",menu_zalo:"Zalo 聊天",menu_tele:"Telegram 聊天",form_name:"您的姓名",form_email:"您的电子邮件",form_msg:"您的项目 (TVC, MV...)",btn_send:"发送请求",form_success:"发送成功！",form_success_sub:"我会尽快回复您。",btn_back:"再发送一个"},
+    zh:{nav_home:"简介",nav_about:"合作伙伴",nav_skills:"技能与设备",nav_exp:"工作经验",nav_port:"项目",mob_nav_intro:"简介",mob_nav_about:"关于",mob_nav_skills:"技能",mob_nav_exp:"经验",mob_nav_port:"项目",btn_contact:"联系我",location:"河内 - 纸桥",btn_darkmode:"深色模式",btn_lightmode:"浅色模式",hero_desc:"我是 Minh -- 一名专业的视频编辑和摄影师。凭借在 <b>KienlongBank</b> 和 <b>IMAP</b> 的实战经验，我提供全面的视频解决方案：从 TVC 制作、动态图形到专业的 TikTok/YouTube 频道建设。",hero_btn:"查看我的项目",sec_about_title:"语言与合作伙伴",about_desc:"不仅仅是技术，我总是探索最新的视觉趋势并应用于每一个镜头。每一帧画面的细致入微和连贯的叙事思维是我对每个项目的承诺。",stat_exp:"年经验",stat_clients:"满意客户",stat_projects:"完成项目",lbl_lang:"语言:",lbl_partner:"合作伙伴:",sec_skills_title:"技能与设备",sub_soft:"软件",sub_ai:"AI 工具",sub_gear:"设备",sec_exp_title:"工作经验",role_media:"媒体专员",desc_klb:"• 建设 TikTok 频道，制作动态视频和多媒体内容。<br>• 为内部活动拍摄、编辑视频和拍照。",desc_imap:"• 制作 TVC、MV、讲座视频和用于营销的动画。<br>• 与 VTV7 合作拍摄和编辑 \"Super Junior\" 节目。",desc_tgmedia:"• 为 Word Games 系列编辑动态广告。<br>• 在 Unity & Spine 上设计和开发动画。",desc_tentun:"• 将 \"Ten Tun\" YouTube 频道从1万增长到10万订阅者。<br>• 编辑娱乐评论和合集视频。",sec_port_title:"精选项目",port_hint:"(将鼠标悬停以滑动项目)",btn_watch:"观看视频",proj_1:"KLB 表彰活动",proj_2:"IMAP 病毒视频",proj_3:"Ten Tun YouTube",proj_4:"Spine 2D 动画",contact_title:"合作联系",contact_sub:"随时准备进行高质量的 TVC、MV 和病毒视频项目。",menu_email:"发邮件",menu_zalo:"Zalo 聊天",menu_tele:"Telegram 聊天",form_name:"您的姓名",form_email:"您的电子邮件",form_msg:"您的项目 (TVC, MV...)",btn_send:"发送请求",form_success:"发送成功！",form_success_sub:"我会尽快回复您。",btn_back:"再发送一个"},
     ja:{nav_home:"紹介",nav_about:"パートナー",nav_skills:"スキル・機材",nav_exp:"経歴",nav_port:"プロジェクト",mob_nav_intro:"紹介",mob_nav_about:"私について",mob_nav_skills:"スキル",mob_nav_exp:"経歴",mob_nav_port:"プロジェクト",btn_contact:"お問い合わせ",location:"ハノイ - カウギアイ",btn_darkmode:"ダークモード",btn_lightmode:"ライトモード",hero_desc:"私はミンです。プロのビデオエディター兼カメラマンです。<b>KienlongBank</b>と<b>IMAP</b>での実務経験を活かし、TVC制作、モーショングラフィックスからプロフェッショナルなTikTok/YouTubeチャンネルの構築まで、包括的なビデオソリューションを提供します。",hero_btn:"プロジェクトを見る",sec_about_title:"言語とパートナー",about_desc:"技術にとどまらず、常に最新のビジュアルトレンドを探求し、映像に取り入れています。すべてのフレームにおける丁寧さと一貫したストーリーテリングは、私のプロジェクトに対する約束です。",stat_exp:"年の経験",stat_clients:"満足した顧客",stat_projects:"完了プロジェクト",lbl_lang:"言語:",lbl_partner:"パートナー:",sec_skills_title:"スキル & 機材",sub_soft:"ソフトウェア",sub_ai:"AI ツール",sub_gear:"機材",sec_exp_title:"職務経歴",role_media:"メディアスペシャリスト",desc_klb:"• TikTokチャンネルの構築、モーションビデオおよびマルチメディアコンテンツの作成。<br>• 社内活動のための撮影、編集、写真撮影。",desc_imap:"• TVC、MV、講義動画、マーケティング用アニメーションの制作。<br>• VTV7と連携した「Super Junior」番組の撮影・編集。",desc_tgmedia:"• Word Gamesシリーズのモーション広告編集。<br>• Unity & Spineでのアニメーション設計・開発。",desc_tentun:"• 「Ten Tun」YouTubeチャンネルを登録者1万人から10万人に成長。<br>• エンターテインメントレビューおよびまとめ動画の編集。",sec_port_title:"主なプロジェクト",port_hint:"(プロジェクトをスワイプするにはホバーしてください)",btn_watch:"動画を見る",proj_1:"KLB 表彰イベント",proj_2:"IMAP バイラルクリップ",proj_3:"Ten Tun YouTube",proj_4:"Spine 2D アニメ",contact_title:"お問い合わせ",contact_sub:"高品質なTVC、MV、バイラルビデオプロジェクトに対応可能です。",menu_email:"メール送信",menu_zalo:"Zalo チャット",menu_tele:"Telegram チャット",form_name:"お名前",form_email:"Eメール",form_msg:"プロジェクトの説明",btn_send:"送信する",form_success:"送信に成功しました！",form_success_sub:"できるだけ早く返信いたします。",btn_back:"もう一度送信する"}
 };
 
@@ -1706,28 +1674,9 @@ function setLang(lang){
     document.getElementById('langFlag').src=fm.f;
     document.getElementById('langText').textContent=fm.t;
     localStorage.setItem('lang',lang);
-    updateThemeBtn(document.body.classList.contains('light-mode'));
 }
 function toggleLangList(e){if(e)e.stopPropagation();document.getElementById('langList').classList.toggle('open');}
 function closeLangList(){document.getElementById('langList').classList.remove('open');}
-
-/* ---- THEME ---- */
-function toggleTheme(){
-    document.body.classList.toggle('light-mode');
-    const isLight=document.body.classList.contains('light-mode');
-    localStorage.setItem('theme',isLight?'light':'dark');
-    document.getElementById('themeColor').content=isLight?'#f0f4f8':'#020408';
-    updateThemeBtn(isLight);
-}
-function updateThemeBtn(isLight){
-    const lang=localStorage.getItem('lang')||'vi';
-    const ic=document.getElementById('pcThemeIcon');
-    const tx=document.getElementById('pcThemeText');
-    const mIc=document.getElementById('mobThemeIcon');
-    if(ic)ic.className=isLight?'fas fa-moon':'fas fa-sun';
-    if(tx)tx.textContent=isLight?(T[lang]?.btn_darkmode||'Chế độ Tối'):(T[lang]?.btn_lightmode||'Chế độ Sáng');
-    if(mIc)mIc.className=isLight?'fas fa-moon':'fas fa-sun';
-}
 
 /* ---- MOBILE MENU ---- */
 function toggleMobMenu(){document.getElementById('mobMenu').classList.toggle('on');}
@@ -1763,34 +1712,40 @@ function resetForm(){
     document.getElementById('contactFormWrap').style.display='block';
 }
 
-/* ---- SCROLL ---- */
-window.addEventListener('scroll',()=>{
-    const h=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-    const s=(window.scrollY/h)*100;
-    const sf=document.getElementById('scrollFill');if(sf)sf.style.width=s+'%';
-    // Active nav
-    let cur='home';
-    document.querySelectorAll('section').forEach(sec=>{if(window.scrollY>=sec.offsetTop-280)cur=sec.id;});
-    document.querySelectorAll('.nav-links a,.mob-nav a').forEach(a=>{
-        a.classList.remove('active');
-        if(a.getAttribute('href')==='#'+cur)a.classList.add('active');
-    });
-    // Timeline playhead
-    updateTimeline();
-});
+/* ---- SCROLL OBSERVER ---- */
+const navObserver = new IntersectionObserver((entries) => {
+    let activeId = null;
+    entries.forEach(e => { if (e.isIntersecting) activeId = e.target.id; });
+    if (activeId) {
+        document.querySelectorAll('.nav-links a, .mob-nav a').forEach(a => {
+            a.classList.toggle('active', a.getAttribute('href') === '#' + activeId);
+        });
+    }
+}, { rootMargin: '-40% 0px -60% 0px' });
+document.querySelectorAll('section').forEach(sec => navObserver.observe(sec));
 
-function updateTimeline(){
-    const sec=document.getElementById('experience');
-    const fill=document.getElementById('tlFill');
-    const head=document.getElementById('tlHead');
-    if(!sec||!fill||!head)return;
-    const r=sec.getBoundingClientRect();
-    let pct=(-r.top+300)/(r.height-500)*100;
-    pct=Math.min(Math.max(pct,0),100);
-    fill.style.height=pct+'%';
-    head.style.top=pct+'%';
+const tlSec = document.getElementById('experience');
+const tlFill = document.getElementById('tlFill');
+const tlHead = document.getElementById('tlHead');
+if (tlSec && tlFill && tlHead) {
+    let tlInView = false;
+    let ticking = false;
+    new IntersectionObserver(e => { tlInView = e[0].isIntersecting; }, { threshold: 0 }).observe(tlSec);
+    window.addEventListener('scroll', () => {
+        if (!tlInView) return;
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const r = tlSec.getBoundingClientRect();
+                let pct = (-r.top + 300) / (r.height - 500) * 100;
+                pct = Math.min(Math.max(pct, 0), 100);
+                tlFill.style.height = pct + '%';
+                tlHead.style.top = pct + '%';
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
 }
-
 /* ---- DOM READY ---- */
 document.addEventListener('DOMContentLoaded',()=>{
     // Swiper
@@ -1832,9 +1787,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.querySelectorAll('.counter').forEach(c=>obs.observe(c));
 
     // Load prefs
-    const savedTheme=localStorage.getItem('theme');
-    if(savedTheme==='light'){document.body.classList.add('light-mode');document.getElementById('themeColor').content='#f0f4f8';updateThemeBtn(true);}
-    else updateThemeBtn(false);
     const savedLang=localStorage.getItem('lang')||'vi';
     setLang(savedLang);
 
@@ -1899,29 +1851,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 });
 
-/* ---- FILM GRAIN ---- */
-(function(){
-    const c=document.getElementById('filmGrain');if(!c)return;
-    /* skip grain on mobile — hidden by CSS anyway, save CPU/battery */
-    if(window.innerWidth<768){c.style.display='none';return;}
-    const ctx=c.getContext('2d');
-    /* use smaller canvas for performance */
-    const scale=0.25;
-    function resize(){
-        c.style.width=window.innerWidth+'px';c.style.height=window.innerHeight+'px';
-        c.width=Math.round(window.innerWidth*scale);c.height=Math.round(window.innerHeight*scale);
-    }
-    let lastGrain=0;
-    function grain(ts){
-        if(ts-lastGrain<100){requestAnimationFrame(grain);return;} /* cap at ~10fps */
-        lastGrain=ts;
-        const w=c.width,h=c.height;if(!w||!h){requestAnimationFrame(grain);return;}
-        const img=ctx.createImageData(w,h);const d=img.data;
-        for(let i=0;i<d.length;i+=4){const v=(Math.random()*255)|0;d[i]=d[i+1]=d[i+2]=v;d[i+3]=(Math.random()*8+2)|0;}
-        ctx.putImageData(img,0,0);requestAnimationFrame(grain);
-    }
-    resize();window.addEventListener('resize',resize);requestAnimationFrame(grain);
-})();
 
 /* ---- HUD TIMECODE ---- */
 (function(){
