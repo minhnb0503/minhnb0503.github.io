@@ -412,12 +412,22 @@ h1,h2,h3,h4,h5,h6,.brand-name,.section-title,.nav-label{
 .main-content{
     margin-left:var(--sidebar-w);
     width:calc(100% - var(--sidebar-w));
-    padding:30px 50px 80px;
-    max-width:1440px;
+    padding:30px 40px 80px;
     transition:all .4s var(--ease);
     position:relative;z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
-section{padding:100px 40px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+section{
+    width:100%;
+    max-width:1240px;
+    margin:0 auto;
+    padding:80px 40px;
+    border-bottom:1px solid var(--border);
+    position:relative;
+    overflow:hidden;
+}
 
 .sec-header{
     display:flex;justify-content:space-between;align-items:flex-end;
@@ -446,7 +456,8 @@ section{padding:100px 40px;border-bottom:1px solid var(--border);position:relati
    SECTION 01 - HERO
 ============================================================ */
 .hero{
-    min-height:calc(100vh - 40px);margin-top:20px;
+    min-height:calc(100vh - 60px);margin-top:20px;
+    width:100%;max-width:1240px;margin-left:auto;margin-right:auto;
     display:flex;align-items:center;justify-content:space-between;
     padding:60px 70px;
     background:radial-gradient(ellipse at 75% 40%, rgba(0,229,255,.04) 0%, transparent 60%);
