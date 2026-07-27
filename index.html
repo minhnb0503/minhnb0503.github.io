@@ -4,10 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#020408">
-    <meta name="description" content="Portfolio của Ngô Bình Minh - Video Editor & Cameraman chuyên nghiệp tại Hà Nội.">
+    <meta name="description" content="Portfolio của Ngô Bình Minh - Video Editor & Cameraman chuyên nghiệp tại Hà Nội. Kinh nghiệm thực chiến tại KienlongBank, IMAP, TGMedia.">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <title>Ngô Bình Minh | Video Editor Portfolio</title>
+
+    <!-- Open Graph / Facebook / Zalo / Telegram -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://minhnb0503.github.io/">
+    <meta property="og:title" content="Ngô Bình Minh | Video Editor & Cameraman Portfolio">
+    <meta property="og:description" content="Portfolio của Ngô Bình Minh - Video Editor & Cameraman chuyên nghiệp tại Hà Nội. Sản xuất TVC, MV, Motion Graphics và TikTok/YouTube.">
+    <meta property="og:image" content="https://minhnb0503.github.io/minh3.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://minhnb0503.github.io/">
+    <meta property="twitter:title" content="Ngô Bình Minh | Video Editor & Cameraman Portfolio">
+    <meta property="twitter:description" content="Portfolio của Ngô Bình Minh - Video Editor & Cameraman chuyên nghiệp tại Hà Nội. Sản xuất TVC, MV, Motion Graphics và TikTok/YouTube.">
+    <meta property="twitter:image" content="https://minhnb0503.github.io/minh3.png">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PV3RXBF1DW"></script>
@@ -55,6 +69,30 @@
     --shadow-cyan:  0 0 30px rgba(0,229,255,0.08);
     --sidebar-w:    280px;
     --ease:         cubic-bezier(0.25,0.8,0.25,1);
+}
+
+[data-theme="light"] {
+    --void:         #f1f5f9;
+    --deep:         #e2e8f0;
+    --panel:        #ffffff;
+    --glass:        rgba(255,255,255,0.9);
+    --glass-border: rgba(0,119,182,0.18);
+    --cyan:         #0077b6;
+    --cyan-dim:     rgba(0,119,182,0.7);
+    --cyan-glow:    rgba(0,119,182,0.12);
+    --cyan-pulse:   rgba(0,119,182,0.25);
+    --green:        #10b981;
+    --green-dim:    rgba(16,185,129,0.15);
+    --amber:        #d97706;
+    --red:          #ef4444;
+    --text-bright:  #0f172a;
+    --text-mid:     #334155;
+    --text-dim:     #64748b;
+    --grid:         rgba(0,119,182,0.05);
+    --border:       rgba(0,119,182,0.18);
+    --border-bright:rgba(0,119,182,0.45);
+    --shadow:       0 8px 30px rgba(15,23,42,0.08);
+    --shadow-cyan:  0 0 30px rgba(0,119,182,0.1);
 }
 
 
@@ -1188,6 +1226,7 @@ section{
                 <a href="https://www.tiktok.com/@minhnb.cine" target="_blank" rel="noopener" class="soc-btn tt" title="TikTok"><i class="fab fa-tiktok"></i></a>
                 <a href="https://drive.google.com/drive/folders/17tnHdj60KFS7eg7QuEnjHKx0gmHQp0MN?usp=drive_link" target="_blank" rel="noopener" class="soc-btn gd" title="Drive"><i class="fab fa-google-drive"></i></a>
             </div>
+            <button class="theme-toggle" id="pcThemeBtn" onclick="toggleTheme()">
                 <i class="fas fa-sun" id="pcThemeIcon"></i>
                 <span id="pcThemeText" data-i18n="btn_darkmode">Chế độ Tối</span>
             </button>
@@ -1684,7 +1723,26 @@ function setLang(lang){
     localStorage.setItem('lang',lang);
 }
 function toggleLangList(e){if(e)e.stopPropagation();document.getElementById('langList').classList.toggle('open');}
-function closeLangList(){document.getElementById('langList').classList.remove('open');}
+/* ---- THEME TOGGLE ---- */
+function toggleTheme(){
+    const isLight=document.documentElement.getAttribute('data-theme')==='light';
+    const next=isLight?'dark':'light';
+    document.documentElement.setAttribute('data-theme',next);
+    localStorage.setItem('theme',next);
+    updateThemeUI(next);
+}
+function updateThemeUI(theme){
+    const icon=document.getElementById('pcThemeIcon');
+    const text=document.getElementById('pcThemeText');
+    const lang=localStorage.getItem('lang')||'vi';
+    if(theme==='light'){
+        if(icon)icon.className='fas fa-moon';
+        if(text)text.textContent=(T[lang]&&T[lang].btn_lightmode)?T[lang].btn_lightmode:'Chế độ Sáng';
+    }else{
+        if(icon)icon.className='fas fa-sun';
+        if(text)text.textContent=(T[lang]&&T[lang].btn_darkmode)?T[lang].btn_darkmode:'Chế độ Tối';
+    }
+}
 
 /* ---- MOBILE MENU ---- */
 function toggleMobMenu(){document.getElementById('mobMenu').classList.toggle('on');}
@@ -1702,18 +1760,33 @@ function closeLb(){
 }
 document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLb();});
 
-/* ---- CONTACT FORM ---- */
-function handleSubmit(e){
+/* ---- CONTACT FORM (Formspree Direct Integration) ---- */
+async function handleSubmit(e){
     e.preventDefault();
-    document.getElementById('btnTxt').style.display='none';
-    document.getElementById('btnSpin').style.display='inline-block';
-    setTimeout(()=>{
+    const btnTxt=document.getElementById('btnTxt');
+    const btnSpin=document.getElementById('btnSpin');
+    if(btnTxt)btnTxt.style.display='none';
+    if(btnSpin)btnSpin.style.display='inline-block';
+
+    const name=document.getElementById('cName').value;
+    const email=document.getElementById('cEmail').value;
+    const msg=document.getElementById('cMsg').value;
+
+    try{
+        await fetch('https://formspree.io/f/xbjnqkyv',{
+            method:'POST',
+            headers:{'Content-Type':'application/json','Accept':'application/json'},
+            body:JSON.stringify({name:name,email:email,message:msg})
+        });
+    }catch(err){
+        console.warn('Formspree submit fallback:',err);
+    }finally{
         document.getElementById('contactFormWrap').style.display='none';
         document.getElementById('contactSuccess').style.display='block';
-        document.getElementById('btnTxt').style.display='';
-        document.getElementById('btnSpin').style.display='none';
+        if(btnTxt)btnTxt.style.display='';
+        if(btnSpin)btnSpin.style.display='none';
         document.getElementById('contactForm').reset();
-    },1500);
+    }
 }
 function resetForm(){
     document.getElementById('contactSuccess').style.display='none';
@@ -1797,6 +1870,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     // Load prefs
     const savedLang=localStorage.getItem('lang')||'vi';
     setLang(savedLang);
+    const savedTheme=localStorage.getItem('theme')||'dark';
+    document.documentElement.setAttribute('data-theme',savedTheme);
+    updateThemeUI(savedTheme);
 
     // Mobile nav show
     if(window.innerWidth<992){const mn=document.getElementById('mobNav');if(mn)mn.style.display='flex';}
